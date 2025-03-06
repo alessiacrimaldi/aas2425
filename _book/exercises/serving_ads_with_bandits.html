@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                height: 100vh;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            #suggestions {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                max-height: 95vh;
+            }
+
+            #ads-container {
+                display: flex;
+                flex: 1;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .ad {
+                display: flex;
+                flex-direction: column;
+                height: 250px;
+                width: 250px;
+                background-color: #eee;
+                justify-content: center;
+                align-items: center;
+                font-size: 2em;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                border: 1px solid black;
+                border-radius: 16px;
+                cursor: pointer;
+            }
+
+            .ad-name {
+                display: flex;
+                padding: 1rem;
+                flex: 2;
+                align-items: center;
+            }
+
+            .ad-category {
+                display: flex;
+                flex: 1;
+                font-size: 0.6em;
+                background-color: #ccc;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                border-top: 1 px solid #aaa;
+                border-radius: 0 0 16px 16px;
+            }
+
+            #suggestions > button {
+                font-size: 1em;
+                background-color: violet;
+                border: transparent 1px solid;
+                width: 10rem;
+                height: 2rem;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main id="suggestions">
+            <h1>Things you may like</h1>
+            <p>selected based on your interests</p>
+            <div id="ads-container">
+
+            </div>
+            <button>Skip</button>
+        </main>
+    </body>
+
+    <script type="text/javascript">
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i >= 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        const container = document.querySelector('#ads-container');
+
+        ads = [
+            'Soccer ⚽️;Sport', 'Basket 🏀;Sport', 'Volleyball 🏐;Sport',
+            'Banana 🍌;Fruit', 'Apple 🍏;Fruit', 'Orange 🍊;Fruit',
+            'Cat 🐈‍⬛;Pet', 'Dog 🐕‍🦺;Pet', 'Parrot 🦜;Pet'
+        ];
+        shuffleArray(ads)
+
+        const display_ads = (ads) => {
+            let html = "";
+            ads.forEach(ad => {
+                const parts = ad.split(";");
+                html += `<div class='ad'>
+                            <div class='ad-name'>${parts[0]}</div>
+                            <div class='ad-category'>Category: ${parts[1]}</div>
+                        </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        const choose_next_ad = () => {
+            // must be an element of the list of all_ads
+            // all_ads contains the strings of the type of ads and the respective number of clicks
+        }
+        
+        let Q = {};
+        ads.forEach(sport => {
+            Q[sport] = 0
+        });
+
+        const initial_ads = Object.keys(Q).slice(0, 1);
+        display_ads(initial_ads);
+
+        ads = document.querySelectorAll('.ad');
+        btn = document.querySelector('#suggestions > button');
+
+        ads.forEach((div, index) => {
+            div.onclick = e => {
+                ad_name = e.target.innerHTML;
+                Q[ad_name] += 1;
+                console.log(Q)
+                choose_next_ad()
+            }
+        })
+        btn.onclick = e => {
+        console.log("skippo") 
+        }
+
+        /*
+        class MultiArmedBandit{
+            constructor(k) {
+                this.arms = new Array(k).fill(this.create_generator())
+                
+                //this.arms = [];
+                //for (let i = 0; i < k; i++) {
+                //    this.arms.push();
+                //}
+            }
+
+            getRndInteger(min, max){
+                return Math.floor(Math.random() * (max - min) ) + min;
+            }
+            
+            create_generator(){
+                const lbound = 1;
+                const lbound = 10;
+
+                const a = getRndInteger(lbound, lbound);
+                const b = getRndInteger(a, ub);
+
+                return {a, b};
+            }
+
+            get reward(a){
+                const [min, max] = this.arms[a]
+                return Math.random() * (max - min) + min;
+            }
+        }
+        
+        class ArmChooser {
+            constructor(k, eps, initial_val) {
+                this.Q = new Array(k).fill(initial_val);
+                this.N = new Array(k).fill(0.);
+                this.eps = eps;
+            }
+
+            argmax(arr) {
+                return arr.map((x, i) => [x, i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
+            }
+
+            epsilon_greedy() {
+                if (Math.random() < 1 - this.eps) {
+                    return argmax(this.Q)
+                } else {
+                    return getRndInteger(0, this.Q.length - 1)
+                }
+            }
+
+            choose() {
+                a = this.epsilon_greedy()
+                R =
+                s
+            }
+        }
+
+        def _epsilon_greedy(self):
+            if random.random() < 1 - self.eps:
+                return np.argmax(self.Q)
+            else:
+                return random.randint(0, len(self.Q) - 1)
+
+        def choose(self):
+            a = self._epsilon_greedy()
+            R = bandit.get_reward(a)
+            self.N[a] += 1
+            self.Q[a] += 1/self.N[a] * (R - self.Q[a])
+            print(f"R: {R}")
+            print(f"Q: {self.Q}")
+            print(f"N: {self.N}")
+        */
+    </script>
+</html>

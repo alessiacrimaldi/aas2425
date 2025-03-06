@@ -1,0 +1,232 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Autonomous and Adaptive Systems",
+    "section": "",
+    "text": "Preface",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Autonomous and Adaptive Systems",
+    "section": "Overview",
+    "text": "Overview\nThis course will provide the students with a solid understanding of the state of the art and the key conceptual and practical aspects of the design, implementation and evaluation of intelligent machines and autonomous systems that learn by interacting with their environment. The course also takes into consideration ethical, societal and philosophical aspects related to these technologies.\nStrong focus on the state-of-the-art (and what’s next): read papers from leading AI/ML conferences (but also classics from the ML field), try software, etc.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#topics-of-the-module",
+    "href": "index.html#topics-of-the-module",
+    "title": "Autonomous and Adaptive Systems",
+    "section": "Topics of the Module",
+    "text": "Topics of the Module",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "sec1.html",
+    "href": "sec1.html",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "",
+    "text": "The Brave New World.\n\n\n\n\n\n\n\n\n \\(\\Rightarrow \\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 2 \\end{bmatrix}\\)  gridworld",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html",
+    "href": "sec2.html",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "",
+    "text": "2.1 Examples of Problems",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#finite-markov-decision-processes-mdps",
+    "href": "sec2.html#finite-markov-decision-processes-mdps",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.2 Finite Markov Decision Processes (MDPs)",
+    "text": "2.2 Finite Markov Decision Processes (MDPs)\nMarkov Decision Processes (MDPs) are a mathematically idealised formulation of Reinforcement Learning for which precise theoretical statements can be made.\n\nTension between breadth of applicability and mathematical tractability.\nMDPs provide a way for framing the problem of learning from experience, and, more specifically, from interacting with an environment.\n\n\nDefinitions\n\nReinforcement Learning, or RL for short, is a unique facet of machine learning where an agent learns to make decisions through trial and error.\nTwo main entities:\n\n\n\n\nAgent = learner and decision-maker.\n\nInteracts with the environment selecting actions.\nObserves and acts within the environment.\nReceives:\n\nrewards for good decisions.\npenalties for bad decisions.\n\n\nEnvironment = everything else outside the agent.\n\nChanges following actions of the agent.\n\n\n\nGoal: devise a strategy that maximises positive feedback over time.\n\n\nRL framework\n\n\nAgent: learner, decision-maker.\nEnvironment: challenges to be solved.\nState: environment snapshot at given time.\nAction: agent’s choice in response to state.\nReward: feedback for agent action (positive or negative).\n\n\n\n\n\nRL interaction loop\n\n\nThe agent and the environment interact at each discrete step of a sequence \\(t=0,1,2,3,\\dots\\)\nAt each time step \\(t\\), the agent receives some representation of the environment state \\(S_t \\in \\mathcal{S}\\) where \\(\\mathcal{S}\\) is the set of the states.\nOn that basis, an agent selects an action \\(\\mathbf{A_t \\in \\mathcal{A}(S_t)}\\)\n\n\n\n\nLet’s demonstrate the agent-environment interaction using a generic code example. The process starts by creating an environment and retrieving the initial state. The agent then enters a loop where it selects an action based on the current state in each iteration. After executing the action, the environment provides feedback in the form of a new state and a reward. Finally, the agent updates its knowledge based on the state, action, and reward it received.\n\nenv = create_environment()\nstate = env_get_initial_state()\n\nfor i in range(n_iterations):\n    action = choose_action(state)\n    state, reward = env_execute(action)\n    update_knowledge(state, action, reward)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#goals-and-rewards",
+    "href": "sec2.html#goals-and-rewards",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.3 Goals and Rewards",
+    "text": "2.3 Goals and Rewards\n\nThe goal of the agent is formalised in terms of the reward it receives.\nAt each time step, the reward is a simple number \\(R_t \\in \\mathbb{R}\\).\nInformally, the agent’s goal is to maximise the total amount it receives.\nThe agent should not maximise the immediate reward, but the cumulative reward.\n\n\nThe Reward Hypothesis\n\nWe can formalise the goal of an agent by stating the “reward hypothesis”:\n\nAll of what we mean by goals and purposes can be well thought of as the maximisation of the exprected value of the cumulative sum of a received scalar signal (reward).\n\n\nExpected Returns\n\nIn RL, actions carry long-term consequences, impacting both immediate and future rewards. The agent’s goal goes beyond maximizing immediate gains; it receives a sequence of rewards and it strives to accumulate the highest total reward over time. This leads us to a key concept in RL: the expected return.\n\nThe expected return \\(G_t\\) is a function of the reward sequence \\(R_{t+1}, R_{t+2}, R_{t+3}, \\dots\\)\n\n\\(G_t\\) is the sum of all rewards the agent expects to accumulate throughout its journey.\n\n\n\n\n\nAccordingly, the agent learns to anticipate the sequence of actions that will yield the highest possible return.\n\nEpisodic Tasks and Continuing Tasks\n\nIn RL, we encounter two types of tasks: episodic and continuous.\nEpisodic tasks are those in which we can identify a final step of the sequence of rewards, i.e. in which the interaction between the agent and the environment can be broken into sub-sequences that we call episodes (such as play of a game, rpeeated tasks, etc.). For example, in a chess game played by an agent, each game constitutes an episode; once a game concludes, the environment resets for the next one.\n\nAn episodic task is divided into distinct episodes, each with a defined beginning and end.\n\nEach episode ends in terminals tate after \\(T\\) steps, followed by a reset to a standard starting state or to a sample of a distribution of starting states.\n\n\nThe next episode is completely independent from the previous one.\n\n\nOn the other hand, continuing tasks involve ongoing interaction without distinct episodes (e.g. ongoing process control or robots with a long-lifespan). A typical example is an agent continuously adjusting traffic lights in a city to optimize flow.\n\nA continuing task is one in which it is not possible to identify a final state.\n\n\nExpected Return for Episodic Tasks and Continuing Tasks\n\n\nIn the case of episodic tasks the expected return associated to the selection of an action \\(A_t\\) is the sum of rewards defined as follows:\n\n\\(G_t \\doteq R_{t+1} + R_{t+2} + R_{t+3} + \\dots + R_T\\)\n\n\n\nIn the case of continuing tasks the expected return associated to the selection of an action \\(A_t\\) is defined as follows:\n\n\\(G_t \\doteq R_{t+1} + \\gamma R_{t+2} + \\gamma^2 R_{t+3} + \\dots  = \\sum_{k=0}^\\infty \\gamma^k R_{t+k+1}\\)\n\nwhere \\(\\gamma\\) is the discount rate, with \\(0 \\leq \\gamma \\leq 1\\).\n\n\nDiscounting Rewards\n\nImmediate rewards are typically valued more than future ones, leading to the concept of discounted return. This concept prioritizes more recent rewards by multiplying each reward by a discount factor, gamma, raised to the power of its respective time step. For example, for expected rewards r1 through rn, the discounted return would be calculated as r1 + gamma * r2 + gamma^2 * r3, and so on.\n\n\n\nThe discount factor \\(\\gamma\\), ranging between 0 and 1, is crucial for balancing immediate and long-term rewards. A lower gamma value leads the agent to prioritize immediate gains, while a higher value emphasizes long-term benefits. At the extremes, a gamma of zero means the agent focuses solely on immediate rewards, while a gamma of one considers future rewards as equally important, applying no discount.\n\n\n\n\nNumerical example:\n\nIn this example, we’ll demonstrate how to calculate the discounted_return from an array of expected_rewards. We define a discount_factor of 0.9, then create an array of discounts, where each element corresponds to the discount factor raised to the power of the reward’s position in the sequence.\n\nimport numpy as np\nexpected_rewards = np.array([1, 6, 3])\ndiscount_factor = 0.9\ndiscounts = np.array([discount_factor ** i for i in range(len(expected_rewards))])\nprint(f\"Discounts: {discounts}\")\n\nDiscounts: [1.   0.9  0.81]\n\n\nAs we can see, discounts decrease over time, giving less importance to future rewards. Next, we multiply each reward by its corresponding discount and sum the results to compute the discounted_return, which is 8.83 in this example.\n\ndiscounted_return = np.sum(expected_rewards * discounts)\nprint(f\"The discounted return is {discounted_return}\")\n\nThe discounted return is 8.83\n\n\n\nRelation between Returns at Successive Time Steps\n\n\nReturns at successive time steps are related to each others as follows:\n\n\\(G_t \\doteq R_{t+1} + \\gamma R_{t+2} + \\gamma^2 R_{t+3} + \\gamma^3 R_{t+4} + \\dots\\) \\(\\quad\\;\\; = R_{t+1} + \\gamma (R_{t+1} + \\gamma R_{t+3} + \\gamma^2 R_{t+4} + \\dots )\\) \\(\\quad\\;\\; = R_{t+1} + \\gamma G_{t+1}\\)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#policies-and-value-functions",
+    "href": "sec2.html#policies-and-value-functions",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.4 Policies and Value Functions",
+    "text": "2.4 Policies and Value Functions\nAlmost all reinforcement learning algorithms involve estimating value functions, i.e., functions of states (or of state-action pairs) that estimate how good it is for the agent to be in a given state (or how good it is to perform a given action in a given state).\nA policy is used to model the behaviour of the agent based on the previous experience and the rewards (and consequently the expected returns) an agent received in the past.\n\nPolicy\n\nFormally, a policy is a mapping from states to probabilities of each possible action, i.e. policy \\(\\pi\\) is a probability distribution.\n\nIf the agent is following policy \\(\\pi\\) at time \\(t\\), then \\(\\pi(a \\vert s)\\) is the probability that \\(A_t = a\\) if \\(S_t = s\\).\n\n\nState-Value Function\n\nThe value function of a state \\(s\\) under a policy \\(\\pi\\), denoted \\(v_\\pi(s)\\), is the expected return when starting in \\(s\\) and following \\(\\pi\\) thereafter.\n\nFor MDPs, we can define the state-value function \\(v_\\pi\\) for policy \\(\\pi\\) formally as:\n\n\\(v_s \\doteq E_\\pi[G_t \\vert S_t = s] = E_\\pi [\\sum_{k=0}^{\\infty} \\gamma^k R_{t+k+1} \\vert S_t = s]\\)\n\nfor all \\(s \\in \\mathcal{S}\\).\nwhere \\(E_\\pi[.]\\) denotes the expected value of a random variable, given that the agent follows \\(\\pi\\) and \\(t\\) is any time step. The value of the terminal state is 0.\n\n\nchoose = rand(0.1)\nif choose &gt;= 0.7:\n    move left\nelse:\n    move right\n\n\nAction-Value Function",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#choosing-the-rewards",
+    "href": "sec2.html#choosing-the-rewards",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.5 Choosing the Rewards",
+    "text": "2.5 Choosing the Rewards\n\n\n\nMarvin Minsky. Steps Toward Artificial Intelligence. Proceedings of the IRE. Volume 49. Issue 1. January 1961.\n\n\nExamples of Rewards",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#estimating-value-functions",
+    "href": "sec2.html#estimating-value-functions",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.6 Estimating Value Functions",
+    "text": "2.6 Estimating Value Functions\n\nMonte-Carlo Methods\n\n\nUsing function approximators (neural networks and deep RL)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#optimal-policies-and-optimal-value-functions",
+    "href": "sec2.html#optimal-policies-and-optimal-value-functions",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.7 Optimal Policies and Optimal Value Functions",
+    "text": "2.7 Optimal Policies and Optimal Value Functions\n\nDefinition of Optimal Policy\n\n\nOptimal Value Functions",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#difference-between-rl-and-other-ml-types",
+    "href": "sec2.html#difference-between-rl-and-other-ml-types",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.8 Difference between RL and other ML types",
+    "text": "2.8 Difference between RL and other ML types\nRL differs significantly from other types of machine learning, such as supervised and unsupervised learning.\nIn supervised learning, models are trained using labeled data, learning to predict outcomes based on examples. It is suitable for solving problems like classification and regression.\nUnsupervised learning, on the other hand, involves learning to identify patterns or structures from unlabeled data. It is suitable for solving problems like clustering or association analysis.\nReinforcement Learning, distinct from both, does not use any training data, and learns through trial and error to perform actions that maximize the reward, making it ideal for decision-making tasks.\n\n\n\n\nRL vs. Supervised Learning\n\nSupervised learning is learning from a set of labeled examples and, in interactive problems, it is hard to obtain labels in the first place. Therefore, in “unknown” situations, agents have to learn from their experience. In these situations Reinforcement learning is most beneficial.\n\nRL vs. Unsupervised Learning\n\nUnsupervised learning is learning from datasets containing unlabelled data. Since RL does not rely on examples (labels) of correct behaviour and instead explored and learns it, we may think that RL is a type of unsupervised learning. However, this is not the case because in Reinforcement Learning the goal is to maximise a reward signal instead of trying to find a hidden structure.\nFor this reason, Reinforcement Learning is usually considred a third paradigm in addition to supervised and unsupervised learning.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#when-to-use-rl",
+    "href": "sec2.html#when-to-use-rl",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.9 When to use RL",
+    "text": "2.9 When to use RL\nIn particular, RL is well-suited for scenarios that require training a model to make sequential decisions where each decision influences future observations. In this setting, the agent learns through rewards and penalties. These guide it towards developing more effective strategies without any kind of direct supervision.\n\nSequential decision-making\n\nDecisions influence future observations\n\nLearning through rewards and penalties\n\nNo direct supervision\n\n\n\nAppropriate vs. Inappropriate for RL\n\nAn appropriate example for RL is playing video games, where the player needs to make sequential decisions such as jumping over obstacles or avoiding enemies. The player learns and improves by trial and error, receiving points for successful actions and losing lives for mistakes. The goal is to maximize the score by learning the best strategies to overcome the game’s challenges.\n\n\nPlayer makes sequential decisions.\nReceives points and loses lives depending on actions.\n\nConversely, RL is unsuitable for tasks such as in-game object recognition, where the objective is to identify and classify elements like characters or items in a video frame. This task does not involve sequential decision-making or interaction with an environment. Instead, supervised learning, which employs labeled data to train models in recognizing and categorizing objects, proves more effective for this purpose.\n\n\nNo sequential decision-making.\nNo interaction with an environment.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#rl-applications",
+    "href": "sec2.html#rl-applications",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.10 RL Applications",
+    "text": "2.10 RL Applications\nBeyond its well-known use in gaming, RL has a myriad of applications across various sectors.\n\n   \n\n\nRobotics. In robotics, RL is pivotal for teaching robots tasks through trial and error, like walking or object manipulation.\n\nRobot walking\nObject manipulation\n\nFinance. The finance industry leverages RL for optimizing trading and investment strategies to maximize profit.\n\nOptimizing trading and investment\nMaximise profit\n\nAutonomous Vehicles. RL is also instrumental in advancing autonomous vehicle technology, enhancing the safety and efficiency of self-driving cars, and minimizing accident risks.\n\nEnhancing safety and efficiency\nMinimising accident risks\n\nChatbot development. Additionally, RL is revolutionizing the way chatbots learn, enhancing their conversational skills. This leads to more accurate responses over time, thereby improving user experiences.\n\nEnhancing conversational skills\nImproving user experiences",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#references",
+    "href": "sec2.html#references",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.11 References",
+    "text": "2.11 References\nThe notation and definitions are taken (with small variations) from:\n\nRichard S. Sutton (2018)\n\n\n\n\n\nRichard S. Sutton, Andrew G. Barto. 2018. Reinforcement Learning. An Introduction. Second edition. MIT Press. https://github.com/MrinmoiHossain/Reinforcement-Learning-Specialization-Coursera/tree/master.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Musolesi, Mirco. 2024-25. “Autonomous and Adaptive\nSystems.” https://www.mircomusolesi.org/courses/AAS24-25/AAS24-25-main/.\n\n\nOrmond, Jim. 2024. “2024 Turing Award.” ACM. https://awards.acm.org/about/2024-turing.\n\n\nRichard S. Sutton, Andrew G. Barto. 2018. Reinforcement Learning. An\nIntroduction. Second edition. MIT Press. https://github.com/MrinmoiHossain/Reinforcement-Learning-Specialization-Coursera/tree/master.\n\n\nSolomonoff, Grace. 06 May 2023. “The Meeting of the Minds That\nLaunched AI.” IEEE Spectrum. https://spectrum.ieee.org/dartmouth-ai-workshop.\n\n\nTor Lattimore, Csaba Szepesvari. 2020. Bandit Algorithms.\nCambridge University Press.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "sec2.html#difference-between-rl-and-other-ml-sub-domains",
+    "href": "sec2.html#difference-between-rl-and-other-ml-sub-domains",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.8 Difference between RL and other ML sub-domains",
+    "text": "2.8 Difference between RL and other ML sub-domains\nRL differs significantly from other types of machine learning, such as supervised and unsupervised learning.\nIn supervised learning, models are trained using labeled data, learning to predict outcomes based on examples. It is suitable for solving problems like classification and regression.\nUnsupervised learning, on the other hand, involves learning to identify patterns or structures from unlabeled data. It is suitable for solving problems like clustering or association analysis.\nReinforcement Learning, distinct from both, does not use any training data, and learns through trial and error to perform actions that maximize the reward, making it ideal for decision-making tasks.\n\n\n\n\nRL vs. Supervised Learning\n\nSupervised learning is learning from a set of labeled examples and, in interactive problems, it is hard to obtain labels in the first place. Therefore, in “unknown” situations, agents have to learn from their experience. In these situations Reinforcement learning is most beneficial.\n\nRL vs. Unsupervised Learning\n\nUnsupervised learning is learning from datasets containing unlabelled data. Since RL does not rely on examples (labels) of correct behaviour and instead explored and learns it, we may think that RL is a type of unsupervised learning. However, this is not the case because in Reinforcement Learning the goal is to maximise a reward signal instead of trying to find a hidden structure.\nFor this reason, Reinforcement Learning is usually considred a third paradigm in addition to supervised and unsupervised learning.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec2.html#finite-markov-decision-processes",
+    "href": "sec2.html#finite-markov-decision-processes",
+    "title": "2  Introduction to Reinforcement Learning",
+    "section": "2.2 Finite Markov Decision Processes",
+    "text": "2.2 Finite Markov Decision Processes\nMarkov Decision Processes (MDPs) are a mathematically idealised formulation of Reinforcement Learning for which precise theoretical statements can be made.\n\nTension between breadth of applicability and mathematical tractability.\nMDPs provide a way for framing the problem of learning from experience, and, more specifically, from interacting with an environment.\n\n\nDefinitions\n\nReinforcement Learning, or RL for short, is a unique facet of machine learning where an agent learns to make decisions through trial and error.\nTwo main entities:\n\n\n\n\nAgent = learner and decision-maker.\n\nInteracts with the environment selecting actions.\nObserves and acts within the environment.\nReceives:\n\nrewards for good decisions.\npenalties for bad decisions.\n\n\nEnvironment = everything else outside the agent.\n\nChanges following actions of the agent.\n\n\n\nGoal: devise a strategy that maximises the total reward over time .\n\n\nRL framework\n\n\nAgent: learner, decision-maker.\nEnvironment: challenges to be solved.\nState: environment snapshot at given time.\nAction: agent’s choice in response to state.\nReward: feedback for agent action (positive or negative).\n\n\n\n\n\nRL interaction loop\n\n\nThe agent and the environment interact at each discrete step of a sequence \\(t=0,1,2,3,\\dots\\)\nAt each time step \\(t\\), the agent receives some representation of the environment state \\(S_t \\in \\mathcal{S}\\) where \\(\\mathcal{S}\\) is the set of the states.\nOn that basis, an agent selects an action \\(A_t \\in \\mathcal{A}(S_t)\\) where \\(\\mathcal{A}(S_t)\\) is the set of the actions that can be taken in state \\(S_t\\).\nAt time \\(t+1\\), as a consequence of its action, the agent receives a reward \\(R_{t+1} \\in \\mathcal{R}\\), where \\(\\mathcal{R}\\) is the set of rewards (expressed as real numbers).\n\n\n\n\nLet’s demonstrate the agent-environment interaction using a generic code example. The process starts by creating an environment and retrieving the initial state. The agent then enters a loop where it selects an action based on the current state in each iteration. After executing the action, the environment provides feedback in the form of a new state and a reward. Finally, the agent updates its knowledge based on the state, action, and reward it received.\n\nenv = create_environment()\nstate = env_get_initial_state()\n\nfor i in range(n_iterations):\n    action = choose_action(state)\n    state, reward = env_execute(action)\n    update_knowledge(state, action, reward)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction to Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec3.html",
+    "href": "sec3.html",
+    "title": "3  Multi-armed Bandits",
+    "section": "",
+    "text": "3.1 Exercise\nLink to html exercise",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multi-armed Bandits</span>"
+    ]
+  },
+  {
+    "objectID": "sec3.html#references",
+    "href": "sec3.html#references",
+    "title": "3  Multi-armed Bandits",
+    "section": "3.2 References",
+    "text": "3.2 References\nBooks for the bandit:\n\nChapter 2 of Richard S. Sutton (2018)\nTor Lattimore (2020)\n\n\n\n\n\nRichard S. Sutton, Andrew G. Barto. 2018. Reinforcement Learning. An Introduction. Second edition. MIT Press. https://github.com/MrinmoiHossain/Reinforcement-Learning-Specialization-Coursera/tree/master.\n\n\nTor Lattimore, Csaba Szepesvari. 2020. Bandit Algorithms. Cambridge University Press.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multi-armed Bandits</span>"
+    ]
+  },
+  {
+    "objectID": "sec3.html#exercise",
+    "href": "sec3.html#exercise",
+    "title": "3  Multi-armed Bandits",
+    "section": "",
+    "text": "Website serving ads with bandits\n\n\nDesign a website that serve ads only using bandits.\n\nImplement it (mock code).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multi-armed Bandits</span>"
+    ]
+  },
+  {
+    "objectID": "sec3.html#bandits-in-practice",
+    "href": "sec3.html#bandits-in-practice",
+    "title": "3  Multi-armed Bandits",
+    "section": "",
+    "text": "Website serving ads with bandits\n\n\nDesign a website that serve ads only using bandits.\n\nThink about how to implement it (mock code) with bandits.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multi-armed Bandits</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#interesting-news",
+    "href": "index.html#interesting-news",
+    "title": "Autonomous and Adaptive Systems",
+    "section": "Interesting News",
+    "text": "Interesting News\n\nThe Dartmouth Summer Research Project on Artificial Intelligence: Solomonoff (06 May 2023).\n\nAndrew Barto and Richard Sutton Recognized as Pioneers of Reinforcement Learning: Ormond (2024).\n\n\n\n\n\nMusolesi, Mirco. 2024-25. “Autonomous and Adaptive Systems.” https://www.mircomusolesi.org/courses/AAS24-25/AAS24-25-main/.\n\n\nOrmond, Jim. 2024. “2024 Turing Award.” ACM. https://awards.acm.org/about/2024-turing.\n\n\nSolomonoff, Grace. 06 May 2023. “The Meeting of the Minds That Launched AI.” IEEE Spectrum. https://spectrum.ieee.org/dartmouth-ai-workshop.",
+    "crumbs": [
+      "Preface"
+    ]
+  }
+]
