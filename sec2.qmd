@@ -136,7 +136,7 @@ In RL, we encounter two types of tasks: *episodic* and *continuous*.
 
 > An *episodic task* is divided into distinct episodes, each with a defined beginning and end.
 >
->> Each *episode* ends in terminals tate after $T$ steps, followed by a reset to a standard starting state or to a sample of a distribution of starting states.
+>> Each *episode* ends in terminal state after $T$ steps, followed by a reset to a standard starting state or to a sample of a distribution of starting states.
 > 
 >> The *next episode* is completely independent from the previous one.
 

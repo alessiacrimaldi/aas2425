@@ -2,6 +2,8 @@
 
 Official course page: @musolesi2425.
 
+
+
 # Preface {.unnumbered}
 
 
@@ -12,14 +14,26 @@ This course will provide the students with a solid understanding of the state of
 
 Strong focus on the state-of-the-art (and what’s next): read papers from leading AI/ML conferences (but also classics from the ML field), try software, etc.
 
+
+
 ## Topics of the Module
 
 ![](images/preface.png)
 
-## Interesting News
+
+
+## Interesting News and Readings
 
 - The Dartmouth Summer Research Project on Artificial Intelligence: @dartmouth1956.
 
     <iframe src="papers/2__2__Proposal for the Dartmouth Summer Research Project on Artificial Intelligence.pdf" width="100%" height="400px"></iframe>
 
 - Andrew Barto and Richard Sutton Recognized as Pioneers of Reinforcement Learning: @turingaward2024.
+
+- To catch up with Probability and Computing: @mitzenmacher2017.
+
+
+
+## Papers' sources
+
+- Google Scholar ([scholar.google.com](https://scholar.google.com))

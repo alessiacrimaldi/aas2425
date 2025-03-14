@@ -3,3 +3,27 @@ title: "Value Approximation Methods"
 format: html
 ---
 
+## Approximation Methods
+
+We will write $\hat{v}(s,\mathrm{w}) \approx v_\pi(s)$
+
+$\mathrm{w}$, but more generally it can be a non-linear function.
+
+
+
+## Value Function Approximation
+
+Supervised learning, aquiring the values through exploration.
+
+We have:
+
+- the *estimation of the value* of a state (we're in state $S_t$)
+
+- the *actual value* of the state (we get the reward and we are in state $S_{t+1}$).
+
+We'll use that state $S_t$ as the actual correct value of the output of our Neural Network.
+We try to improve our estimation, reducing the error.
+
+-- explanation NN --
+
+

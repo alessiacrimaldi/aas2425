@@ -3,3 +3,155 @@ title: "Temporal Difference Methods"
 format: html
 ---
 
+## Temporal-Difference Learning
+
+- **Temporal-difference (TD) methods**:
+
+    - Like Monte Carlo methods, TD methods *can learn directly from experience*.
+
+    - Unlike Monte Carlo methods, TD methods *update estimates based in part on other learned estimates*, without waiting for the final outcome (we say that "they *bootstrap*").
+
+- **Prediction vs. Control Problems in TD learning**:
+
+    1. We will consider the problem of prediction (**TD prediction**) first (i.e., we fix a policy $\pi$ and we try to estimate the value $v_\pi$ for that given policy).
+
+    1. Then we will consider the problem of finding an optimal policy (**TD control**).
+
+
+
+## Review/Preliminaries
+
+
+
+## TD Prediction
+
+<h3>Monte Carlo vs. TD for Prediction</h3>
+
+<h3>TD(0) Algorithm and Updates</h3>
+
+<h3>TD Error and Interpretation</h3>
+
+<h3>Advantages of TD Methods</h3>
+
+
+
+## Theoretical Basis of TD(0)
+
+<h3>Convergence Properties</h3>
+
+<h3>Comparison with Dynamic Programming and Monte Carlo</h3>
+
+
+## On-Policy and Off-Policy Control
+
+
+
+## Sarsa: On-Policy TD Control
+
+<h3>Transition from State-Action Pairs</h3>
+
+<h3>Sarsa Algortihm and Updates</h3>
+
+<h3>Online TD(0) Control</h3>
+
+
+
+## Q-Learning: Off-Policy TD Control
+
+<h3>Q-Learning Algorithm and Updates</h3>
+
+<h3>Convergence Properties</h3>
+
+
+
+## Summary
+
+<h3>Recap of TD Methods</h3>
+
+<h3>Function Approximation in RL</h3>
+
+
+
+## Exercise
+
+<h4>Gridworld.</h4>
+
+> Solve the gridworld problem with Sarsa.
+>
+> [REINFROCEjs - GridWorld: TD](https://cs.stanford.edu/people/karpathy/reinforcejs/gridworld_td.html)
+
+```{python}
+import numpy as np
+import random
+import copy
+
+class GridWorld:
+    def __init__(self, size):
+        self.size = size
+        self.agentPos = [0, 0]
+
+        grid = np.full((size, size), '0', dtype=str)
+        grid[0, 0] = '🤖'
+        grid[size-1, size-1] = "🏁"
+        self.grid = grid
+        self.print_grid()
+
+    def print_grid(self):
+        for i, cell in enumerate(self.grid.flatten()):
+            if i % self.size == 0:
+                print()
+            if cell == '🤖':
+                print(f'{cell} ', end = '')
+            else:
+                print(f'{cell}  ', end = '')
+        print()
+
+    def isInsideBoundary(self, pos):
+        return 0 <= pos[0] < self.size and 0 <= pos[1] < self.size
+
+    def nextStep(self, a):
+        nextPos = copy.deepcopy(self.agentPos)
+
+        match a:
+            case 'u':
+                nextPos[1] -= 1
+            case 'd':
+                nextPos[1] += 1
+            case 'r':
+                nextPos[0] += 1
+            case 'l':
+                nextPos[0] -= 1
+            case _:
+                return
+
+        if self.isInsideBoundary(nextPos):
+            self.grid[self.agentPos[1], self.agentPos[0]] = '0'
+            self.grid[nextPos[1], nextPos[0]] = '🤖'
+            self.agentPos = nextPos
+
+        self.print_grid()
+
+
+class Agent:
+    def __init__(self, size, nActions, eps):
+        self.Q = np.zeros((size, nActions))
+        self.eps = eps
+
+    def _epsilon_greedy(self):
+        if random.random() < 1 - self.eps:
+            return np.argmax(self.Q)
+        else:
+            return random.randint(0, len(self.Q) - 1)
+
+
+# Example usage
+size, nActions = 10, 4
+world = GridWorld(size)
+agent = Agent(size, nActions, 0.1)
+```
+
+
+
+## References
+
+- **Sections 6.2 and 9.4** of @sutton2018
