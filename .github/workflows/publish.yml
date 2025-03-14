@@ -1,7 +1,8 @@
 on:
   workflow_dispatch:
   push:
-    branches: main
+    branches:
+      - main
 
 name: Quarto Publish
 
@@ -16,6 +17,12 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install Python and Jupyter dependencies
+        run: |
+          sudo apt-get install -y python3-pip
+          pip3 install --upgrade pip  # Ensure pip is up-to-date
+          pip3 install jupyter nbformat
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
