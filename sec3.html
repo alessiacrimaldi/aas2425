@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Autonomous and Adaptive Systems - 3&nbsp; Multi-armed Bandits</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./sec4.html" rel="next">
+<link href="./sec2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-armed Bandits</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Autonomous and Adaptive Systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intelligent Agents and Machines</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-armed Bandits</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Temporal Difference Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Deep Learning and Neural Architectures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Value Approximation Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Policy Gradient Methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#k-armed-bandit-problem" id="toc-k-armed-bandit-problem" class="nav-link active" data-scroll-target="#k-armed-bandit-problem"><span class="header-section-number">3.1</span> K-armed Bandit Problem</a></li>
+  <li><a href="#exploration-vs.-exploitation" id="toc-exploration-vs.-exploitation" class="nav-link" data-scroll-target="#exploration-vs.-exploitation"><span class="header-section-number">3.2</span> Exploration vs.&nbsp;Exploitation</a></li>
+  <li><a href="#evaluating-action-value-methods" id="toc-evaluating-action-value-methods" class="nav-link" data-scroll-target="#evaluating-action-value-methods"><span class="header-section-number">3.3</span> Evaluating Action-Value Methods</a></li>
+  <li><a href="#greedy-action-selection-rule" id="toc-greedy-action-selection-rule" class="nav-link" data-scroll-target="#greedy-action-selection-rule"><span class="header-section-number">3.4</span> Greedy Action Selection Rule</a></li>
+  <li><a href="#epsilon-greedy-selection-rule" id="toc-epsilon-greedy-selection-rule" class="nav-link" data-scroll-target="#epsilon-greedy-selection-rule"><span class="header-section-number">3.5</span> <span class="math inline">\(\epsilon\)</span>-Greedy Selection Rule</a></li>
+  <li><a href="#incremental-implementation" id="toc-incremental-implementation" class="nav-link" data-scroll-target="#incremental-implementation"><span class="header-section-number">3.6</span> Incremental Implementation</a></li>
+  <li><a href="#optimistic-initial-values" id="toc-optimistic-initial-values" class="nav-link" data-scroll-target="#optimistic-initial-values"><span class="header-section-number">3.7</span> Optimistic Initial Values</a></li>
+  <li><a href="#upper-confidence-bound-ucb-action-selection" id="toc-upper-confidence-bound-ucb-action-selection" class="nav-link" data-scroll-target="#upper-confidence-bound-ucb-action-selection"><span class="header-section-number">3.8</span> Upper-Confidence-Bound (UCB) Action Selection</a></li>
+  <li><a href="#multi-armed-bandits-in-practice" id="toc-multi-armed-bandits-in-practice" class="nav-link" data-scroll-target="#multi-armed-bandits-in-practice"><span class="header-section-number">3.9</span> Multi-armed Bandits in practice</a></li>
+  <li><a href="#contextual-bandits" id="toc-contextual-bandits" class="nav-link" data-scroll-target="#contextual-bandits"><span class="header-section-number">3.10</span> Contextual bandits</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">3.11</span> Exercise</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.12</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multi-armed Bandits</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<ul>
+<li><p>In the case of <em>multi-armed bandits</em>, no state is used for the selection of the next actions.</p></li>
+<li><p>It exists an “intermediate case” where the state is used, but the state itself does not depend on the previous actions, called <em>contextual bandits</em>.</p></li>
+<li><p>Multi-armed bandits are a simplified version of <em>reinforcement learning</em>.</p></li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Multi-Armed Bandits</th>
+<th style="text-align: center;">Contextual Bandits</th>
+<th style="text-align: center;">Reinforcement Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">No state is used</td>
+<td style="text-align: center;">State is used<br><br>State does <u>not depend on</u> previous actions.</td>
+<td style="text-align: center;">State is used<br><br>State <u>depends on</u> previous actions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">The action that is selected does <u>not affect</u> the next state/situation.</td>
+<td style="text-align: center;">The action that is selected <u>affects</u> the next state/situation.</td>
+</tr>
+</tbody>
+</table>
+<section id="k-armed-bandit-problem" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="k-armed-bandit-problem"><span class="header-section-number">3.1</span> K-armed Bandit Problem</h2>
+<p><img src="images/bandits.png" width="100%"></p>
+<h3 class="anchored">
+Problem Definition
+</h3>
+<ul>
+<li><p>We can model a k-armed problem as follows:</p>
+<ul>
+<li><p><span class="math inline">\(k\)</span> different actions;</p></li>
+<li><p>after each choice we receive a numerical value that depends only on the action we selected;</p></li>
+<li><p>the goal is to maximise the expected reward over a certain number of time steps.</p></li>
+</ul></li>
+</ul>
+<p>This is the “classic” k-armed bandit problem, which is named by analogy to a <strong>slot machine</strong> or <strong><em>“one-armed” bandit</em></strong>, except it has <span class="math inline">\(k\)</span> levers instead than one:</p>
+<p>like in a slot machine, we need to learn which lever provides us with the highest reward.</p>
+<blockquote class="blockquote">
+<p>The problem is the same, maximising the expected reward:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(E[G_t \vert S_t = s, A_t = a]\)</span></p>
+<p><span class="math inline">\(\qquad \;\; \doteq E[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots \vert S_t = s, A_t = a]\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = E [\sum^\infty_{k=0} \gamma^k R_{t+k+1} \vert S_t = s, A_t = a]\)</span></p>
+</blockquote>
+</blockquote>
+<p>In the case of the k-armed bandit problem, <u>the state is always the same</u> (or, in other words, it does not matter). We can think about having <span class="math inline">\(s=\overline{s}\)</span> with <span class="math inline">\(\overline{s}\)</span> constant.</p>
+<blockquote class="blockquote">
+<p>Considering a constant state <span class="math inline">\(\overline{s}\)</span>, the problem is equal to maximise:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(E[G_t \vert S_t = \overline{s}, A_t = a]\)</span></p>
+<p><span class="math inline">\(\qquad \;\; \doteq E[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots \vert S_t =  \overline{s}, A_t = a]\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = E [\sum^\infty_{k=0} \gamma^k R_{t+k+1} \vert S_t = \overline{s}, A_t = a]\)</span></p>
+</blockquote>
+<p>with <span class="math inline">\(a\)</span> one of the <span class="math inline">\(k\)</span> actions.</p>
+</blockquote>
+<h3 class="anchored">
+Action Selection and Estimated Value
+</h3>
+<p>In a k-armed bandit problem, each of the <span class="math inline">\(k\)</span> actions has a value, equal to the expected or mean reward given that that action is selected.</p>
+<ul>
+<li>As in the general RL case, we denote the action selected on time step <span class="math inline">\(t\)</span> as <span class="math inline">\(A_t\)</span> and the corresponding reward as <span class="math inline">\(R_t\)</span>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>The <strong><em>value of an arbitrary action <span class="math inline">\(a\)</span></em></strong> is the expected reward given that <span class="math inline">\(a\)</span> is selected:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(q_*(a) \doteq E[R_t \vert A_t = a]\)</span></p>
+</blockquote>
+</blockquote>
+<p>In the trivial case, since we know the value of each action, solving the k-armed bandit problem is very easy: it is sufficient to always select the action with the highest value!</p>
+<ul>
+<li>However, in general, we <u>do not know the action values</u> with certainty, we only know <strong><em>estimates</em></strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>The <strong><em>estimated value of action <span class="math inline">\(a\)</span> at time step <span class="math inline">\(t\)</span></em></strong>:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(Q_t(a)\)</span></p>
+</blockquote>
+<p>Ideally, we would like to have that the value of <span class="math inline">\(Q_t(a)\)</span> would be very close to <span class="math inline">\(q_*(a)\)</span>.</p>
+</blockquote>
+</section>
+<section id="exploration-vs.-exploitation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="exploration-vs.-exploitation"><span class="header-section-number">3.2</span> Exploration vs.&nbsp;Exploitation</h2>
+<p>We maintain the estimates of each action value.</p>
+<blockquote class="blockquote">
+<p><strong><em>Exploitation</em></strong>:</p>
+<ul>
+<li><p>At any step there is at least one action whose estimated value is the greatest <span class="math inline">\(\rightarrow\)</span> we refer to this action as <strong><em>greedy action</em></strong>.</p></li>
+<li><p>When we select one of these actions, we are <em>exploiting</em> our current knowledge of the values of the actions.</p></li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong><em>Exploration</em></strong>:</p>
+<ul>
+<li><p>If we select non-greedy actions, we say that we are <em>exploring</em> <span class="math inline">\(\rightarrow\)</span> <strong><em>alternative actions</em></strong>.</p></li>
+<li><p>By doing so, we can improve our estimation of the value functions of the non-greedy actions.</p></li>
+</ul>
+</blockquote>
+<p>Balancing exploration and exploitation in a smart way is the key aspect:<br> Several theoretical resuslts in terms of bounds, etc. given specific assumptions.</p>
+</section>
+<section id="evaluating-action-value-methods" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="evaluating-action-value-methods"><span class="header-section-number">3.3</span> Evaluating Action-Value Methods</h2>
+<ul>
+<li><p>Multi-armed bandits are a very good way of approaching the general problem of Reinforcement Learning.</p>
+<p>Simplification: the state does not change, which means:</p>
+<ul>
+<li><p>Our actions <em>do not</em> modify the state;</p></li>
+<li><p>Since the state does not change, the agent’s actions <em>will not</em> depend on the previous actions (the two things are strictly linked).</p></li>
+</ul>
+<p>We will consider later the “full” reinforcement learning problem where the agent’s actions <em>do</em> modify the state and the agent’s action <em>do</em> depend on the previous actions.</p></li>
+<li><p>Recall: the <em>true value</em> of an action is the mean reward when that action is selected.</p>
+<blockquote class="blockquote">
+<p>A possible way to estimate this is by averaging the rewards actually received:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(Q_t(a) \doteq \frac{\text{sum of rewards when an action } a \text{ is taken prior time }t}{\text{number of times an action } a \text{ is taken prior time }t}\)</span> <span class="math display">\[= \frac{\sum_{i=1}^{t-1} R_i 1_{A_i=a}}{\sum_{i=1}^{t-1} 1_{A_i=a}}\]</span></p>
+</blockquote>
+<p>where <span class="math inline">\(1\)</span> denotes the random variable that is 1 if the predicate <span class="math inline">\(A_i=a\)</span> is true and 0 if not.</p>
+<p>If the denominator is 0, we set <span class="math inline">\(Q_t(a)\)</span> to some default value (e.g., 0).</p>
+</blockquote>
+<p>As the denominator goes to infinity, by the <em>law of large numbers</em>, <span class="math inline">\(Q_t(a)\)</span> converges to <span class="math inline">\(q_*(a)\)</span>.</p>
+<p>This is called the <strong><em>sample-average method</em></strong> because each estimate is the average of the sample of the rewards.</p></li>
+</ul>
+</section>
+<section id="greedy-action-selection-rule" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="greedy-action-selection-rule"><span class="header-section-number">3.4</span> Greedy Action Selection Rule</h2>
+</section>
+<section id="epsilon-greedy-selection-rule" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="epsilon-greedy-selection-rule"><span class="header-section-number">3.5</span> <span class="math inline">\(\epsilon\)</span>-Greedy Selection Rule</h2>
+</section>
+<section id="incremental-implementation" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="incremental-implementation"><span class="header-section-number">3.6</span> Incremental Implementation</h2>
+<h3 class="anchored">
+Tracking a Stationary Problem
+</h3>
+<p>Let’s now discuss how to implement these methods in practice. We consider a single action <span class="math inline">\(a\)</span> to simplify the notation.</p>
+<blockquote class="blockquote">
+<ul>
+<li><p>Let <span class="math inline">\(R_i(a)\)</span> the reward received after the <span class="math inline">\(i\)</span>-th selection of the action <span class="math inline">\(a\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(Q_n(a)\)</span> denote the estimate of its action value after it has been selected <span class="math inline">\(n-1\)</span> times.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>We can write:</p>
+<p><span class="math inline">\(Q_n(a) \doteq \frac{R_1(a) + R_2(a) + \dots + R_{n-1}(a)}{n-1}\)</span></p>
+</blockquote>
+</blockquote>
+<h4 class="anchored">
+Trivial impementation
+</h4>
+<p>The trivial implementation would be to maintain a record of all the rewards and then execute the formula when that value would be needed. However, if this is done, the computational requirements would grow over time. A possible alternative is an <em>incremental implementation</em>.</p>
+<h4 class="anchored">
+Efficient computation of estimates
+</h4>
+<blockquote class="blockquote">
+<p><strong><em>Incremental implementation</em></strong>:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(Q_{n+1} = \frac{1}{n} \sum^n_{i=1} R_i\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = \frac{1}{n} (R_n + \sum^{n-1}_{i=1} R_i)\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = \frac{1}{n} (R_n + (n-1) \frac{1}{n-1} \sum^{n-1}_{i=1} R_i)\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = \frac{1}{n} (R_n + (n-1) Q_n)\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = \frac{1}{n} (R_n + n Q_n - Q_n)\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = Q_n + \frac{1}{n} (R_n - Q_n)\)</span></p>
+</blockquote>
+</blockquote>
+<p>This form of <strong>update rule</strong> is quite common in reinforcement learning.</p>
+<blockquote class="blockquote">
+<p>The <strong><em>general form</em></strong> is:</p>
+<blockquote class="blockquote">
+<p>NewEstimate <span class="math inline">\(\leftarrow\)</span> OldEstimate + StepSize <em>(Target – OldEstimate)</em></p>
+</blockquote>
+<p>where the expression <em>(Target – OldEstimate)</em> is usually defined as <em>error</em> in the estimate.</p>
+</blockquote>
+<h3 class="anchored">
+Tracking a Nonstationary Problem
+</h3>
+<p>The averaging method discussed before is appropriate for <em>stationary</em> bandit problems.</p>
+<p>However, many problems are <em>non-stationary</em>. In these cases, it makes sense to give more weight to recent rewards rather than long-past rewards.</p>
+<p>One of the most popular way of doing this is to use constant step-size parameter (in the example above was <span class="math inline">\(\frac{1}{n}\)</span>).</p>
+<blockquote class="blockquote">
+<p>The <strong><em>incremental update rule</em></strong> for updating an average <span class="math inline">\(Q_n\)</span> of the <span class="math inline">\(n-1\)</span> past rewards is modified to be:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(Q_{n+1} \doteq Q_n + \alpha(R_n - Q_n)\)</span></p>
+</blockquote>
+<p>where the step-size parameter <span class="math inline">\(\alpha \in (0,1]\)</span> is constant.</p>
+</blockquote>
+<p>This results in <span class="math inline">\(Q_{n+1}\)</span> being a weighted average of past rewards and the initial estimate.</p>
+<blockquote class="blockquote">
+<p>More formally:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(Q_{n+1} \doteq Q_n + \alpha (R_n + Q_n)\)</span></p>
+<p><span class="math inline">\(\qquad \;\; = (1-\alpha)^n Q_1 + \sum^n_{i=1} \alpha (1-\alpha)^{(n-i)}R_i\)</span></p>
+</blockquote>
+<ul>
+<li>This is called a <strong><em>weighted average</em></strong> since:</li>
+</ul>
+<p><span class="math display">\[(1-\alpha)^n + \sum^n_{i=1} \alpha(1-\alpha)^{(n-i)} = 1\]</span></p>
+<ul>
+<li>The quantity <span class="math inline">\(1-\alpha\)</span> is less than 1 and the weight given to <span class="math inline">\(R_i\)</span> decreases as the number of rewards increases: actually it’s exponential, and for this reason it is sometimes called <strong><em>exponential-recency-weighted average</em></strong>.</li>
+</ul>
+</blockquote>
+</section>
+<section id="optimistic-initial-values" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="optimistic-initial-values"><span class="header-section-number">3.7</span> Optimistic Initial Values</h2>
+<h3 class="anchored">
+Example
+</h3>
+</section>
+<section id="upper-confidence-bound-ucb-action-selection" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="upper-confidence-bound-ucb-action-selection"><span class="header-section-number">3.8</span> Upper-Confidence-Bound (UCB) Action Selection</h2>
+</section>
+<section id="multi-armed-bandits-in-practice" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.9</span> Multi-armed Bandits in practice</h2>
+<div id="cf77a209" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiArmedBandit:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Create a k-armed bandit.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Each bandit arm must have its reward distribution.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    The bandit has to receive the action: to select one of the k bandits,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    with possible value from 1 to 10.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    The bandit must have k random generators of two values i,j (with i &lt; j):</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    the min and max of the reward distribution.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    e.g.:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">        1 3 -&gt; 1.5, ...</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">        2 6 -&gt; 2.1, 3.3, ...</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">        4 8 -&gt; 4.2, 5.3, 7.8</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.arms <span class="op">=</span> [<span class="va">self</span>._create_generator() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k)]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, arm <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.arms):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"arm </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> range: </span><span class="sc">{</span>arm<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _create_generator(<span class="va">self</span>):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        lbound, ubound <span class="op">=</span> <span class="dv">1</span>, <span class="dv">10</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> random.randint(lbound, ubound)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> random.randint(a, ubound)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a, b</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_reward(<span class="va">self</span>, a: <span class="bu">int</span>):</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> a <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> a <span class="op">&lt;</span> <span class="bu">len</span>(<span class="va">self</span>.arms)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.uniform(<span class="op">*</span><span class="va">self</span>.arms[a])</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ArmChooser:</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k: <span class="bu">int</span>, eps: <span class="bu">float</span>, initial_value: <span class="bu">float</span>):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q, <span class="va">self</span>.N <span class="op">=</span> [initial_value] <span class="op">*</span> k, [<span class="fl">0.</span>] <span class="op">*</span> k</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.eps <span class="op">=</span> eps</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _epsilon_greedy(<span class="va">self</span>):</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> <span class="va">self</span>.eps:</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> np.argmax(<span class="va">self</span>.Q)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(<span class="va">self</span>.Q) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> choose(<span class="va">self</span>):</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> <span class="va">self</span>._epsilon_greedy()</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> bandit.get_reward(a)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"R: </span><span class="sc">{</span>R<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.N[a] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q[a] <span class="op">+=</span> <span class="dv">1</span><span class="op">/</span><span class="va">self</span>.N[a] <span class="op">*</span> (R <span class="op">-</span> <span class="va">self</span>.Q[a])</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Q: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>Q<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span> (<span class="ss">f"N: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>N<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>k, T, eps, initial_value <span class="op">=</span> <span class="dv">4</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="fl">10.</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>bandit <span class="op">=</span> MultiArmedBandit(k)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>chooser <span class="op">=</span> ArmChooser(k, eps, initial_value)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>arm 0 range: (6, 7)
+arm 1 range: (9, 9)
+arm 2 range: (10, 10)
+arm 3 range: (3, 7)
+step 0
+R: 6.375825829021519
+Q: [6.375825829021519, 10.0, 10.0, 10.0]
+N: [1.0, 0.0, 0.0, 0.0]
+step 1
+R: 9.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 0.0, 0.0]
+step 2
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 1.0, 0.0]
+step 3
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 2.0, 0.0]
+step 4
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 3.0, 0.0]
+step 5
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 4.0, 0.0]
+step 6
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 5.0, 0.0]
+step 7
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 6.0, 0.0]
+step 8
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 7.0, 0.0]
+step 9
+R: 10.0
+Q: [6.375825829021519, 9.0, 10.0, 10.0]
+N: [1.0, 1.0, 8.0, 0.0]</code></pre>
+</div>
+</div>
+</section>
+<section id="contextual-bandits" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="contextual-bandits"><span class="header-section-number">3.10</span> Contextual bandits</h2>
+<h3 class="anchored">
+Policy-Based Action Selection
+</h3>
+<h3 class="anchored">
+Associative Search
+</h3>
+<h3 class="anchored">
+Exercise:
+</h3>
+<h4 class="anchored">
+Website serving ads with contextual bandits.
+</h4>
+<blockquote class="blockquote">
+<p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) using contextual bandits.</p>
+</blockquote>
+<h3 class="anchored">
+Additional Readings
+</h3>
+<iframe src="papers/3__1__A_Contextual-Bandit_Approach_to_Personalized_News_Article_Recommendation.pdf" width="100%" height="400px">
+</iframe>
+<p align="center">
+<em>Lihong Li, Wei Chu, John Langford, Robert E. Schapire. A contextual-bandit approach to personalized news article recommendation. Proceedings of the 19th International Conference on World Wide Web (WWW 2010): 661–670.</em>
+</p>
+</section>
+<section id="exercise" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="exercise"><span class="header-section-number">3.11</span> Exercise</h2>
+<h4 class="anchored">
+Website serving ads with bandits.
+</h4>
+<blockquote class="blockquote">
+<p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
+</blockquote>
+<div id="4550a104" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    random.shuffle(arr)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_random_int(min_val, max_val):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.randint(min_val, max_val <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_favorite_category(Q):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(Q, key<span class="op">=</span>Q.get)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> choose_next_ad(Q, ads, eps):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&gt;</span> eps:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        favorite_category <span class="op">=</span> get_favorite_category(Q)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        category_ads <span class="op">=</span> [ad <span class="cf">for</span> ad <span class="kw">in</span> ads <span class="cf">if</span> ad[<span class="dv">1</span>] <span class="op">==</span> favorite_category]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        random_category <span class="op">=</span> random.choice(<span class="bu">list</span>(Q.keys()))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        category_ads <span class="op">=</span> [ad <span class="cf">for</span> ad <span class="kw">in</span> ads <span class="cf">if</span> ad[<span class="dv">1</span>] <span class="op">==</span> random_category]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.choice(category_ads) <span class="cf">if</span> category_ads <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="76d3e90e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Cat 🐈‍⬛"</span>, <span class="st">"Pet"</span>), (<span class="st">"Dog 🐕‍🦺"</span>, <span class="st">"Pet"</span>), (<span class="st">"Parrot 🦜"</span>, <span class="st">"Pet"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Sneakers 👟"</span>, <span class="st">"Fashion"</span>), (<span class="st">"Sunglasses 🕶️"</span>, <span class="st">"Fashion"</span>), (<span class="st">"Dress 👗"</span>, <span class="st">"Fashion"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Paris 🇫🇷"</span>, <span class="st">"Travel"</span>), (<span class="st">"Tokyo 🇯🇵"</span>, <span class="st">"Travel"</span>), (<span class="st">"London 🇬🇧"</span>, <span class="st">"Travel"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>shuffle_array(ads)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> {category: <span class="dv">0</span> <span class="cf">for</span> _, category <span class="kw">in</span> ads}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>display_ads(ads[<span class="dv">0</span>])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    user_input <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Did you like this ad? (y/skip): "</span>).strip().lower()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> user_input <span class="op">==</span> <span class="st">'y'</span>:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        Q[ads[<span class="dv">0</span>][<span class="dv">1</span>]] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> user_input <span class="op">==</span> <span class="st">'skip'</span>:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        Q[ads[<span class="dv">0</span>][<span class="dv">1</span>]] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    next_ad <span class="op">=</span> choose_next_ad(Q, ads, eps)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> next_ad:</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        ads[<span class="dv">0</span>] <span class="op">=</span> next_ad</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        display_ads(next_ad)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No more ads to display."</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<iframe src="exercises/serving_ads_with_bandits.html" style="width:100%; height:500px; border:none; overflow:auto;">
+</iframe>
+</section>
+<section id="references" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="references"><span class="header-section-number">3.12</span> References</h2>
+<p>Books for the bandit:</p>
+<ul>
+<li><p><strong>Chapter 2</strong> of <span class="citation" data-cites="sutton2018">Richard S. Sutton (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></p></li>
+<li><p><span class="citation" data-cites="lattimore2020">Tor Lattimore (<a href="references.html#ref-lattimore2020" role="doc-biblioref">2020</a>)</span></p></li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-sutton2018" class="csl-entry" role="listitem">
+Richard S. Sutton, Andrew G. Barto. 2018. <em>Reinforcement Learning. An Introduction.</em> Second edition. MIT Press. <a href="https://github.com/MrinmoiHossain/Reinforcement-Learning-Specialization-Coursera/tree/master">https://github.com/MrinmoiHossain/Reinforcement-Learning-Specialization-Coursera/tree/master</a>.
+</div>
+<div id="ref-lattimore2020" class="csl-entry" role="listitem">
+Tor Lattimore, Csaba Szepesvari. 2020. <em>Bandit Algorithms</em>. Cambridge University Press. <a href="https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC">https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./sec2.html" class="pagination-link" aria-label="Introduction to Reinforcement Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Reinforcement Learning</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./sec4.html" class="pagination-link" aria-label="Temporal Difference Methods">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Temporal Difference Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

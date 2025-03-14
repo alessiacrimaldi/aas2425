@@ -1,5 +1,0 @@
----
-title: "Generative Learning"
-format: html
----
-
