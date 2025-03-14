@@ -528,7 +528,7 @@ Example
 </section>
 <section id="multi-armed-bandits-in-practice" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.9</span> Multi-armed Bandits in practice</h2>
-<div id="cf77a209" class="cell" data-execution_count="1">
+<div id="7a5694fa" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -593,50 +593,50 @@ Example
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>arm 0 range: (6, 7)
-arm 1 range: (9, 9)
-arm 2 range: (10, 10)
-arm 3 range: (3, 7)
+<pre><code>arm 0 range: (6, 10)
+arm 1 range: (1, 9)
+arm 2 range: (5, 6)
+arm 3 range: (5, 7)
 step 0
-R: 6.375825829021519
-Q: [6.375825829021519, 10.0, 10.0, 10.0]
+R: 8.559582952718367
+Q: [8.559582952718367, 10.0, 10.0, 10.0]
 N: [1.0, 0.0, 0.0, 0.0]
 step 1
-R: 9.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
+R: 3.239800152104543
+Q: [8.559582952718367, 3.239800152104543, 10.0, 10.0]
 N: [1.0, 1.0, 0.0, 0.0]
 step 2
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
+R: 5.487051311831896
+Q: [8.559582952718367, 3.239800152104543, 5.487051311831896, 10.0]
 N: [1.0, 1.0, 1.0, 0.0]
 step 3
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 2.0, 0.0]
+R: 7.932134922229823
+Q: [8.245858937474095, 3.239800152104543, 5.487051311831896, 10.0]
+N: [2.0, 1.0, 1.0, 0.0]
 step 4
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 3.0, 0.0]
+R: 5.258629780126597
+Q: [8.245858937474095, 3.239800152104543, 5.487051311831896, 5.258629780126597]
+N: [2.0, 1.0, 1.0, 1.0]
 step 5
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 4.0, 0.0]
+R: 7.803651942792733
+Q: [8.098456605913642, 3.239800152104543, 5.487051311831896, 5.258629780126597]
+N: [3.0, 1.0, 1.0, 1.0]
 step 6
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 5.0, 0.0]
+R: 8.8709062589269
+Q: [8.291569019166957, 3.239800152104543, 5.487051311831896, 5.258629780126597]
+N: [4.0, 1.0, 1.0, 1.0]
 step 7
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 6.0, 0.0]
+R: 8.59214610647566
+Q: [8.351684436628698, 3.239800152104543, 5.487051311831896, 5.258629780126597]
+N: [5.0, 1.0, 1.0, 1.0]
 step 8
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 7.0, 0.0]
+R: 1.3871274725807767
+Q: [8.351684436628698, 2.31346381234266, 5.487051311831896, 5.258629780126597]
+N: [5.0, 2.0, 1.0, 1.0]
 step 9
-R: 10.0
-Q: [6.375825829021519, 9.0, 10.0, 10.0]
-N: [1.0, 1.0, 8.0, 0.0]</code></pre>
+R: 7.090676217124955
+Q: [8.141516400044742, 2.31346381234266, 5.487051311831896, 5.258629780126597]
+N: [6.0, 2.0, 1.0, 1.0]</code></pre>
 </div>
 </div>
 </section>
@@ -674,7 +674,7 @@ Website serving ads with bandits.
 <blockquote class="blockquote">
 <p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
 </blockquote>
-<div id="4550a104" class="cell" data-execution_count="2">
+<div id="4cb50fa1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
@@ -699,7 +699,7 @@ Website serving ads with bandits.
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="76d3e90e" class="cell" data-execution_count="3">
+<div id="d6282e6d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>
