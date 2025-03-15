@@ -528,7 +528,7 @@ Example
 </section>
 <section id="multi-armed-bandits-in-practice" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.9</span> Multi-armed Bandits in practice</h2>
-<div id="8fa15245" class="cell" data-execution_count="1">
+<div id="ea2c231d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -593,50 +593,50 @@ Example
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>arm 0 range: (9, 10)
-arm 1 range: (5, 10)
-arm 2 range: (10, 10)
-arm 3 range: (9, 9)
+<pre><code>arm 0 range: (3, 6)
+arm 1 range: (3, 10)
+arm 2 range: (5, 9)
+arm 3 range: (5, 6)
 step 0
-R: 9.021396524849372
-Q: [9.021396524849372, 10.0, 10.0, 10.0]
-N: [1.0, 0.0, 0.0, 0.0]
+R: 6.048750310210141
+Q: [10.0, 10.0, 6.048750310210141, 10.0]
+N: [0.0, 0.0, 1.0, 0.0]
 step 1
-R: 6.575017602360463
-Q: [9.021396524849372, 6.575017602360463, 10.0, 10.0]
-N: [1.0, 1.0, 0.0, 0.0]
+R: 6.958602256545613
+Q: [10.0, 6.958602256545613, 6.048750310210141, 10.0]
+N: [0.0, 1.0, 1.0, 0.0]
 step 2
-R: 10.0
-Q: [9.021396524849372, 6.575017602360463, 10.0, 10.0]
+R: 4.410961814489294
+Q: [4.410961814489294, 6.958602256545613, 6.048750310210141, 10.0]
 N: [1.0, 1.0, 1.0, 0.0]
 step 3
-R: 10.0
-Q: [9.021396524849372, 6.575017602360463, 10.0, 10.0]
-N: [1.0, 1.0, 2.0, 0.0]
+R: 5.96317170958026
+Q: [4.410961814489294, 6.958602256545613, 6.048750310210141, 5.96317170958026]
+N: [1.0, 1.0, 1.0, 1.0]
 step 4
-R: 10.0
-Q: [9.021396524849372, 6.575017602360463, 10.0, 10.0]
-N: [1.0, 1.0, 3.0, 0.0]
+R: 7.421906261075906
+Q: [4.410961814489294, 7.190254258810759, 6.048750310210141, 5.96317170958026]
+N: [1.0, 2.0, 1.0, 1.0]
 step 5
-R: 10.0
-Q: [9.021396524849372, 6.575017602360463, 10.0, 10.0]
-N: [1.0, 1.0, 4.0, 0.0]
+R: 5.764166376638856
+Q: [4.410961814489294, 6.714891631420125, 6.048750310210141, 5.96317170958026]
+N: [1.0, 3.0, 1.0, 1.0]
 step 6
-R: 10.0
-Q: [9.021396524849372, 6.575017602360463, 10.0, 10.0]
-N: [1.0, 1.0, 5.0, 0.0]
+R: 7.626388846180144
+Q: [4.410961814489294, 6.942765935110129, 6.048750310210141, 5.96317170958026]
+N: [1.0, 4.0, 1.0, 1.0]
 step 7
-R: 8.905720486381414
-Q: [9.021396524849372, 7.740369044370938, 10.0, 10.0]
-N: [1.0, 2.0, 5.0, 0.0]
+R: 7.582075509321513
+Q: [4.410961814489294, 7.070627849952406, 6.048750310210141, 5.96317170958026]
+N: [1.0, 5.0, 1.0, 1.0]
 step 8
-R: 9.0
-Q: [9.021396524849372, 7.740369044370938, 10.0, 9.0]
-N: [1.0, 2.0, 5.0, 1.0]
+R: 4.951012181762951
+Q: [4.410961814489294, 6.717358571920831, 6.048750310210141, 5.96317170958026]
+N: [1.0, 6.0, 1.0, 1.0]
 step 9
-R: 10.0
-Q: [9.021396524849372, 7.740369044370938, 10.0, 9.0]
-N: [1.0, 2.0, 6.0, 1.0]</code></pre>
+R: 6.842258384538416
+Q: [4.410961814489294, 6.735201402294772, 6.048750310210141, 5.96317170958026]
+N: [1.0, 7.0, 1.0, 1.0]</code></pre>
 </div>
 </div>
 </section>
@@ -673,8 +673,9 @@ Website serving ads with bandits.
 </h4>
 <blockquote class="blockquote">
 <p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
+<p><a href="https://research.facebook.com/blog/2021/4/auto-placement-of-ad-campaigns-using-multi-armed-bandits/">Auto-placement of ad campaigns using multi-armed bandits</a></p>
 </blockquote>
-<div id="0bbadd5f" class="cell" data-execution_count="2">
+<div id="01c171cb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
@@ -699,7 +700,7 @@ Website serving ads with bandits.
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1d70b2af" class="cell" data-execution_count="3">
+<div id="8f0e1a4b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>

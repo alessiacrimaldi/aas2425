@@ -311,6 +311,8 @@ for t in range(T):
 <h4>Website serving ads with bandits.</h4>
 
 > Design a system serving ads on a website (e.g. Google Ads) only using bandits.
+>
+> [Auto-placement of ad campaigns using multi-armed bandits](https://research.facebook.com/blog/2021/4/auto-placement-of-ad-campaigns-using-multi-armed-bandits/)
 
 ```{python}
 #| eval: false
