@@ -3,3 +3,19 @@ title: "Deep Learning and Neural Architectures"
 format: html
 ---
 
+## Pointers about Neural Network Calibration
+
+<iframe src="papers/5__1__On_Calibration_of_Modern_Neural_Networks.pdf" width="100%" height="400px"></iframe>
+<p align="center"><em>Chuan Guo, Geoff Pleiss, Yu Sun, Kilian Q. Weinberger. On Calibration of Modern Neural Networks. Proceedings of the 34th International Conference on Machine Learning (ICML 2017).</em></p>
+
+- [Amazon AWS article on temperature scaling](https://docs.aws.amazon.com/prescriptive-guidance/latest/ml-quantifying-uncertainty/temp-scaling.html)
+
+- [TensorFlow class for Expected Calibration Error](https://www.tensorflow.org/probability/api_docs/python/tfp/stats/expected_calibration_error) (see paper above for definitions, etc)
+
+
+
+## References
+
+- **Chapter 1** of @goodfellow2016
+
+- @chollet2018

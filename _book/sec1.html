@@ -213,7 +213,17 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#computing-machinery-and-intelligence" id="toc-computing-machinery-and-intelligence" class="nav-link active" data-scroll-target="#computing-machinery-and-intelligence"><span class="header-section-number">1.1</span> Computing Machinery and Intelligence</a></li>
+  <li><a href="#intelligent-machines-evolution" id="toc-intelligent-machines-evolution" class="nav-link" data-scroll-target="#intelligent-machines-evolution"><span class="header-section-number">1.2</span> Intelligent Machines Evolution</a></li>
+  <li><a href="#ai-systems-mastering-games-with-reinforcement-learning" id="toc-ai-systems-mastering-games-with-reinforcement-learning" class="nav-link" data-scroll-target="#ai-systems-mastering-games-with-reinforcement-learning"><span class="header-section-number">1.3</span> AI Systems Mastering Games with Reinforcement Learning</a></li>
+  <li><a href="#real-world-applications-of-agentic-systems" id="toc-real-world-applications-of-agentic-systems" class="nav-link" data-scroll-target="#real-world-applications-of-agentic-systems"><span class="header-section-number">1.4</span> Real-World Applications of Agentic Systems</a></li>
+  <li><a href="#intelligent-adaptive-and-autonomous-agents" id="toc-intelligent-adaptive-and-autonomous-agents" class="nav-link" data-scroll-target="#intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.5</span> Intelligent, Adaptive and Autonomous Agents</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -237,25 +247,209 @@ window.Quarto = {
 </header>
 
 
-<p align="center">
-<img src="images/go_combinations.png" width="90%">
-</p>
-<iframe src="papers/1__3__Sparks_of_Artificial_General_Intelligence_Early_experiments_with_GPT-4.pdf" width="100%" height="400px">
+<section id="computing-machinery-and-intelligence" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="computing-machinery-and-intelligence"><span class="header-section-number">1.1</span> Computing Machinery and Intelligence</h2>
+<p>What is intelligence? Can we build intelligence into a machine?</p>
+<p>This idea of thinking and of being an intelligence agent is thoroughly examined by <strong>Alan Turing</strong> in his paper, published in the <em>Mind</em> philosophy journal, which talks about how to build these machines. His very old and interesting paper is about the <strong><em>Turing Test</em></strong>, originally called the <strong><em>Imitation Game</em></strong>, which consists in testing if a machine can actually think and reason like a human:</p>
+<iframe src="papers/1__1__Computing_Machinery_and_Intelligence.pdf" width="100%" height="400px">
 </iframe>
 <p align="center">
-<em>The Brave New World.</em>
+<em>– I propose to consider the question, “Can machines think?” This should begin with definitions of the meaning of the terms “<strong>machine</strong>” and “<strong>think</strong>”. –</em>
 </p>
 <p align="center">
-<img src="images/agents_design.png" width="70%">
+<img src="images/gender_imitation_game.png" width="30%">
+</p>
+<p>In proposing his question-answer test Turing (1950) introduced the idea through a <strong><em>Gender Imitation Game</em></strong> The experiment involves a computer and a human pretending to be the opposite gender.</p>
+<p>In this game a human interrogator of either sex simultaneously questions two hidden interlocutors: one man and one woman. The purpose of the man is to pretend to be a woman; the woman’s task is to tell the truth. The interrogator must determine the actual woman. Replacing one of the hidden interlocutors with a machine Turing asked:</p>
+<p align="center">
+<em>“May not machines carry out something which ought to be described as thinking but which is very different from what a man does?”</em>
+</p>
+<p>Turing quite rightly raised that question realising after WWII that man does not think like every other man; man does think like woman; an Occidental woman may not think like a woman from the Orient.</p>
+<p>Gender is regarded as an important feature in Turing’s game by some (Copeland &amp; Proudfoot 2008; Sterrett, 2000; Lassègue, 1996; Hayes &amp; Ford, 1995; Genova, 1994). The contention is that both man and machine impersonating a woman provides a stronger test for intelligence. However, neither of these researchers have explained what they mean by <em>gender</em> nor have they provided empirical evidence to substantiate their claim.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section>
+<section id="intelligent-machines-evolution" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="intelligent-machines-evolution"><span class="header-section-number">1.2</span> Intelligent Machines Evolution</h2>
+<p>However, the idea of building a mechanical machine capable of thinking –making decisions and executing operations based on a program– was originally proposed one century earlier (1850) by computer pioneer <strong>Charles Babbage</strong> with his Analytical Engine. From this invention, we progressed to modern computers: autonomous systems acting independently, on par with or even surpassing human abilities (e.g.&nbsp;self-driving cars).</p>
+<p style="display: flex; justify-content: space-around; align-items: center;">
+<img src="images/charles_babbage_machine.png" width="40%"> <span class="math inline">\(\rightarrow\)</span> <img src="images/modern_computer.png" width="40%">
 </p>
 <p align="center">
-<img src="images/performance_environment_actuators_sensors.png" width="90%">
+<em>From <a href="https://en.wikipedia.org/wiki/Analytical_engine">The Analytical Engine</a> to <a href="https://www.youtube.com/watch?v=B8R148hFxPw">Autonomous Systems</a>.</em>
 </p>
 <p align="center">
-<img src="images/gridworld.jpeg" width="20%"> <span class="math inline">\(\Rightarrow \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 \end{bmatrix}\)</span> <br> <em>gridworld</em>
+<img src="images/autonomous_and_adaptive_systems.png" width="60%">
+</p>
+<p>The key point is that modern machines operate within an <strong>environment</strong>, such as a car’s physical surroundings. Within this environment, we have the <strong>agent</strong>, the self-driving car. By observing its surroundings, the agent determines the <strong>state</strong> of the world (the environment). It then takes <strong>actions</strong> and learns from <strong>experience</strong> to improve its performance.</p>
+<p>One approach to achieving this involves <strong><em>trial and error</em></strong> learning : driving –initially in a purely random way– while receiving feedback from a human driver, enabling the system to gradually refine its behavior. The reward is proportional to the travelled distance.</p>
+<p align="center">
+<img src="images/wayve_experiment.png" width="60%"> <br> <em><a href="https://youtu.be/eRwTbRtnT1I?si=DtKCJMpXs6DXqRXf">Wayve experiment</a>: Reinforcement Learning algorithm learning to drive a car.</em>
+</p>
+</section>
+<section id="ai-systems-mastering-games-with-reinforcement-learning" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="ai-systems-mastering-games-with-reinforcement-learning"><span class="header-section-number">1.3</span> AI Systems Mastering Games with Reinforcement Learning</h2>
+<p>As previously discussed, this module explores AI systems that interact with and operate within their environments. Without relying on logic rules, these systems learn —whether how to drive a car, how to play video games or how to walk— from the <em>observations</em>, the <em>states</em>, so from what they observe (e.g.&nbsp;pixels, images, etc.). These algorithms are driven purely by reinforcement learning, without any human data, guidance or domain knowledge.</p>
+<ul>
+<li><strong>Input</strong>: the pixels and the reward (e.g.&nbsp;game score).</li>
+<li><strong>Goal</strong>: learn how to drive/play/walk from scratch, with no prior knowledge.</li>
+</ul>
+<p>The systems learn through <strong>trial and error</strong>, balancing <strong>exploration</strong> and <strong>exploitation</strong> to refine their behaviour over time.</p>
+<h3 class="anchored">
+Ms.&nbsp;Pac-Man
+</h3>
+<p>For example, in Ms.&nbsp;Pac-Man, we wouldn’t know which character is a ghost, which one is Miss Pac-Man, or where the cherry is. Instead, we learn everything simply by analyzing the pixels on the screen.</p>
+<p align="center">
+<img src="images/ms_pacman_game.png" width="70%">
+</p>
+<h3 class="anchored">
+Atari 2600 games
+</h3>
+<p>Atari games were solved with Deep Reinforcement Learning (DRL) using a method called Deep Q-Network (DQN), which was introduced by researchers at DeepMind in 2013 (and a more detailed version of the research was later published in the <em>Nature</em> journal in 2015). This approach revolutionized the way AI systems could learn to play video games.</p>
+<p align="center">
+<img src="images/atari_games.png" width="70%"> <br> <em>210 <span class="math inline">\(\times\)</span> 160 pixel image frames with 128 colours at 60Hz.</em>
+</p>
+<iframe src="papers/1__2__Playing_Atari_with_Deep_Reinforcement_Learning.pdf" width="100%" height="400px">
+</iframe>
+<p align="center">
+<em><a href="https://youtu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw">https://youtu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw</a></em>
+</p>
+<p style="align: center; border: 4px solid gray">
+<img src="images/paper_atari_games.png" width="100%">
+</p>
+<h3 class="anchored">
+The game of Go
+</h3>
+<p>The game of Go was solved in 2016 using Deep Reinforcement Learning as well, but in a more sophisticated manner compared to Atari games. This was achieved by DeepMind’s AlphaGo and its subsequent versions (AlphaGo Zero, AlphaZero), which used a combination of Deep Neural Networks and Reinforcement Learning techniques to master the game.</p>
+<p align="center">
+<img src="images/go_game.png" width="70%"> <br> <em><span class="math inline">\(19 \times 19\)</span></em>
+</p>
+<p align="center">
+<img src="images/go_combinations.png" width="90%"> <br> <em>Configurations of Go.</em>
+</p>
+<p>The AlphaGo paper is particularly intriguing because Go is an exceptionally complex game. Played on a <span class="math inline">\(19 \times 19\)</span> board, where each tile can be empty, white, or black, the total number of possible valid configurations —<em>possible states</em>— is approximately <span class="math inline">\(10^{170}\)</span>, excluding impossible ones. And given that the number of atoms in the observable universe is <span class="math inline">\(10^{80}\)</span>, this highlights the immense complexity of that game: there are more configurations of Go than atoms in the universe.</p>
+<p>In <strong>AlphaGo</strong>, the model was pretrained using experience from previous games.</p>
+<p style="align: center; border: 4px solid gray">
+<img src="images/article_mastering_go_1.png" width="100%">
+</p>
+<p>In contrast, <strong>AlphaGo Zero</strong> learned to play Go entirely from scratch (“<em>tabula rasa</em>”“), without any prior knowledge of the game —similar to how it approached Atari games. Despite this, it quickly achieved superhuman performance, discovering solutions and completely novel ways of playing never saw before.</p>
+<p style="align: center; border: 4px solid gray">
+<img src="images/article_mastering_go_2.png" width="100%">
+</p>
+<h3 class="anchored">
+StarCraft
+</h3>
+<p>In 2020, DeepMind achieved a major AI breakthrough by mastering StarCraft using only pixel-based input. This is an especially complex game, as it requires strategic planning and coordination between multiple agents within the system. <strong>AlphaStar</strong>, DeepMind’s AI, went on to compete against top human players, winning high-level competitions and demonstrating superhuman performance.</p>
+<p align="center">
+<img src="images/starcraft_game.png" width="70%"> <br> <em><a href="https://youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6">https://youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6</a></em>
+</p>
+<h3 class="anchored">
+Poker
+</h3>
+<p>AI has made significant breakthroughs also in poker, a game that is particularly challenging for machines due to its <em>incomplete information</em>, meaning players don’t have full knowledge of the game state (unlike chess or Go).</p>
+<p><strong>DeepStack</strong> was a groundbreaking AI developed by the University of Alberta, Charles University, and Czech Technical University. It was the first AI to beat professional human players in heads-up no-limit Texas hold’em.</p>
+<p align="center">
+<img src="images/poker_game.png" width="70%"> <br> <em><a href="https://youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN">https://youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN</a></em>
+</p>
+<iframe src="papers/1__3__DeepStack_Expert-Level_Artificial_Intelligence_in_Heads-Up_No-Limit_Poker.pdf" width="100%" height="400px">
+</iframe>
+</section>
+<section id="real-world-applications-of-agentic-systems" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="real-world-applications-of-agentic-systems"><span class="header-section-number">1.4</span> Real-World Applications of Agentic Systems</h2>
+<p>Reinforcement learning algorithms can be described as <strong>decision-making algorithms</strong> or <strong>agentic systems</strong>, as they are designed to autonomously make decisions and take actions based on their environment. Let’s see some real-world applications of them.</p>
+<h3 class="anchored">
+🦿 Robotics: Learning how to walk
+</h3>
+<p>One of the most fascinating applications of reinforcement learning in robotics is enabling machines to walk autonomously. Instead of being programmed with predefined motion rules, these AI-driven systems learn purely from experience. By receiving only sensor readings —such as joint positions and balance data— the robot explores and refines its movements through trial and error.</p>
+<p>A great example of this can be seen in DeepMind’s research, where an AI-controlled robot learns to walk from scratch. With no prior knowledge of physics or locomotion, the system gradually discovers stable and efficient ways to move, adapting dynamically to different terrains.</p>
+<p align="center">
+<img src="images/deepmind_ai_walking.png" width="100%"> <br> <em><a href="https://youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc">https://youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc</a></em>
+</p>
+<h3 class="anchored">
+⚡️ Cloud Farms: Optimizing Energy and Load Distribution
+</h3>
+<p align="center">
+<img src="images/cloud_farm.png" width="100%">
+</p>
+<p>Agentic systems are widely used in cloud farms to optimize resource management. Through reinforcement learning, these systems can learn how to minimize energy consumption and efficiently distribute workloads across different processors.</p>
+<p>The idea is to enable the system to continuously adapt and make decisions in real time, balancing energy efficiency and performance. By learning from the environment and adjusting its actions accordingly, the system can find the optimal distribution of tasks while reducing power usage, thus improving both operational efficiency and sustainability.</p>
+<p align="center">
+<img src="images/resource_management_1.png" width="100%"> <img src="images/resource_management_2.png" width="100%"> <img src="images/resource_management_3.png" width="100%"> <img src="images/resource_management_4.png" width="100%"> <img src="images/resource_management_5.png" width="100%"> <br> <em>Source: <a href="https://deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/">https://deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/</a></em>
+</p>
+<h3 class="anchored">
+💨 Wind Turbines: Boosting the Value of Wind Energy
+</h3>
+<p align="center">
+<img src="images/wind_turbines.png" width="100%">
+</p>
+<p>Reinforcement learning is also used to optimize the orientation of wind turbines, ensuring they adjust dynamically to maximize energy production. By continuously learning from wind patterns and environmental conditions, RL algorithms enhance forecastic accuracy, improving both efficiency and sustainability.</p>
+<p align="center">
+<img src="images/wind_energy_boost.png" width="80%"> <br> <em>Source: <a href="https://deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy">https://deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy</a></em>
+</p>
+<h3 class="anchored">
+🔋 Android: Enhancing Battery Life and Display Performance
+</h3>
+<p align="center">
+<img src="images/android.png" width="80%">
+</p>
+<p>Modern smartphones rely on AI to optimize user experience, and reinforcement learning plays a key role in making Android devices smarter and more efficient. By continuously adapting to user behavior, reinforcement learning helps improving power management and display settings, leading to better performance and energy savings:</p>
+<ul>
+<li><p><strong>Adaptive battery</strong>: used to learn and anticipate future battery use.</p></li>
+<li><p><strong>Adaptive brightness of the video</strong>: algorithm learns preferences in terms of brightness from the user.</p></li>
+</ul>
+<p>These AI-driven optimizations enhance battery life and display performance, providing a seamless and energy-efficient user experience.</p>
+<h3 class="anchored">
+💬 LLMs: Reinforcement Learning for Generative AI
+</h3>
+<p>Reinforcement learning is at the core of many groundbreaking AI advancements, driving a multi-trillion-dollar revolution. Actually, besides robotics and game-playing AI, reinforcement learning plays a key role in training large language models (LLMs).</p>
+<p>Therefore, we’re entering this <em>Brand New Wold</em> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of agents that are based on foundational models and this is really changing everything (referring to the launch of Chat-GPT in 2022). <strong><em>Sparks of Artificial General Intelligence</em></strong> (i.e.&nbsp;general purpose AI) refers to the early signs that artificial intelligence is reaching human-like capabilities (or even more), such as general reasoning, autonomous learning (making decisions), and adaptability to different tasks. This expression became popular after the Microsoft Research paper titled “Sparks of Artificial General Intelligence: Early experiments with GPT-4”, in which researchers suggested that GPT-4 exhibits some characteristics that could be considered precursors to AGI (Artificial General Intelligence). However, the model is not yet a true AGI but rather a step in that direction.</p>
+<iframe src="papers/1__4__Sparks_of_Artificial_General_Intelligence_Early_experiments_with_GPT-4.pdf" width="100%" height="400px">
+</iframe>
+<p align="center">
+<em>The Brave New World</em>
+</p>
+<p align="center">
+<img src="images/generative_ai.png" width="100%">
+</p>
+<p>These foundational LLMs are trained using reinforcement learning in various ways. One key approach is <strong>Reinforcement Learning from Human Feedback (RLHF)</strong>:</p>
+<p align="center">
+<img src="images/rlhf.png" width="100%">
+</p>
+<p>It involves <strong>human preferences</strong>, where either humans or machine-generated feedback (known as <em>distillation</em>, such as DeepSeek using GPT-4) helps optimize outputs. A common method for this is <strong>Direct Preference Optimization (DPO)</strong>, which fine-tunes models based on ranked feedback.</p>
+<iframe src="papers/1__5__Deep_Reinforcement_Learning_from_Human_Preferences.pdf" width="100%" height="400px">
+</iframe>
+<p>Even more effectively, instead of relying on direct human feedback for every interaction, we can build a <strong>model of preferences</strong> —trained on responses from a large number of people— to encapsulate human preferences and guide model training more efficiently.</p>
+<iframe src="papers/1__6__Reinforcement_Learning_for_Generative_AI_State_of_the_Art_Opportunities_and_Open_Research_Challenges.pdf" width="100%" height="400px">
+</iframe>
+<p align="center">
+<em>General picture</em>
+</p>
+</section>
+<section id="intelligent-adaptive-and-autonomous-agents" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.5</span> Intelligent, Adaptive and Autonomous Agents</h2>
+<p align="center">
+<img src="images/agents_design.png" width="60%">
+</p>
+<p align="center">
+<img src="images/performance_environment_actuators_sensors.png" width="80%">
+</p>
+<p align="center">
+<img src="images/gridworld.jpeg" width="23%"> <span class="math inline">\(\Rightarrow
+    \begin{bmatrix}
+        1 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 2
+    \end{bmatrix}\)</span> <br> <em>Gridworld.</em>
 </p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Source: Shah, H., &amp; Warwick, K. (2016). <em>Imitating Gender as a Measure for Artificial Intelligence: - Is It Necessary?</em>. In Proceedings of the 8th International Conference on Agents and Artificial Intelligence - Volume 1: ICAART (pp.&nbsp;126-131). SCITEPRESS. <a href="https://www.scitepress.org/papers/2016/56739/56739.pdf">https://www.scitepress.org/papers/2016/56739/56739.pdf</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Term taken from Aldous Huxley’s novel to indicate something completely new.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

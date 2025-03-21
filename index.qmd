@@ -1,6 +1,6 @@
 ![](images/autonomous_and_adaptive_systems.png)
 
-Official course page: @musolesi2425.
+Course page [here](https://www.mircomusolesi.org/courses/AAS24-25/AAS24-25-main/).
 
 
 
@@ -30,7 +30,7 @@ Strong focus on the state-of-the-art (and what’s next): read papers from leadi
 
 - Andrew Barto and Richard Sutton Recognized as Pioneers of Reinforcement Learning: @turingaward2024.
 
-- To catch up with Probability and Computing: @mitzenmacher2017.
+- To catch up with *Probability and Computing*: @mitzenmacher2017.
 
 
 

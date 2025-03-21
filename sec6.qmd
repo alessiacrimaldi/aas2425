@@ -27,3 +27,10 @@ We try to improve our estimation, reducing the error.
 -- explanation NN --
 
 
+
+
+## Deep Q-Network (DQN)
+
+[https://youtu.be/TmPfTpjtdgg?si=FGcNv-nZK3s__oiS](https://youtu.be/TmPfTpjtdgg?si=FGcNv-nZK3s__oiS)
+
+[https://youtu.be/SUbqykXVx0A?si=OrAButW_JbefDYV8](https://youtu.be/SUbqykXVx0A?si=OrAButW_JbefDYV8)

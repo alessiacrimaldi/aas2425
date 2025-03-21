@@ -18,6 +18,9 @@ format: html
 
 ## K-armed Bandit Problem
 
+Consider the following learning problem. We are faced repeatedly with a choice among $k$ different options, or actions. After each choice we receive a numerical reward chosen from a stationary probability distribution that depends on the action we selected. Our objective is to maximise the expected total reward over some time period, for example, over 1000 action selections, or *time steps*.<br>
+This is the "classic" *k-armed bandit problem*, which is named by analogy to a **slot machine** or ***"one-armed bandit"***, except that it has $k$ levers instead than one. Each action selection is like a play of one of the slot machine's levers, and the rewards are the payoffs for hitting the jackpot.
+
 <img src="images/bandits.png" width="100%"/>
 
 <h3>Problem Definition</h3>
@@ -30,9 +33,7 @@ format: html
 
     - the goal is to maximise the expected reward over a certain number of time steps.
 
-This is the "classic" k-armed bandit problem, which is named by analogy to a **slot machine** or ***"one-armed" bandit***, except it has $k$ levers instead than one:
-
-like in a slot machine, we need to learn which lever provides us with the highest reward.
+Like in a slot machine, we need to learn which lever provides us with the highest reward.
 
 > The problem is the same, maximising the expected reward:
 >
@@ -255,6 +256,7 @@ class MultiArmedBandit:
         assert a >= 0 and a < len(self.arms)
         return random.uniform(*self.arms[a])
 
+
 class ArmChooser:
     def __init__(self, k: int, eps: float, initial_value: float):
         self.Q, self.N = [initial_value] * k, [0.] * k
@@ -274,6 +276,7 @@ class ArmChooser:
         self.Q[a] += 1/self.N[a] * (R - self.Q[a])
         print(f"Q: {self.Q}")
         print (f"N: {self.N}")
+
 
 # Example usage
 k, T, eps, initial_value = 4, 10, 0.1, 10.
