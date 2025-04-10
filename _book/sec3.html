@@ -246,13 +246,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to TensorFlow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Tensorflow for Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -275,14 +293,15 @@ window.Quarto = {
   <li><a href="#exploration-vs.-exploitation" id="toc-exploration-vs.-exploitation" class="nav-link" data-scroll-target="#exploration-vs.-exploitation"><span class="header-section-number">3.2</span> Exploration vs.&nbsp;Exploitation</a></li>
   <li><a href="#evaluating-action-value-methods" id="toc-evaluating-action-value-methods" class="nav-link" data-scroll-target="#evaluating-action-value-methods"><span class="header-section-number">3.3</span> Evaluating Action-Value Methods</a></li>
   <li><a href="#greedy-action-selection-rule" id="toc-greedy-action-selection-rule" class="nav-link" data-scroll-target="#greedy-action-selection-rule"><span class="header-section-number">3.4</span> Greedy Action Selection Rule</a></li>
-  <li><a href="#epsilon-greedy-selection-rule" id="toc-epsilon-greedy-selection-rule" class="nav-link" data-scroll-target="#epsilon-greedy-selection-rule"><span class="header-section-number">3.5</span> <span class="math inline">\(\epsilon\)</span>-Greedy Selection Rule</a></li>
-  <li><a href="#incremental-implementation" id="toc-incremental-implementation" class="nav-link" data-scroll-target="#incremental-implementation"><span class="header-section-number">3.6</span> Incremental Implementation</a></li>
-  <li><a href="#optimistic-initial-values" id="toc-optimistic-initial-values" class="nav-link" data-scroll-target="#optimistic-initial-values"><span class="header-section-number">3.7</span> Optimistic Initial Values</a></li>
-  <li><a href="#upper-confidence-bound-ucb-action-selection" id="toc-upper-confidence-bound-ucb-action-selection" class="nav-link" data-scroll-target="#upper-confidence-bound-ucb-action-selection"><span class="header-section-number">3.8</span> Upper-Confidence-Bound (UCB) Action Selection</a></li>
-  <li><a href="#multi-armed-bandits-in-practice" id="toc-multi-armed-bandits-in-practice" class="nav-link" data-scroll-target="#multi-armed-bandits-in-practice"><span class="header-section-number">3.9</span> Multi-armed Bandits in practice</a></li>
-  <li><a href="#contextual-bandits" id="toc-contextual-bandits" class="nav-link" data-scroll-target="#contextual-bandits"><span class="header-section-number">3.10</span> Contextual bandits</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">3.11</span> Exercise</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.12</span> References</a></li>
+  <li><a href="#epsilon-greedy-selection-rule" id="toc-epsilon-greedy-selection-rule" class="nav-link" data-scroll-target="#epsilon-greedy-selection-rule"><span class="header-section-number">3.5</span> <span class="math inline">\(\epsilon\)</span>-greedy Selection Rule</a></li>
+  <li><a href="#tracking-a-stationary-problem-incremental-implementation" id="toc-tracking-a-stationary-problem-incremental-implementation" class="nav-link" data-scroll-target="#tracking-a-stationary-problem-incremental-implementation"><span class="header-section-number">3.6</span> Tracking a Stationary Problem (Incremental Implementation)</a></li>
+  <li><a href="#tracking-a-nonstationary-problem" id="toc-tracking-a-nonstationary-problem" class="nav-link" data-scroll-target="#tracking-a-nonstationary-problem"><span class="header-section-number">3.7</span> Tracking a Nonstationary Problem</a></li>
+  <li><a href="#optimistic-initial-values" id="toc-optimistic-initial-values" class="nav-link" data-scroll-target="#optimistic-initial-values"><span class="header-section-number">3.8</span> Optimistic Initial Values</a></li>
+  <li><a href="#upper-confidence-bound-ucb-action-selection" id="toc-upper-confidence-bound-ucb-action-selection" class="nav-link" data-scroll-target="#upper-confidence-bound-ucb-action-selection"><span class="header-section-number">3.9</span> Upper-Confidence-Bound (UCB) Action Selection</a></li>
+  <li><a href="#multi-armed-bandits-in-practice" id="toc-multi-armed-bandits-in-practice" class="nav-link" data-scroll-target="#multi-armed-bandits-in-practice"><span class="header-section-number">3.10</span> Multi-armed Bandits in practice</a></li>
+  <li><a href="#contextual-bandits" id="toc-contextual-bandits" class="nav-link" data-scroll-target="#contextual-bandits"><span class="header-section-number">3.11</span> Contextual bandits</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.12</span> Exercises</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.13</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -321,7 +340,7 @@ window.Quarto = {
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Multi-Armed Bandits</th>
+<th style="text-align: center;">Multi-armed Bandits</th>
 <th style="text-align: center;">Contextual Bandits</th>
 <th style="text-align: center;">Reinforcement Learning</th>
 </tr>
@@ -356,7 +375,7 @@ Problem Definition
 </ul>
 <p>Like in a slot machine, we need to learn which lever provides us with the highest reward.</p>
 <blockquote class="blockquote">
-<p>The problem is the same, maximising the expected reward:</p>
+<p>The problem is the same, <em>maximising the <strong>expected reward</strong></em>:</p>
 <blockquote class="blockquote">
 <p><span class="math inline">\(E[G_t \vert S_t = s, A_t = a]\)</span></p>
 <p><span class="math inline">\(\qquad \;\; \doteq E[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots \vert S_t = s, A_t = a]\)</span></p>
@@ -381,7 +400,7 @@ Action Selection and Estimated Value
 <li>As in the general RL case, we denote the action selected on time step <span class="math inline">\(t\)</span> as <span class="math inline">\(A_t\)</span> and the corresponding reward as <span class="math inline">\(R_t\)</span>.</li>
 </ul>
 <blockquote class="blockquote">
-<p>The <strong><em>value of an arbitrary action <span class="math inline">\(a\)</span></em></strong> is the expected reward given that <span class="math inline">\(a\)</span> is selected:</p>
+<p>The <strong><em>value of an arbitrary action <span class="math inline">\(a\)</span></em></strong>, denoted as <span class="math inline">\(q_*(a)\)</span>, is the expected reward given that <span class="math inline">\(a\)</span> is selected:</p>
 <blockquote class="blockquote">
 <p><span class="math inline">\(q_*(a) \doteq E[R_t \vert A_t = a]\)</span></p>
 </blockquote>
@@ -391,7 +410,7 @@ Action Selection and Estimated Value
 <li>However, in general, we <u>do not know the action values</u> with certainty, we only know <strong><em>estimates</em></strong>.</li>
 </ul>
 <blockquote class="blockquote">
-<p>The <strong><em>estimated value of action <span class="math inline">\(a\)</span> at time step <span class="math inline">\(t\)</span></em></strong>:</p>
+<p>The <strong><em>estimated value of action <span class="math inline">\(a\)</span></em></strong> at time step <span class="math inline">\(t\)</span>:</p>
 <blockquote class="blockquote">
 <p><span class="math inline">\(Q_t(a)\)</span></p>
 </blockquote>
@@ -415,7 +434,7 @@ Action Selection and Estimated Value
 <li><p>By doing so, we can improve our estimation of the value functions of the non-greedy actions.</p></li>
 </ul>
 </blockquote>
-<p>Balancing exploration and exploitation in a smart way is the key aspect:<br> Several theoretical resuslts in terms of bounds, etc. given specific assumptions.</p>
+<p>Balancing exploration and exploitation in a smart way is the key aspect: several theoretical results in terms of bounds, etc. given specific assumptions.</p>
 </section>
 <section id="evaluating-action-value-methods" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="evaluating-action-value-methods"><span class="header-section-number">3.3</span> Evaluating Action-Value Methods</h2>
@@ -427,11 +446,14 @@ Action Selection and Estimated Value
 <li><p>Since the state does not change, the agent’s actions <em>will not</em> depend on the previous actions (the two things are strictly linked).</p></li>
 </ul>
 <p>We will consider later the “full” reinforcement learning problem where the agent’s actions <em>do</em> modify the state and the agent’s action <em>do</em> depend on the previous actions.</p></li>
-<li><p>Recall: the <em>true value</em> of an action is the mean reward when that action is selected.</p>
+<li><p>Recall:</p>
 <blockquote class="blockquote">
-<p>A possible way to estimate this is by averaging the rewards actually received:</p>
+<p>The <strong><em>true value of an action</em></strong> is the mean reward when that action is selected.</p>
+</blockquote></li>
+<li><p>A possible way to estimate this is by averaging the rewards actually received:</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(Q_t(a) \doteq \frac{\text{sum of rewards when an action } a \text{ is taken prior time }t}{\text{number of times an action } a \text{ is taken prior time }t}\)</span> <span class="math display">\[= \frac{\sum_{i=1}^{t-1} R_i 1_{A_i=a}}{\sum_{i=1}^{t-1} 1_{A_i=a}}\]</span></p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(Q_t(a) \doteq \frac{sum \; of \; rewards \; when \; an \; action \; a \; is \; taken \; prior \; time \; t}{number \; of \; times \; an \; action\; a \; is \; taken \; prior \; time \; t}\)</span> <span class="math display">\[= \frac{\sum_{i=1}^{t-1} R_i 1_{A_i=a}}{\sum_{i=1}^{t-1} 1_{A_i=a}}\]</span></p>
 </blockquote>
 <p>where <span class="math inline">\(1\)</span> denotes the random variable that is 1 if the predicate <span class="math inline">\(A_i=a\)</span> is true and 0 if not.</p>
 <p>If the denominator is 0, we set <span class="math inline">\(Q_t(a)\)</span> to some default value (e.g., 0).</p>
@@ -442,15 +464,32 @@ Action Selection and Estimated Value
 </section>
 <section id="greedy-action-selection-rule" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="greedy-action-selection-rule"><span class="header-section-number">3.4</span> Greedy Action Selection Rule</h2>
+<p>The simplest selection rule is to select one of the acitons with the highest estimated value. This is usually referred to as greedy selection rule.</p>
+<blockquote class="blockquote">
+<p>More formally, a <strong><em>greedy selection rule</em></strong> is one that selects <span class="math inline">\(A_t\)</span> so that:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(A_t \doteq \arg\max_{a} Q_t(a)\)</span></p>
+</blockquote>
+<p>i.e.&nbsp;the action <span class="math inline">\(a\)</span> for which <span class="math inline">\(Q_t\)</span> is maximised.</p>
+</blockquote>
 </section>
 <section id="epsilon-greedy-selection-rule" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="epsilon-greedy-selection-rule"><span class="header-section-number">3.5</span> <span class="math inline">\(\epsilon\)</span>-Greedy Selection Rule</h2>
+<h2 data-number="3.5" class="anchored" data-anchor-id="epsilon-greedy-selection-rule"><span class="header-section-number">3.5</span> <span class="math inline">\(\epsilon\)</span>-greedy Selection Rule</h2>
+<p>A simple alternative is to behave <strong>greedily</strong> most of time, but from time to time, with a probability <span class="math inline">\(\epsilon\)</span>, select instead <strong>randomly</strong> from among all the actions with equal probability. We call this method <span class="math inline">\(\epsilon\)</span>-greedy.</p>
+<blockquote class="blockquote">
+
+</blockquote>
+<div id="176cbb92" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> epsilon_greedy:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> eps:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.argmax(Q)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(Q) <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One of the advantages of this method is that, in the limit, as the number of steps increases, all the actions will be sampled an infinite amont of time, ensuring that for all <span class="math inline">\(a\)</span> the <span class="math inline">\(Q_t(a)\)</span> will converge to <span class="math inline">\(q_*(a)\)</span>.</p>
 </section>
-<section id="incremental-implementation" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="incremental-implementation"><span class="header-section-number">3.6</span> Incremental Implementation</h2>
-<h3 class="anchored">
-Tracking a Stationary Problem
-</h3>
+<section id="tracking-a-stationary-problem-incremental-implementation" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="tracking-a-stationary-problem-incremental-implementation"><span class="header-section-number">3.6</span> Tracking a Stationary Problem (Incremental Implementation)</h2>
 <p>Let’s now discuss how to implement these methods in practice. We consider a single action <span class="math inline">\(a\)</span> to simplify the notation.</p>
 <blockquote class="blockquote">
 <ul>
@@ -488,9 +527,9 @@ Efficient computation of estimates
 </blockquote>
 <p>where the expression <em>(Target – OldEstimate)</em> is usually defined as <em>error</em> in the estimate.</p>
 </blockquote>
-<h3 class="anchored">
-Tracking a Nonstationary Problem
-</h3>
+</section>
+<section id="tracking-a-nonstationary-problem" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="tracking-a-nonstationary-problem"><span class="header-section-number">3.7</span> Tracking a Nonstationary Problem</h2>
 <p>The averaging method discussed before is appropriate for <em>stationary</em> bandit problems.</p>
 <p>However, many problems are <em>non-stationary</em>. In these cases, it makes sense to give more weight to recent rewards rather than long-past rewards.</p>
 <p>One of the most popular way of doing this is to use constant step-size parameter (in the example above was <span class="math inline">\(\frac{1}{n}\)</span>).</p>
@@ -517,148 +556,173 @@ Tracking a Nonstationary Problem
 </ul>
 </blockquote>
 </section>
-<section id="optimistic-initial-values" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="optimistic-initial-values"><span class="header-section-number">3.7</span> Optimistic Initial Values</h2>
+<section id="optimistic-initial-values" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="optimistic-initial-values"><span class="header-section-number">3.8</span> Optimistic Initial Values</h2>
+<p>These methods are dependent on the initial action-value estimates <span class="math inline">\(Q_1(a)\)</span>.</p>
+<ul>
+<li>We say that these methods are <strong><em>biased by their initial estimates</em></strong>.</li>
+</ul>
+<p>Initial values can be used as a simple way to encourage exploration.</p>
+<ul>
+<li><p>If the learnineer is “disappointed” by the initial values and eplore more.</p></li>
+<li><p>For example, if the initial values for each action <span class="math inline">\(a\)</span> are selected in order to be quite high with respect to the actual optimal values, all the actions are tried several times before we get convergence.</p></li>
+</ul>
 <h3 class="anchored">
 Example
 </h3>
+<p>Suppose that we have a multi-armed bandit, where the optimal action values <span class="math inline">\(q_*(a)\)</span> for every action <span class="math inline">\(a\)</span> are selected from a normal distribution with mean 0 and variance 1.</p>
+<p>In this case, an initial value <span class="math inline">\(Q_1(a)=10\)</span> for each activity is highly disappointing.</p>
+<p>Remember the formula:</p>
+<blockquote class="blockquote">
+<p>NewEstimate <span class="math inline">\(\leftarrow\)</span> OldEstimate + StepSize (Target - OldEstimate)</p>
+</blockquote>
+<p>This will lead to a lot of exploration, also in pure greedy action selection.</p>
 </section>
-<section id="upper-confidence-bound-ucb-action-selection" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="upper-confidence-bound-ucb-action-selection"><span class="header-section-number">3.8</span> Upper-Confidence-Bound (UCB) Action Selection</h2>
+<section id="upper-confidence-bound-ucb-action-selection" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="upper-confidence-bound-ucb-action-selection"><span class="header-section-number">3.9</span> Upper-Confidence-Bound (UCB) Action Selection</h2>
+<p>Exploration is needed because there is always uncertainty of the actual value estimates.</p>
+<ul>
+<li><p>Greedy actions might be the best ones, but it might not be the case.</p></li>
+<li><p><span class="math inline">\(\epsilon\)</span>-greedy action selection forces the non-greedy actions to be tried, but indiscriminately with no preferences for those that are nearly greedy or particularly uncertain.</p></li>
+</ul>
+<p>It would be better to select among the non-greedy actions considering their potential of being optimal, taking into account both how close their estimates are to being optimal and the uncertainties in these estimates.</p>
+<p>One effective way of doing this is to select actions according to:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><span class="math inline">\(A_t \doteq \arg\max_{a} (Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}})\)</span></p>
+</blockquote>
+<p>where <span class="math inline">\(t\)</span> is the time at which action <span class="math inline">\(A_t\)</span> is taken, <span class="math inline">\(N_t(a)\)</span> denotes the number of times that action <span class="math inline">\(a\)</span> has been selected prior to time <span class="math inline">\(t\)</span> and the number <span class="math inline">\(c &gt; 0\)</span> controls the degree of exprolation.</p>
+</blockquote>
+<p>The idea of this <strong>upper confidence bound (UCB) action selection</strong> is that the square-root term is a measure of the <em>uncertainty</em> or <em>variance</em> of the estimate of the actual value of action <span class="math inline">\(a\)</span>.</p>
 </section>
-<section id="multi-armed-bandits-in-practice" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.9</span> Multi-armed Bandits in practice</h2>
-<div id="95d4536e" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiArmedBandit:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Create a k-armed bandit.</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Each bandit arm must have its reward distribution.</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    The bandit has to receive the action: to select one of the k bandits,</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    with possible value from 1 to 10.</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    The bandit must have k random generators of two values i,j (with i &lt; j):</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    the min and max of the reward distribution.</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    e.g.:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">        1 3 -&gt; 1.5, ...</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">        2 6 -&gt; 2.1, 3.3, ...</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">        4 8 -&gt; 4.2, 5.3, 7.8</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k):</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.arms <span class="op">=</span> [<span class="va">self</span>._create_generator() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k)]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, arm <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.arms):</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"arm </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> range: </span><span class="sc">{</span>arm<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _create_generator(<span class="va">self</span>):</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        lbound, ubound <span class="op">=</span> <span class="dv">1</span>, <span class="dv">10</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> random.randint(lbound, ubound)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> random.randint(a, ubound)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a, b</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_reward(<span class="va">self</span>, a: <span class="bu">int</span>):</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> a <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> a <span class="op">&lt;</span> <span class="bu">len</span>(<span class="va">self</span>.arms)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.uniform(<span class="op">*</span><span class="va">self</span>.arms[a])</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ArmChooser:</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k: <span class="bu">int</span>, eps: <span class="bu">float</span>, initial_value: <span class="bu">float</span>):</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q, <span class="va">self</span>.N <span class="op">=</span> [initial_value] <span class="op">*</span> k, [<span class="fl">0.</span>] <span class="op">*</span> k</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.eps <span class="op">=</span> eps</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _epsilon_greedy(<span class="va">self</span>):</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> <span class="va">self</span>.eps:</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> np.argmax(<span class="va">self</span>.Q)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(<span class="va">self</span>.Q) <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> choose(<span class="va">self</span>):</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> <span class="va">self</span>._epsilon_greedy()</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> bandit.get_reward(a)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"R: </span><span class="sc">{</span>R<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.N[a] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q[a] <span class="op">+=</span> <span class="dv">1</span><span class="op">/</span><span class="va">self</span>.N[a] <span class="op">*</span> (R <span class="op">-</span> <span class="va">self</span>.Q[a])</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Q: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>Q<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span> (<span class="ss">f"N: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>N<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>k, T, eps, initial_value <span class="op">=</span> <span class="dv">4</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="fl">10.</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>bandit <span class="op">=</span> MultiArmedBandit(k)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>chooser <span class="op">=</span> ArmChooser(k, eps, initial_value)</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="multi-armed-bandits-in-practice" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.10</span> Multi-armed Bandits in practice</h2>
+<div id="c9ee2a97" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiArmedBandit:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Create a k-armed bandit.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Each bandit arm must have its reward distribution.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    The bandit has to receive the action: to select one of the k bandits,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">    with possible value from 1 to 10.</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    The bandit must have k random generators of two values i,j (with i &lt; j):</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    the min and max of the reward distribution.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">    e.g.:</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">        1 3 -&gt; 1.5, ...</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">        2 6 -&gt; 2.1, 3.3, ...</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">        4 8 -&gt; 4.2, 5.3, 7.8</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.arms <span class="op">=</span> [<span class="va">self</span>._create_generator() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k)]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, arm <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.arms):</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"arm </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss"> range: </span><span class="sc">{</span>arm<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _create_generator(<span class="va">self</span>):</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        lbound, ubound <span class="op">=</span> <span class="dv">1</span>, <span class="dv">10</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> random.randint(lbound, ubound)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> random.randint(a, ubound)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a, b</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_reward(<span class="va">self</span>, a: <span class="bu">int</span>):</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> a <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> a <span class="op">&lt;</span> <span class="bu">len</span>(<span class="va">self</span>.arms)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.uniform(<span class="op">*</span><span class="va">self</span>.arms[a])</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ArmChooser:</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, k: <span class="bu">int</span>, eps: <span class="bu">float</span>, initial_value: <span class="bu">float</span>):</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q, <span class="va">self</span>.N <span class="op">=</span> [initial_value] <span class="op">*</span> k, [<span class="fl">0.</span>] <span class="op">*</span> k</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.eps <span class="op">=</span> eps</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _epsilon_greedy(<span class="va">self</span>):</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> <span class="va">self</span>.eps:</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> np.argmax(<span class="va">self</span>.Q)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(<span class="va">self</span>.Q) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> choose(<span class="va">self</span>):</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> <span class="va">self</span>._epsilon_greedy()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> bandit.get_reward(a)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"R: </span><span class="sc">{</span>R<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.N[a] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Q[a] <span class="op">+=</span> <span class="dv">1</span><span class="op">/</span><span class="va">self</span>.N[a] <span class="op">*</span> (R <span class="op">-</span> <span class="va">self</span>.Q[a])</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Q: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>Q<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span> (<span class="ss">f"N: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>N<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>k, T, eps, initial_value <span class="op">=</span> <span class="dv">4</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="fl">10.</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>bandit <span class="op">=</span> MultiArmedBandit(k)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>chooser <span class="op">=</span> ArmChooser(k, eps, initial_value)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>arm 0 range: (2, 4)
-arm 1 range: (2, 3)
-arm 2 range: (8, 9)
-arm 3 range: (3, 4)
+<pre><code>arm 0 range: (3, 7)
+arm 1 range: (4, 10)
+arm 2 range: (5, 8)
+arm 3 range: (10, 10)
 step 0
-R: 3.5238771441242576
-Q: [3.523877144124258, 10.0, 10.0, 10.0]
+R: 5.093386455036578
+Q: [5.093386455036578, 10.0, 10.0, 10.0]
 N: [1.0, 0.0, 0.0, 0.0]
 step 1
-R: 2.2333696969734733
-Q: [3.523877144124258, 2.2333696969734733, 10.0, 10.0]
+R: 9.006097941621007
+Q: [5.093386455036578, 9.006097941621007, 10.0, 10.0]
 N: [1.0, 1.0, 0.0, 0.0]
 step 2
-R: 8.57918089506583
-Q: [3.523877144124258, 2.2333696969734733, 8.57918089506583, 10.0]
+R: 6.876656108536687
+Q: [5.093386455036578, 9.006097941621007, 6.876656108536687, 10.0]
 N: [1.0, 1.0, 1.0, 0.0]
 step 3
-R: 3.0838939806460335
-Q: [3.523877144124258, 2.2333696969734733, 8.57918089506583, 3.0838939806460335]
+R: 10.0
+Q: [5.093386455036578, 9.006097941621007, 6.876656108536687, 10.0]
 N: [1.0, 1.0, 1.0, 1.0]
 step 4
-R: 8.503801138721105
-Q: [3.523877144124258, 2.2333696969734733, 8.541491016893467, 3.0838939806460335]
-N: [1.0, 1.0, 2.0, 1.0]
+R: 5.210895298583495
+Q: [5.152140876810036, 9.006097941621007, 6.876656108536687, 10.0]
+N: [2.0, 1.0, 1.0, 1.0]
 step 5
-R: 8.752064051225867
-Q: [3.523877144124258, 2.2333696969734733, 8.6116820283376, 3.0838939806460335]
-N: [1.0, 1.0, 3.0, 1.0]
+R: 10.0
+Q: [5.152140876810036, 9.006097941621007, 6.876656108536687, 10.0]
+N: [2.0, 1.0, 1.0, 2.0]
 step 6
-R: 8.582331125789667
-Q: [3.523877144124258, 2.2333696969734733, 8.604344302700618, 3.0838939806460335]
-N: [1.0, 1.0, 4.0, 1.0]
+R: 10.0
+Q: [5.152140876810036, 9.006097941621007, 6.876656108536687, 10.0]
+N: [2.0, 1.0, 1.0, 3.0]
 step 7
-R: 8.31000537583559
-Q: [3.523877144124258, 2.2333696969734733, 8.545476517327613, 3.0838939806460335]
-N: [1.0, 1.0, 5.0, 1.0]
+R: 10.0
+Q: [5.152140876810036, 9.006097941621007, 6.876656108536687, 10.0]
+N: [2.0, 1.0, 1.0, 4.0]
 step 8
-R: 8.431404293053625
-Q: [3.523877144124258, 2.2333696969734733, 8.526464479948615, 3.0838939806460335]
-N: [1.0, 1.0, 6.0, 1.0]
+R: 10.0
+Q: [5.152140876810036, 9.006097941621007, 6.876656108536687, 10.0]
+N: [2.0, 1.0, 1.0, 5.0]
 step 9
-R: 8.380116312996874
-Q: [3.523877144124258, 2.2333696969734733, 8.505557598955509, 3.0838939806460335]
-N: [1.0, 1.0, 7.0, 1.0]</code></pre>
+R: 10.0
+Q: [5.152140876810036, 9.006097941621007, 6.876656108536687, 10.0]
+N: [2.0, 1.0, 1.0, 6.0]</code></pre>
 </div>
 </div>
 </section>
-<section id="contextual-bandits" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="contextual-bandits"><span class="header-section-number">3.10</span> Contextual bandits</h2>
-<h3 class="anchored">
-Policy-Based Action Selection
-</h3>
-<h3 class="anchored">
-Associative Search
-</h3>
-<h3 class="anchored">
-Exercise:
-</h3>
-<h4 class="anchored">
-Website serving ads with contextual bandits.
-</h4>
+<section id="contextual-bandits" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="contextual-bandits"><span class="header-section-number">3.11</span> Contextual bandits</h2>
+<p>Multi-armed bandits are used whent the selection of the action is not dependent on the state.</p>
+<p>But for many applications (e.g., ads on a webpage), actually the state is very important.</p>
 <blockquote class="blockquote">
-<p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) using contextual bandits.</p>
+<p>When the action selection depends on the state, but not on its previous history, we have the case of <strong><em>contextual bandits</em></strong>.</p>
 </blockquote>
+<blockquote class="blockquote">
+<p>Since the action is associated to the state, contextual bandits are also defined as a problem of <strong>associative search</strong>.</p>
+</blockquote>
+<p>They require to learn a policy, i.e.&nbsp;a mapping from the current state to the probabilities of each action.</p>
+<p>As we said, contextual bandits differ from the “full” reinforcement learning problem in that the action does not affect the future state. In case the action affects the future state, we have the “full” reinforcement learning problem.</p>
 <h3 class="anchored">
 Additional Readings
 </h3>
@@ -668,8 +732,8 @@ Additional Readings
 <em>Lihong Li, Wei Chu, John Langford, Robert E. Schapire. A contextual-bandit approach to personalized news article recommendation. Proceedings of the 19th International Conference on World Wide Web (WWW 2010): 661–670.</em>
 </p>
 </section>
-<section id="exercise" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="exercise"><span class="header-section-number">3.11</span> Exercise</h2>
+<section id="exercises" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.12</span> Exercises</h2>
 <h4 class="anchored">
 Website serving ads with bandits.
 </h4>
@@ -677,67 +741,73 @@ Website serving ads with bandits.
 <p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
 <p><a href="https://research.facebook.com/blog/2021/4/auto-placement-of-ad-campaigns-using-multi-armed-bandits/">Auto-placement of ad campaigns using multi-armed bandits</a></p>
 </blockquote>
-<div id="1adc4555" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    random.shuffle(arr)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_random_int(min_val, max_val):</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.randint(min_val, max_val <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_favorite_category(Q):</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(Q, key<span class="op">=</span>Q.get)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> choose_next_ad(Q, ads, eps):</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&gt;</span> eps:</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        favorite_category <span class="op">=</span> get_favorite_category(Q)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        category_ads <span class="op">=</span> [ad <span class="cf">for</span> ad <span class="kw">in</span> ads <span class="cf">if</span> ad[<span class="dv">1</span>] <span class="op">==</span> favorite_category]</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        random_category <span class="op">=</span> random.choice(<span class="bu">list</span>(Q.keys()))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        category_ads <span class="op">=</span> [ad <span class="cf">for</span> ad <span class="kw">in</span> ads <span class="cf">if</span> ad[<span class="dv">1</span>] <span class="op">==</span> random_category]</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.choice(category_ads) <span class="cf">if</span> category_ads <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="bab2b93d" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Cat 🐈‍⬛"</span>, <span class="st">"Pet"</span>), (<span class="st">"Dog 🐕‍🦺"</span>, <span class="st">"Pet"</span>), (<span class="st">"Parrot 🦜"</span>, <span class="st">"Pet"</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Sneakers 👟"</span>, <span class="st">"Fashion"</span>), (<span class="st">"Sunglasses 🕶️"</span>, <span class="st">"Fashion"</span>), (<span class="st">"Dress 👗"</span>, <span class="st">"Fashion"</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Paris 🇫🇷"</span>, <span class="st">"Travel"</span>), (<span class="st">"Tokyo 🇯🇵"</span>, <span class="st">"Travel"</span>), (<span class="st">"London 🇬🇧"</span>, <span class="st">"Travel"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<div id="cdafb01a" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    random.shuffle(arr)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_random_int(min_val, max_val):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.randint(min_val, max_val <span class="op">-</span> <span class="dv">1</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>shuffle_array(ads)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> {category: <span class="dv">0</span> <span class="cf">for</span> _, category <span class="kw">in</span> ads}</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>display_ads(ads[<span class="dv">0</span>])</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    user_input <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Did you like this ad? (y/skip): "</span>).strip().lower()</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> user_input <span class="op">==</span> <span class="st">'y'</span>:</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        Q[ads[<span class="dv">0</span>][<span class="dv">1</span>]] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> user_input <span class="op">==</span> <span class="st">'skip'</span>:</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        Q[ads[<span class="dv">0</span>][<span class="dv">1</span>]] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    next_ad <span class="op">=</span> choose_next_ad(Q, ads, eps)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> next_ad:</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        ads[<span class="dv">0</span>] <span class="op">=</span> next_ad</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        display_ads(next_ad)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No more ads to display."</span>)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_favorite_category(Q):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(Q, key<span class="op">=</span>Q.get)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> choose_next_ad(Q, ads, eps):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&gt;</span> eps:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        favorite_category <span class="op">=</span> get_favorite_category(Q)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        category_ads <span class="op">=</span> [ad <span class="cf">for</span> ad <span class="kw">in</span> ads <span class="cf">if</span> ad[<span class="dv">1</span>] <span class="op">==</span> favorite_category]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        random_category <span class="op">=</span> random.choice(<span class="bu">list</span>(Q.keys()))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        category_ads <span class="op">=</span> [ad <span class="cf">for</span> ad <span class="kw">in</span> ads <span class="cf">if</span> ad[<span class="dv">1</span>] <span class="op">==</span> random_category]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.choice(category_ads) <span class="cf">if</span> category_ads <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="462bab59" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Cat 🐈‍⬛"</span>, <span class="st">"Pet"</span>), (<span class="st">"Dog 🐕‍🦺"</span>, <span class="st">"Pet"</span>), (<span class="st">"Parrot 🦜"</span>, <span class="st">"Pet"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Sneakers 👟"</span>, <span class="st">"Fashion"</span>), (<span class="st">"Sunglasses 🕶️"</span>, <span class="st">"Fashion"</span>), (<span class="st">"Dress 👗"</span>, <span class="st">"Fashion"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Paris 🇫🇷"</span>, <span class="st">"Travel"</span>), (<span class="st">"Tokyo 🇯🇵"</span>, <span class="st">"Travel"</span>), (<span class="st">"London 🇬🇧"</span>, <span class="st">"Travel"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>shuffle_array(ads)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> {category: <span class="dv">0</span> <span class="cf">for</span> _, category <span class="kw">in</span> ads}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>display_ads(ads[<span class="dv">0</span>])</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    user_input <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Did you like this ad? (y/skip): "</span>).strip().lower()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> user_input <span class="op">==</span> <span class="st">'y'</span>:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        Q[ads[<span class="dv">0</span>][<span class="dv">1</span>]] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> user_input <span class="op">==</span> <span class="st">'skip'</span>:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        Q[ads[<span class="dv">0</span>][<span class="dv">1</span>]] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    next_ad <span class="op">=</span> choose_next_ad(Q, ads, eps)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> next_ad:</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        ads[<span class="dv">0</span>] <span class="op">=</span> next_ad</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        display_ads(next_ad)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No more ads to display."</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <iframe src="exercises/serving_ads_with_bandits.html" style="width:100%; height:500px; border:none; overflow:auto;">
 </iframe>
+<h4 class="anchored">
+Website serving ads with contextual bandits.
+</h4>
+<blockquote class="blockquote">
+<p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) using contextual bandits.</p>
+</blockquote>
 </section>
-<section id="references" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="references"><span class="header-section-number">3.12</span> References</h2>
+<section id="references" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="references"><span class="header-section-number">3.13</span> References</h2>
 <p>Books for the bandit:</p>
 <ul>
 <li><p><strong>Chapter 2</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></p></li>

@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -163,13 +192,31 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to TensorFlow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Tensorflow for Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -184,7 +231,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#issues-with-reinforce" id="toc-issues-with-reinforce" class="nav-link active" data-scroll-target="#issues-with-reinforce"><span class="header-section-number">8.1</span> Issues with REINFORCE</a></li>
+  <li><a href="#reinforce-with-baseline" id="toc-reinforce-with-baseline" class="nav-link" data-scroll-target="#reinforce-with-baseline"><span class="header-section-number">8.2</span> REINFORCE with Baseline</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -208,8 +262,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="issues-with-reinforce" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="issues-with-reinforce"><span class="header-section-number">8.1</span> Issues with REINFORCE</h2>
+<p>As a stochastic gradient method, REINFORCE has good theoretical convergence properties.</p>
+<p>By construction, the expected update over an episode is the same direction as the performance gradient.</p>
+<ul>
+<li><p>This assumes an improvement in expected performance for sufficient small <span class="math inline">\(\alpha\)</span> and convergence to a local optimum under standard stochastic approximation conditions for decreasing <span class="math inline">\(\alpha\)</span>.</p></li>
+<li><p>However, since it is a Monte Carlo method, REINFORCE suffers from high variance and this might lead to slow learning.</p></li>
+<li><p>One way of dealing with this problem is to use baselines and actor-critic methods.</p></li>
+</ul>
+</section>
+<section id="reinforce-with-baseline" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="reinforce-with-baseline"><span class="header-section-number">8.2</span> REINFORCE with Baseline</h2>
+<blockquote class="blockquote">
+<p>The policy gradient theorem can be generalised to include a comparison of the action value to an arbitrary <strong><em>baseline <span class="math inline">\(b(s)\)</span></em></strong>:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\nabla J(\theta) \propto \sum_s \mu(s) \sum_a (q_\pi(s,a) - b(s)) \nabla \pi (a \vert s, \theta)\)</span></p>
+</blockquote>
+<p>The <em>baseline</em> can be any function, even a random variable, as long as it does not vary with <span class="math inline">\(\alpha\)</span>.</p>
+<p>The equation remains valid because the subtracted quantity is zero:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\sum_a b(s) \nabla \pi(a \vert s, \theta) = b(s) \nabla \sum_a \pi(a \vert s, \theta) = b(s) \nabla 1 = 0\)</span></p>
+</blockquote>
+</blockquote>
+<p>The policy gradient theorem with baseline can be used to derive an update rule using similar steps.</p>
+<blockquote class="blockquote">
+<p>The update for REINFORCE with baseline is as follows:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\theta{t+1} \doteq \theta_t + \alpha(G_t-b(S_t)) \frac{\nabla \pi(A_t\vert S_t, \theta_t)}{\pi(A_t \vert S_t,\theta_t)}\)</span></p>
+</blockquote>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math inline">\(G_t =\)</span></p>
+<p><span class="math inline">\(=\)</span> the cumulative reward that we get from <span class="math inline">\(t\)</span>.</p>
+<p><span class="math inline">\(=\)</span> the value of that state for that specific rollout onwards.</p>
+</blockquote>
+<p>
+<img src="images/reinforce_with_baseline_pseudocode.png" width="100%">
+</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -606,8 +699,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sec9.html" class="pagination-link" aria-label="Generative Learning">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sec9.html" class="pagination-link" aria-label="Multi-agent Systems">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

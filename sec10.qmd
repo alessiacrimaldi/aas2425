@@ -1,5 +1,6 @@
 ---
-title: "Multi-agent Systems"
+title: "Introduction to Gym"
 format: html
+appendix: true
 ---
 

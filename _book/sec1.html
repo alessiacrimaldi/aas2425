@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -192,13 +212,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to TensorFlow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Tensorflow for Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -221,7 +259,14 @@ window.Quarto = {
   <li><a href="#intelligent-machines-evolution" id="toc-intelligent-machines-evolution" class="nav-link" data-scroll-target="#intelligent-machines-evolution"><span class="header-section-number">1.2</span> Intelligent Machines Evolution</a></li>
   <li><a href="#ai-systems-mastering-games-with-reinforcement-learning" id="toc-ai-systems-mastering-games-with-reinforcement-learning" class="nav-link" data-scroll-target="#ai-systems-mastering-games-with-reinforcement-learning"><span class="header-section-number">1.3</span> AI Systems Mastering Games with Reinforcement Learning</a></li>
   <li><a href="#real-world-applications-of-agentic-systems" id="toc-real-world-applications-of-agentic-systems" class="nav-link" data-scroll-target="#real-world-applications-of-agentic-systems"><span class="header-section-number">1.4</span> Real-World Applications of Agentic Systems</a></li>
-  <li><a href="#intelligent-adaptive-and-autonomous-agents" id="toc-intelligent-adaptive-and-autonomous-agents" class="nav-link" data-scroll-target="#intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.5</span> Intelligent, Adaptive and Autonomous Agents</a></li>
+  <li><a href="#reinforcement-learning-for-generative-ai" id="toc-reinforcement-learning-for-generative-ai" class="nav-link" data-scroll-target="#reinforcement-learning-for-generative-ai"><span class="header-section-number">1.5</span> Reinforcement Learning for Generative AI</a></li>
+  <li><a href="#intelligent-adaptive-and-autonomous-agents" id="toc-intelligent-adaptive-and-autonomous-agents" class="nav-link" data-scroll-target="#intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.6</span> Intelligent, Adaptive and Autonomous Agents</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">1.7</span> What’s next</a>
+  <ul class="collapse">
+  <li><a href="#learning" id="toc-learning" class="nav-link" data-scroll-target="#learning">Learning</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.8</span> References</a></li>
+  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings"><span class="header-section-number">1.9</span> Suggested Readings</a></li>
   </ul>
 </nav>
     </div>
@@ -250,7 +295,7 @@ window.Quarto = {
 <section id="computing-machinery-and-intelligence" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="computing-machinery-and-intelligence"><span class="header-section-number">1.1</span> Computing Machinery and Intelligence</h2>
 <p>What is intelligence? Can we build intelligence into a machine?</p>
-<p>This idea of thinking and of being an intelligence agent is thoroughly examined by <strong>Alan Turing</strong> in his paper, published in the <em>Mind</em> philosophy journal, which talks about how to build these machines. His very old and interesting paper is about the <strong><em>Turing Test</em></strong>, originally called the <strong><em>Imitation Game</em></strong>, which consists in testing if a machine can actually think and reason like a human:</p>
+<p>This idea of thinking and of being an intelligence agent is thoroughly examined by <strong>Alan Turing</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> in his paper, published in the <em>Mind</em> philosophy journal, which talks about how to build these machines. His very old and interesting paper is about the <strong><em>Turing Test</em></strong>, originally called the <strong><em>Imitation Game</em></strong>, which consists in testing if a machine can actually think and reason like a human:</p>
 <iframe src="papers/1__1__Computing_Machinery_and_Intelligence.pdf" width="100%" height="400px">
 </iframe>
 <p align="center">
@@ -261,15 +306,15 @@ window.Quarto = {
 </p>
 <p>In proposing his question-answer test Turing (1950) introduced the idea through a <strong><em>Gender Imitation Game</em></strong> The experiment involves a computer and a human pretending to be the opposite gender.</p>
 <p>In this game a human interrogator of either sex simultaneously questions two hidden interlocutors: one man and one woman. The purpose of the man is to pretend to be a woman; the woman’s task is to tell the truth. The interrogator must determine the actual woman. Replacing one of the hidden interlocutors with a machine Turing asked:</p>
-<p align="center">
-<em>“May not machines carry out something which ought to be described as thinking but which is very different from what a man does?”</em>
-</p>
+<blockquote class="blockquote">
+<p>“May not machines carry out something which ought to be described as thinking but which is very different from what a man does?”</p>
+</blockquote>
 <p>Turing quite rightly raised that question realising after WWII that man does not think like every other man; man does think like woman; an Occidental woman may not think like a woman from the Orient.</p>
-<p>Gender is regarded as an important feature in Turing’s game by some (Copeland &amp; Proudfoot 2008; Sterrett, 2000; Lassègue, 1996; Hayes &amp; Ford, 1995; Genova, 1994). The contention is that both man and machine impersonating a woman provides a stronger test for intelligence. However, neither of these researchers have explained what they mean by <em>gender</em> nor have they provided empirical evidence to substantiate their claim.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Gender is regarded as an important feature in Turing’s game by some (Copeland &amp; Proudfoot 2008; Sterrett, 2000; Lassègue, 1996; Hayes &amp; Ford, 1995; Genova, 1994). The contention is that both man and machine impersonating a woman provides a stronger test for intelligence. However, neither of these researchers have explained what they mean by <em>gender</em> nor have they provided empirical evidence to substantiate their claim.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 <section id="intelligent-machines-evolution" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="intelligent-machines-evolution"><span class="header-section-number">1.2</span> Intelligent Machines Evolution</h2>
-<p>However, the idea of building a mechanical machine capable of thinking –making decisions and executing operations based on a program– was originally proposed one century earlier (1850) by computer pioneer <strong>Charles Babbage</strong> with his Analytical Engine. From this invention, we progressed to modern computers: autonomous systems acting independently, on par with or even surpassing human abilities (e.g.&nbsp;self-driving cars).</p>
+<p>However, the idea of building a mechanical machine capable of thinking –making decisions and executing operations based on a program– was originally proposed one century earlier (1850) by computer pioneer <strong>Charles Babbage</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> with his Analytical Engine. From this invention, we progressed to modern computers: autonomous systems acting independently, on par with or even surpassing human abilities (e.g.&nbsp;self-driving cars).</p>
 <p style="display: flex; justify-content: space-around; align-items: center;">
 <img src="images/charles_babbage_machine.png" width="40%"> <span class="math inline">\(\rightarrow\)</span> <img src="images/modern_computer.png" width="40%">
 </p>
@@ -305,12 +350,12 @@ Atari 2600 games
 </h3>
 <p>Atari games were solved with Deep Reinforcement Learning (DRL) using a method called Deep Q-Network (DQN), which was introduced by researchers at DeepMind in 2013 (and a more detailed version of the research was later published in the <em>Nature</em> journal in 2015). This approach revolutionized the way AI systems could learn to play video games.</p>
 <p align="center">
-<img src="images/atari_games.png" width="70%"> <br> <em>210 <span class="math inline">\(\times\)</span> 160 pixel image frames with 128 colours at 60Hz.</em>
+<img src="images/atari_games_1.png" width="70%"><br> <em>210 <span class="math inline">\(\times\)</span> 160 pixel image frames with 128 colours at 60Hz.</em> <img src="images/atari_joystick.png" width="60%">
 </p>
 <iframe src="papers/1__2__Playing_Atari_with_Deep_Reinforcement_Learning.pdf" width="100%" height="400px">
 </iframe>
 <p align="center">
-<em><a href="https://youtu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw">https://youtu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw</a></em>
+<em><a href="https://youtu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw">youtu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw</a></em>
 </p>
 <p style="align: center; border: 4px solid gray">
 <img src="images/paper_atari_games.png" width="100%">
@@ -326,20 +371,23 @@ The game of Go
 <img src="images/go_combinations.png" width="90%"> <br> <em>Configurations of Go.</em>
 </p>
 <p>The AlphaGo paper is particularly intriguing because Go is an exceptionally complex game. Played on a <span class="math inline">\(19 \times 19\)</span> board, where each tile can be empty, white, or black, the total number of possible valid configurations —<em>possible states</em>— is approximately <span class="math inline">\(10^{170}\)</span>, excluding impossible ones. And given that the number of atoms in the observable universe is <span class="math inline">\(10^{80}\)</span>, this highlights the immense complexity of that game: there are more configurations of Go than atoms in the universe.</p>
+<p align="center">
+<a href="https://youtu.be/SUbqykXVx0A?si=OrAButW_JbefDYV8">Google DeepMind: Ground-breaking AlphaGo masters the game of Go</a>
+</p>
 <p>In <strong>AlphaGo</strong>, the model was pretrained using experience from previous games.</p>
 <p style="align: center; border: 4px solid gray">
-<img src="images/article_mastering_go_1.png" width="100%">
+<img src="images/paper_mastering_go_1.png" width="100%">
 </p>
 <p>In contrast, <strong>AlphaGo Zero</strong> learned to play Go entirely from scratch (“<em>tabula rasa</em>”“), without any prior knowledge of the game —similar to how it approached Atari games. Despite this, it quickly achieved superhuman performance, discovering solutions and completely novel ways of playing never saw before.</p>
 <p style="align: center; border: 4px solid gray">
-<img src="images/article_mastering_go_2.png" width="100%">
+<img src="images/paper_mastering_go_2.png" width="100%">
 </p>
 <h3 class="anchored">
 StarCraft
 </h3>
 <p>In 2020, DeepMind achieved a major AI breakthrough by mastering StarCraft using only pixel-based input. This is an especially complex game, as it requires strategic planning and coordination between multiple agents within the system. <strong>AlphaStar</strong>, DeepMind’s AI, went on to compete against top human players, winning high-level competitions and demonstrating superhuman performance.</p>
 <p align="center">
-<img src="images/starcraft_game.png" width="70%"> <br> <em><a href="https://youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6">https://youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6</a></em>
+<img src="images/starcraft_game.png" width="70%"> <br> <em><a href="https://youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6">youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6</a></em>
 </p>
 <h3 class="anchored">
 Poker
@@ -347,7 +395,7 @@ Poker
 <p>AI has made significant breakthroughs also in poker, a game that is particularly challenging for machines due to its <em>incomplete information</em>, meaning players don’t have full knowledge of the game state (unlike chess or Go).</p>
 <p><strong>DeepStack</strong> was a groundbreaking AI developed by the University of Alberta, Charles University, and Czech Technical University. It was the first AI to beat professional human players in heads-up no-limit Texas hold’em.</p>
 <p align="center">
-<img src="images/poker_game.png" width="70%"> <br> <em><a href="https://youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN">https://youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN</a></em>
+<img src="images/poker_game.png" width="70%"> <br> <em><a href="https://youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN">youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN</a></em>
 </p>
 <iframe src="papers/1__3__DeepStack_Expert-Level_Artificial_Intelligence_in_Heads-Up_No-Limit_Poker.pdf" width="100%" height="400px">
 </iframe>
@@ -361,7 +409,7 @@ Poker
 <p>One of the most fascinating applications of reinforcement learning in robotics is enabling machines to walk autonomously. Instead of being programmed with predefined motion rules, these AI-driven systems learn purely from experience. By receiving only sensor readings —such as joint positions and balance data— the robot explores and refines its movements through trial and error.</p>
 <p>A great example of this can be seen in DeepMind’s research, where an AI-controlled robot learns to walk from scratch. With no prior knowledge of physics or locomotion, the system gradually discovers stable and efficient ways to move, adapting dynamically to different terrains.</p>
 <p align="center">
-<img src="images/deepmind_ai_walking.png" width="100%"> <br> <em><a href="https://youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc">https://youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc</a></em>
+<img src="images/deepmind_ai_walking.png" width="100%"> <br> <em><a href="https://youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc">youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc</a></em>
 </p>
 <h3 class="anchored">
 ⚡️ Cloud Farms: Optimizing Energy and Load Distribution
@@ -372,7 +420,7 @@ Poker
 <p>Agentic systems are widely used in cloud farms to optimize resource management. Through reinforcement learning, these systems can learn how to minimize energy consumption and efficiently distribute workloads across different processors.</p>
 <p>The idea is to enable the system to continuously adapt and make decisions in real time, balancing energy efficiency and performance. By learning from the environment and adjusting its actions accordingly, the system can find the optimal distribution of tasks while reducing power usage, thus improving both operational efficiency and sustainability.</p>
 <p align="center">
-<img src="images/resource_management_1.png" width="100%"> <img src="images/resource_management_2.png" width="100%"> <img src="images/resource_management_3.png" width="100%"> <img src="images/resource_management_4.png" width="100%"> <img src="images/resource_management_5.png" width="100%"> <br> <em>Source: <a href="https://deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/">https://deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/</a></em>
+<img src="images/resource_management_1.png" width="100%"> <img src="images/resource_management_2.png" width="100%"> <img src="images/resource_management_3.png" width="100%"> <img src="images/resource_management_4.png" width="100%"> <img src="images/resource_management_5.png" width="100%"> <br> <em>Source: <a href="https://deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/">deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/</a></em>
 </p>
 <h3 class="anchored">
 💨 Wind Turbines: Boosting the Value of Wind Energy
@@ -382,7 +430,7 @@ Poker
 </p>
 <p>Reinforcement learning is also used to optimize the orientation of wind turbines, ensuring they adjust dynamically to maximize energy production. By continuously learning from wind patterns and environmental conditions, RL algorithms enhance forecastic accuracy, improving both efficiency and sustainability.</p>
 <p align="center">
-<img src="images/wind_energy_boost.png" width="80%"> <br> <em>Source: <a href="https://deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy">https://deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy</a></em>
+<img src="images/wind_energy_boost.png" width="80%"> <br> <em>Source: <a href="https://deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy">deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy</a></em>
 </p>
 <h3 class="anchored">
 🔋 Android: Enhancing Battery Life and Display Performance
@@ -396,11 +444,12 @@ Poker
 <li><p><strong>Adaptive brightness of the video</strong>: algorithm learns preferences in terms of brightness from the user.</p></li>
 </ul>
 <p>These AI-driven optimizations enhance battery life and display performance, providing a seamless and energy-efficient user experience.</p>
-<h3 class="anchored">
-💬 LLMs: Reinforcement Learning for Generative AI
-</h3>
+</section>
+<section id="reinforcement-learning-for-generative-ai" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="reinforcement-learning-for-generative-ai"><span class="header-section-number">1.5</span> Reinforcement Learning for Generative AI</h2>
 <p>Reinforcement learning is at the core of many groundbreaking AI advancements, driving a multi-trillion-dollar revolution. Actually, besides robotics and game-playing AI, reinforcement learning plays a key role in training large language models (LLMs).</p>
-<p>Therefore, we’re entering this <em>Brand New Wold</em> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of agents that are based on foundational models and this is really changing everything (referring to the launch of Chat-GPT in 2022). <strong><em>Sparks of Artificial General Intelligence</em></strong> (i.e.&nbsp;general purpose AI) refers to the early signs that artificial intelligence is reaching human-like capabilities (or even more), such as general reasoning, autonomous learning (making decisions), and adaptability to different tasks. This expression became popular after the Microsoft Research paper titled “Sparks of Artificial General Intelligence: Early experiments with GPT-4”, in which researchers suggested that GPT-4 exhibits some characteristics that could be considered precursors to AGI (Artificial General Intelligence). However, the model is not yet a true AGI but rather a step in that direction.</p>
+<p>Therefore, we’re entering this <strong>Brave New Wold</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of agents that are based on foundational models and this is really changing everything (referring to the launch of Chat-GPT in 2022). <strong><em>Sparks of Artificial General Intelligence</em></strong> (i.e.&nbsp;general purpose AI) refers to the early signs that artificial intelligence is reaching human-like capabilities (or even more), such as general reasoning, autonomous learning (making decisions), and adaptability to different tasks.</p>
+<p>This expression became popular after the Microsoft Research paper titled “Sparks of Artificial General Intelligence: Early experiments with GPT-4”, in which researchers suggested that GPT-4 exhibits some characteristics that could be considered precursors to AGI (Artificial General Intelligence). However, the model is not yet a true AGI but rather a step in that direction.</p>
 <iframe src="papers/1__4__Sparks_of_Artificial_General_Intelligence_Early_experiments_with_GPT-4.pdf" width="100%" height="400px">
 </iframe>
 <p align="center">
@@ -417,37 +466,282 @@ Poker
 <iframe src="papers/1__5__Deep_Reinforcement_Learning_from_Human_Preferences.pdf" width="100%" height="400px">
 </iframe>
 <p>Even more effectively, instead of relying on direct human feedback for every interaction, we can build a <strong>model of preferences</strong> —trained on responses from a large number of people— to encapsulate human preferences and guide model training more efficiently.</p>
+<h3 class="anchored">
+State of the Art
+</h3>
 <iframe src="papers/1__6__Reinforcement_Learning_for_Generative_AI_State_of_the_Art_Opportunities_and_Open_Research_Challenges.pdf" width="100%" height="400px">
 </iframe>
+<iframe src="papers/1__7__Generative_Agents_Interactive_Simulacra_of_Human_Behavior.pdf" width="100%" height="400px">
+</iframe>
 <p align="center">
-<em>General picture</em>
+<em>“Generative” Agents</em>
+</p>
+<p>“Generative Agents: Interactive Simulacra of Human Behavior” is a research paper that explores the simulation of a virtual city populated by AI-driven agents. These agents, implemented using language models, interact with each other in a dynamic environment, engaging in everyday activities such as having coffee, conversing, and forming relationships. The study aims to create realistic social behaviors and emergent narratives through AI-driven interactions.</p>
+<p align="center">
+<img src="images/gartner_top_10_strategic_technology_trends.png" width="100%"> <em>Agentic AI ranks first among the Top 10 Stretegic Technology Trends.</em>
+</p>
+<p>The technologies we’re discussing today are crucial not only for innovation but also for democracy, as they help combat disinformation, and for national security. Moreover, they play a growing role in decision-making, as they are increasingly influencing areas such as economic policy, governance, taxation, cybersecurity, and more. As such, we bear a responsibility to our country in how we harness and guide these technologies.</p>
+<p align="center">
+<img src="images/foreign_policy_article.png" width="100%"> <em>Source: <a href="https://foreignpolicy.com/2023/06/19/ai-artificial-intelligence-national-security-foreign-policy-threats-prediction/">foreignpolicy.com/2023/06/19/ai-artificial-intelligence-national-security-foreign-policy-threats-prediction/</a></em>
+</p>
+<p>The article “AI Has Entered the <strong>Situation Room</strong><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>” from Foreign Policy discusses the transformative impact of artificial intelligence (AI) on national security and foreign policy decision-making. It highlights how AI enables unprecedented data analysis capabilities, allowing policymakers to gain clearer insights into complex global situations. The authors argue that to fully harness AI’s potential, traditional approaches to foreign policy formulation must evolve to integrate these advanced technological tools effectively. ​</p>
+</section>
+<section id="intelligent-adaptive-and-autonomous-agents" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.6</span> Intelligent, Adaptive and Autonomous Agents</h2>
+<h3 class="anchored">
+Definitions
+</h3>
+<blockquote class="blockquote">
+<p>An <strong><em>intelligent agent</em></strong> is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.</p>
+</blockquote>
+<ul>
+<li>Agents might be physically situated (we call them robots) or not (we refer to them as <em>software agents</em> -or just <em>agents</em>-, <em>softbots</em>, <em>bots</em>, etc.). An emerging terminology, such as <em>embodied AI</em> and <em>embodied AI agents</em> refers to agents that interact with and act within a specific environment.</li>
+</ul>
+<blockquote class="blockquote">
+<p>An <strong><em>adaptive agent</em></strong> is an entity that is capable of responding (by adapting) to its environment.</p>
+</blockquote>
+<ul>
+<li><p><u>The environment might also include other agents</u>, encompassing their locations, actions, interactions (e.g., how they respond to the agent), and all relevant information about them.</p></li>
+<li><p>The environment is everything else outside the agent.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>An <strong><em>autonomous agent</em></strong> is an entity that relies only on its perception (what it can <em>sense</em> and get from the environment) and acts in the world independently from its designer.</p>
+</blockquote>
+<ul>
+<li><p>It takes decisions and acts independently from the way the agent itself is designed.</p></li>
+<li><p><u>An autonomous agent should be able to compensate for partial knowledge</u>: if the agent doesn’t know something about the world, it will try to get knowledge about it. This involves searching, exploring, experimenting, and interacting in order to understand how the world works.</p></li>
+<li><p>Classical multi-agent systems are based on logic, and in Prolog terms, facts are what define the entire understanding of the world.</p></li>
+<li><p>Here we’re talking about agents that proactively try to discover knowledge and information about the world.</p></li>
+</ul>
+<h3 class="anchored">
+Learning and Autonomous Agents
+</h3>
+<p>From a practical point of view, it makes sense to provide the agent with <strong>some knowledge of the world</strong> and the <strong>ability to learn</strong>:</p>
+<p>As in the case of evolution, in which animals/humans have a sufficient number of built-in reflexes in order to survive long enough to learn by themselves, it is reasonable to provide an artificial intelligent agent with some initial knowledge as well as an ability to learn and adapt.</p>
+<p>After gaining sufficient experience of its environment, an intelligent agent can become effectively <strong>independent of its prior knowledge</strong>. The idea is that, while the agent starts with some initial understanding of the world, it gradually adapts and learns to act beyond its original knowledge. However, it does not discard it prior knowledge —<strong><em>forgetting</em></strong> is a big issue in Reinforcement Learning. Instead, the agent integrates new experiences while retaining and building upon its initial foundation.</p>
+<p>For this reason, learning allows an intelligent agent to survive in a vast variety of environments: they’re <strong>adaptive</strong>.</p>
+<h3 class="anchored">
+Designing Agents
+</h3>
+<p>Dimensions that should be taken into consideration in designing agents are the following:</p>
+<ul>
+<li>Performance —<em>how accurate they are in completing a certain task</em>.</li>
+<li>Environment —<em>where they are deployed</em>.</li>
+<li>Actuators —<em>what they can do = what are the actions they can perform</em> (physical or software).</li>
+<li>Sensors —<em>how they can sense and gather information from the environment</em>.</li>
+</ul>
+<p align="center">
+<img src="images/agents_design.png" width="70%">
+</p>
+<p align="center">
+<img src="images/performance_environment_actuators_sensors.png" width="85%">
+</p>
+<h4 class="anchored">
+Automatic Display of Advertisement example:
+</h4>
+<p>Meta’s system is designed to deliver the most relevant ads to users. It functions as an autonomous agent that decides which advertisements to display based on user interactions, such as time spent on videos, likes, and clicks on various posts. The agent is independent and continuously learns from user interactions to refine its ad recommendations. In particular:</p>
+<ul>
+<li><strong>Performance</strong>: The accuracy and effectiveness of ad targeting, measured by engagement rates, click-through rates (CTR), and conversion rates.</li>
+<li><strong>Environment</strong>: The digital ecosystem, including Meta’s platforms (Facebook, Instagram, etc.), where user interactions take place.</li>
+<li><strong>Actuators (actions)</strong>: Displays a specific ad from a certain relevant category.</li>
+<li><strong>Sensors</strong>: Tracks user behavior, including time spent on content, engagement metrics (likes, shares, comments), and click-through rates. Additionally, it explores user preferences by occasionally displaying random ads to gather new data.</li>
+</ul>
+<h3 class="anchored">
+Characteristics of the Environments
+</h3>
+<p>We have different dimensions:</p>
+<ul>
+<li><p><strong>Fully observable</strong> vs <strong>Partially observable</strong>:</p>
+<ul>
+<li><p><em>Fully observable:</em> The agent is able to know everything about the environment at any given time. Example: chess, where the entire board state is visible.</p></li>
+<li><p><em>Partially observable:</em> The agent only has access to limited or incomplete information about the environment, requiring it to infer missing details. Example: poker, where opponents’ cards are hidden.</p></li>
+</ul></li>
+<li><p><strong>Deterministic</strong> vs <strong>Stochastic</strong>:</p>
+<ul>
+<li><p><em>Deterministic:</em> The next state of the environment is completely determined by the current state and the agent’s actions, so it is predictable what is going to happen in the future. Example: chess, where every move has a predictable outcome.</p></li>
+<li><p><em>Stochastic:</em> There is an element of randomness in the environment, meaning that the same action can lead to different outcomes, so it is unpredictable what’s going to happen because we don’t know how the world will evolve. Example: rolling a dice in a board game.</p></li>
+</ul></li>
+<li><p><strong>Episodic</strong> vs <strong>Sequential</strong>:</p>
+<ul>
+<li><p><em>Episodic:</em> The agent interacts only once with the environment, for an episode. Example: image classification, where each image is classified separately.</p></li>
+<li><p><em>Sequential:</em> The agent have multiple interactions with the environment, multiple episodes that are repeated. Example: playing a video game, where past actions influence future gameplay.</p></li>
+</ul></li>
+<li><p><strong>Static</strong> vs <strong>Dynamic</strong>:</p>
+<ul>
+<li><p><em>Static:</em> The environment does not change unless the agent interacts with it. Example: a turn-based board game.</p></li>
+<li><p><em>Dynamic:</em> The environment evolves over time, even if the agent does nothing. Example: a self-driving car system, where traffic and pedestrians move independently.</p></li>
+</ul></li>
+<li><p><strong>Discrete</strong> vs <strong>Continuous</strong>:</p>
+<ul>
+<li><p><em>Discrete:</em> The state space and actions are limited to a finite set of possibilities. Example: tic-tac-toe, where moves are predefined.</p></li>
+<li><p><em>Continuous:</em> States and actions are infinite or highly granular, requiring complex decision-making. It is always possible to discretize a continuous environment. Example: controlling a robotic arm with infinitely variable movements.</p></li>
+</ul></li>
+<li><p><strong>Single agent</strong> vs <strong>Multi-agent</strong>:</p>
+<ul>
+<li><p><em>Single agent:</em> The environment contains only one agent, with no other autonomous entities. Example: a maze-solving robot.</p></li>
+<li><p><em>Multi-agent:</em> Multiple agents interact, either cooperatively or competitively. Example: online multiplayer games or stock market trading algorithms.</p></li>
+</ul></li>
+</ul>
+<h3 class="anchored">
+A Categorization of Intelligent Agents
+</h3>
+<p>There are essentially four basic kinds of agent programs:</p>
+<ol type="1">
+<li><p>Simple reflex agents;</p></li>
+<li><p>Model-based agents;</p></li>
+<li><p>Goal-based agents;</p></li>
+<li><p>Utility-based agents.</p></li>
+</ol>
+<p>The behaviour of these agents can be <strong><em>hard-wired</em></strong> or it can be acquired, improved and optimised through <strong><em>learning</em></strong>. See section <a href="#learning">Learning</a>.</p>
+<h4 class="anchored">
+Simple Reflex Agents:
+</h4>
+<blockquote class="blockquote">
+<p><strong><em>Simple reflex agents</em></strong> select actions on the basis of the current perception —like humans <em>reflexes</em> when they perceive pain— ignoring the rest of the perception history.</p>
+</blockquote>
+<ul>
+<li><p>These are the most basic form of agents, they are based on <strong><em>conditon-action rules</em></strong> (also called simulation-action rules, productions or if-then rules).</p></li>
+<li><p>Humans also have a set of automatic (learned) responses in their biology.</p></li>
+<li><p>They are suitable for situations where the decisions can be made on the <strong><em>current observation</em></strong>.</p></li>
+</ul>
+<p align="center">
+<img src="images/simple_reflex_agent.png" width="70%">
+</p>
+<h4 class="anchored">
+Model-based Agents:
+</h4>
+<blockquote class="blockquote">
+<p>A <strong><em>Model-based agent</em></strong> is an agent that keeps an internal state —to keep information of past acquired knowledge— and depends on two types of knowledge:</p>
+<ol type="1">
+<li>how the world evolves independently from the agent.</li>
+<li>how the actions of the agent affects the world.</li>
+</ol>
+</blockquote>
+<ul>
+<li><p>An <strong><em>internal state</em></strong> (kept inside the agent) is essentially used to keep track of what is not possible to see right now. It depends on the perception history and, for this reason, it reflects at least some of the unobserved aspects of the current state.</p></li>
+<li><p>Examples of internal states are:</p>
+<ul>
+<li>Human’s brain has an internal state which is continuously updated: the structure of the synapses is continuously modelled in order to form new memories. This internal state is crucial to keep learning.</li>
+<li>A fine-tuned language model undergoes weight updates, altering its internal state. These weight adjustments shape the model’s learning and adaptation over time.</li>
+</ul></li>
+<li><p>This internal state is different from the state of the environment, i.e.&nbsp;what we use in order to make a decision.</p></li>
+<li><p>Usually the model-based agent can also include condition-action rules.</p></li>
+</ul>
+<p align="center">
+<img src="images/model-based_agent.png" width="70%">
+</p>
+<h4 class="anchored">
+Goal-based Agents:
+</h4>
+<blockquote class="blockquote">
+<p><strong><em>Goal-based agents</em></strong> act to achieve their goals —the action is conditioned to the goal to be achieved.</p>
+</blockquote>
+<ul>
+<li><p>Sometimes goal-based satisfaction is straightforward, when goal satisfaction results immediately from a single action.</p></li>
+<li><p>In other cases, an agent has to consider a long sequence of actions to achieve their goal through <strong><em>search</em></strong> and <strong><em>planning</em></strong>. E.g. The A* algorithm finds the solution to some problems (it does not solve Go) through a set of steps, but it doesn’t scale a lot.</p></li>
+<li><p>However, some problem are not solvable with planning. <strong><em>Subgoals</em></strong> are set to decide what to do next in order to achieve the final goal (it is not planning).</p></li>
+</ul>
+<p align="center">
+<img src="images/goal-based_agent.png" width="70%">
+</p>
+<h4 class="anchored">
+Utility-based Agents:
+</h4>
+<blockquote class="blockquote">
+<p><strong><em>Utility-based agents</em></strong> are agents whose goals are expressed through a utility function.</p>
+</blockquote>
+<ul>
+<li><p>Goals are not really sufficient to generate “high-quality behaviour” in most environments —the are solutions to reach the goal that are better than others.</p></li>
+<li><p>We model states preferred to others using <strong><em>utilities</em></strong> (or <strong>payoffs</strong> or, for reinforcement learning engineers, <strong>rewards</strong>).</p></li>
+<li><p>These agents aim to maximize their utility.</p></li>
+<li><p>Utility functions maps a state (or a sequence of states) onto a real number, which describes the preferences of an agent.</p></li>
+<li><p>Example: taxi routing to destination (quicker route, the shortest path is preferable).</p></li>
+<li><p>There are situations in which the agents have competitive objectives. For example, a taxi driver, who is paid based on distance traveled, may have an incentive to take longer routes, while the client’s utility is to reach the destination as efficiently and affordably as possible.</p></li>
+</ul>
+<p align="center">
+<img src="images/utility-based_agent.png" width="70%">
 </p>
 </section>
-<section id="intelligent-adaptive-and-autonomous-agents" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.5</span> Intelligent, Adaptive and Autonomous Agents</h2>
-<p align="center">
-<img src="images/agents_design.png" width="60%">
-</p>
-<p align="center">
-<img src="images/performance_environment_actuators_sensors.png" width="80%">
-</p>
-<p align="center">
-<img src="images/gridworld.jpeg" width="23%"> <span class="math inline">\(\Rightarrow
-    \begin{bmatrix}
-        1 &amp; 0 &amp; 0 &amp; 0 \\
-        0 &amp; 0 &amp; 0 &amp; 0 \\
-        0 &amp; 0 &amp; 0 &amp; 0 \\
-        0 &amp; 0 &amp; 0 &amp; 2
-    \end{bmatrix}\)</span> <br> <em>Gridworld.</em>
-</p>
+<section id="whats-next" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">1.7</span> What’s next</h2>
+<section id="learning" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="learning">Learning</h3>
+<p>The behaviour of the agents can be pre-programmed and fixed or it can be <em>learned</em>.</p>
+<ul>
+<li><p>In order to allow for learning agents need a <strong><em>learning component</em></strong> (goal-based or utility-based through experience).</p></li>
+<li><p>The learning component can be based on a model of the world and the gain towards a certain goal (possibly expressed in terms of change of the value of utility functions) can be expressed through <strong><em>rewards</em></strong>.</p></li>
+</ul>
+<p>In this module we will explore in depth a type of learning called <strong>Reinforcement Learning</strong> based on rewards following a certain action.</p>
+<h3 class="anchored">
+Autonomous and Adaptive Systems
+</h3>
+<p>In this module, we will adopt a very broad view of intelligent, adaptive and autonomous agents.</p>
+<p>Following <strong>Herbert Simon</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> ’s famous definition, we will consider more broadly:</p>
+<blockquote class="blockquote">
+<p>“machines that think, that learn, and that create”.</p>
+</blockquote>
+<p>Herbert Simon, a two-time Nobel laureate, was an economist who made significant contributions to machine learning and decision theory in complex systems. He is considered a foundational figure in modern artificial intelligence and agent-based systems, as he pioneered the concept of simulating economic behavior —essentially modeling society through computational methods.</p>
+<p>Of course <strong><em>“thinking”</em></strong> is an ill-defined concept (<em>“Do the LLMs reason?”</em> ), which we will try to discuss during the module in detail.</p>
+<p>We will take a <strong><em>system-view</em></strong>, i.e., we will consider the design of intelligent and autonomous agents considering the algorithmic and implementation issues and the interactions between the different entities at various levels of abstraction.</p>
+<h3 class="anchored">
+Building Intelligent Machines
+</h3>
+<p>An underlying theme of the module will be the definition of intelligence.</p>
+<p>Recalling our definition of intelligent agents:</p>
+<blockquote class="blockquote">
+<p>An <strong><em>intelligent agent</em></strong> is an entity that perceives its environment and takes actions that maximise <u>the probability of achieving its goals.</u></p>
+</blockquote>
+<p>Indeed, since the world is complex, messy, and noisy, our understanding of it —built through incremental learning with such systems— is inherently probabilistic. As a result, we will focus extensively on <strong>probabilistic systems</strong>.</p>
+<p>Our goal at the end will be to build intelligent machines, but we will also compare machine intelligence with human and animal intelligence.</p>
+<p>This is a fascinating aspect of the study of these systems: <u>they help us in understanding what intelligence means in abstract and what makes us humans.</u></p>
+<h3 class="anchored">
+Artificial General Intelligence
+</h3>
+<ul>
+<li><p>In the recent years we had several successes in building more and more sophisticated systems.</p></li>
+<li><p><strong><em>Human-level Artificial Intelligence</em></strong> or <strong><em>Artificial General Intelligence</em></strong> is the intelligence of an entity (agent, machine, etc.), which has the capacity of learning any task <u>at or above human-level</u> (at least as an human being).</p></li>
+</ul>
+<p>We will discuss the current state-of-the-art in this area and we will also outline the challenges and opportunities ahead.</p>
+</section>
+</section>
+<section id="references" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="references"><span class="header-section-number">1.8</span> References</h2>
+<ul>
+<li><span class="citation" data-cites="russell2020">Russell and Norvig (<a href="references.html#ref-russell2020" role="doc-biblioref">2020</a>)</span></li>
+</ul>
+<p>Some of the definitions and some of the figures of this section are from:</p>
+<ul>
+<li><strong>Chapter 2</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
+</ul>
+</section>
+<section id="suggested-readings" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="suggested-readings"><span class="header-section-number">1.9</span> Suggested Readings</h2>
+<ul>
+<li><span class="citation" data-cites="simon1996">Simon (<a href="references.html#ref-simon1996" role="doc-biblioref">1996</a>)</span></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-russell2020" class="csl-entry" role="listitem">
+Russell, Stuart, and Peter Norvig. 2020. <em>Artificial Intelligence. A Modern Approach</em>. Fourth edition. Pearson. <a href="https://github.com/pemagrg1/AI_class2022/blob/main/book/Artificial-Intelligence-A-Modern-Approach-4th-Edition-1-compressed.pdf">https://github.com/pemagrg1/AI_class2022/blob/main/book/Artificial-Intelligence-A-Modern-Approach-4th-Edition-1-compressed.pdf</a>.
+</div>
+<div id="ref-simon1996" class="csl-entry" role="listitem">
+Simon, Herbert A. 1996. <em>The Sciences of the Artificial</em>. Third edition. MIT Press. <a href="https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf">https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf</a>.
+</div>
+<div id="ref-sutton2018" class="csl-entry" role="listitem">
+Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An Introduction.</em> Second edition. MIT Press. <a href="https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf">https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf</a>.
+</div>
+</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Source: Shah, H., &amp; Warwick, K. (2016). <em>Imitating Gender as a Measure for Artificial Intelligence: - Is It Necessary?</em>. In Proceedings of the 8th International Conference on Agents and Artificial Intelligence - Volume 1: ICAART (pp.&nbsp;126-131). SCITEPRESS. <a href="https://www.scitepress.org/papers/2016/56739/56739.pdf">https://www.scitepress.org/papers/2016/56739/56739.pdf</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Term taken from Aldous Huxley’s novel to indicate something completely new.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><em>Alan Turing (1912 – 1954):</em> <a href="https://it.wikipedia.org/wiki/Alan_Turing">https://it.wikipedia.org/wiki/Alan_Turing</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Source: Shah, H., &amp; Warwick, K. (2016). <em>Imitating Gender as a Measure for Artificial Intelligence: - Is It Necessary?</em>. In Proceedings of the 8th International Conference on Agents and Artificial Intelligence - Volume 1: ICAART (pp.&nbsp;126-131). SCITEPRESS. <a href="https://www.scitepress.org/papers/2016/56739/56739.pdf">https://www.scitepress.org/papers/2016/56739/56739.pdf</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><em>Charles Babbage (1791 – 1871):</em> <a href="https://en.wikipedia.org/wiki/Charles_Babbage">https://en.wikipedia.org/wiki/Charles_Babbage</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><em>“Brave New World”:</em> Term taken from Aldous Huxley’s novel to indicate something completely new.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><em>“Situation Room”:</em> A secure space or command center where leaders and key officials convene to make urgent decisions, often related to national security, crises, or military operations. These decisions may include diplomatic, strategic, and security-related matters.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><em>Herbert Simon (1916 – 2001):</em> <a href="https://it.wikipedia.org/wiki/Herbert_Simon">https://it.wikipedia.org/wiki/Herbert_Simon</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

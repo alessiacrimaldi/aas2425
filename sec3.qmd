@@ -9,7 +9,7 @@ format: html
 
 - Multi-armed bandits are a simplified version of *reinforcement learning*.
 
-| Multi-Armed Bandits | Contextual Bandits | Reinforcement Learning |
+| Multi-armed Bandits | Contextual Bandits | Reinforcement Learning |
 | :----: | :----: | :----: |
 | No state is used | State is used<br><br>State does <u>not depend on</u> previous actions. | State is used<br><br>State <u>depends on</u> previous actions. |
 | | The action that is selected does <u>not affect</u> the next state/situation. | The action that is selected <u>affects</u> the next state/situation. |
@@ -35,7 +35,7 @@ This is the "classic" *k-armed bandit problem*, which is named by analogy to a *
 
 Like in a slot machine, we need to learn which lever provides us with the highest reward.
 
-> The problem is the same, maximising the expected reward:
+> The problem is the same, *maximising the **expected reward***:
 >
 >> $E[G_t \vert S_t = s, A_t = a]$
 >>
@@ -61,7 +61,7 @@ In a k-armed bandit problem, each of the $k$ actions has a value, equal to the e
 
 - As in the general RL case, we denote the action selected on time step $t$ as $A_t$ and the corresponding reward as $R_t$.
 
-> The ***value of an arbitrary action $a$*** is the expected reward given that $a$ is selected:
+> The ***value of an arbitrary action $a$***, denoted as $q_*(a)$, is the expected reward given that $a$ is selected:
 >
 >> $q_*(a) \doteq E[R_t \vert A_t = a]$
 
@@ -69,7 +69,7 @@ In the trivial case, since we know the value of each action, solving the k-armed
 
 - However, in general, we <u>do not know the action values</u> with certainty, we only know ***estimates***.
 
-> The ***estimated value of action $a$ at time step $t$***:
+> The ***estimated value of action $a$*** at time step $t$:
 >
 >> $Q_t(a)$
 >
@@ -93,8 +93,8 @@ We maintain the estimates of each action value.
 >
 >- By doing so, we can improve our estimation of the value functions of the non-greedy actions.
 
-Balancing exploration and exploitation in a smart way is the key aspect:<br>
-Several theoretical resuslts in terms of bounds, etc. given specific assumptions.
+Balancing exploration and exploitation in a smart way is the key aspect:
+several theoretical results in terms of bounds, etc. given specific assumptions.
 
 
 
@@ -110,11 +110,13 @@ Several theoretical resuslts in terms of bounds, etc. given specific assumptions
 
     We will consider later the "full" reinforcement learning problem where the agent's actions *do* modify the state and the agent's action *do* depend on the previous actions.
 
-- Recall: the *true value* of an action is the mean reward when that action is selected.
+- Recall:
 
-    > A possible way to estimate this is by averaging the rewards actually received:
-    >
-    >> $Q_t(a) \doteq \frac{\text{sum of rewards when an action } a \text{ is taken prior time }t}{\text{number of times an action } a \text{ is taken prior time }t}$
+    > The ***true value of an action*** is the mean reward when that action is selected.
+
+- A possible way to estimate this is by averaging the rewards actually received:
+
+    >> $Q_t(a) \doteq \frac{sum \; of \; rewards \; when \; an \; action \; a \; is \; taken \; prior \; time \; t}{number \; of \; times \; an \; action\; a \; is \; taken \; prior \; time \; t}$
     >> $$= \frac{\sum_{i=1}^{t-1} R_i 1_{A_i=a}}{\sum_{i=1}^{t-1} 1_{A_i=a}}$$
     >
     > where $1$ denotes the random variable that is 1 if the predicate $A_i=a$ is true and 0 if not.
@@ -129,15 +131,36 @@ Several theoretical resuslts in terms of bounds, etc. given specific assumptions
 
 ## Greedy Action Selection Rule
 
+The simplest selection rule is to select one of the acitons with the highest estimated value. This is usually referred to as greedy selection rule.
+
+> More formally, a ***greedy selection rule*** is one that selects $A_t$ so that:
+>
+>> $A_t \doteq \arg\max_{a} Q_t(a)$
+>
+> i.e. the action $a$ for which $Q_t$ is maximised.
 
 
-## $\epsilon$-Greedy Selection Rule
+
+## $\epsilon$-greedy Selection Rule
+
+A simple alternative is to behave **greedily** most of time, but from time to time, with a probability $\epsilon$, select instead **randomly** from among all the actions with equal probability. We call this method $\epsilon$-greedy.
+
+> 
+
+```{python}
+#| eval: false
+def epsilon_greedy:
+    if random.random() < 1 - eps:
+        return np.argmax(Q)
+    else:
+        return random.randint(0, len(Q) - 1)
+```
+
+One of the advantages of this method is that, in the limit, as the number of steps increases, all the actions will be sampled an infinite amont of time, ensuring that for all $a$ the $Q_t(a)$ will converge to $q_*(a)$.
 
 
 
-## Incremental Implementation
-
-<h3>Tracking a Stationary Problem</h3>
+## Tracking a Stationary Problem (Incremental Implementation)
 
 Let's now discuss how to implement these methods in practice. We consider a single action $a$ to simplify the notation.
 
@@ -178,7 +201,9 @@ This form of **update rule** is quite common in reinforcement learning.
 >
 > where the expression *(Target -- OldEstimate)* is usually defined as *error* in the estimate.
 
-<h3>Tracking a Nonstationary Problem</h3>
+
+
+## Tracking a Nonstationary Problem
 
 The averaging method discussed before is appropriate for *stationary* bandit problems.
 
@@ -210,11 +235,47 @@ This results in $Q_{n+1}$ being a weighted average of past rewards and the initi
 
 ## Optimistic Initial Values
 
+These methods are dependent on the initial action-value estimates $Q_1(a)$.
+
+- We say that these methods are ***biased by their initial estimates***.
+
+Initial values can be used as a simple way to encourage exploration.
+
+- If the learnineer is "disappointed" by the initial values and eplore more.
+
+- For example, if the initial values for each action $a$ are selected in order to be quite high with respect to the actual optimal values, all the actions are tried several times before we get convergence.
+
 <h3>Example</h3>
+
+Suppose that we have a multi-armed bandit, where the optimal action values $q_*(a)$ for every action $a$ are selected from a normal distribution with mean 0 and variance 1.
+
+In this case, an initial value $Q_1(a)=10$ for each activity is highly disappointing.
+
+Remember the formula:
+
+> NewEstimate $\leftarrow$ OldEstimate + StepSize (Target - OldEstimate)
+
+This will lead to a lot of exploration, also in pure greedy action selection.
 
 
 
 ## Upper-Confidence-Bound (UCB) Action Selection
+
+Exploration is needed because there is always uncertainty of the actual value estimates.
+
+- Greedy actions might be the best ones, but it might not be the case.
+
+- $\epsilon$-greedy action selection forces the non-greedy actions to be tried, but indiscriminately with no preferences for those that are nearly greedy or particularly uncertain.
+
+It would be better to select among the non-greedy actions considering their potential of being optimal, taking into account both how close their estimates are to being optimal and the uncertainties in these estimates.
+
+One effective way of doing this is to select actions according to:
+
+>> $A_t \doteq \arg\max_{a} (Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}})$
+>
+> where $t$ is the time at which action $A_t$ is taken, $N_t(a)$ denotes the number of times that action $a$ has been selected prior to time $t$ and the number $c > 0$ controls the degree of exprolation.
+
+The idea of this **upper confidence bound (UCB) action selection** is that the square-root term is a measure of the *uncertainty* or *variance* of the estimate of the actual value of action $a$.
 
 
 
@@ -292,15 +353,18 @@ for t in range(T):
 
 ## Contextual bandits
 
-<h3>Policy-Based Action Selection</h3>
+Multi-armed bandits are used whent the selection of the action is not dependent on the state.
 
-<h3>Associative Search</h3>
+But for many applications (e.g., ads on a webpage), actually the state is very important.
 
-<h3>Exercise:</h3>
+> When the action selection depends on the state, but not on its previous history, we have the case of ***contextual bandits***.
 
-<h4>Website serving ads with contextual bandits.</h4>
+> Since the action is associated to the state, contextual bandits are also defined as a problem of **associative search**.
 
-> Design a system serving ads on a website (e.g. Google Ads) using contextual bandits.
+They require to learn a policy, i.e. a mapping from the current state to the probabilities of each action.
+
+As we said, contextual bandits differ from the "full" reinforcement learning problem in that the action does not affect the future state.
+In case the action affects the future state, we have the "full" reinforcement learning problem.
 
 <h3>Additional Readings</h3>
 
@@ -309,7 +373,7 @@ for t in range(T):
 
 
 
-## Exercise
+## Exercises
 
 <h4>Website serving ads with bandits.</h4>
 
@@ -377,6 +441,10 @@ while True:
 ```
 
 <iframe src="exercises/serving_ads_with_bandits.html" style="width:100%; height:500px; border:none; overflow:auto;"></iframe>
+
+<h4>Website serving ads with contextual bandits.</h4>
+
+> Design a system serving ads on a website (e.g. Google Ads) using contextual bandits.
 
 
 

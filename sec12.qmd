@@ -1,0 +1,176 @@
+---
+title: "Advanced Tensorflow for Reinforcement Learning"
+format: html
+appendix: true
+---
+
+## Eager Execution in TensorFlow 2.x
+
+
+
+## Computing (Customised) Gradients
+
+
+
+## Gradient Tapes
+
+- TensorFlow provides the `tf.GradientTape` API for automatic differentiation, i.e., computing the gradient of a computation with respect to its input variables.
+
+- TensorFlow records all operations executed inside the context of a `tf.GradientTape` onto a tape.
+
+- TensorFlow then uses that tape and the gradients of the outputs with respect to the intermediate values computed during a recorded `tf.GradientTape` context.
+
+```{python}
+#| eval: false
+x = tf.ones((2, 2))
+
+with tf.GradientTape() as t:
+    t.watch(x)
+    y = tf.reduce_sum(x)
+    z = tf.multiply(y, y)
+
+# Derivative of z with respect to the original input tnesor x
+dz_dx = t.gradient(z, x)
+dz_dx_0_0 = dz_dx[0][0].numpy() # 2 (2*x_0_0 at x_0_0 = 1)
+dz_dx_0_1 = dz_dx[0][1].numpy() # 2 (2*x_0_1 at x_0_1 = 1)
+dz_dx_1_0 = dz_dx[1][0].numpy() # 2 (2*x_1_0 at x_1_0 = 1)
+dz_dx_1_1 = dz_dx[1][1].numpy() # 2 (2*x_1_1 at x_1_1 = 1)
+```
+
+- By default, the resources held by a $\texttt{GradientTape}$ are released as soon as the `GradientTape.gradient()` method is called.
+
+- To compute multiple gradients over the same computation, it is necessary to create a persistent graient tape.
+
+- This allows multiple calls to the `gradient()` method.
+
+- Resources are released when the tape object is garbage collected.
+
+```{python}
+#| eval: false
+x = tf.constant(3.0)
+
+with tf.GradientTape(peristent=True) as t:
+    t.watch(x)
+    y = x*x
+    z = y*y
+
+dz_dx = t.gradient(z, x) # 108.0 (4*x^3 at x = 3)
+dy_dx = t.gradient(y, x) # 6 (2*x at x = 3)
+
+del t # remove the reference to the tape and invoke garbage collection
+```
+
+
+
+## $\texttt{with... as}$ construct in Python
+
+- When the $\texttt{with}$ statement is executed, Python evakuates the expression, called the `__enter__` method on the resulting value, which is called a context guard and assign the object returned by `__enter__` to the variable given by $\texttt{as}$.
+
+- Python will then execute the body of the code.
+
+- In any case, also in case of an exception the `__exit__` method of the guard object is executed.
+
+```{python}
+#| eval: false
+class guarded_execution:
+    def __enter__(self):
+        <initialisation>
+        return p
+    def __exit__(self, type, value, traceback):
+        <free resources and manage exceptions>
+```
+```{python}
+#| eval: false
+with guarded_execution as p:
+    <some instructions>
+```
+```{python}
+#| eval: false
+with open("textfile.txt") as f:
+    data = f.read()
+    <work with data>
+```
+
+$\blacktriangleright$ See: [https://effbot.org/zone/python-with-statement.html](https://effbot.org/zone/python-with-statement.html)
+
+
+
+## $\texttt{tf.function}$
+
+- `tf.function` allows to transform a subset of Python syntax into portable and high-performance TensorFlow graphs, which are the component that are "under its hood".
+
+- It is possible to write "graph code" using natural Python syntax.
+
+    - This topic is outside the scope of this module. You can find the definition of the language and more details in the TensorFlow documentation.
+
+
+
+## Custom Training Loops with Keras Models
+
+
+
+## TensorFlow $\texttt{tf.data}$ API
+
+
+
+## Lambda Layers
+
+
+
+## TF-Agents Library
+
+
+
+## Training Architecture
+
+$-$tf agents are not good$-$
+
+**Scaling up** is important.
+
+
+
+## OpenAI Gym Environment
+
+
+
+## Reply Buffers
+
+
+
+## Implementing Atari Games
+
+- **Frame skipping**: the agent only sees one frame at a time.
+
+
+
+## Collect Driver
+
+
+
+## Initialising the Replay Buffer
+
+
+
+## Extensions
+
+Inside these agents there are a lot of predefined things, like:
+
+1. Implementation with a Policy Networks (DQN) with Actor-Critic
+
+1. Use of Advantage Actor-Critic (A2C)
+
+1. Use of Asynchronous Advantage Actor-Critic (A3C)
+
+1. Use of Soft-Actor Critic
+
+1. Use of Trust-Region Optimization (available in TF-Agents)
+
+1. Use of Proximal Policy Optimization (available in TF-Agents)
+
+
+
+## References
+
+- @geron2022
+
+- [TensorFlow Documentation](https://www.tensorflow.org/api_docs)

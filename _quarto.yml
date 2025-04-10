@@ -17,6 +17,9 @@ book:
     - sec8.qmd
     - sec9.qmd
     - sec10.qmd
+    - sec11.qmd
+    - sec12.qmd
+    - sec13.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -27,3 +30,4 @@ execute:
 format:
   html:
     theme: cosmo
+    number-sections: true
