@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Generative Learning – Autonomous and Adaptive Systems</title>
+<title>9&nbsp; Multi-agent Systems – Autonomous and Adaptive Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -69,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec9.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec9.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -163,13 +212,31 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec9.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to TensorFlow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Tensorflow for Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,15 +250,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#multiagent-learning" id="toc-multiagent-learning" class="nav-link active" data-scroll-target="#multiagent-learning"><span class="header-section-number">9.1</span> Multiagent Learning</a></li>
+  <li><a href="#presence-of-regularity" id="toc-presence-of-regularity" class="nav-link" data-scroll-target="#presence-of-regularity"><span class="header-section-number">9.2</span> Presence of Regularity</a></li>
+  <li><a href="#paradigms" id="toc-paradigms" class="nav-link" data-scroll-target="#paradigms"><span class="header-section-number">9.3</span> Paradigms</a></li>
+  <li><a href="#online-reinforcement-learning-towards-individual-utilityreward" id="toc-online-reinforcement-learning-towards-individual-utilityreward" class="nav-link" data-scroll-target="#online-reinforcement-learning-towards-individual-utilityreward"><span class="header-section-number">9.4</span> Online Reinforcement Learning towards Individual Utility/Reward</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></h1>
 </div>
 
 
@@ -208,8 +284,97 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>There are several possible definitions of <em><strong>multiagent systems</strong>:</em></p>
+<blockquote class="blockquote">
+<p><em>Multiagent systems</em> are distributed systems of independent actors called agents that are each independently controlled but that interact with one another in the same environment.</p>
+<p><span class="math inline">\(-\)</span> <em>See <span class="citation" data-cites="wooldridge2002">Wooldridge (<a href="references.html#ref-wooldridge2002" role="doc-biblioref">2002</a>)</span> and <span class="citation" data-cites="tuyls2018">Tuyls and Stone (<a href="references.html#ref-tuyls2018" role="doc-biblioref">2018</a>)</span>.</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>Multiagent systems</em> are systems that include multiple autonomous entiites with (possibly) diverging information.</p>
+<p><span class="math inline">\(-\)</span> <em>See <span class="citation" data-cites="shoham2009">Shoham and Leyton-Brown (<a href="references.html#ref-shoham2009" role="doc-biblioref">2009</a>)</span>.</em></p>
+</blockquote>
+<section id="multiagent-learning" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="multiagent-learning"><span class="header-section-number">9.1</span> Multiagent Learning</h2>
+<h3 class="anchored">
+Definition
+</h3>
+<p>We will use the following definition of <strong><em>multiagent learning</em></strong>:</p>
+<blockquote class="blockquote">
+<p><em>“The study of multiagent systems in which one or more of the autonomous entiites improves automatically through experience”.</em></p>
+</blockquote>
+<h3 class="anchored">
+Characteristics of Multiagent Learning
+</h3>
+<ol type="1">
+<li><p>Different <strong>scale</strong>:</p>
+<ul>
+<li>A city or an ant colony or a football team.</li>
+</ul></li>
+<li><p>Different <strong>degree of complexity</strong>:</p>
+<ul>
+<li>A human, a machine, a mammal or an insect.</li>
+</ul></li>
+<li><p>Different <strong>types of interaction</strong>:</p>
+<ul>
+<li>Frequent interactions (or not), interactions with a limited number of individuals, etc.</li>
+</ul></li>
+</ol>
+</section>
+<section id="presence-of-regularity" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="presence-of-regularity"><span class="header-section-number">9.2</span> Presence of Regularity</h2>
+<p>It is fundamental that there is a certian <strong><em>degree of regularity</em></strong> in the system otherwise prediction of behaviour is not possible.</p>
+<blockquote class="blockquote">
+<p><strong>Assumption:</strong> past experience is somehow predictive of future expectations.</p>
+</blockquote>
+<p>Dealing with <strong>non-stationarityy</strong> is a key problem: it is the usual problem of reinforcement learning at the end.</p>
+</section>
+<section id="paradigms" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="paradigms"><span class="header-section-number">9.3</span> Paradigms</h2>
+<p>We will study 5 paradigms:</p>
+<ol type="1">
+<li>Online Multi-agent Reinforcement Learning towards individual utility</li>
+<li>Online Multi-agent Reinforcement Learning towards social welfare</li>
+<li>Co-evolutionary learning</li>
+<li>Swarm intelligence</li>
+<li>Adaptive mechanism design</li>
+</ol>
+<p>There are novel emerging paradigms that will discuss during the coming lectures based on foundational models/LLMS, which are being developed right now:</p>
+<ol type="1">
+<li>Multi-agent Learning based on foundational models towards individual utility</li>
+<li>Multi-agent Learning based on foundational models towards social welfare</li>
+</ol>
+</section>
+<section id="online-reinforcement-learning-towards-individual-utilityreward" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="online-reinforcement-learning-towards-individual-utilityreward"><span class="header-section-number">9.4</span> Online Reinforcement Learning towards Individual Utility/Reward</h2>
+<p>One of the most-studied scenarios in multiagent learning is that in which multiple independent agents take actions in the same environment and learn online to maximise their own individual utility functions.</p>
+<blockquote class="blockquote">
+<p><strong>Goal:</strong> to maximise the utility at the end of the game (i.e.&nbsp;expected reward).</p>
+</blockquote>
+<p>From a formal point view (game-theory point of view), this can be considered a <strong><em>repeated normal form game</em></strong>.</p>
+<ul>
+<li><p>A <strong>repeated game</strong> is a game that is based on a certain number of repetitions.</p></li>
+<li><p><strong>Normal form games</strong> are games that are presented using a matrix.</p>
+<ul>
+<li>As aside, an <em>extensive form game</em> is a game for which an explicit representation of the sequence of the players’ possible moves, their choices at every decision point and the information about other player’s move and relative payoffs.</li>
+</ul></li>
+</ul>
+<h3 class="anchored">
+Example: Prisoner’s Dilemma
+</h3>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-shoham2009" class="csl-entry" role="listitem">
+Shoham, Yoav, and Kevin Leyton-Brown. 2009. <em>Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations</em>. Cambridge University Press.
+</div>
+<div id="ref-tuyls2018" class="csl-entry" role="listitem">
+Tuyls, Karl, and Peter Stone. 2018. <span>“Multiagent Learning Paradigms.”</span> <em>Artificial Intelligence</em> 265: Multiagent Systems Special Issue, 115–27.
+</div>
+<div id="ref-wooldridge2002" class="csl-entry" role="listitem">
+Wooldridge, Michael. 2002. <em>Introduction to Multiagent Systems</em>. John Wiley &amp; Sons.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -636,8 +801,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sec10.html" class="pagination-link" aria-label="Multi-agent Systems">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sec10.html" class="pagination-link" aria-label="Introduction to Gym">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

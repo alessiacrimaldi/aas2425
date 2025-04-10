@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -192,13 +212,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to TensorFlow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Tensorflow for Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -217,9 +255,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#approximation-methods" id="toc-approximation-methods" class="nav-link active" data-scroll-target="#approximation-methods"><span class="header-section-number">6.1</span> Approximation Methods</a></li>
-  <li><a href="#value-function-approximation" id="toc-value-function-approximation" class="nav-link" data-scroll-target="#value-function-approximation"><span class="header-section-number">6.2</span> Value Function Approximation</a></li>
-  <li><a href="#deep-q-network-dqn" id="toc-deep-q-network-dqn" class="nav-link" data-scroll-target="#deep-q-network-dqn"><span class="header-section-number">6.3</span> Deep Q-Network (DQN)</a></li>
+  <li><a href="#recap-whats-wrong-with-tabular-methods" id="toc-recap-whats-wrong-with-tabular-methods" class="nav-link active" data-scroll-target="#recap-whats-wrong-with-tabular-methods"><span class="header-section-number">6.1</span> Recap: What’s Wrong with Tabular Methods</a></li>
+  <li><a href="#function-approximation-in-rl" id="toc-function-approximation-in-rl" class="nav-link" data-scroll-target="#function-approximation-in-rl"><span class="header-section-number">6.2</span> Function Approximation in RL</a></li>
+  <li><a href="#approximation-methods" id="toc-approximation-methods" class="nav-link" data-scroll-target="#approximation-methods"><span class="header-section-number">6.3</span> Approximation Methods</a></li>
+  <li><a href="#value-function-approximation" id="toc-value-function-approximation" class="nav-link" data-scroll-target="#value-function-approximation"><span class="header-section-number">6.4</span> Value Function Approximation</a></li>
+  <li><a href="#nonlinear-function-approximation-artificial-neural-networks" id="toc-nonlinear-function-approximation-artificial-neural-networks" class="nav-link" data-scroll-target="#nonlinear-function-approximation-artificial-neural-networks"><span class="header-section-number">6.5</span> Nonlinear Function Approximation: Artificial Neural Networks</a></li>
+  <li><a href="#stochastic-gradient-descent" id="toc-stochastic-gradient-descent" class="nav-link" data-scroll-target="#stochastic-gradient-descent"><span class="header-section-number">6.6</span> Stochastic Gradient Descent</a></li>
+  <li><a href="#semi-gradient-one-step-sarsa-prediction" id="toc-semi-gradient-one-step-sarsa-prediction" class="nav-link" data-scroll-target="#semi-gradient-one-step-sarsa-prediction"><span class="header-section-number">6.7</span> Semi-gradient One-step Sarsa Prediction</a></li>
+  <li><a href="#semi-gradient-one-step-sarsa-control" id="toc-semi-gradient-one-step-sarsa-control" class="nav-link" data-scroll-target="#semi-gradient-one-step-sarsa-control"><span class="header-section-number">6.8</span> Semi-gradient One-step Sarsa Control</a></li>
+  <li><a href="#semi-gradient-q-learning" id="toc-semi-gradient-q-learning" class="nav-link" data-scroll-target="#semi-gradient-q-learning"><span class="header-section-number">6.9</span> Semi-gradient Q-Learning</a></li>
+  <li><a href="#deep-q-network-dqn" id="toc-deep-q-network-dqn" class="nav-link" data-scroll-target="#deep-q-network-dqn"><span class="header-section-number">6.10</span> Deep Q-Network (DQN)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6.11</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -245,28 +291,280 @@ window.Quarto = {
 </header>
 
 
-<section id="approximation-methods" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="approximation-methods"><span class="header-section-number">6.1</span> Approximation Methods</h2>
-<p>We will write <span class="math inline">\(\hat{v}(s,\mathrm{w}) \approx v_\pi(s)\)</span></p>
-<p><span class="math inline">\(\mathrm{w}\)</span>, but more generally it can be a non-linear function.</p>
-</section>
-<section id="value-function-approximation" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="value-function-approximation"><span class="header-section-number">6.2</span> Value Function Approximation</h2>
-<p>Supervised learning, aquiring the values through exploration.</p>
-<p>We have:</p>
+<section id="recap-whats-wrong-with-tabular-methods" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="recap-whats-wrong-with-tabular-methods"><span class="header-section-number">6.1</span> Recap: What’s Wrong with Tabular Methods</h2>
+<p>Tabular methods suffer form a series of <strong>drawbacks</strong>:</p>
 <ul>
-<li><p>the <em>estimation of the value</em> of a state (we’re in state <span class="math inline">\(S_t\)</span>)</p></li>
-<li><p>the <em>actual value</em> of the state (we get the reward and we are in state <span class="math inline">\(S_{t+1}\)</span>).</p></li>
+<li><p>Table with 1 row per state-action entry.</p></li>
+<li><p>What happens if we can’t fit all the state-action entries in a table?</p>
+<ul>
+<li>We need <em>function approximation</em> rather than tables.</li>
+</ul></li>
 </ul>
-<p>We’ll use that state <span class="math inline">\(S_t\)</span> as the actual correct value of the output of our Neural Network. We try to improve our estimation, reducing the error.</p>
-<p>– explanation NN –</p>
 </section>
-<section id="deep-q-network-dqn" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="deep-q-network-dqn"><span class="header-section-number">6.3</span> Deep Q-Network (DQN)</h2>
-<p><a href="https://youtu.be/TmPfTpjtdgg?si=FGcNv-nZK3s__oiS">https://youtu.be/TmPfTpjtdgg?si=FGcNv-nZK3s__oiS</a></p>
-<p><a href="https://youtu.be/SUbqykXVx0A?si=OrAButW_JbefDYV8">https://youtu.be/SUbqykXVx0A?si=OrAButW_JbefDYV8</a></p>
+<section id="function-approximation-in-rl" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="function-approximation-in-rl"><span class="header-section-number">6.2</span> Function Approximation in RL</h2>
+<p>An alternative is <strong><em>function approximation</em></strong>.</p>
+<p>Function approximation will provide a <strong><em>mapping</em></strong> between a state or state-action to a value function.</p>
+<p>More precisely:</p>
+<blockquote class="blockquote">
+<p>A <strong><em>value-function approximation</em></strong> is a function that takes in input the state (or the state and action), and gives as output the value function for the state (or the state and action).</p>
+</blockquote>
+<p align="center">
+<img src="images/function_approximator_1.jpeg" width="100%"> <img src="images/function_approximator_2.jpeg" width="100%"> <img src="images/function_approximator_3.jpeg" width="100%"> <em>State = Pixels</em><br><br> <img src="images/function_approximator_1.jpeg" width="100%"> <img src="images/function_approximator_4.png" width="100%">
+</p>
+</section>
+<section id="approximation-methods" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="approximation-methods"><span class="header-section-number">6.3</span> Approximation Methods</h2>
+<p>In this chapter we will focus on the study of function approximation for estimating state-value functions.</p>
+<p>In particular, we will consider an approach where the approximate value function is represented not as a table but as a parametrised functional form wit weight vector <span class="math inline">\(w \in \mathbb{R}^d\)</span>.</p>
+<p>We will start by considering how to approximate <span class="math inline">\(v_\pi\)</span> from experience generatd using a policy <span class="math inline">\(\pi\)</span>.</p>
+<p align="center">
+<img src="images/go_game.png" width="70%">
+</p>
+<p align="center">
+<img src="images/moves_in_go.png" width="90%"><br> <em>Number of Moves in Go.</em>
+</p>
+<iframe src="papers/6__1__Combinatorics_of_Go.pdf" width="100%" height="600px">
+</iframe>
+<p align="center">
+<img src="images/the_on-line_encyclopedia_positions_in_Go.png" width="97%"><br> <em><a href="https://oeis.org/search?q=number+of+legal+positions+in+Go&amp;language=english&amp;go=Search">The on-line encyclopedia of integer sequences: Number of legal positions in Go played on an n X n grid (each group must have at least one liberty).</a></em>
+</p>
+<ul>
+<li><p>We will write <span class="math inline">\(\hat{v}(s,\mathrm{w}) \approx v_\pi(s)\)</span> for the approximate value of state <span class="math inline">\(s\)</span> given weight vector <span class="math inline">\(\mathrm{w}\)</span>.</p></li>
+<li><p><span class="math inline">\(\hat{v}\)</span> in theory might be a linear function of the weights <span class="math inline">\(\mathrm{w}\)</span>, but more generally it can be a non-linear function.</p></li>
+<li><p>A widely used technique is to use a multi-layer artificial neural network to compute <span class="math inline">\(\hat{v}\)</span>, with <span class="math inline">\(\mathrm{w}\)</span> the vector of the connection weights in all the layers.</p>
+<ul>
+<li><p>By adjusting the values of the weights <span class="math inline">\(\mathrm{w}\)</span>, a different range of functions can be computed by the network.</p>
+<blockquote class="blockquote">
+<p>Typically, the number of weights <span class="math inline">\(\mathrm{w}\)</span> is much less than the number of states</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\((d \ll \vert \mathcal{S} \vert)\)</span></p>
+</blockquote>
+<p>where <span class="math inline">\(\vert \mathcal{S} \vert\)</span> is the cardinality of the states of the system under consideration.</p>
+</blockquote></li>
+</ul></li>
+<li><p>There are various interesting aspects that need to be considered:</p>
+<ol type="1">
+<li>Function approximation can be used also for partially observable problems.</li>
+<li>With an approximation, we might build a function that does not depend on certain aspects of the state and we can just build a fucnction assuming that they are not observable.</li>
+</ol></li>
+</ul>
+</section>
+<section id="value-function-approximation" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="value-function-approximation"><span class="header-section-number">6.4</span> Value Function Approximation</h2>
+<p>Classic methods are based on the idea of an <strong><em>update “towards” a target</em></strong>. For example:</p>
+<ul>
+<li><p>In the <strong>Monte Carlo</strong> method the update target for the value prediction is</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(G_t\)</span>.</p>
+</blockquote></li>
+<li><p>In the <strong>TD(0)</strong> the update target is</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(R_{t+1} + \gamma \hat{v} (S_{t+1}, \mathrm{w}_t)\)</span></p>
+</blockquote></li>
+</ul>
+<p>In classic methods, what we do is to change the current estimation value “towards” the <strong>update</strong>.</p>
+<p>The estimation of value function approximation is different:</p>
+<ul>
+<li><p>Very complex methods are possible.</p></li>
+<li><p>We will use supervised learning (i.e.&nbsp;we will learn through sets of inputs-outputs).</p>
+<ul>
+<li>Since we are trying to learn how to link the inputs to real values, we can do this as a function approximation problem.</li>
+</ul></li>
+</ul>
+</section>
+<section id="nonlinear-function-approximation-artificial-neural-networks" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="nonlinear-function-approximation-artificial-neural-networks"><span class="header-section-number">6.5</span> Nonlinear Function Approximation: Artificial Neural Networks</h2>
+<p><em>Artificial Neural Networks (ANN)</em> are widely used for <strong>nonlinear function approximation</strong>.</p>
+<p>We have results that guarantee that an ANN with a single hidden layer containing a large enough finite number of sigmoid units can approximate any continuous function on a compact region of the network’s input space to any degree of accuracy (see <em>Cybenko 1989</em>).</p>
+<p>Nowadays, we tend to use networks with more than one hidden layer (we usually use the term <em>deep learning</em> for that reason).</p>
+<p>Learning is based on <strong>stochastic gradient descent</strong>.</p>
+<iframe src="papers/6__2__Approximation_by_Superpositions_of_a_Sigmoidal_Function.pdf" width="100%" height="400px">
+</iframe>
+</section>
+<section id="stochastic-gradient-descent" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="stochastic-gradient-descent"><span class="header-section-number">6.6</span> Stochastic Gradient Descent</h2>
+<p><em>Stochastic gradient descent methods (SGD)</em> adjust the weights after each example by small value in the direction that would most reduce the error on that example.</p>
+<p>We will discuss here the case for one example, but this can be done for multiple examples at a time (remember mini-batch gradient descent methods).</p>
+<ul>
+<li><p>Remember the formula we used for the <strong><em>update of the weight</em></strong> for a deep learning network (valid for a “shallow” artificial neural network as well):</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><span class="math inline">\(w_j \leftarrow w_j + \nabla w_j = w_j - \eta \frac{\delta J}{\delta w_j}\)</span></p>
+</blockquote>
+<p>We will indicate time here, since we are updating <span class="math inline">\(w_j\)</span> at each of a series of discrete time steps <span class="math inline">\(t=0,1,2,\dots\)</span> as follows:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(w_{j, t+1} \leftarrow w_{j,t} + \nabla w_{j,t} = w_{j,t} - \eta \frac{\delta J}{\delta w_{j,t}}\)</span></p>
+</blockquote>
+</blockquote></li>
+<li><p>Assuming that we have a <strong><em>loss function</em></strong> that represents the <em>mean squared error</em> (which we call <strong><em>mean square error</em></strong>) as follows:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(J(\mathrm{w}) = \sum_{s \in \mathcal{S}} (U_t - \hat{v}(S_t, \mathrm{w}_t))^2\)</span></p>
+</blockquote></li>
+<li><p>We will obtain the following</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><span class="math inline">\(\mathrm{w}_{t+1} \doteq \mathrm{w}_t - \frac{1}{2} \eta \nabla [U_t - \hat{v} (S_t, \mathrm{w}_t)]^2\)</span><br> <span class="math inline">\(\qquad \; = \mathrm{w}_t + \eta [U_t - \hat{v} (S_t, \mathrm{w}_t)] \nabla \hat{v}(S_t, \mathrm{w}_t)\)</span></p>
+</blockquote>
+<p>where <span class="math inline">\(U_t\)</span> is the target and <span class="math inline">\(\eta\)</span> is the step-size parameter.</p>
+</blockquote></li>
+<li><p>Recall the definition of <strong><em>gradient</em></strong>:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\nabla f(\mathrm{w}) \doteq (\frac{\delta f(\mathrm{w})}{\delta \mathrm{w}_1}, \frac{\delta f(\mathrm{w})}{\delta \mathrm{w}_2}, \cdots, \frac{\delta f(\mathrm{w})}{\delta \mathrm{w}_d})\)</span></p>
+</blockquote></li>
+<li><p><strong>Stochastic gradient methods</strong> are “gradient descente” methods because the overall step in <span class="math inline">\(\mathrm{w}_t\)</span> is proportional to the negative gradient of the example’s squared error.</p>
+<ul>
+<li><u>Intuition:</u> tha is the direction in which the error falls more rapidly.</li>
+<li><u>Recall:</u> they are stochastic since they are besed on samples that are ranodmly chosen.</li>
+</ul></li>
+</ul>
+</section>
+<section id="semi-gradient-one-step-sarsa-prediction" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="semi-gradient-one-step-sarsa-prediction"><span class="header-section-number">6.7</span> Semi-gradient One-step Sarsa Prediction</h2>
+<p>We can extend the mathematical framework we discussed for state value functions to state-action value functions.</p>
+<ul>
+<li><p>In this case the target <span class="math inline">\(U_t\)</span> is an approximation of <span class="math inline">\(q_\pi(S_t, A_t)\)</span>.</p></li>
+<li><p>The general gradient-descent update for action-value prediction is:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\mathrm{w}_{t+1} = \mathrm{w}_t + \eta [U_t - \hat{q}(S_t, A_t, \mathrm{w}_t)] \nabla \hat{q} (S_t, A_t, \mathrm{w}_t)\)</span></p>
+</blockquote></li>
+<li><p>For example, the update for the <strong><em>(episodic) semi-gradient one-step Sarsa method</em></strong> is the following:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\mathrm{w}_{t+1} \doteq \mathrm{w}_t + \eta [R_{t+1} + \gamma \hat{q} (S_{t+1}, A_{t+1}, \mathrm{w}_t) - \hat{q}(S_t, A_t, \mathrm{w}_t)] \nabla \hat{q}(S_t, A_t, \mathrm{w}_t)\)</span></p>
+</blockquote>
+<p>It is called <strong><em>semi-gradient</em></strong> because we are not really taking the “real” gradient. The “real” gradient will require to calculate the gradient of <span class="math inline">\(U_t\)</span>.</p>
+<p>The main reason why we are not calculating the gradient of <span class="math inline">\(U_t\)</span> is <strong>complexity</strong>. Additionally, convergence is guaranteed also in this case: for a constant policy, this method converges in the same way that TD(0) does.</p></li>
+</ul>
+</section>
+<section id="semi-gradient-one-step-sarsa-control" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="semi-gradient-one-step-sarsa-control"><span class="header-section-number">6.8</span> Semi-gradient One-step Sarsa Control</h2>
+<p>But, as usual, we are interested in the <strong><em>problem of control</em></strong>, i.e.&nbsp;we are interested in finding the <strong>optimal policy</strong>.</p>
+<ul>
+<li><p>The method is essentially the same as for tabular methods.</p>
+<blockquote class="blockquote">
+<p>For each possible action <span class="math inline">\(a\)</span> available in the current state <span class="math inline">\(S_t\)</span>, we can compute <span class="math inline">\(\hat{q}(S_t, a, \mathrm{w}_t)\)</span> and then find the greedy action using:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(A^*_t = \arg \max_a \hat{q} (S_t, a, \mathrm{w}_t)\)</span></p>
+</blockquote>
+</blockquote></li>
+<li><p>Policy tratment is then done by changing the estimation policy to a soft approximation of the greedy policy (e.g.&nbsp;<span class="math inline">\(\epsilon\)</span>-greedy policy).</p></li>
+<li><p>Actions are selected according to this same policy (this is <strong><em>on-policy control</em></strong>).</p></li>
+</ul>
+<p align="center">
+<img src="images/semi-gradient_one-step_sarsa_control_pseudocode.png" width="100%">
+</p>
+</section>
+<section id="semi-gradient-q-learning" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="semi-gradient-q-learning"><span class="header-section-number">6.9</span> Semi-gradient Q-Learning</h2>
+<p>The basic procedure is similar for the “classic” Q-learning.</p>
+<ul>
+<li><p>The update is as follows:</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><span class="math inline">\(\mathrm{w}_{t+1} = \mathrm{w}_t + \eta [R_{t+1} + \gamma \max_a \hat{q} (S_{t+1},a,\mathrm{w}_t) - \hat{q} (S_t, A_t, \mathrm{w}_t)] \nabla \hat{q} (S_t, A_t, \mathrm{w}_t)\)</span></p>
+</blockquote>
+<p>where <span class="math inline">\(\mathrm{w}_t\)</span> is the vector of the network’s weights, <span class="math inline">\(A_t\)</span> is the action selected at time <span class="math inline">\(t\)</span>, and <span class="math inline">\(S_t\)</span> and <span class="math inline">\(S_{t+1}\)</span> are respectively the inputs to the network at time steps <span class="math inline">\(t\)</span> and <span class="math inline">\(t+1\)</span>.</p>
+</blockquote></li>
+</ul>
+</section>
+<section id="deep-q-network-dqn" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="deep-q-network-dqn"><span class="header-section-number">6.10</span> Deep Q-Network (DQN)</h2>
+<p><strong>Semi-gradient Q-learning</strong> is at the basis of the <strong><em>Deep-Q-Network (DQN)</em></strong> used for implementing the agent. We can actually use the two terms interchangeably.</p>
+<ul>
+<li><p>It combines Q-learning with a deep (convolutional) multi-layer network.</p></li>
+<li><p>The gradient is based on backpropagation.</p></li>
+<li><p>DQN’s reward is calculated as follows:</p>
+<ul>
+<li><p><span class="math inline">\(+1\)</span> whenever the score of the game is increased;</p></li>
+<li><p><span class="math inline">\(-1\)</span> whenever the score of the game is decreased;</p></li>
+<li><p><span class="math inline">\(0\)</span> otherwise.</p></li>
+</ul></li>
+<li><p>In other words, the positive (and negative) values were capped to <span class="math inline">\(+1\)</span> (and <span class="math inline">\(-1\)</span>).</p></li>
+</ul>
+<h3 class="anchored">
+States and Actions
+</h3>
+<p align="center">
+<img src="images/atari_joystick.png" width="30%"> <img src="images/atari_games_2.png" width="69%"><br> <em>210 <span class="math inline">\(\times\)</span> 160 pixel image frames with 128 colours at 60Hz.</em>
+</p>
+<p>The <strong>Atari games</strong> have a resolution of <span class="math inline">\(210 \times 160\)</span> pixel image frames with <span class="math inline">\(128\)</span> colours at <span class="math inline">\(60\)</span> Hz.</p>
+<ul>
+<li><p>Data were pre-processed in order to obtain a <span class="math inline">\(84 \times 84\)</span> array of luminanc values.</p></li>
+<li><p>Because the full states of many of the Atari games are not completely observable from the images frames and to provide more information to the agent for the decision, the authors “stacked” the four most recent frames so that the inputs of the network has dimension <span class="math inline">\(84 \times 84 \times 4\)</span>.</p>
+<ul>
+<li>Otherwise we would have ended up with a 1-order Markov system with the current image as state (no directionality for example, etc.).</li>
+</ul></li>
+</ul>
+<iframe src="papers/1__2__Playing_Atari_with_Deep_Reinforcement_Learning.pdf" width="100%" height="400px">
+</iframe>
+<p style="align: center; border: 4px solid gray">
+<img src="images/paper_human-level_control_through_drl.png" width="100%">
+</p>
+<ul>
+<li><p>The activation levels of DQN’s outputs are the estimated optimal values of the corresponding state-value pairs fiven the stack of images in input.</p></li>
+<li><p>The assignment of output units to a game’s actions varied from game to game (from 4 to 18).</p>
+<ul>
+<li>Not in all the games the output values are actually considered (but they are still in the network).</li>
+</ul></li>
+</ul>
+<p align="center">
+<img src="images/schematic_illustration_of_the_convolutional_neural_network.png" width="100%">
+</p>
+<h3 class="anchored">
+Deep Q-Network
+</h3>
+<p><strong>DQN</strong> uses an <span class="math inline">\(\epsilon-\)</span>greedy policy, with <span class="math inline">\(\epsilon\)</span> decreasing linearly over the first million frames and remaining at a low value for the rest of the learning session.</p>
+<ul>
+<li><p>The network is trained using a <em>mini-batch stochastic gradient descent</em> after processing 32 images (and previous 3 for each image).</p>
+<ul>
+<li>Changes proportional to the running average to the magnitudes of recent gradients for that weight (RSMProp).</li>
+</ul></li>
+<li><p>A key modification to standard Q-learning is the use of <em>experience replay</em>.</p></li>
+</ul>
+<p align="center">
+<img src="images/dqn_breakout.png" width="70%"><br> <em><a href="https://youtu.be/TmPfTpjtdgg?si=FGcNv-nZK3s__oiS">DQN Breakout.</a></em>
+</p>
+<h3 class="anchored">
+Experience Replay
+</h3>
+<p>In DQN the authors made a series of changes to the standard basic Q-learning. First, they used a method called <strong><em>experience replay</em></strong> in order to deal with the convergence problem of Q-learning.</p>
+<ul>
+<li><p>In Q-learning, if the updates are highly correlated, the larning process converges very slowly.</p></li>
+<li><p>The key idea of experience replay is to store agent’s experience in a <strong>replay memory</strong> (or <strong><em>replay buffer</em></strong>) that is accessed to perform the weight updates.</p></li>
+</ul>
+<ol type="1">
+<li><p>The training is done through an emulator.</p></li>
+<li><p>After the emulator executes action <span class="math inline">\(A_t\)</span> in a state represented by image stack <span class="math inline">\(S_t\)</span> and returned reward <span class="math inline">\(R_{t+1}\)</span> and the folliwing image tack <span class="math inline">\(S_{t+1}\)</span>, it added the tuple <span class="math inline">\((S_t, A_t, R_{t+1}, S_{t+1})\)</span> to the replay memory.</p></li>
+<li><p>The experience replay memory accumulates experiences over many plays of the same game.</p></li>
+<li><p>Each Q-learning update is performed by randomly samling from the experience replay buffer.</p></li>
+</ol>
+<iframe src="papers/6__3__Self-Improving_Reactive_Agents_Based_On_Reinforcement_Learning_Planning_and_Teaching.pdf" width="100%" height="400px">
+</iframe>
+<ul>
+<li><p>Instead of <span class="math inline">\(S_{t+1}\)</span> becoming the new <span class="math inline">\(S_t\)</span> for the next update, as it would be in the usual Q-learning, a new unconnected experience is drawn from the replay memory.</p>
+<ul>
+<li><u>Important point:</u> since Q-learning is an off-policy algorithm, id does not need to learn from “connected” trajectories.</li>
+</ul></li>
+<li><p>The random selection of uncorrelated “experiences” reduce the variance of the update. This allows Q-learning to converge more quickly.</p>
+<p><span class="math inline">\(\blacktriangleright\)</span> Dealing with the variance of the update is a key issue for RL and it is an active ara of research.</p></li>
+</ul>
+<p align="center">
+<img src="images/comparison_of_the_dqn_agent_with_the_best_rl_methods_in_literature.png" width="100%">
+</p>
+</section>
+<section id="references" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="references"><span class="header-section-number">6.11</span> References</h2>
+<ul>
+<li><strong>Chapters 9 and 16</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-sutton2018" class="csl-entry" role="listitem">
+Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An Introduction.</em> Second edition. MIT Press. <a href="https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf">https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

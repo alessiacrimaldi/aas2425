@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a34d670291f06f286357e447776a572a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -69,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -163,13 +212,31 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introduction to TensorFlow</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Advanced Tensorflow for Reinforcement Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,8 +250,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#monte-carlo-prediction" id="toc-monte-carlo-prediction" class="nav-link active" data-scroll-target="#monte-carlo-prediction"><span class="header-section-number">7.1</span> Monte Carlo Prediction</a></li>
+  <li><a href="#monte-carlo-estimation-of-action-values" id="toc-monte-carlo-estimation-of-action-values" class="nav-link" data-scroll-target="#monte-carlo-estimation-of-action-values"><span class="header-section-number">7.2</span> Monte Carlo Estimation of Action Values</a></li>
+  <li><a href="#maintaining-exploration" id="toc-maintaining-exploration" class="nav-link" data-scroll-target="#maintaining-exploration"><span class="header-section-number">7.3</span> Maintaining Exploration</a></li>
+  <li><a href="#on-policy-and-off-policy-exploration" id="toc-on-policy-and-off-policy-exploration" class="nav-link" data-scroll-target="#on-policy-and-off-policy-exploration"><span class="header-section-number">7.4</span> On-policy and Off-policy Exploration</a></li>
+  <li><a href="#policy-improvement" id="toc-policy-improvement" class="nav-link" data-scroll-target="#policy-improvement"><span class="header-section-number">7.5</span> Policy Improvement</a></li>
+  <li><a href="#monte-carlo-control-with-and-without-exploring-starts" id="toc-monte-carlo-control-with-and-without-exploring-starts" class="nav-link" data-scroll-target="#monte-carlo-control-with-and-without-exploring-starts"><span class="header-section-number">7.6</span> Monte Carlo Control with and without Exploring Starts</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.7</span> References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -208,8 +287,187 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<blockquote class="blockquote">
+<p><strong><em>Monte Carlo methods</em></strong> are ways of solving the reinforcement learning problems based on averaging the sample returns.</p>
+</blockquote>
+<ul>
+<li><p>We focus on <strong><em>episodic tasks</em></strong>.</p>
+<ul>
+<li>Only on the completion of episodes are values estimates and policies changed.</li>
+</ul></li>
+<li><p>Monte Carlo methods <u>sample and average <em>returns</em></u> for each state-action pair much like the multi-armed bandits methods and <u>average <em>rewards</em></u> for each action.</p>
+<ul>
+<li>However, we now consider multiple states.</li>
+<li>The return after taking an action in one state depends on the actions taken in later states in the same episodes.</li>
+<li>In other words: this is <strong><em>the full reinforcement learning problem</em></strong>.</li>
+</ul></li>
+<li><p>If we have the full knowledge of the MDP we can compute the value functions (see Bellman equation, dynamic programming).</p></li>
+<li><p>We assume that we do not have full knowledge of the underlying MDP.</p>
+<ul>
+<li>This is the general case because the underlying dynamics and characteristics of the system are unknown (e.g.&nbsp;robot esploration) or because the system is too complex (e.g.&nbsp;games).</li>
+</ul></li>
+<li><p>Since we do not have full knowledge, we need to <strong><em>learn the value functions</em></strong>.</p></li>
+</ul>
+<h3 class="anchored">
+Three key RL problems
+</h3>
+<ol type="1">
+<li><p>The <strong>prediction problem</strong>: the estimation of <span class="math inline">\(v_\pi\)</span> and <span class="math inline">\(q_\pi\)</span> for a fixed policy <span class="math inline">\(\pi\)</span>.</p></li>
+<li><p>The <strong>policy improvement problem</strong>: the estimation of <span class="math inline">\(v_\pi\)</span> and <span class="math inline">\(q_pi\)</span> while trying at the same time to improve the policy <span class="math inline">\(\pi\)</span>.</p></li>
+<li><p>The <strong>control problem</strong>: the estimation of an optimal policy <span class="math inline">\(\pi_*\)</span>.</p></li>
+</ol>
+<section id="monte-carlo-prediction" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="monte-carlo-prediction"><span class="header-section-number">7.1</span> Monte Carlo Prediction</h2>
+<ul>
+<li><p><strong>Goal</strong>: learning the state-value function for a given policy.</p>
+<p>Recall:</p>
+<blockquote class="blockquote">
+<p>The <strong><em>value of a state</em></strong> is the expected return (expected cumulative guture discounted reward) from that state.</p>
+</blockquote></li>
+<li><p><strong>Obvious/simple solution</strong>: average the returns observed after visiting that state. As more returns are observed, the average should converge to the expected value.</p>
+<p>More formally:</p>
+<blockquote class="blockquote">
+<p>We want to estimate <span class="math inline">\(v_\pi(s)\)</span>, the value of a state <span class="math inline">\(s\)</span> under policy <span class="math inline">\(\pi\)</span>, given a set of episodes obtained by following <span class="math inline">\(\pi\)</span> and passing through <span class="math inline">\(s\)</span>.</p>
+<blockquote class="blockquote">
+<p>Each occurrence of a state <span class="math inline">\(s\)</span> in an episode is called a <strong><em>visit</em></strong> to <span class="math inline">\(s\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A state <span class="math inline">\(s\)</span> can be visited multiple times.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The first time a state <span class="math inline">\(s\)</span> is visited in an episode is called the <strong><em>first visit</em></strong> to <span class="math inline">\(s\)</span>.</p>
+</blockquote>
+</blockquote></li>
+</ul>
+<blockquote class="blockquote">
+<ul>
+<li><p>The <strong>first-visit Monte Carlo method</strong> estimates <span class="math inline">\(v_\pi(s)\)</span> as the average of the returns following first visits to <span class="math inline">\(s\)</span>.</p></li>
+<li><p>The <strong>every-visit Monte Carlo method</strong> averages the returns following all the visits to <span class="math inline">\(s\)</span>.</p></li>
+</ul>
+</blockquote>
+<p>Borh <em>first-visit Monte Carlo</em> and <em>every-visit Monte Carlo</em> converge to <span class="math inline">\(v_\pi(s)\)</span> as the number of visits (or first visits) to <span class="math inline">\(s\)</span> goes to infinity.</p>
+<h3 class="anchored">
+First-visit Monte Carlo Prediction
+</h3>
+<p align="center">
+<img src="images/first-visit_monte_carlo_prediction_pseudocode.png" width="100%">
+</p>
+<h3 class="anchored">
+Multi-visit Monte Carlo Prediction
+</h3>
+<p>Every-visit Monte Carlo would be the same except without the check for <span class="math inline">\(S_t\)</span> having occurred earlier in the episode.</p>
+</section>
+<section id="monte-carlo-estimation-of-action-values" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="monte-carlo-estimation-of-action-values"><span class="header-section-number">7.2</span> Monte Carlo Estimation of Action Values</h2>
+<p>The <strong>estimation of a state value</strong> makes sense when we have a model of the system.</p>
+<ul>
+<li><p>With a model, state values alone are sufficient to determine a policy.</p></li>
+<li><p>Without a model, it is necessary to estimate the value of each action in order for the value to be useful in suggesting a policy.</p></li>
+</ul>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>The <strong><em>policy evaluation problem</em></strong> for action values is to estimate <span class="math inline">\(q_\pi(s,a)\)</span>, the expected return when starting in state <span class="math inline">\(s\)</span>, taking action <span class="math inline">\(a\)</span> and then following policy <span class="math inline">\(\pi\)</span>.</p>
+</blockquote>
+<p><u>Remember:</u> we assume that the policy <span class="math inline">\(\pi\)</span> is fixed.</p>
+</blockquote>
+<p>The methods for the Monte Carlo estimation of action values are essentially the same as those presented for state value, but now we talk about visits to the state-action pair instead of to a state.</p>
+<blockquote class="blockquote">
+<p>A state-action pair <span class="math inline">\(s,a\)</span> is said to be <strong><em>visited in an episode</em></strong> if the state <span class="math inline">\(s\)</span> is visited and the action <span class="math inline">\(a\)</span> is taken in it.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The <strong><em>first-visit Monte Carlo method</em></strong> averages the returns following the first time in each episode that the state was visited and the action was selected.</p>
+</blockquote>
+</section>
+<section id="maintaining-exploration" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="maintaining-exploration"><span class="header-section-number">7.3</span> Maintaining Exploration</h2>
+<p>However, there is a problem: <u>many state-action pairs might never be visited</u>.</p>
+<ul>
+<li><p>If <span class="math inline">\(\pi\)</span> is a deterministic policy, then in following <span class="math inline">\(\pi\)</span>, we will observe returns only for one of the actions of each state.</p>
+<ul>
+<li><p>No return to average <span class="math inline">\(\rightarrow\)</span> no improvement with experience.</p></li>
+<li><p>We cannot compare alternatives, because no alternatives are explored.</p></li>
+</ul></li>
+<li><p>To compare alternatives, we need to estimate the value of all the actions from each state, not only the one we currently prefer (according to our policy).</p>
+<ul>
+<li><p>This is the general <strong><em>problem of maintaining exploration</em></strong>.</p></li>
+<li><p>One way to do this is to have the episodes starting in a state-action pair and that every pair has non-zero probability of being seelcted as start.</p></li>
+<li><p>This ensures that asymptotically (infinite number of episodes), all the state-action pairs will be visited an infinite number of times.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="on-policy-and-off-policy-exploration" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="on-policy-and-off-policy-exploration"><span class="header-section-number">7.4</span> On-policy and Off-policy Exploration</h2>
+<p>The method described above is useful, but it cannot applied in general.</p>
+<ul>
+<li>Think about, for example, the case where we have exploration with the environment. We cannot start by “jumping” to a certain state-action pair at the beginning.</li>
+</ul>
+<p>The most common alternative is to ensure that all the state-action pairs are explored anyway.</p>
+<ul>
+<li><p>We need to explore these states, <u><em>not following</em> the current policy</u> (for example with a stochastic policy). In other words, the exploration is not performed <em>on-policy</em> as done until now in this section, but <strong><em>off-policy</em></strong>.</p></li>
+<li><p>Various methods are possible, such as <strong><em>off-policy prediction via Importance Sampling</em></strong> (not covered here - see Chapter 5.5 of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span>).</p></li>
+</ul>
+</section>
+<section id="policy-improvement" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="policy-improvement"><span class="header-section-number">7.5</span> Policy Improvement</h2>
+<p>We will focus now back on on-policy exploration, i.e.&nbsp;the policy is used to make decisions and to explore the vaious states.</p>
+<p>Until now we assumed that the policy was fixed. However, the policy itself can be <strong><em>improved while learning</em></strong> the value functions and, potentially, we might have to aim at obtaining an optimal policy.</p>
+<blockquote class="blockquote">
+<p>Methods used for improving a policy in order to reach the optimal policy are ususally referred to as <strong><em>Monte Carlo control</em></strong>.</p>
+</blockquote>
+<ul>
+<li><p>Remember: until now we’ve assumed that the policy was fixed.</p>
+<ul>
+<li>Given that policy, we estimate the value functions.</li>
+</ul></li>
+<li><p>Now we consider how to improve the policy starting from an <em>on-policy method</em>.</p>
+<ul>
+<li>The policy that we use to make deicisions is that we are trying to improve.</li>
+</ul></li>
+<li><p>Policy improvement is done by making the policy greedy with respect to the current value functions.</p></li>
+<li><p>In this case we have an action-value function.</p>
+<ul>
+<li>No model is needed to construct the greedy policy.</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>For any action-value function <span class="math inline">\(q\)</span>, the corresponding <strong><em>greedy policy</em></strong> is the one that, for each <span class="math inline">\(s \in \mathcal{S}\)</span>, deterministically chooses an action with maximal action-value:</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\pi(s) \leftarrow \arg \max_a Q(s,a)\)</span></p>
+</blockquote>
+</blockquote>
+<p>We have formula results that ensure that this process of policy improvement lead to optimal policy (usually referred to <strong>Monte Carlo control</strong>).</p>
+</section>
+<section id="monte-carlo-control-with-and-without-exploring-starts" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="monte-carlo-control-with-and-without-exploring-starts"><span class="header-section-number">7.6</span> Monte Carlo Control with and without Exploring Starts</h2>
+<h3 class="anchored">
+Monte Carlo Control without Exploring Starts
+</h3>
+<p>An alternative method for Monte Carlo control (i.e.&nbsp;to achieve the optimal policy) is to use an <span class="math inline">\(\epsilon-\)</span>greedy approach.</p>
+<p>Most of the time the action that has the maximal estimated action value is chosen, but with a probability <span class="math inline">\(\epsilon\)</span> an action is chosen at random. This means that:</p>
+<blockquote class="blockquote">
+<p>All the non-greedy actions are given the minimal probability of selection <span class="math display">\[\frac{\epsilon}{\mathcal{A}(s)}\]</span></p>
+</blockquote>
+<p>Following this mechanism, it can be guaranteed that we will have an improvement of the policy (<strong>policy improvement theorem</strong>).</p>
+<h3 class="anchored">
+Monte Caro Control with Exploring Starts
+</h3>
+<p align="center">
+<img src="images/monte_carlo_control_with_exploring_starts_pseudocode.png" width="100%">
+</p>
+</section>
+<section id="references" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="references"><span class="header-section-number">7.7</span> References</h2>
+<ul>
+<li><strong>Chapter 5</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-sutton2018" class="csl-entry" role="listitem">
+Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An Introduction.</em> Second edition. MIT Press. <a href="https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf">https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
