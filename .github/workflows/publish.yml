@@ -22,8 +22,8 @@ jobs:
         run: |
           sudo apt-get install -y python3-pip
           pip3 install --upgrade pip
-          pip3 install jupyter nbformat numpy
-
+          pip3 install jupyter nbformat numpy gymnasium
+          
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
