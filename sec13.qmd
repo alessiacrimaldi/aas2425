@@ -2,29 +2,34 @@
 
 
 
-###### April 11, 2025 {.unnumbered}
-
 ### G. Tesauro. Temporal Difference Learning and TD-gammon.
 [https://dl.acm.org/doi/10.1145/203330.203343](https://dl.acm.org/doi/10.1145/203330.203343)<br>
 [https://www.bkgm.com/articles/tesauro/tdl.html](https://www.bkgm.com/articles/tesauro/tdl.html)
 
+###### April 11, 2025 {.unnumbered}
+
 <iframe src="papers/Temporal_Difference_Learning_and_TD-Gammon.pdf" width="100%" height="685px"></iframe>
 
+- ***Curiosity dream mechanism***
+- ***Imitation learning***
 
 
-###### April 11, 2025 {.unnumbered}
 
 ### Silver et al. Reward is enough.
 [https://www.sciencedirect.com/science/article/pii/S0004370221000862](https://www.sciencedirect.com/science/article/pii/S0004370221000862)
 
+###### April 11, 2025 {.unnumbered}
+
 <iframe src="papers/Reward_is_enough.pdf" width="100%" height="1021px"></iframe>
 
+- ***Multi objective reinforcement learning***
 
 
-###### May 9, 2025 {.unnumbered}
 
 ### Silver et al. Mastering the game of Go with deep neural networks and tree search.
 [https://www.nature.com/articles/nature16961](https://www.nature.com/articles/nature16961)
+
+###### May 9, 2025 {.unnumbered}
 
 <p style="align: center; border: 4px solid gray">
     <img src="images/article_mastering_go_1.png" width="100%"/>
@@ -32,10 +37,10 @@
 
 
 
-###### May 9, 2025 {.unnumbered}
-
 ### Silver et al. Mastering the Game of Go without Human Knowledge.
 [https://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ](https://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ)
+
+###### May 9, 2025 {.unnumbered}
 
 <p style="align: center; border: 4px solid gray">
     <img src="images/article_mastering_go_2.png" width="100%"/>
@@ -43,27 +48,27 @@
 
 
 
-###### May 9, 2025 {.unnumbered}
-
 ### Leibo et al. Multi-agent Reinforcement Learning in Sequential Social Dilemma.
 [https://arxiv.org/abs/1702.03037](https://arxiv.org/abs/1702.03037)
+
+###### May 9, 2025 {.unnumbered}
 
 <iframe src="papers/Multi-agent_Reinforcement_Learning_in_Sequential_Social_Dilemmas.pdf" width="100%" height="970px"></iframe>
 
 
 
-###### May 30, 2025 {.unnumbered}
-
 ### Sung Park et al. Generative Agents: Interactive Simulacra of Human Behavior.
 [https://arxiv.org/pdf/2304.03442.pdf](https://arxiv.org/pdf/2304.03442.pdf)
+
+###### May 30, 2025 {.unnumbered}
 
 <iframe src="papers/1__7__Generative_Agents_Interactive_Simulacra_of_Human_Behavior.pdf" width="100%" height="970px"></iframe>
 
 
 
-###### May 30, 2025 {.unnumbered}
-
 ### Dan Hendricks et al. Aligning AI Systems with Shared Human Values.
 [https://arxiv.org/abs/2008.02275](https://arxiv.org/abs/2008.02275)
+
+###### May 30, 2025 {.unnumbered}
 
 <iframe src="papers/Aligning_AI_Systems_with_Shared_Human_Values.pdf" width="100%" height="970px"></iframe>

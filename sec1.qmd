@@ -120,13 +120,20 @@ The AlphaGo paper is particularly intriguing because Go is an exceptionally comp
     [Google DeepMind: Ground-breaking AlphaGo masters the game of Go](https://youtu.be/SUbqykXVx0A?si=OrAButW_JbefDYV8)
 </p>
 
-In **AlphaGo**, the model was pretrained using experience from previous games.
+In **AlphaGo**, the model was pretrained using experience from previous games. AlphaGo plays agains itself (its old copy) becoming better and better alone, without needing any input for playing.
 
 <p style="align: center; border: 4px solid gray">
     <img src="images/paper_mastering_go_1.png" width="100%"/>
 </p>
 
-In contrast, **AlphaGo Zero** learned to play Go entirely from scratch ("*tabula rasa*""), without any prior knowledge of the game —similar to how it approached Atari games. Despite this, it quickly achieved superhuman performance, discovering solutions and completely novel ways of playing never saw before.
+In contrast, **AlphaGo Zero** learned to play Go entirely from scratch ("*tabula rasa*""), from literally random play, without any prior knowledge (zero prior knowledge) of the game —that's why it's the zero in the name. Despite this, it quickly achieved superhuman performance, discovering solutions and completely novel ways of playing never saw before.
+
+While AlphaGo could only play Go, AlphaZero can play any two-game player game.
+
+**Demis Hassabis**, the founder of DeepMind, once said:<br>
+*"We left our AlphaZero just playing lunchtime and it became better than each chess player in the world."*
+
+[Demis Hassabis describes how **AlphaZero**, starting from scratch, became "the greatest Chess playing entity that's ever existed" ***in only 9 hours***.](https://x.com/tsarnick/status/1785050900647862683)
 
 <p style="align: center; border: 4px solid gray">
     <img src="images/paper_mastering_go_2.png" width="100%"/>
@@ -230,7 +237,7 @@ Therefore, we're entering this **Brave New Wold**[^4] of agents that are based o
 
 This expression became popular after the Microsoft Research paper titled "Sparks of Artificial General Intelligence: Early experiments with GPT-4", in which researchers suggested that GPT-4 exhibits some characteristics that could be considered precursors to AGI (Artificial General Intelligence). However, the model is not yet a true AGI but rather a step in that direction.
 
-[^4]: *"Brave New World":* Term taken from Aldous Huxley's novel to indicate something completely new.
+[^4]: *"Brave New World":* term taken from Aldous Huxley's novel to indicate something completely new.
 
 <iframe src="papers/1__4__Sparks_of_Artificial_General_Intelligence_Early_experiments_with_GPT-4.pdf" width="100%" height="400px"></iframe>
 <p align="center"><em>The Brave New World</em></p>
@@ -275,7 +282,7 @@ The technologies we’re discussing today are crucial not only for innovation bu
 
 The article "AI Has Entered the **Situation Room**[^5]" from Foreign Policy discusses the transformative impact of artificial intelligence (AI) on national security and foreign policy decision-making. It highlights how AI enables unprecedented data analysis capabilities, allowing policymakers to gain clearer insights into complex global situations. The authors argue that to fully harness AI's potential, traditional approaches to foreign policy formulation must evolve to integrate these advanced technological tools effectively. ​
 
-[^5]: *"Situation Room":* A secure space or command center where leaders and key officials convene to make urgent decisions, often related to national security, crises, or military operations. These decisions may include diplomatic, strategic, and security-related matters.
+[^5]: *"Situation Room":* a secure space or command center where leaders and key officials convene to make urgent decisions, often related to national security, crises, or military operations. These decisions may include diplomatic, strategic, and security-related matters.
 
 
 

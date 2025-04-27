@@ -259,7 +259,7 @@ class GridWorld:
             case _:
                 return
 
-        if self._isInsideBoundary(nextPos):
+        if self._isInsideBoundary(nextPos):  # if not inside boundary, the action is not executed
             self.grid[self.agentPos[1], self.agentPos[0]] = '0'
             self.grid[nextPos[1], nextPos[0]] = '🤖'
             self.agentPos = nextPos
@@ -267,19 +267,19 @@ class GridWorld:
         self.printGrid()
 
         if self.agentPos == self.goalPos:
-            return 0 # goal reached
+            return 0  # goal reached
         else:
-            return -1 # still moving
+            return -1  # still moving
 
 
 # ROBOT
 class Agent:
     def __init__(self, size, nActions, eps, alpha=0.1, gamma=0.9):
-        self.Q = np.random.uniform(0, 1, (size, size, nActions)) # Q-table
-        self.eps = eps # exploration rate
-        self.alpha = alpha # learning rate
-        self.gamma = gamma # discount factor
-        self.actions = ['u', 'd', 'r', 'l'] # 4 possible actions
+        self.Q = np.random.uniform(0, 1, (size, size, nActions))  # Q-table
+        self.eps = eps  # exploration rate
+        self.alpha = alpha  # learning rate
+        self.gamma = gamma  # discount factor
+        self.actions = ['u', 'd', 'r', 'l']  # 4 possible actions
         self.printQTable()
 
     def printQTable(self):

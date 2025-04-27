@@ -340,7 +340,7 @@ window.Quarto = {
 <li><p><strong>Goal-directed</strong> learning from interaction.</p></li>
 <li><p>The learner is not told which actions to take, but instead it must discover which actions yield the most reward by trying them through exploration.</p></li>
 </ul></li>
-<li><p>We want to learn how <u>to map a certain state</u> —what we know about the world, which we use in order to make a decision— <u>to a probability of taking a certain action</u>. This mapping is called a <strong>policy</strong> (see section <a href="#policy">Policy</a>).</p>
+<li><p>We want to learn how <u>to map a certain state</u> —what we know about the world, which we use in order to make a decision— <u>to a probability of taking a certain action</u>. This mapping is called a <strong>policy</strong>: we have to learn the policy (see section <a href="#policy">Policy</a>).</p>
 <ul>
 <li><p>A <strong><em>state</em></strong> can be anything. For example the pixels of Atari, what is displayed on a web page, etc.</p></li>
 <li><p>The <strong>probability</strong> is expressed in terms of <u>maximization of the rewards</u>.</p></li>
@@ -351,8 +351,8 @@ window.Quarto = {
 <p>The objective of reinforcement learning is to maximise the <strong>cumulative reward</strong> —the sum of the individual rewards obtained at each decision point for each action.</p>
 <p>We need to design the RL system in order to map this general framework into the problem that we’re trying to solve, so we must define:</p>
 <ol type="1">
-<li><p><em>Actions</em></p></li>
 <li><p><em>States</em></p></li>
+<li><p><em>Actions</em></p></li>
 <li><p><em>Rewards</em></p></li>
 </ol>
 </section>
@@ -364,13 +364,13 @@ window.Quarto = {
 <ol type="1">
 <li><p><strong>Go:</strong></p>
 <ul>
-<li><em>Actions:</em> where to place the pieces.</li>
 <li><em>State:</em> configuration of the board, represented as a finite matrix of 3 possible values (black, white, empty).</li>
+<li><em>Actions:</em> where to place the pieces.</li>
 </ul></li>
 <li><p><strong>Roomba:</strong></p>
 <ul>
-<li><em>Actions:</em> where to go.</li>
 <li><em>State:</em> position of the agent, in a partially observable environment.</li>
+<li><em>Actions:</em> where to go.</li>
 </ul></li>
 </ol>
 </section>
@@ -396,8 +396,8 @@ Definitions
 <li><strong><em>Observes</em></strong> and acts within the environment.</li>
 <li>Receives:
 <ul>
-<li><strong><em>rewards</em></strong> for good decisions.</li>
-<li><strong><em>penalties</em></strong> for bad decisions.</li>
+<li><strong><em>rewards</em></strong> for good decisions (aka <em>positive rewards</em>).</li>
+<li><strong><em>penalties</em></strong> for bad decisions (aka <em>negative rewards</em>).</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Environment</strong> = everything else outside the agent.</p>
@@ -416,7 +416,7 @@ RL framework
 <li><strong>Environment</strong>: challenges to be solved.</li>
 <li><strong>State</strong>: environment snapshot at given time.</li>
 <li><strong>Action</strong>: agent’s choice in response to state.</li>
-<li><strong>Reward</strong>: feedback for agent action (positive or negative).</li>
+<li><strong>Reward</strong>: feedback for agent action (positive or negative scalar).</li>
 </ul>
 <p align="center">
 <img src="images/rl_framework.png" width="45%">
@@ -426,15 +426,15 @@ RL interaction loop
 </h3>
 <ul>
 <li><p>The agent and the environment interact at each discrete step of a sequence <span class="math inline">\(t=0,1,2,3,\dots\)</span></p></li>
-<li><p>At each time step <span class="math inline">\(t\)</span>, the agent receives some representation of the environment <strong>state</strong> <span class="math inline">\(S_t \in \mathcal{S}\)</span> where <span class="math inline">\(\mathcal{S}\)</span> is the set of the states.</p></li>
-<li><p>On that basis, an agent selects an <strong>action</strong> <span class="math inline">\(A_t \in \mathcal{A}(S_t)\)</span> where <span class="math inline">\(\mathcal{A}(S_t)\)</span> is the set of the actions that can be taken in state <span class="math inline">\(S_t\)</span>.</p></li>
+<li><p>At each time step <span class="math inline">\(t\)</span>, the agent receives some representation of the environment <strong>state</strong> <span class="math inline">\(S_t \in \mathcal{S}\)</span>, where <span class="math inline">\(\mathcal{S}\)</span> is the set of the states.</p></li>
+<li><p>On that basis, an agent selects an <strong>action</strong> <span class="math inline">\(A_t \in \mathcal{A}(S_t)\)</span>, where <span class="math inline">\(\mathcal{A}(S_t)\)</span> is the set of the actions that can be taken in state <span class="math inline">\(S_t\)</span>.</p></li>
 <li><p>At time <span class="math inline">\(t+1\)</span>, as a consequence of its action, the agent receives a <strong>reward</strong> <span class="math inline">\(R_{t+1} \in \mathcal{R}\)</span>, where <span class="math inline">\(\mathcal{R}\)</span> is the set of rewards (expressed as real numbers).</p></li>
 </ul>
 <p align="center">
 <img src="images/agent_environment_2.png" width="55%">
 </p>
 <p>Let’s demonstrate the agent-environment interaction using a generic code example. The process starts by creating an environment and retrieving the initial state. The agent then enters a loop where it selects an action based on the current state in each iteration. After executing the action, the environment provides feedback in the form of a new state and a reward. Finally, the agent updates its knowledge based on the state, action, and reward it received.</p>
-<div id="05a95695" class="cell" data-execution_count="1">
+<div id="0f5c0f13" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> create_environment()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> env_get_initial_state()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -447,9 +447,9 @@ RL interaction loop
 <section id="goals-and-rewards" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="goals-and-rewards"><span class="header-section-number">2.4</span> Goals and Rewards</h2>
 <ul>
-<li><p>The goal of the agent is formalised in terms of the reward it receives.</p></li>
+<li><p>The <strong>goal</strong> of the agent is formalised in terms of the reward it receives.</p></li>
 <li><p>At each time step, the reward is a simple number <span class="math inline">\(R_t \in \mathbb{R}\)</span> (scalar, real number).</p></li>
-<li><p>Informally, the agent’s goal is to maximise the <strong>total amount</strong> it receives.</p></li>
+<li><p>Informally, the agent’s goal is to maximise the <strong>total amount</strong> it receives. The goal is mapped into the <strong><em>maximisation of the reward</em></strong>.</p></li>
 <li><p>The agent should not maximise the immediate reward, but the <strong>cumulative reward</strong>.</p></li>
 </ul>
 <h3 class="anchored">
@@ -457,7 +457,7 @@ The Reward Hypothesis
 </h3>
 <p>We can formalise the goal of an agent by stating the “reward hypothesis”:</p>
 <blockquote class="blockquote">
-<p>All of what we mean by goals and purposes can be well thought of as the maximisation of the expected value of the cumulative sum of a received scalar signal (reward).</p>
+<p><em>All of what we mean by goals and purposes can be well thought of as the maximisation of the <strong>expected value</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> of the cumulative sum of a received scalar signal (reward).</em></p>
 </blockquote>
 <h3 class="anchored">
 Expected Returns
@@ -506,18 +506,26 @@ Expected Return for Episodic Tasks and Continuing Tasks
 <blockquote class="blockquote">
 <p><span class="math inline">\(G_t \doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots  = \sum_{k=0}^\infty \gamma^k R_{t+k+1}\)</span></p>
 </blockquote>
-<p>where <span class="math inline">\(\gamma\)</span> is the discount rate, with <span class="math inline">\(0 \leq \gamma \leq 1\)</span>.</p>
+<p>where <span class="math inline">\(\gamma\)</span> is the <strong>discount rate</strong>, with <span class="math inline">\(0 \leq \gamma \leq 1\)</span>.</p>
 </blockquote>
 <h3 class="anchored">
 Discounting Rewards
 </h3>
 <p>The definition of expected return that we used for episodic tasks would be problematic for continuing tasks: the expected return of time of termination <span class="math inline">\(\mathbf{T}\)</span> would be equal to <span class="math inline">\(\infty\)</span> in some cases, such as when the reward is equal to 1 at each time step.</p>
-<p>Immediate rewards are typically valued more than future ones, leading to the concept of <strong>discounted return</strong>. This concept prioritizes more recent rewards by multiplying each reward by a <strong>discount rate</strong>, <span class="math inline">\(\gamma\)</span>, raised to the power of its respective time step.</p>
-<p>The discount rate determines the <em><strong>present value of future rewards</strong>:</em> a reward received <span class="math inline">\(k\)</span> time steps in the future is worth <span class="math inline">\(\gamma^{k-1}\)</span> what it would be worth if it were received immediately. For example, for expected rewards <span class="math inline">\(r_1\)</span> through <span class="math inline">\(r_n\)</span>, the discounted return would be calculated as:</p>
+<p>Immediate rewards are typically valued more than future ones, leading to the concept of <strong>discounted return</strong>: to discout future rewards. This concept prioritizes more recent rewards by multiplying each reward by a <strong>discount rate</strong>, <span class="math inline">\(\gamma\)</span>, raised to the power of its respective time step.</p>
+<ul>
+<li><p>The discount rate determines the <em><strong>present value of future rewards</strong>:</em> a reward received <span class="math inline">\(k\)</span> time steps in the future is worth <span class="math inline">\(\gamma^{k-1}\)</span> what it would be worth if it were received immediately.</p></li>
+<li><p>For example, for expected rewards <span class="math inline">\(r_1\)</span> through <span class="math inline">\(r_n\)</span>, the discounted return would be calculated as:</p></li>
+</ul>
 <p align="center">
 <img src="images/discounted_return.png" width="65%">
 </p>
-<p>The discount factor, ranging between 0 and 1, is crucial for balancing immediate and long-term rewards. A lower gamma value leads the agent to prioritize immediate gains, while a higher value emphasizes long-term benefits. At the extremes, a gamma of zero means the agent focuses solely on immediate rewards, while a gamma of one considers future rewards as equally important, applying no discount.</p>
+<p>The discount factor <span class="math inline">\(\gamma\)</span>, ranging between 0 and 1, is crucial for balancing immediate and long-term rewards.</p>
+<ul>
+<li><p>It is an <strong>hyperparameter</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> we need to study. In practice, it is an intrinsic parameter of the mathematical model itself that needs to be set beforehand to ensure optimal learning performance or faster convergence during training. When training a neural network, we perform a <strong><em>hyperparameter search</em></strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, exploring the space of possible values—often by evaluating different combinations of hyperparameters. This search process is typically very computationally expensive, so it’s important to carry it out as efficiently as possible.</p></li>
+<li><p>A lower <span class="math inline">\(\gamma\)</span> value leads the agent to prioritize immediate gains, while a higher value emphasizes long-term benefits.</p></li>
+<li><p>At the extremes, a <span class="math inline">\(\gamma\)</span> of <span class="math inline">\(0\)</span> means the agent focuses solely on immediate rewards, while a <span class="math inline">\(\gamma\)</span> of <span class="math inline">\(1\)</span>$ considers future rewards as equally important, applying no discount.</p></li>
+</ul>
 <p align="center">
 <img src="images/discount_factor.png" width="60%">
 </p>
@@ -525,7 +533,7 @@ Discounting Rewards
 Numerical example:
 </h4>
 <p>In this example, we’ll demonstrate how to calculate the discounted return from an array of <code>expected_rewards</code>. We define a <code>discount_factor</code> of 0.9, then create an array of discounts, where each element corresponds to the discount factor raised to the power of the reward’s position in the sequence.</p>
-<div id="3a8e4284" class="cell" data-execution_count="2">
+<div id="25bdbbde" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>expected_rewards <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">3</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>discount_factor <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -536,7 +544,7 @@ Numerical example:
 </div>
 </div>
 <p>As we can see, discounts decrease over time, giving less importance to future rewards. Next, we multiply each reward by its corresponding discount and sum the results to compute the <code>discounted_return</code>, which is 8.83 in this example.</p>
-<div id="3bb4408a" class="cell" data-execution_count="3">
+<div id="8dc5b24d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>discounted_return <span class="op">=</span> np.<span class="bu">sum</span>(expected_rewards <span class="op">*</span> discounts)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The discounted return is </span><span class="sc">{</span>discounted_return<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -559,6 +567,7 @@ Relation between Returns at Successive Time Steps
 <p>A policy is used to model the behaviour of the agent based on the previous experience and the rewards (and consequently the expected returns) an agent received in the past.</p>
 <section id="policy" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="policy">Policy</h3>
+<p>In Reinforcement Leraning, we have to learn the probability of taking a certain action, <em><strong>we have to learn the policy</strong>:</em> given the state, which action should we take.</p>
 <p>Formally, a <em>policy</em> is a mapping from states to probabilities of each possible action, i.e.&nbsp;policy <span class="math inline">\(\pi\)</span> is a <em>probability distribution</em>.</p>
 <blockquote class="blockquote">
 <p>If the agent is following <strong><em>policy</em></strong> <span class="math inline">\(\mathbf\pi\)</span> at time <span class="math inline">\(t\)</span>, then</p>
@@ -578,7 +587,7 @@ State-Value Function
 <p>for all <span class="math inline">\(s \in \mathcal{S}\)</span>.</p>
 <p>where <span class="math inline">\(E_\pi[.]\)</span> denotes the expected value of a random variable, given that the agent follows <span class="math inline">\(\pi\)</span> and <span class="math inline">\(t\)</span> is any time step. The value of the terminal state is 0.</p>
 </blockquote>
-<div id="1086566e" class="cell" data-execution_count="4">
+<div id="940013a6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>choose <span class="op">=</span> rand(<span class="fl">0.1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> choose <span class="op">&gt;=</span> <span class="fl">0.7</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    move left</span>
@@ -608,32 +617,44 @@ Action-Value Function
 <li><p>An alternative is to set the values of rewards to a negative number until we reach our goal (and we set the value to 0 when we reach our goal).</p></li>
 </ol>
 <p>It is very important to keep in mind that <u>we should not “reward” the intermediate steps</u> or the single actions. We are not “teaching” the agent how to execute an intermediate step, but how to reach the final goal. If we do so, the agent will learn how to reach the intermediate step, not the final goal, (e.g., how to execute a sub-task).</p>
-<p>Sometimes it’s not possible to know the reward until the end of an episode. The typical example is a board game (Chess, Go, etc.).</p>
+<p>Sometimes it’s not possible to know the reward until the end of an episode. The typical example is a board game (Chess, Go, etc.). In games like Chess or Go, the reward in the <strong>terminal state</strong> (i.e.&nbsp;the state at time <span class="math inline">\(T\)</span>, the end of the game) is typically <span class="math inline">\(1\)</span> for a winning and <span class="math inline">\(-1\)</span> for a losing. However, the outcome is only revealed at the end of the game.</p>
 <ul>
+<li><p>Therefore, the reward can be assigned only at the end of an episode.</p></li>
 <li><p>This is usually called <strong><em>credit assignment problem</em></strong>, i.e.&nbsp;the problem of assigning a reward to each step.</p></li>
 <li><p>In that case the reward might be assigned, for instance, at the end of a <strong>Montecarlo rollout</strong> (stochastic estimate of the reward).</p></li>
-<li><p>Example: if the game is successful, we can use <span class="math inline">\(+1\)</span> as reward for all the steps that leads to the victory (<span class="math inline">\(-1\)</span> otherwise).</p></li>
+<li><p>In Go or Chess, we can for example assign <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span> to <strong>each step</strong> in case of victory or loss at the end of the episode after a Montecarlo playout/rollout.</p></li>
 </ul>
 <h3 class="anchored">
 Examples of Rewards
 </h3>
+<p>Our objective is to define these games in terms of the cumulative reward, the total reward.</p>
+<p>The reward is given to each action at the end of the episode. In other words, we can distribute the reward a posteriori, based on the game outcome:</p>
+<ol type="1">
+<li><p>The agent plays the game (episode);</p></li>
+<li><p>If the game is successful, we can use <span class="math inline">\(+1\)</span> as reward for all the steps that leads to the victory (<span class="math inline">\(-1\)</span> otherwise).</p></li>
+</ol>
+<p>By doing this, since the goal is the cumulative reward, we teach the agent to reiforce the sequence of actions that lead to victory, without requiring any prior knowledge of the game’s rules.</p>
+<p>Essentially, starting by playing randomly, the agent can begin to learn how to improve its policy, i.e.&nbsp;its way of making decisions —the probability distribution of how to take an action over time— by observing the reward it receives at the end of each episode.</p>
 <h4 class="anchored">
 Gridworld example:
 </h4>
 <p align="center">
-<img src="images/gridworld.jpeg" width="23%"> <span class="math inline">\(\Rightarrow
+<img src="images/4_by_4_gridworld.jpeg" width="23%"> <span class="math inline">\(\Rightarrow
     \begin{bmatrix}
         1 &amp; 0 &amp; 0 &amp; 0 \\
         0 &amp; 0 &amp; 0 &amp; 0 \\
         0 &amp; 0 &amp; 0 &amp; 0 \\
         0 &amp; 0 &amp; 0 &amp; 2
-    \end{bmatrix}\)</span> <br> <em><strong>State</strong></em>
+    \end{bmatrix}\)</span> <br> <br> <em><strong>State</strong>: configuration of the grid, represented as a finite matrix</em><br> <em>of 3 possible values (0, 1 or 2)</em>
 </p>
 <p align="center">
-<span class="math inline">\(A = \{R, L, U, D\}\)</span> <br> <em><strong>Actions</strong>: right, left, up, down</em>
+<span class="math inline">\(A = \{R, L, U, D\}\)</span> <br> <em><strong>Actions</strong>: right, left, up, down</em><br> <em>(if the robot is not inside the grid boundary, action not executed)</em>
 </p>
 <p align="center">
-<span class="math inline">\(-1\)</span> to penalize a long path <br> <span class="math inline">\(0\)</span> when reaching the goal <br> <em><strong>Rewards</strong> (given at each action)</em>
+<em><strong>Goal</strong>: reach the flag as quick as possible</em>
+</p>
+<p align="center">
+<span class="math inline">\(-1\)</span> to penalize a long path <br> <span class="math inline">\(0\)</span> when reaching the flag <br> <em><strong>Rewards</strong></em>
 </p>
 <h4 class="anchored">
 Maze example:
@@ -642,7 +663,16 @@ Maze example:
 <img src="images/maze.png" width="45%">
 </p>
 <p align="center">
-<span class="math inline">\(-1\)</span> for no exit <br> <span class="math inline">\(0\)</span> for exit <br> <em><strong>Rewards</strong></em>
+<em><strong>State</strong>: position of the agent</em>
+</p>
+<p align="center">
+<span class="math inline">\(A = \{R, L, U, D\}\)</span> <br> <em><strong>Actions</strong>: right, left, up, down</em>
+</p>
+<p align="center">
+<em><strong>Goal</strong>: get out the maze as soon as possible</em>
+</p>
+<p align="center">
+<span class="math inline">\(-1\)</span> for no exit, to penalize a long path <br> <span class="math inline">\(0\)</span> for exit <br> <em><strong>Rewards</strong></em>
 </p>
 <h4 class="anchored">
 Chess example:
@@ -651,15 +681,28 @@ Chess example:
 <img src="images/chess.png" width="45%">
 </p>
 <p align="center">
+<em><strong>State</strong>: configuration of the board, represented as a matrix</em><br> <em>with a number representing each pixel</em>
+</p>
+<p align="center">
+<em><strong>Actions</strong>: a legal move from the agent’s position</em>
+</p>
+<p align="center">
+<em><strong>Goal</strong>: win the game</em>
+</p>
+<p align="center">
 <span class="math inline">\(+1\)</span> for victory <br> <span class="math inline">\(-1\)</span> for defeat <br> <em><strong>Rewards</strong></em>
 </p>
-<ul>
-<li><p>In games like Go or Chess, the reward in the <strong>terminal state</strong> (i.e.&nbsp;the state at time <span class="math inline">\(T\)</span>, the end of the game) is typically <span class="math inline">\(1\)</span> for a win and <span class="math inline">\(-1\)</span> for a loss. However, the outcome is only revealed at the end of the game.</p></li>
-<li><p>Therefore, the reward can be assigned only at the end of an episode.</p></li>
-<li><p>In Go or Chess, we can for example assing <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span> to each step in case of victory or loss at the end of the episode after a Montecarlo playout/rollout.</p></li>
-</ul>
+<h4 class="anchored">
+Atari example:
+</h4>
+<p align="center">
+<img src="images/atari.png" width="45%">
+</p>
+<p>In videogames like Atari, where the agent gets some points for every positive action, and the <strong><em>goal</em></strong> is to maximise the points, we can use the points as <strong><em>rewards</em></strong>.</p>
 <iframe src="papers/2__1__Steps_Toward_Artificial_Intelligence.pdf" width="100%" height="400px">
 </iframe>
+<p>Playing against another learning agent creates a highly dynamic environment. How do we learn in an agent population where all agents are simultaneosuly learning?</p>
+<p><span class="math inline">\(\blacktriangleright\)</span> This is a research topic!</p>
 </section>
 <section id="estimating-value-state-value-and-action-value-functions" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="estimating-value-state-value-and-action-value-functions"><span class="header-section-number">2.7</span> Estimating Value (State-Value and Action-Value) Functions</h2>
@@ -808,6 +851,9 @@ Appropriate vs.&nbsp;Inappropriate for RL
 </section>
 <section id="references" class="level2" data-number="2.12">
 <h2 data-number="2.12" class="anchored" data-anchor-id="references"><span class="header-section-number">2.12</span> References</h2>
+<ul>
+<li>DataCamp, <a href="https://app.datacamp.com/learn/courses/reinforcement-learning-with-gymnasium-in-python">Reinforcement Learning with Gymnasium in Python</a></li>
+</ul>
 <p>The notation and definitions are taken (with small variations) from:</p>
 <ul>
 <li><span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
@@ -819,6 +865,14 @@ Appropriate vs.&nbsp;Inappropriate for RL
 Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An Introduction.</em> Second edition. MIT Press. <a href="https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf">https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf</a>.
 </div>
 </div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The <em>expected value</em> (also called the <em>mean</em> or <em>mathematical expectation</em>) of a random variable is a measure of the center of its probability distribution —essentially, it’s the average outcome we’d expect if we repeated an experiment many times.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A <em>hyperparameter</em> is a parameter not learned by the model, but that guides the learning process (e.g.&nbsp;the number of layers, the number of nodes, the activation function of the network, etc.).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><em>Scikit-learn</em> has a <a href="https://scikit-learn.org/stable/modules/grid_search.html">tool for doing parameter search</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

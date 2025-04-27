@@ -259,6 +259,18 @@ window.Quarto = {
   <li><a href="#presence-of-regularity" id="toc-presence-of-regularity" class="nav-link" data-scroll-target="#presence-of-regularity"><span class="header-section-number">9.2</span> Presence of Regularity</a></li>
   <li><a href="#paradigms" id="toc-paradigms" class="nav-link" data-scroll-target="#paradigms"><span class="header-section-number">9.3</span> Paradigms</a></li>
   <li><a href="#online-reinforcement-learning-towards-individual-utilityreward" id="toc-online-reinforcement-learning-towards-individual-utilityreward" class="nav-link" data-scroll-target="#online-reinforcement-learning-towards-individual-utilityreward"><span class="header-section-number">9.4</span> Online Reinforcement Learning towards Individual Utility/Reward</a></li>
+  <li><a href="#repeated-normal-form-games" id="toc-repeated-normal-form-games" class="nav-link" data-scroll-target="#repeated-normal-form-games"><span class="header-section-number">9.5</span> Repeated Normal Form Games</a></li>
+  <li><a href="#online-reinforcement-learning-towards-social-welfare" id="toc-online-reinforcement-learning-towards-social-welfare" class="nav-link" data-scroll-target="#online-reinforcement-learning-towards-social-welfare"><span class="header-section-number">9.6</span> Online Reinforcement Learning towards Social Welfare</a></li>
+  <li><a href="#co-evolutionary-approaches" id="toc-co-evolutionary-approaches" class="nav-link" data-scroll-target="#co-evolutionary-approaches"><span class="header-section-number">9.7</span> Co-evolutionary Approaches</a></li>
+  <li><a href="#evolutionary-algorithms" id="toc-evolutionary-algorithms" class="nav-link" data-scroll-target="#evolutionary-algorithms"><span class="header-section-number">9.8</span> Evolutionary Algorithms</a></li>
+  <li><a href="#problem-of-representation" id="toc-problem-of-representation" class="nav-link" data-scroll-target="#problem-of-representation"><span class="header-section-number">9.9</span> Problem of Representation</a></li>
+  <li><a href="#fitness-function" id="toc-fitness-function" class="nav-link" data-scroll-target="#fitness-function"><span class="header-section-number">9.10</span> Fitness Function</a></li>
+  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection"><span class="header-section-number">9.11</span> Selection</a></li>
+  <li><a href="#cross-over" id="toc-cross-over" class="nav-link" data-scroll-target="#cross-over"><span class="header-section-number">9.12</span> Cross-over</a></li>
+  <li><a href="#mutation" id="toc-mutation" class="nav-link" data-scroll-target="#mutation"><span class="header-section-number">9.13</span> Mutation</a></li>
+  <li><a href="#evaluation-and-replacement" id="toc-evaluation-and-replacement" class="nav-link" data-scroll-target="#evaluation-and-replacement"><span class="header-section-number">9.14</span> Evaluation and Replacement</a></li>
+  <li><a href="#coevolution" id="toc-coevolution" class="nav-link" data-scroll-target="#coevolution"><span class="header-section-number">9.15</span> Coevolution</a></li>
+  <li><a href="#aside-dna-computing" id="toc-aside-dna-computing" class="nav-link" data-scroll-target="#aside-dna-computing"><span class="header-section-number">9.16</span> Aside: DNA Computing</a></li>
   </ul>
 </nav>
     </div>
@@ -300,7 +312,7 @@ Definition
 </h3>
 <p>We will use the following definition of <strong><em>multiagent learning</em></strong>:</p>
 <blockquote class="blockquote">
-<p><em>“The study of multiagent systems in which one or more of the autonomous entiites improves automatically through experience”.</em></p>
+<p><em>“The study of multiagent systems in which one or more of the autonomous entities improves automatically through experience”.</em></p>
 </blockquote>
 <h3 class="anchored">
 Characteristics of Multiagent Learning
@@ -350,7 +362,10 @@ Characteristics of Multiagent Learning
 <blockquote class="blockquote">
 <p><strong>Goal:</strong> to maximise the utility at the end of the game (i.e.&nbsp;expected reward).</p>
 </blockquote>
-<p>From a formal point view (game-theory point of view), this can be considered a <strong><em>repeated normal form game</em></strong>.</p>
+<p align="center">
+<img src="images/6_by_6_gridworld.jpeg" width="43%"> <br> <em>Gridworld Example.</em>
+</p>
+<p>From a formal point of view (game-theory point of view), this can be considered a <strong><em>repeated normal form game</em></strong>.</p>
 <ul>
 <li><p>A <strong>repeated game</strong> is a game that is based on a certain number of repetitions.</p></li>
 <li><p><strong>Normal form games</strong> are games that are presented using a matrix.</p>
@@ -361,6 +376,72 @@ Characteristics of Multiagent Learning
 <h3 class="anchored">
 Example: Prisoner’s Dilemma
 </h3>
+<p>The Prisoner’s Dilemma is a classic 2-player game.</p>
+<blockquote class="blockquote">
+<p><strong>Description of the game:</strong></p>
+<ul>
+<li><p>Two prisoners committed a crime together and are being interrogated separately.</p></li>
+<li><p>If neither of them confesses to the crime (they both “cooperate”), then they will both get a small punishment (corresponding to a payoff of 5).</p></li>
+<li><p>If one of them confesses (or “defects”), but the other does not, then the one that confesses gets off for free (payoff of 10), but the other gets the worst punishment possible (payoff of 0).</p></li>
+<li><p>If they both defect, they get a worst punishment (payoff of 1).</p></li>
+</ul>
+</blockquote>
+<p align="center">
+<img src="images/prisoner_dilemma.png" width="40%">
+</p>
+<ul>
+<li><p>Normal games were initially introduced as one-shot game.</p></li>
+<li><p>The players know each other’s full utility (reward) functions and play the game only once.</p></li>
+<li><p>In this setting, the concept of <strong><em>Nash equilibrium</em></strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> was introduced: a set of actions such that no player would be better off deviating given that the other player’s actions are fixed.</p>
+<ul>
+<li>Games can have one or multiple Nash equilibria.</li>
+<li>In the Prisoner’s Dilemma, the only Nash Equilibrium is for both agents to defect.</li>
+</ul></li>
+</ul>
+<iframe src="papers/11__1__Moral_Alignment_for_LLM_Agents.pdf" width="100%" height="400px">
+</iframe>
+<p align="center">
+<em><a href="https://arxiv.org/abs/2410.01639">https://arxiv.org/abs/2410.01639</a></em>
+</p>
+</section>
+<section id="repeated-normal-form-games" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="repeated-normal-form-games"><span class="header-section-number">9.5</span> Repeated Normal Form Games</h2>
+<p><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="online-reinforcement-learning-towards-social-welfare" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="online-reinforcement-learning-towards-social-welfare"><span class="header-section-number">9.6</span> Online Reinforcement Learning towards Social Welfare</h2>
+</section>
+<section id="co-evolutionary-approaches" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="co-evolutionary-approaches"><span class="header-section-number">9.7</span> Co-evolutionary Approaches</h2>
+</section>
+<section id="evolutionary-algorithms" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="evolutionary-algorithms"><span class="header-section-number">9.8</span> Evolutionary Algorithms</h2>
+</section>
+<section id="problem-of-representation" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="problem-of-representation"><span class="header-section-number">9.9</span> Problem of Representation</h2>
+</section>
+<section id="fitness-function" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="fitness-function"><span class="header-section-number">9.10</span> Fitness Function</h2>
+</section>
+<section id="selection" class="level2" data-number="9.11">
+<h2 data-number="9.11" class="anchored" data-anchor-id="selection"><span class="header-section-number">9.11</span> Selection</h2>
+</section>
+<section id="cross-over" class="level2" data-number="9.12">
+<h2 data-number="9.12" class="anchored" data-anchor-id="cross-over"><span class="header-section-number">9.12</span> Cross-over</h2>
+</section>
+<section id="mutation" class="level2" data-number="9.13">
+<h2 data-number="9.13" class="anchored" data-anchor-id="mutation"><span class="header-section-number">9.13</span> Mutation</h2>
+</section>
+<section id="evaluation-and-replacement" class="level2" data-number="9.14">
+<h2 data-number="9.14" class="anchored" data-anchor-id="evaluation-and-replacement"><span class="header-section-number">9.14</span> Evaluation and Replacement</h2>
+<p>The best individuals are kept in the next generation, by taking the copies.</p>
+</section>
+<section id="coevolution" class="level2" data-number="9.15">
+<h2 data-number="9.15" class="anchored" data-anchor-id="coevolution"><span class="header-section-number">9.15</span> Coevolution</h2>
+<p>We can update the parameters of a policy <span class="math inline">\(\rightarrow\)</span> we mutate the parameters. The mapping can be a parametric mapping of what we can learn.</p>
+</section>
+<section id="aside-dna-computing" class="level2" data-number="9.16">
+<h2 data-number="9.16" class="anchored" data-anchor-id="aside-dna-computing"><span class="header-section-number">9.16</span> Aside: DNA Computing</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -374,6 +455,13 @@ Tuyls, Karl, and Peter Stone. 2018. <span>“Multiagent Learning Paradigms.”</
 Wooldridge, Michael. 2002. <em>Introduction to Multiagent Systems</em>. John Wiley &amp; Sons.
 </div>
 </div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><em>“A Beautiful Mind”:</em> movie about the life of Nash.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><em>“<strong>M</strong>utual <strong>A</strong>ssured <strong>D</strong>estruction”:</em> .<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

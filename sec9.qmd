@@ -21,7 +21,7 @@ There are several possible definitions of ***multiagent systems**:*
 
 We will use the following definition of ***multiagent learning***:
 
-> *"The study of multiagent systems in which one or more of the autonomous entiites improves automatically through experience".*
+> *"The study of multiagent systems in which one or more of the autonomous entities improves automatically through experience".*
 
 <h3>Characteristics of Multiagent Learning</h3>
 
@@ -72,7 +72,13 @@ One of the most-studied scenarios in multiagent learning is that in which multip
 
 > **Goal:** to maximise the utility at the end of the game (i.e. expected reward).
 
-From a formal point view (game-theory point of view), this can be considered a ***repeated normal form game***.
+<p align="center">
+    <img src="images/6_by_6_gridworld.jpeg" width="43%"/>
+    <br>
+    <em>Gridworld Example.</em>
+</p>
+
+From a formal point of view (game-theory point of view), this can be considered a ***repeated normal form game***.
 
 - A **repeated game** is a game that is based on a certain number of repetitions.
 
@@ -81,4 +87,98 @@ From a formal point view (game-theory point of view), this can be considered a *
     - As aside, an *extensive form game* is a game for which an explicit representation of the sequence of the players' possible moves, their choices at every decision point and the information about other player's move and relative payoffs.
 
 <h3>Example: Prisoner's Dilemma</h3>
+
+The Prisoner’s Dilemma is a classic 2-player game.
+
+> **Description of the game:**
+> 
+> - Two prisoners committed a crime together and are being interrogated separately.
+> 
+> - If neither of them confesses to the crime (they both “cooperate”), then
+they will both get a small punishment (corresponding to a payoff of 5).
+>
+> - If one of them confesses (or “defects”), but the other does not, then
+the one that confesses gets off for free (payoff of 10), but the other
+gets the worst punishment possible (payoff of 0).
+>
+> - If they both defect, they get a worst punishment (payoff of 1).
+
+<p align="center">
+    <img src="images/prisoner_dilemma.png" width="40%"/>
+</p>
+
+- Normal games were initially introduced as one-shot game.
+
+- The players know each other’s full utility (reward) functions and play the game only once.
+
+- In this setting, the concept of ***Nash equilibrium***[^1] was introduced: a set of actions such that no player would be better off deviating given that the other player's actions are fixed.
+
+    - Games can have one or multiple Nash equilibria.
+    - In the Prisoner’s Dilemma, the only Nash Equilibrium is for both agents to defect.
+
+[^1]: *"A Beautiful Mind":* movie about the life of Nash.
+
+
+
+<iframe src="papers/11__1__Moral_Alignment_for_LLM_Agents.pdf" width="100%" height="400px"></iframe>
+<p align="center"><em>[https://arxiv.org/abs/2410.01639](https://arxiv.org/abs/2410.01639)</em></p>
+
+
+
+## Repeated Normal Form Games
+
+[^2]
+
+[^2]: *"**M**utual **A**ssured **D**estruction":* .
+
+
+
+## Online Reinforcement Learning towards Social Welfare
+
+
+
+## Co-evolutionary Approaches
+
+
+
+## Evolutionary Algorithms
+
+
+
+## Problem of Representation
+
+
+
+## Fitness Function
+
+
+
+## Selection
+
+
+
+## Cross-over
+
+
+
+## Mutation
+
+
+
+## Evaluation and Replacement
+
+The best individuals are kept in the next generation, by taking the copies.
+
+
+
+## Coevolution
+
+We can update the parameters of a policy $\rightarrow$ we mutate the parameters.
+The mapping can be a parametric mapping of what we can learn.
+
+
+
+## Aside: DNA Computing
+
+
 

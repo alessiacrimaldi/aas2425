@@ -101,7 +101,7 @@ The estimation of value function approximation is different:
 
 - We will use supervised learning (i.e. we will learn through sets of inputs-outputs).
 
-    - Since we are trying to learn how to link the inputs to real values, we can do this as a function approximation problem.
+    - Since we are trying to learn how to link the inputs to real values, we can consider this as a function approximation problem.
 
 
 
