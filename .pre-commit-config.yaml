@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: update-requirements
+        name: Aggiorna requirements.txt
+        entry: bash -c "pip freeze > requirements.txt"
+        language: system
+        stages: [pre-commit]
