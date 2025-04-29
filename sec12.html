@@ -346,7 +346,7 @@ window.Quarto = {
 <li><p>TensorFlow records all operations executed inside the context of a <code>tf.GradientTape</code> onto a tape.</p></li>
 <li><p>TensorFlow then uses that tape and the gradients of the outputs with respect to the intermediate values computed during a recorded <code>tf.GradientTape</code> context.</p></li>
 </ul>
-<div id="bf9bdba2" class="cell" data-execution_count="1">
+<div id="46442677" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> tf.ones((<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tf.GradientTape() <span class="im">as</span> t:</span>
@@ -367,7 +367,7 @@ window.Quarto = {
 <li><p>This allows multiple calls to the <code>gradient()</code> method.</p></li>
 <li><p>Resources are released when the tape object is garbage collected.</p></li>
 </ul>
-<div id="690e481b" class="cell" data-execution_count="2">
+<div id="bb0b40d2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> tf.constant(<span class="fl">3.0</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tf.GradientTape(peristent<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> t:</span>
@@ -388,7 +388,7 @@ window.Quarto = {
 <li><p>Python will then execute the body of the code.</p></li>
 <li><p>In any case, also in case of an exception the <code>__exit__</code> method of the guard object is executed.</p></li>
 </ul>
-<div id="b15bdf48" class="cell" data-execution_count="3">
+<div id="27ba109c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> guarded_execution:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__enter__</span>(<span class="va">self</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>initialisation<span class="op">&gt;</span></span>
@@ -396,11 +396,11 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__exit__</span>(<span class="va">self</span>, <span class="bu">type</span>, value, traceback):</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>free resources <span class="kw">and</span> manage exceptions<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dad5b383" class="cell" data-execution_count="4">
+<div id="0c0ccc7a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> guarded_execution <span class="im">as</span> p:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>some instructions<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="da61f10e" class="cell" data-execution_count="5">
+<div id="691fd24c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"textfile.txt"</span>) <span class="im">as</span> f:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> f.read()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>work <span class="cf">with</span> data<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
