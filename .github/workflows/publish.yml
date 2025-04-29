@@ -21,10 +21,10 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Python and Jupyter dependencies
+      - name: Install Python dependencies
         run: |
           pip install --upgrade pip
-          pip install jupyter nbformat numpy gymnasium matplotlib
+          pip install -r requirements.txt
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
