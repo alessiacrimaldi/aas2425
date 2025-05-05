@@ -375,7 +375,7 @@ Interacting with Gymnasium environments
 <li>Initialize the environment and return the initial observation along with some auxiliary information, by calling the method <code>env.reset</code>. The <code>seed</code> argument can be used to ensure reproducibility.</li>
 <li>Print the intial observation.</li>
 </ol>
-<div id="fff0986f" class="cell" data-execution_count="1">
+<div id="74eb77a0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gymnasium <span class="im">as</span> gym</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> gym.make(<span class="st">'CartPole'</span>, render_mode<span class="op">=</span><span class="st">'rgb_array'</span>)</span>
@@ -399,7 +399,7 @@ Interacting with Gymnasium environments
 Visualizing the state
 </h3>
 <p>To get a visual representation of the state, the <code>env.render</code> method returns the state image that we can visualize using the <code>plt.imshow</code> function. Then, by calling <code>plt.show</code>, a snapshot of the environment will be displayed.</p>
-<div id="2be8f246" class="cell" data-execution_count="2">
+<div id="bdcbc4d0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> render():</span>
@@ -433,7 +433,7 @@ Performing actions
 <li><strong>Info</strong> which provides auxiliary diagnostic information useful for debugging</li>
 </ol>
 <p>We omit <em>truncated</em> and <em>info</em> in our script for simplicity and we print the first three return values after moving the cart to the right.</p>
-<div id="32c164c2" class="cell" data-execution_count="3">
+<div id="0e4a92f5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>action <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>state, reward, terminated, truncated, info <span class="op">=</span> env.step(action)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -451,7 +451,7 @@ Terminated:  False</code></pre>
 Interaction loops
 </h3>
 <p>Suppose we want to keep pushing the cart to the right until a termination condition is met and monitor the environment. We add the previous code in a while loop and render the environment at each iteration.</p>
-<div id="a659b228" class="cell" data-execution_count="4">
+<div id="e14f647b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="kw">not</span> terminated:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Move to the right</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    state, reward, terminated, _, _ <span class="op">=</span> env.step(action)</span>
