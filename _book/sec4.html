@@ -518,7 +518,7 @@ Gridworld with Sarsa.
 <p>Solve the gridworld problem with Sarsa.</p>
 <p><a href="https://cs.stanford.edu/people/karpathy/reinforcejs/gridworld_td.html">REINFROCEjs - GridWorld: TD</a></p>
 </blockquote>
-<div id="e270dc92" class="cell" data-execution_count="1">
+<div id="609dd9ce" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
@@ -536,7 +536,7 @@ Gridworld with Sarsa.
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Reset the environment for a new episode</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.agentPos <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>]</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        grid <span class="op">=</span> np.full((size, size), <span class="st">'0'</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        grid <span class="op">=</span> np.full((<span class="va">self</span>.size, <span class="va">self</span>.size), <span class="st">'0'</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        grid[<span class="va">self</span>.agentPos[<span class="dv">0</span>], <span class="va">self</span>.agentPos[<span class="dv">1</span>]] <span class="op">=</span> <span class="st">'🤖'</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        grid[<span class="va">self</span>.goalPos[<span class="dv">0</span>], <span class="va">self</span>.goalPos[<span class="dv">1</span>]] <span class="op">=</span> <span class="st">'🏁'</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.grid <span class="op">=</span> grid</span>
