@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,14 +89,15 @@ div.csl-indent {
 <link href="./sec2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d58359eb3ecc31d3bec1ed479c2cbb3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -139,7 +140,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -179,7 +180,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Autonomous and Adaptive Systems</a> 
     </div>
@@ -481,12 +484,12 @@ Action Selection and Estimated Value
 <blockquote class="blockquote">
 
 </blockquote>
-<div id="5296b9d6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> epsilon_greedy:</span>
+<div id="18f10d15" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> epsilon_greedy:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> eps:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.argmax(Q)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(Q) <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(Q) <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>One of the advantages of this method is that, in the limit, as the number of steps increases, all the actions will be sampled an infinite amont of time, ensuring that for all <span class="math inline">\(a\)</span> the <span class="math inline">\(Q_t(a)\)</span> will converge to <span class="math inline">\(q_*(a)\)</span>.</p>
 </section>
@@ -599,8 +602,8 @@ Example
 </section>
 <section id="multi-armed-bandits-in-practice" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.10</span> Multi-armed Bandits in practice</h2>
-<div id="5c36cce2" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div id="4bb530a6" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiArmedBandit:</span>
@@ -664,51 +667,51 @@ Example
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>arm 0 range: (1, 3)
-arm 1 range: (2, 2)
-arm 2 range: (1, 5)
-arm 3 range: (4, 6)
+<pre><code>arm 0 range: (4, 6)
+arm 1 range: (1, 1)
+arm 2 range: (5, 8)
+arm 3 range: (8, 8)
 step 0
-R: 1.0958487990568337
-Q: [1.0958487990568333, 10.0, 10.0, 10.0]
+R: 5.007640757785914
+Q: [5.007640757785914, 10.0, 10.0, 10.0]
 N: [1.0, 0.0, 0.0, 0.0]
 step 1
-R: 2.0
-Q: [1.0958487990568333, 2.0, 10.0, 10.0]
+R: 1.0
+Q: [5.007640757785914, 1.0, 10.0, 10.0]
 N: [1.0, 1.0, 0.0, 0.0]
 step 2
-R: 3.335892270805723
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 10.0]
+R: 5.971678348982844
+Q: [5.007640757785914, 1.0, 5.971678348982844, 10.0]
 N: [1.0, 1.0, 1.0, 0.0]
 step 3
-R: 5.772085904959559
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 5.772085904959559]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 1.0]
 step 4
-R: 4.951011187810778
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 5.361548546385169]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 2.0]
 step 5
-R: 4.11070635630204
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 4.944601149690793]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 3.0]
 step 6
-R: 5.509717680653187
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 5.085880282431392]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 4.0]
 step 7
-R: 5.02025816916259
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 5.072755859777631]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 5.0]
 step 8
-R: 4.128009865415903
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 4.915298194050677]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 6.0]
 step 9
-R: 4.1072128336745095
-Q: [1.0958487990568333, 2.0, 3.335892270805723, 4.799857428282653]
+R: 8.0
+Q: [5.007640757785914, 1.0, 5.971678348982844, 8.0]
 N: [1.0, 1.0, 1.0, 7.0]</code></pre>
 </div>
 </div>
@@ -743,8 +746,8 @@ Website serving ads with bandits.
 <p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
 <p><a href="https://research.facebook.com/blog/2021/4/auto-placement-of-ad-campaigns-using-multi-armed-bandits/">Auto-placement of ad campaigns using multi-armed bandits</a></p>
 </blockquote>
-<div id="226fa9c3" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<div id="7bcc8fe3" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    random.shuffle(arr)</span>
@@ -766,10 +769,10 @@ Website serving ads with bandits.
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> random.choice(category_ads) <span class="cf">if</span> category_ads <span class="cf">else</span> <span class="va">None</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="1c3a3798" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
+<div id="c3723051" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Cat 🐈‍⬛"</span>, <span class="st">"Pet"</span>), (<span class="st">"Dog 🐕‍🦺"</span>, <span class="st">"Pet"</span>), (<span class="st">"Parrot 🦜"</span>, <span class="st">"Pet"</span>),</span>
@@ -797,7 +800,7 @@ Website serving ads with bandits.
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        display_ads(next_ad)</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"No more ads to display."</span>)</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <iframe src="exercises/serving_ads_with_bandits.html" style="width:100%; height:500px; border:none; overflow:auto;">
 </iframe>
@@ -879,13 +882,14 @@ Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An In
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
