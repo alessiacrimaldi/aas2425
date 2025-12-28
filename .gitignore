@@ -1,41 +1,32 @@
-### macOS ###
-# General
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
 ._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
-.TemporaryItems
 .Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-### macOS Patch ###
-# iCloud generated files
-*.icloud
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.env
+build/
+dist/
+*.egg-info/
 
 /.quarto/
-/env/
+/_book/
+/_site/
+/.jupyter_scripts/
+/site_libs/
+
+/_book/**/*.html
+/_site/**/*.html
+/site_libs/**/*.html
 
 /_freeze/
-/_build/
-/site/
-
 nature_papers/
+**/*.quarto_ipynb
