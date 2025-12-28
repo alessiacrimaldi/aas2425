@@ -220,7 +220,7 @@ class GridWorld:
         Reset the environment for a new episode
         """
         self.agentPos = [0, 0]
-        grid = np.full((size, size), '0', dtype=str)
+        grid = np.full((self.size, self.size), '0', dtype=str)
         grid[self.agentPos[0], self.agentPos[1]] = '🤖'
         grid[self.goalPos[0], self.goalPos[1]] = '🏁'
         self.grid = grid

@@ -3,6 +3,50 @@ title: "Policy Gradient Methods"
 format: html
 ---
 
+## Policy Gradient Methods
+
+We now consider a different type of methods from the previous ones that learn instead a parametrised policy that can select actions without consulting a value function.
+
+> **Policy =** mapping between a *state* and a *probability distribution*.
+
+| Action-value Methods | Policy-based Methods |
+| :----: | :----: |
+| A <u>value function</u> is consulted<br><br>Methods based on the <b>calculation of action values</b> (e.g. SARSA, Q-learning, DQN):<br>the values of the actions are learned, and then the selected actions are based on the estimated action values. | <u>No value function</u> is consulted<br><br>Methods based on <b>direct policy learning</b> (e.g. REINFORCE, PPO):<br>the actions are selected without relying on action values. |
+| Value learning and <u>indirect</u> policy learning<br><br>Learn  $Q(s,a)$, then derive the policy:<br>the policy is derived from the estimated values (typically greedy or $\varepsilon$-greedy wrt. estimated action values). | <u>Direct</u> policy learning<br><br>Learn the policy $\pi(a\vert s)$ directly, without needing $Q$:<br>the policy is parametrized (usually with neural networks) and updated via gradient wrt. the expected return. |
+| Action selection <u>requires action values</u><br><br>Policy optimization may occur alongside control, but action values are needed in the first place for action selection. | Action selection <u>does not require action values</u><br><br>Values may be used as support for learning the policy parameter (e.g. variance reduction), but they are not required for action selection. |
+
+
+
+
+
+## Advantages of Using Policy Approximation according to Softmax in Action Preferences
+
+‣ One advantage of parameterising policies according to the softmax in action preferences is
+that the approximate policy can approach a deterministic policy.
+‣ In fact, with random action.
+ϵ ϵ
+-greedy selection over action values, there is always a probability of selecting a
+‣ One possibility is to use softmax distribution on the action values, but this will not allow to
+reach a deterministic policy.
+‣ Action values will always differ and, therefore, there will be always a non-null probability of
+selecting a different action.
+‣ Action preferences are different since they do not approach specific values: instead they
+are driven to produce the optimal stochastic policy.
+‣ If the optimal policy is deterministic, the preferences of the optimal actions will be driven
+infinitely higher than all suboptimal actions (the output of the softmax will be then very close
+to 1, i.e., close to determinism).
+
+
+
+
+
+
+
+
+
+
+
+
 ## Issues with REINFORCE
 
 As a stochastic gradient method, REINFORCE has good theoretical convergence properties.
@@ -47,3 +91,10 @@ The policy gradient theorem with baseline can be used to derive an update rule u
     <img src="images/reinforce_with_baseline_pseudocode.png" width="100%"/>
 </p>
 
+
+
+## PPO-CLIP
+
+> Let's consider the case in which $\delta_{ADV} \geq 0$: suppose the advantage for that state-action pair positive. In this case the contribution to the objective reduces to:
+>
+>> $L(s,a,\theta_t,\theta) = min(\frac{\pi_\theta(a \vert s)}{\pi_{\theta_t}(a \vert s)}, (1 + \epsilon))$

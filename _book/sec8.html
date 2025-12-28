@@ -267,12 +267,36 @@ window.Quarto = {
 
 <section id="policy-gradient-methods" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="policy-gradient-methods"><span class="header-section-number">8.1</span> Policy Gradient Methods</h2>
-<ul>
-<li>We do not consult anymore a value function, but we learn the policy directly.</li>
-</ul>
+<p>We now consider a different type of methods from the previous ones that learn instead a parametrised policy that can select actions without consulting a value function.</p>
 <blockquote class="blockquote">
-<p><strong>Policy =</strong> mapping between a state and a probability distribution.</p>
+<p><strong>Policy =</strong> mapping between a <em>state</em> and a <em>probability distribution</em>.</p>
 </blockquote>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Action-value Methods</th>
+<th style="text-align: center;">Policy-based Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A <u>value function</u> is consulted<br><br>Methods based on the <b>calculation of action values</b> (e.g.&nbsp;SARSA, Q-learning, DQN):<br>the values of the actions are learned, and then the selected actions are based on the estimated action values.</td>
+<td style="text-align: center;"><u>No value function</u> is consulted<br><br>Methods based on <b>direct policy learning</b> (e.g.&nbsp;REINFORCE, PPO):<br>the actions are selected without relying on action values.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Value learning and <u>indirect</u> policy learning<br><br>Learn <span class="math inline">\(Q(s,a)\)</span>, then derive the policy:<br>the policy is derived from the estimated values (typically greedy or <span class="math inline">\(\varepsilon\)</span>-greedy wrt. estimated action values).</td>
+<td style="text-align: center;"><u>Direct</u> policy learning<br><br>Learn the policy <span class="math inline">\(\pi(a\vert s)\)</span> directly, without needing <span class="math inline">\(Q\)</span>:<br>the policy is parametrized (usually with neural networks) and updated via gradient wrt. the expected return.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Action selection <u>requires action values</u><br><br>Policy optimization may occur alongside control, but action values are needed in the first place for action selection.</td>
+<td style="text-align: center;">Action selection <u>does not require action values</u><br><br>Values may be used as support for learning the policy parameter (e.g.&nbsp;variance reduction), but they are not required for action selection.</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="advantages-of-using-policy-approximation-according-to-softmax-in-action-preferences" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="advantages-of-using-policy-approximation-according-to-softmax-in-action-preferences"><span class="header-section-number">8.2</span> Advantages of Using Policy Approximation according to Softmax in Action Preferences</h2>

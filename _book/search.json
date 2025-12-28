@@ -1,475 +1,5 @@
 [
   {
-    "objectID": "sec8.html",
-    "href": "sec8.html",
-    "title": "8  Policy Gradient Methods",
-    "section": "",
-    "text": "8.1 Policy Gradient Methods",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
-    ]
-  },
-  {
-    "objectID": "sec8.html#policy-gradient-methods",
-    "href": "sec8.html#policy-gradient-methods",
-    "title": "8  Policy Gradient Methods",
-    "section": "",
-    "text": "We do not consult anymore a value function, but we learn the policy directly.\n\n\nPolicy = mapping between a state and a probability distribution.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
-    ]
-  },
-  {
-    "objectID": "sec8.html#issues-with-reinforce",
-    "href": "sec8.html#issues-with-reinforce",
-    "title": "8  Policy Gradient Methods",
-    "section": "8.3 Issues with REINFORCE",
-    "text": "8.3 Issues with REINFORCE\nAs a stochastic gradient method, REINFORCE has good theoretical convergence properties.\nBy construction, the expected update over an episode is the same direction as the performance gradient.\n\nThis assumes an improvement in expected performance for sufficient small \\(\\alpha\\) and convergence to a local optimum under standard stochastic approximation conditions for decreasing \\(\\alpha\\).\nHowever, since it is a Monte Carlo method, REINFORCE suffers from high variance and this might lead to slow learning.\nOne way of dealing with this problem is to use baselines and actor-critic methods.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
-    ]
-  },
-  {
-    "objectID": "sec8.html#reinforce-with-baseline",
-    "href": "sec8.html#reinforce-with-baseline",
-    "title": "8  Policy Gradient Methods",
-    "section": "8.4 REINFORCE with Baseline",
-    "text": "8.4 REINFORCE with Baseline\n\nThe policy gradient theorem can be generalised to include a comparison of the action value to an arbitrary baseline \\(b(s)\\):\n\n\\(\\nabla J(\\theta) \\propto \\sum_s \\mu(s) \\sum_a (q_\\pi(s,a) - b(s)) \\nabla \\pi (a \\vert s, \\theta)\\)\n\nThe baseline can be any function, even a random variable, as long as it does not vary with \\(\\alpha\\).\nThe equation remains valid because the subtracted quantity is zero:\n\n\\(\\sum_a b(s) \\nabla \\pi(a \\vert s, \\theta) = b(s) \\nabla \\sum_a \\pi(a \\vert s, \\theta) = b(s) \\nabla 1 = 0\\)\n\n\nThe policy gradient theorem with baseline can be used to derive an update rule using similar steps.\n\nThe update for REINFORCE with baseline is as follows:\n\n\\(\\theta{t+1} \\doteq \\theta_t + \\alpha(G_t-b(S_t)) \\frac{\\nabla \\pi(A_t\\vert S_t, \\theta_t)}{\\pi(A_t \\vert S_t,\\theta_t)}\\)\n\n\n\n\\(G_t =\\)\n\\(=\\) the cumulative reward that we get from \\(t\\).\n\\(=\\) the value of that state for that specific rollout onwards.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
-    ]
-  },
-  {
-    "objectID": "sec10.html",
-    "href": "sec10.html",
-    "title": "10  Introduction to Gym",
-    "section": "",
-    "text": "11 Gymnasium",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
-    ]
-  },
-  {
-    "objectID": "sec10.html#key-gymnasium-environments",
-    "href": "sec10.html#key-gymnasium-environments",
-    "title": "10  Introduction to Gym",
-    "section": "11.1 Key Gymnasium environments",
-    "text": "11.1 Key Gymnasium environments\nSome key environment examples are:\n\nCartPole\n\n\n\n\n\nAgent must balance a pole on a moving cart and prevent it from falling\nhttps://gymnasium.farama.org/environments/classic_control/cart_pole/\n\n\nMountainCar\n\n\n\n\n\nAgent must drive a car up a steep hill\nhttps://gymnasium.farama.org/environments/classic_control/mountain_car/\n\n\nFrozenLake\n\n\n\n\n\nAgent must navigate a frozen lake with holes, finding a safe path across it\nhttps://gymnasium.farama.org/environments/toy_text/frozen_lake/\n\n\nTaxi\n\n\n\n\n\nPicking up and dropping off passengers, focusing of efficient tour planning and task management\nhttps://gymnasium.farama.org/environments/toy_text/taxi/",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
-    ]
-  },
-  {
-    "objectID": "sec10.html#gymnasium-interface",
-    "href": "sec10.html#gymnasium-interface",
-    "title": "10  Introduction to Gym",
-    "section": "11.2 Gymnasium interface",
-    "text": "11.2 Gymnasium interface\nNo matter the environemnt, the Gymnasium library offers an unified interface for interaction. This interface includes functions and methods to:\n\nInitialize environment\nVisually represent environment\nExecute actions\nObserve outcomes\n\nLet’s explore them using the CartPole environment.\n\nInteracting with Gymnasium environments\n\nIn the following snippet we:\n\nCreate the environment, by calling the gym.make function and passing the id of the environment CartPole along with render_mode equals rgb_array allowing us to visualize the states using matplotlib. Other render modes exist.\nInitialize the environment and return the initial observation along with some auxiliary information, by calling the method env.reset. The seed argument can be used to ensure reproducibility.\nPrint the intial observation.\n\n\nimport gymnasium as gym\n\nenv = gym.make('CartPole', render_mode='rgb_array')\nstate, info = env.reset(seed=42)\nprint(state)\n\n[ 0.0273956  -0.00611216  0.03585979  0.0197368 ]\n\n\n/Users/alessiacrimaldi/miniconda3/envs/aas/lib/python3.11/site-packages/gymnasium/envs/registration.py:531: UserWarning: WARN: Using the latest versioned environment `CartPole-v1` instead of the unversioned environment `CartPole`.\n  logger.warn(\n\n\nThe observation as an array represents the environment state, including the position and velocity of both ther cart and the pole.\nFor other environments, we’ll need to consult the Gymnasium Documentation to understand the details of their states.\n\nVisualizing the state\n\nTo get a visual representation of the state, the env.render method returns the state image that we can visualize using the plt.imshow function. Then, by calling plt.show, a snapshot of the environment will be displayed.\n\nimport matplotlib.pyplot as plt\n\ndef render():\n    state_image = env.render()\n    plt.imshow(state_image)\n    plt.show\n\nrender()\n\n\n\n\n\n\n\n\n\nPerforming actions\n\nIn the CartPole environment there are two possible actions:\n\n\\(0:\\) moving the cart to the left\n\\(1:\\) moving the cart to the right\n\nTo execute an action we call env.step and pass the chosen action. This method return five values:\n\nThe next state\nThe reward received\nA terminated signal, indicating wether the agent has reached a terminal state such as achieving the goal or loosing\nA truncated signal, showing wether a condition like a time limit has been met\nInfo which provides auxiliary diagnostic information useful for debugging\n\nWe omit truncated and info in our script for simplicity and we print the first three return values after moving the cart to the right.\n\naction = 1\nstate, reward, terminated, truncated, info = env.step(action)\n\nprint(\"State: \", state)\nprint(\"Reward: \", reward)\nprint(\"Terminated: \", terminated)\n\nState:  [ 0.02727336  0.18847767  0.03625453 -0.26141977]\nReward:  1.0\nTerminated:  False\n\n\nWe see the state changed and the agent received a reward of \\(1\\), since it hasn’t reached a terminal state yet.\n\nInteraction loops\n\nSuppose we want to keep pushing the cart to the right until a termination condition is met and monitor the environment. We add the previous code in a while loop and render the environment at each iteration.\n\nwhile not terminated:\n    action = 1  # Move to the right\n    state, reward, terminated, _, _ = env.step(action)\n    render()\n\n\n\n\nHere are some chosen plots showing the cart movements to the right.",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
-    ]
-  },
-  {
-    "objectID": "sec10.html#references",
-    "href": "sec10.html#references",
-    "title": "10  Introduction to Gym",
-    "section": "11.3 References",
-    "text": "11.3 References\n\nDataCamp, Reinforcement Learning with Gymnasium in Python",
-    "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html",
-    "href": "sec12.html",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "",
-    "text": "12.1 Eager Execution in TensorFlow 2.x",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#computing-customised-gradients",
-    "href": "sec12.html#computing-customised-gradients",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.2 Computing (Customised) Gradients",
-    "text": "12.2 Computing (Customised) Gradients",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#gradient-tapes",
-    "href": "sec12.html#gradient-tapes",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.3 Gradient Tapes",
-    "text": "12.3 Gradient Tapes\n\nTensorFlow provides the tf.GradientTape API for automatic differentiation, i.e., computing the gradient of a computation with respect to its input variables.\nTensorFlow records all operations executed inside the context of a tf.GradientTape onto a tape.\nTensorFlow then uses that tape and the gradients of the outputs with respect to the intermediate values computed during a recorded tf.GradientTape context.\n\n\nx = tf.ones((2, 2))\n\nwith tf.GradientTape() as t:\n    t.watch(x)\n    y = tf.reduce_sum(x)\n    z = tf.multiply(y, y)\n\n# Derivative of z with respect to the original input tnesor x\ndz_dx = t.gradient(z, x)\ndz_dx_0_0 = dz_dx[0][0].numpy() # 2 (2*x_0_0 at x_0_0 = 1)\ndz_dx_0_1 = dz_dx[0][1].numpy() # 2 (2*x_0_1 at x_0_1 = 1)\ndz_dx_1_0 = dz_dx[1][0].numpy() # 2 (2*x_1_0 at x_1_0 = 1)\ndz_dx_1_1 = dz_dx[1][1].numpy() # 2 (2*x_1_1 at x_1_1 = 1)\n\n\nBy default, the resources held by a \\(\\texttt{GradientTape}\\) are released as soon as the GradientTape.gradient() method is called.\nTo compute multiple gradients over the same computation, it is necessary to create a persistent graient tape.\nThis allows multiple calls to the gradient() method.\nResources are released when the tape object is garbage collected.\n\n\nx = tf.constant(3.0)\n\nwith tf.GradientTape(peristent=True) as t:\n    t.watch(x)\n    y = x*x\n    z = y*y\n\ndz_dx = t.gradient(z, x) # 108.0 (4*x^3 at x = 3)\ndy_dx = t.gradient(y, x) # 6 (2*x at x = 3)\n\ndel t # remove the reference to the tape and invoke garbage collection",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#textttwith...-as-construct-in-python",
-    "href": "sec12.html#textttwith...-as-construct-in-python",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.4 \\(\\texttt{with... as}\\) construct in Python",
-    "text": "12.4 \\(\\texttt{with... as}\\) construct in Python\n\nWhen the \\(\\texttt{with}\\) statement is executed, Python evakuates the expression, called the __enter__ method on the resulting value, which is called a context guard and assign the object returned by __enter__ to the variable given by \\(\\texttt{as}\\).\nPython will then execute the body of the code.\nIn any case, also in case of an exception the __exit__ method of the guard object is executed.\n\n\nclass guarded_execution:\n    def __enter__(self):\n        &lt;initialisation&gt;\n        return p\n    def __exit__(self, type, value, traceback):\n        &lt;free resources and manage exceptions&gt;\n\n\nwith guarded_execution as p:\n    &lt;some instructions&gt;\n\n\nwith open(\"textfile.txt\") as f:\n    data = f.read()\n    &lt;work with data&gt;\n\n\\(\\blacktriangleright\\) See: https://effbot.org/zone/python-with-statement.html",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#texttttf.function",
-    "href": "sec12.html#texttttf.function",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.5 \\(\\texttt{tf.function}\\)",
-    "text": "12.5 \\(\\texttt{tf.function}\\)\n\ntf.function allows to transform a subset of Python syntax into portable and high-performance TensorFlow graphs, which are the component that are “under its hood”.\nIt is possible to write “graph code” using natural Python syntax.\n\nThis topic is outside the scope of this module. You can find the definition of the language and more details in the TensorFlow documentation.",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#custom-training-loops-with-keras-models",
-    "href": "sec12.html#custom-training-loops-with-keras-models",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.6 Custom Training Loops with Keras Models",
-    "text": "12.6 Custom Training Loops with Keras Models",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#tensorflow-texttttf.data-api",
-    "href": "sec12.html#tensorflow-texttttf.data-api",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.7 TensorFlow \\(\\texttt{tf.data}\\) API",
-    "text": "12.7 TensorFlow \\(\\texttt{tf.data}\\) API",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#lambda-layers",
-    "href": "sec12.html#lambda-layers",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.8 Lambda Layers",
-    "text": "12.8 Lambda Layers",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#tf-agents-library",
-    "href": "sec12.html#tf-agents-library",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.9 TF-Agents Library",
-    "text": "12.9 TF-Agents Library",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#training-architecture",
-    "href": "sec12.html#training-architecture",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.10 Training Architecture",
-    "text": "12.10 Training Architecture\n\\(-\\)tf agents are not good\\(-\\)\nScaling up is important.",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#openai-gym-environment",
-    "href": "sec12.html#openai-gym-environment",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.11 OpenAI Gym Environment",
-    "text": "12.11 OpenAI Gym Environment",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#reply-buffers",
-    "href": "sec12.html#reply-buffers",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.12 Reply Buffers",
-    "text": "12.12 Reply Buffers",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#implementing-atari-games",
-    "href": "sec12.html#implementing-atari-games",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.13 Implementing Atari Games",
-    "text": "12.13 Implementing Atari Games\n\nFrame skipping: the agent only sees one frame at a time.",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#collect-driver",
-    "href": "sec12.html#collect-driver",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.14 Collect Driver",
-    "text": "12.14 Collect Driver",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#initialising-the-replay-buffer",
-    "href": "sec12.html#initialising-the-replay-buffer",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.15 Initialising the Replay Buffer",
-    "text": "12.15 Initialising the Replay Buffer",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#extensions",
-    "href": "sec12.html#extensions",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.16 Extensions",
-    "text": "12.16 Extensions\nInside these agents there are a lot of predefined things, like:\n\nImplementation with a Policy Networks (DQN) with Actor-Critic\nUse of Advantage Actor-Critic (A2C)\nUse of Asynchronous Advantage Actor-Critic (A3C)\nUse of Soft-Actor Critic\nUse of Trust-Region Optimization (available in TF-Agents)\nUse of Proximal Policy Optimization (available in TF-Agents)",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec12.html#references",
-    "href": "sec12.html#references",
-    "title": "12  Advanced Tensorflow for Reinforcement Learning",
-    "section": "12.17 References",
-    "text": "12.17 References\n\nGéron (2022)\nTensorFlow Documentation\n\n\n\n\n\nGéron, Aurélien. 2022. Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow. Third Edition. O’Reilly.",
-    "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
-    ]
-  },
-  {
-    "objectID": "sec13.html",
-    "href": "sec13.html",
-    "title": "Papers Discussions",
-    "section": "",
-    "text": "G. Tesauro. Temporal Difference Learning and TD-gammon.\nhttps://dl.acm.org/doi/10.1145/203330.203343 https://www.bkgm.com/articles/tesauro/tdl.html\n\nApril 11, 2025\n\n\n\nCuriosity dream mechanism\nImitation learning\n\n\n\n\nSilver et al. Reward is enough.\nhttps://www.sciencedirect.com/science/article/pii/S0004370221000862\n\nApril 11, 2025\n\n\n\nMulti objective reinforcement learning\n\n\n\n\nSilver et al. Mastering the game of Go with deep neural networks and tree search.\nhttps://www.nature.com/articles/nature16961\n\nMay 9, 2025\n\n\n\n\n\n\nSilver et al. Mastering the Game of Go without Human Knowledge.\nhttps://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ\n\nMay 9, 2025\n\n\n\n\n\n\nLeibo et al. Multi-agent Reinforcement Learning in Sequential Social Dilemma.\nhttps://arxiv.org/abs/1702.03037\n\nMay 9, 2025\n\n\n\n\n\nSung Park et al. Generative Agents: Interactive Simulacra of Human Behavior.\nhttps://arxiv.org/pdf/2304.03442.pdf\n\nMay 30, 2025\n\n\n\n\n\nDan Hendricks et al. Aligning AI Systems with Shared Human Values.\nhttps://arxiv.org/abs/2008.02275\n\nMay 30, 2025",
-    "crumbs": [
-      "Papers Discussions"
-    ]
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Chollet, François. 2018. Deep Learning with Python. Manning\nPublications. https://sourestdeeds.github.io/pdf/Deep\nLearning with Python.pdf.\n\n\nGéron, Aurélien. 2022. Hands-on Machine Learning with Scikit-Learn,\nKeras, and TensorFlow. Third Edition. O’Reilly.\n\n\nGoodfellow, Ian, Yoshua Bengio, and Aaron Courville. 2016. Deep\nLearning. MIT Press. http://alvarestech.com/temp/deep/Deep\nLearning by Ian Goodfellow, Yoshua Bengio, Aaron Courville\n(z-lib.org).pdf.\n\n\nLattimore, Tor, and Csaba Szepesvari. 2020. Bandit Algorithms.\nCambridge University Press. https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC.\n\n\nMitzenmacher, Michael. 2017. Probability and Computing. Second\nedition. Cambridge University Press. https://www.cambridge.org/jp/universitypress/subjects/computer-science/algorithmics-complexity-computer-algebra-and-computational-g/probability-and-computing-randomization-and-probabilistic-techniques-algorithms-and-data-analysis-2nd-edition.\n\n\nOrmond, Jim. 2024. “2024 Turing Award.” ACM. https://awards.acm.org/about/2024-turing.\n\n\nRussell, Stuart, and Peter Norvig. 2020. Artificial Intelligence. A\nModern Approach. Fourth edition. Pearson. https://github.com/pemagrg1/AI_class2022/blob/main/book/Artificial-Intelligence-A-Modern-Approach-4th-Edition-1-compressed.pdf.\n\n\nShoham, Yoav, and Kevin Leyton-Brown. 2009. Multiagent Systems:\nAlgorithmic, Game-Theoretic, and Logical Foundations. Cambridge\nUniversity Press.\n\n\nSimon, Herbert A. 1996. The Sciences of the Artificial. Third\nedition. MIT Press. https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf.\n\n\nSolomonoff, Grace. 06 May 2023. “The Meeting of the Minds That\nLaunched AI.” IEEE Spectrum. https://spectrum.ieee.org/dartmouth-ai-workshop.\n\n\nSutton, Richard S., and Andrew G. Barto. 2018. Reinforcement\nLearning. An Introduction. Second edition. MIT Press. https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf.\n\n\nTuyls, Karl, and Peter Stone. 2018. “Multiagent Learning\nParadigms.” Artificial Intelligence 265: Multiagent\nSystems Special Issue, 115–27.\n\n\nWooldridge, Michael. 2002. Introduction to Multiagent Systems.\nJohn Wiley & Sons.",
-    "crumbs": [
-      "References"
-    ]
-  },
-  {
-    "objectID": "sec9.html",
-    "href": "sec9.html",
-    "title": "9  Multi-agent Systems",
-    "section": "",
-    "text": "9.1 Multiagent Learning\nWe will use the following definition of multiagent learning:",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#multiagent-learning",
-    "href": "sec9.html#multiagent-learning",
-    "title": "9  Multi-agent Systems",
-    "section": "",
-    "text": "Definition\n\n\n\n“The study of multiagent systems in which one or more of the autonomous entities improves automatically through experience”.\n\n\nCharacteristics of Multiagent Learning\n\n\nDifferent scale:\n\nA city or an ant colony or a football team.\n\nDifferent degree of complexity:\n\nA human, a machine, a mammal or an insect.\n\nDifferent types of interaction:\n\nFrequent interactions (or not), interactions with a limited number of individuals, etc.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#presence-of-regularity",
-    "href": "sec9.html#presence-of-regularity",
-    "title": "9  Multi-agent Systems",
-    "section": "9.2 Presence of Regularity",
-    "text": "9.2 Presence of Regularity\nIt is fundamental that there is a certian degree of regularity in the system otherwise prediction of behaviour is not possible.\n\nAssumption: past experience is somehow predictive of future expectations.\n\nDealing with non-stationarityy is a key problem: it is the usual problem of reinforcement learning at the end.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#paradigms",
-    "href": "sec9.html#paradigms",
-    "title": "9  Multi-agent Systems",
-    "section": "9.3 Paradigms",
-    "text": "9.3 Paradigms\nWe will study 5 paradigms:\n\nOnline Multi-agent Reinforcement Learning towards individual utility\nOnline Multi-agent Reinforcement Learning towards social welfare\nCo-evolutionary learning\nSwarm intelligence\nAdaptive mechanism design\n\nThere are novel emerging paradigms that will discuss during the coming lectures based on foundational models/LLMS, which are being developed right now:\n\nMulti-agent Learning based on foundational models towards individual utility\nMulti-agent Learning based on foundational models towards social welfare",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#online-reinforcement-learning-towards-individual-utilityreward",
-    "href": "sec9.html#online-reinforcement-learning-towards-individual-utilityreward",
-    "title": "9  Multi-agent Systems",
-    "section": "9.4 Online Reinforcement Learning towards Individual Utility/Reward",
-    "text": "9.4 Online Reinforcement Learning towards Individual Utility/Reward\nOne of the most-studied scenarios in multiagent learning is that in which multiple independent agents take actions in the same environment and learn online to maximise their own individual utility functions.\n\nGoal: to maximise the utility at the end of the game (i.e. expected reward).\n\n\n  Gridworld Example.\n\nFrom a formal point of view (game-theory point of view), this can be considered a repeated normal form game.\n\nA repeated game is a game that is based on a certain number of repetitions.\nNormal form games are games that are presented using a matrix.\n\nAs aside, an extensive form game is a game for which an explicit representation of the sequence of the players’ possible moves, their choices at every decision point and the information about other player’s move and relative payoffs.\n\n\n\nExample: Prisoner’s Dilemma\n\nThe Prisoner’s Dilemma is a classic 2-player game.\n\nDescription of the game:\n\nTwo prisoners committed a crime together and are being interrogated separately.\nIf neither of them confesses to the crime (they both “cooperate”), then they will both get a small punishment (corresponding to a payoff of 5).\nIf one of them confesses (or “defects”), but the other does not, then the one that confesses gets off for free (payoff of 10), but the other gets the worst punishment possible (payoff of 0).\nIf they both defect, they get a worst punishment (payoff of 1).\n\n\n\n\n\n\nNormal games were initially introduced as one-shot game.\nThe players know each other’s full utility (reward) functions and play the game only once.\nIn this setting, the concept of Nash equilibrium1 was introduced: a set of actions such that no player would be better off deviating given that the other player’s actions are fixed.\n\nGames can have one or multiple Nash equilibria.\nIn the Prisoner’s Dilemma, the only Nash Equilibrium is for both agents to defect.\n\n\n\n\n\nhttps://arxiv.org/abs/2410.01639",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#repeated-normal-form-games",
-    "href": "sec9.html#repeated-normal-form-games",
-    "title": "9  Multi-agent Systems",
-    "section": "9.5 Repeated Normal Form Games",
-    "text": "9.5 Repeated Normal Form Games\n2",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#online-reinforcement-learning-towards-social-welfare",
-    "href": "sec9.html#online-reinforcement-learning-towards-social-welfare",
-    "title": "9  Multi-agent Systems",
-    "section": "9.6 Online Reinforcement Learning towards Social Welfare",
-    "text": "9.6 Online Reinforcement Learning towards Social Welfare",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#co-evolutionary-approaches",
-    "href": "sec9.html#co-evolutionary-approaches",
-    "title": "9  Multi-agent Systems",
-    "section": "9.7 Co-evolutionary Approaches",
-    "text": "9.7 Co-evolutionary Approaches",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#evolutionary-algorithms",
-    "href": "sec9.html#evolutionary-algorithms",
-    "title": "9  Multi-agent Systems",
-    "section": "9.8 Evolutionary Algorithms",
-    "text": "9.8 Evolutionary Algorithms",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#problem-of-representation",
-    "href": "sec9.html#problem-of-representation",
-    "title": "9  Multi-agent Systems",
-    "section": "9.9 Problem of Representation",
-    "text": "9.9 Problem of Representation",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#fitness-function",
-    "href": "sec9.html#fitness-function",
-    "title": "9  Multi-agent Systems",
-    "section": "9.10 Fitness Function",
-    "text": "9.10 Fitness Function",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#selection",
-    "href": "sec9.html#selection",
-    "title": "9  Multi-agent Systems",
-    "section": "9.11 Selection",
-    "text": "9.11 Selection",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#cross-over",
-    "href": "sec9.html#cross-over",
-    "title": "9  Multi-agent Systems",
-    "section": "9.12 Cross-over",
-    "text": "9.12 Cross-over",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#mutation",
-    "href": "sec9.html#mutation",
-    "title": "9  Multi-agent Systems",
-    "section": "9.13 Mutation",
-    "text": "9.13 Mutation",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#evaluation-and-replacement",
-    "href": "sec9.html#evaluation-and-replacement",
-    "title": "9  Multi-agent Systems",
-    "section": "9.14 Evaluation and Replacement",
-    "text": "9.14 Evaluation and Replacement\nThe best individuals are kept in the next generation, by taking the copies.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#coevolution",
-    "href": "sec9.html#coevolution",
-    "title": "9  Multi-agent Systems",
-    "section": "9.15 Coevolution",
-    "text": "9.15 Coevolution\nWe can update the parameters of a policy \\(\\rightarrow\\) we mutate the parameters. The mapping can be a parametric mapping of what we can learn.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#aside-dna-computing",
-    "href": "sec9.html#aside-dna-computing",
-    "title": "9  Multi-agent Systems",
-    "section": "9.16 Aside: DNA Computing",
-    "text": "9.16 Aside: DNA Computing\n\n\n\n\nShoham, Yoav, and Kevin Leyton-Brown. 2009. Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations. Cambridge University Press.\n\n\nTuyls, Karl, and Peter Stone. 2018. “Multiagent Learning Paradigms.” Artificial Intelligence 265: Multiagent Systems Special Issue, 115–27.\n\n\nWooldridge, Michael. 2002. Introduction to Multiagent Systems. John Wiley & Sons.",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec9.html#footnotes",
-    "href": "sec9.html#footnotes",
-    "title": "9  Multi-agent Systems",
-    "section": "",
-    "text": "“A Beautiful Mind”: movie about the life of Nash.↩︎\n“Mutual Assured Destruction”: .↩︎",
-    "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
-    ]
-  },
-  {
-    "objectID": "sec8.html#advantages-of-using-policy-approximation-according-to-softmax-in-action-preferences",
-    "href": "sec8.html#advantages-of-using-policy-approximation-according-to-softmax-in-action-preferences",
-    "title": "8  Policy Gradient Methods",
-    "section": "8.2 Advantages of Using Policy Approximation according to Softmax in Action Preferences",
-    "text": "8.2 Advantages of Using Policy Approximation according to Softmax in Action Preferences\n‣ One advantage of parameterising policies according to the softmax in action preferences is that the approximate policy can approach a deterministic policy. ‣ In fact, with random action. ϵ ϵ -greedy selection over action values, there is always a probability of selecting a ‣ One possibility is to use softmax distribution on the action values, but this will not allow to reach a deterministic policy. ‣ Action values will always differ and, therefore, there will be always a non-null probability of selecting a different action. ‣ Action preferences are different since they do not approach specific values: instead they are driven to produce the optimal stochastic policy. ‣ If the optimal policy is deterministic, the preferences of the optimal actions will be driven infinitely higher than all suboptimal actions (the output of the softmax will be then very close to 1, i.e., close to determinism).",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
-    ]
-  },
-  {
-    "objectID": "sec8.html#ppo-clip",
-    "href": "sec8.html#ppo-clip",
-    "title": "8  Policy Gradient Methods",
-    "section": "8.5 PPO-CLIP",
-    "text": "8.5 PPO-CLIP\n\nLet’s consider the case in which \\(\\delta_{ADV} \\geq 0\\): suppose the advantage for that state-action pair positive. In this case the contribution to the objective reduces to:\n\n\\(L(s,a,\\theta_t,\\theta) = min(\\frac{\\pi_\\theta(a \\vert s)}{\\pi_{\\theta_t}(a \\vert s)}, (1 + \\epsilon))\\)",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Autonomous and Adaptive Systems",
@@ -517,6 +47,116 @@
     "text": "Papers’ sources\n\nGoogle Scholar (scholar.google.com)\n\n\n\n\n\nMitzenmacher, Michael. 2017. Probability and Computing. Second edition. Cambridge University Press. https://www.cambridge.org/jp/universitypress/subjects/computer-science/algorithmics-complexity-computer-algebra-and-computational-g/probability-and-computing-randomization-and-probabilistic-techniques-algorithms-and-data-analysis-2nd-edition.\n\n\nOrmond, Jim. 2024. “2024 Turing Award.” ACM. https://awards.acm.org/about/2024-turing.\n\n\nSolomonoff, Grace. 06 May 2023. “The Meeting of the Minds That Launched AI.” IEEE Spectrum. https://spectrum.ieee.org/dartmouth-ai-workshop.",
     "crumbs": [
       "Preface"
+    ]
+  },
+  {
+    "objectID": "sec1.html",
+    "href": "sec1.html",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "",
+    "text": "1.1 Computing Machinery and Intelligence\nWhat is intelligence? Can we build intelligence into a machine?\nThis idea of thinking and of being an intelligence agent is thoroughly examined by Alan Turing1 in his paper, published in the Mind philosophy journal, which talks about how to build these machines. His very old and interesting paper is about the Turing Test, originally called the Imitation Game, which consists in testing if a machine can actually think and reason like a human:\n– I propose to consider the question, “Can machines think?” This should begin with definitions of the meaning of the terms “machine” and “think”. –\nIn proposing his question-answer test Turing (1950) introduced the idea through a Gender Imitation Game The experiment involves a computer and a human pretending to be the opposite gender.\nIn this game a human interrogator of either sex simultaneously questions two hidden interlocutors: one man and one woman. The purpose of the man is to pretend to be a woman; the woman’s task is to tell the truth. The interrogator must determine the actual woman. Replacing one of the hidden interlocutors with a machine Turing asked:\nTuring quite rightly raised that question realising after WWII that man does not think like every other man; man does think like woman; an Occidental woman may not think like a woman from the Orient.\nGender is regarded as an important feature in Turing’s game by some (Copeland & Proudfoot 2008; Sterrett, 2000; Lassègue, 1996; Hayes & Ford, 1995; Genova, 1994). The contention is that both man and machine impersonating a woman provides a stronger test for intelligence. However, neither of these researchers have explained what they mean by gender nor have they provided empirical evidence to substantiate their claim.2",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#computing-machinery-and-intelligence",
+    "href": "sec1.html#computing-machinery-and-intelligence",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "",
+    "text": "“May not machines carry out something which ought to be described as thinking but which is very different from what a man does?”",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#intelligent-machines-evolution",
+    "href": "sec1.html#intelligent-machines-evolution",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.2 Intelligent Machines Evolution",
+    "text": "1.2 Intelligent Machines Evolution\nHowever, the idea of building a mechanical machine capable of thinking –making decisions and executing operations based on a program– was originally proposed one century earlier (1850) by computer pioneer Charles Babbage3 with his Analytical Engine. From this invention, we progressed to modern computers: autonomous systems acting independently, on par with or even surpassing human abilities (e.g. self-driving cars).\n\n \\(\\rightarrow\\) \n\n\nFrom The Analytical Engine to Autonomous Systems.\n\n\n\n\nThe key point is that modern machines operate within an environment, such as a car’s physical surroundings. Within this environment, we have the agent, the self-driving car. By observing its surroundings, the agent determines the state of the world (the environment). It then takes actions and learns from experience to improve its performance.\nOne approach to achieving this involves trial and error learning : driving –initially in a purely random way– while receiving feedback from a human driver, enabling the system to gradually refine its behavior. The reward is proportional to the travelled distance.\n\n  Wayve experiment: Reinforcement Learning algorithm learning to drive a car.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#ai-systems-mastering-games-with-reinforcement-learning",
+    "href": "sec1.html#ai-systems-mastering-games-with-reinforcement-learning",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.3 AI Systems Mastering Games with Reinforcement Learning",
+    "text": "1.3 AI Systems Mastering Games with Reinforcement Learning\nAs previously discussed, this module explores AI systems that interact with and operate within their environments. Without relying on logic rules, these systems learn —whether how to drive a car, how to play video games or how to walk— from the observations, the states, so from what they observe (e.g. pixels, images, etc.). These algorithms are driven purely by reinforcement learning, without any human data, guidance or domain knowledge.\n\nInput: the pixels and the reward (e.g. game score).\nGoal: learn how to drive/play/walk from scratch, with no prior knowledge.\n\nThe systems learn through trial and error, balancing exploration and exploitation to refine their behaviour over time.\n\nMs. Pac-Man\n\nFor example, in Ms. Pac-Man, we wouldn’t know which character is a ghost, which one is Miss Pac-Man, or where the cherry is. Instead, we learn everything simply by analyzing the pixels on the screen.\n\n\n\n\nAtari 2600 games\n\nAtari games were solved with Deep Reinforcement Learning (DRL) using a method called Deep Q-Network (DQN), which was introduced by researchers at DeepMind in 2013 (and a more detailed version of the research was later published in the Nature journal in 2015). This approach revolutionized the way AI systems could learn to play video games.\n\n 210 \\(\\times\\) 160 pixel image frames with 128 colours at 60Hz. \n\n\n\n\nyoutu.be/rFwQDDbYTm4?si=ozHD2X8AwNt398xw\n\n\n\n\n\nThe game of Go\n\nThe game of Go was solved in 2016 using Deep Reinforcement Learning as well, but in a more sophisticated manner compared to Atari games. This was achieved by DeepMind’s AlphaGo and its subsequent versions (AlphaGo Zero, AlphaZero), which used a combination of Deep Neural Networks and Reinforcement Learning techniques to master the game.\n\n  \\(19 \\times 19\\)\n\n\n  Configurations of Go.\n\nThe AlphaGo paper is particularly intriguing because Go is an exceptionally complex game. Played on a \\(19 \\times 19\\) board, where each tile can be empty, white, or black, the total number of possible valid configurations —possible states— is approximately \\(10^{170}\\), excluding impossible ones. And given that the number of atoms in the observable universe is \\(10^{80}\\), this highlights the immense complexity of that game: there are more configurations of Go than atoms in the universe.\n\nGoogle DeepMind: Ground-breaking AlphaGo masters the game of Go\n\nIn AlphaGo, the model was pretrained using experience from previous games. AlphaGo plays agains itself (its old copy) becoming better and better alone, without needing any input for playing.\n\n\n\nIn contrast, AlphaGo Zero learned to play Go entirely from scratch (“tabula rasa”“), from literally random play, without any prior knowledge (zero prior knowledge) of the game —that’s why it’s the zero in the name. Despite this, it quickly achieved superhuman performance, discovering solutions and completely novel ways of playing never saw before.\nWhile AlphaGo could only play Go, AlphaZero can play any two-game player game.\nDemis Hassabis, the founder of DeepMind, once said: “We left our AlphaZero just playing lunchtime and it became better than each chess player in the world.”\nDemis Hassabis describes how AlphaZero, starting from scratch, became “the greatest Chess playing entity that’s ever existed” in only 9 hours.\n\n\n\n\nStarCraft\n\nIn 2020, DeepMind achieved a major AI breakthrough by mastering StarCraft using only pixel-based input. This is an especially complex game, as it requires strategic planning and coordination between multiple agents within the system. AlphaStar, DeepMind’s AI, went on to compete against top human players, winning high-level competitions and demonstrating superhuman performance.\n\n  youtu.be/6EQAsrfUIyo?si=gUXbT-NVSvlvSco6\n\n\nPoker\n\nAI has made significant breakthroughs also in poker, a game that is particularly challenging for machines due to its incomplete information, meaning players don’t have full knowledge of the game state (unlike chess or Go).\nDeepStack was a groundbreaking AI developed by the University of Alberta, Charles University, and Czech Technical University. It was the first AI to beat professional human players in heads-up no-limit Texas hold’em.\n\n  youtu.be/SI-i-fQBv1Y?si=17Mh4EWnD5ofqdFN",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#real-world-applications-of-agentic-systems",
+    "href": "sec1.html#real-world-applications-of-agentic-systems",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.4 Real-World Applications of Agentic Systems",
+    "text": "1.4 Real-World Applications of Agentic Systems\nReinforcement learning algorithms can be described as decision-making algorithms or agentic systems, as they are designed to autonomously make decisions and take actions based on their environment. Let’s see some real-world applications of them.\n\n🦿 Robotics: Learning how to walk\n\nOne of the most fascinating applications of reinforcement learning in robotics is enabling machines to walk autonomously. Instead of being programmed with predefined motion rules, these AI-driven systems learn purely from experience. By receiving only sensor readings —such as joint positions and balance data— the robot explores and refines its movements through trial and error.\nA great example of this can be seen in DeepMind’s research, where an AI-controlled robot learns to walk from scratch. With no prior knowledge of physics or locomotion, the system gradually discovers stable and efficient ways to move, adapting dynamically to different terrains.\n\n  youtu.be/gn4nRCC9TwQ?si=Sw2HOFkXfOHQf4Qc\n\n\n⚡️ Cloud Farms: Optimizing Energy and Load Distribution\n\n\n\n\nAgentic systems are widely used in cloud farms to optimize resource management. Through reinforcement learning, these systems can learn how to minimize energy consumption and efficiently distribute workloads across different processors.\nThe idea is to enable the system to continuously adapt and make decisions in real time, balancing energy efficiency and performance. By learning from the environment and adjusting its actions accordingly, the system can find the optimal distribution of tasks while reducing power usage, thus improving both operational efficiency and sustainability.\n\n      Source: deepmind.google/discover/blog/safety-first-ai-for-autonomous-data-centre-cooling-and-industrial-control/\n\n\n💨 Wind Turbines: Boosting the Value of Wind Energy\n\n\n\n\nReinforcement learning is also used to optimize the orientation of wind turbines, ensuring they adjust dynamically to maximize energy production. By continuously learning from wind patterns and environmental conditions, RL algorithms enhance forecastic accuracy, improving both efficiency and sustainability.\n\n  Source: deepmind.com/blog/article/machine-learning-can-boost-value-wind-energy\n\n\n🔋 Android: Enhancing Battery Life and Display Performance\n\n\n\n\nModern smartphones rely on AI to optimize user experience, and reinforcement learning plays a key role in making Android devices smarter and more efficient. By continuously adapting to user behavior, reinforcement learning helps improving power management and display settings, leading to better performance and energy savings:\n\nAdaptive battery: used to learn and anticipate future battery use.\nAdaptive brightness of the video: algorithm learns preferences in terms of brightness from the user.\n\nThese AI-driven optimizations enhance battery life and display performance, providing a seamless and energy-efficient user experience.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#reinforcement-learning-for-generative-ai",
+    "href": "sec1.html#reinforcement-learning-for-generative-ai",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.5 Reinforcement Learning for Generative AI",
+    "text": "1.5 Reinforcement Learning for Generative AI\nReinforcement learning is at the core of many groundbreaking AI advancements, driving a multi-trillion-dollar revolution. Actually, besides robotics and game-playing AI, reinforcement learning plays a key role in training large language models (LLMs).\nTherefore, we’re entering this Brave New Wold4 of agents that are based on foundational models and this is really changing everything (referring to the launch of Chat-GPT in 2022). Sparks of Artificial General Intelligence (i.e. general purpose AI) refers to the early signs that artificial intelligence is reaching human-like capabilities (or even more), such as general reasoning, autonomous learning (making decisions), and adaptability to different tasks.\nThis expression became popular after the Microsoft Research paper titled “Sparks of Artificial General Intelligence: Early experiments with GPT-4”, in which researchers suggested that GPT-4 exhibits some characteristics that could be considered precursors to AGI (Artificial General Intelligence). However, the model is not yet a true AGI but rather a step in that direction.\n\n\n\nThe Brave New World\n\n\n\n\nThese foundational LLMs are trained using reinforcement learning in various ways. One key approach is Reinforcement Learning from Human Feedback (RLHF):\n\n\n\nIt involves human preferences, where either humans or machine-generated feedback (known as distillation, such as DeepSeek using GPT-4) helps optimize outputs. A common method for this is Direct Preference Optimization (DPO), which fine-tunes models based on ranked feedback.\n\n\nEven more effectively, instead of relying on direct human feedback for every interaction, we can build a model of preferences —trained on responses from a large number of people— to encapsulate human preferences and guide model training more efficiently.\n\nState of the Art\n\n\n\n\n\n\n“Generative” Agents\n\n“Generative Agents: Interactive Simulacra of Human Behavior” is a research paper that explores the simulation of a virtual city populated by AI-driven agents. These agents, implemented using language models, interact with each other in a dynamic environment, engaging in everyday activities such as having coffee, conversing, and forming relationships. The study aims to create realistic social behaviors and emergent narratives through AI-driven interactions.\n\n Agentic AI ranks first among the Top 10 Stretegic Technology Trends.\n\nThe technologies we’re discussing today are crucial not only for innovation but also for democracy, as they help combat disinformation, and for national security. Moreover, they play a growing role in decision-making, as they are increasingly influencing areas such as economic policy, governance, taxation, cybersecurity, and more. As such, we bear a responsibility to our country in how we harness and guide these technologies.\n\n Source: foreignpolicy.com/2023/06/19/ai-artificial-intelligence-national-security-foreign-policy-threats-prediction/\n\nThe article “AI Has Entered the Situation Room5” from Foreign Policy discusses the transformative impact of artificial intelligence (AI) on national security and foreign policy decision-making. It highlights how AI enables unprecedented data analysis capabilities, allowing policymakers to gain clearer insights into complex global situations. The authors argue that to fully harness AI’s potential, traditional approaches to foreign policy formulation must evolve to integrate these advanced technological tools effectively. ​",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#intelligent-adaptive-and-autonomous-agents",
+    "href": "sec1.html#intelligent-adaptive-and-autonomous-agents",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.6 Intelligent, Adaptive and Autonomous Agents",
+    "text": "1.6 Intelligent, Adaptive and Autonomous Agents\n\nDefinitions\n\n\nAn intelligent agent is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.\n\n\nAgents might be physically situated (we call them robots) or not (we refer to them as software agents -or just agents-, softbots, bots, etc.). An emerging terminology, such as embodied AI and embodied AI agents refers to agents that interact with and act within a specific environment.\n\n\nAn adaptive agent is an entity that is capable of responding (by adapting) to its environment.\n\n\nThe environment might also include other agents, encompassing their locations, actions, interactions (e.g., how they respond to the agent), and all relevant information about them.\nThe environment is everything else outside the agent.\n\n\nAn autonomous agent is an entity that relies only on its perception (what it can sense and get from the environment) and acts in the world independently from its designer.\n\n\nIt takes decisions and acts independently from the way the agent itself is designed.\nAn autonomous agent should be able to compensate for partial knowledge: if the agent doesn’t know something about the world, it will try to get knowledge about it. This involves searching, exploring, experimenting, and interacting in order to understand how the world works.\nClassical multi-agent systems are based on logic, and in Prolog terms, facts are what define the entire understanding of the world.\nHere we’re talking about agents that proactively try to discover knowledge and information about the world.\n\n\nLearning and Autonomous Agents\n\nFrom a practical point of view, it makes sense to provide the agent with some knowledge of the world and the ability to learn:\nAs in the case of evolution, in which animals/humans have a sufficient number of built-in reflexes in order to survive long enough to learn by themselves, it is reasonable to provide an artificial intelligent agent with some initial knowledge as well as an ability to learn and adapt.\nAfter gaining sufficient experience of its environment, an intelligent agent can become effectively independent of its prior knowledge. The idea is that, while the agent starts with some initial understanding of the world, it gradually adapts and learns to act beyond its original knowledge. However, it does not discard it prior knowledge —forgetting is a big issue in Reinforcement Learning. Instead, the agent integrates new experiences while retaining and building upon its initial foundation.\nFor this reason, learning allows an intelligent agent to survive in a vast variety of environments: they’re adaptive.\n\nDesigning Agents\n\nDimensions that should be taken into consideration in designing agents are the following:\n\nPerformance —how accurate they are in completing a certain task.\nEnvironment —where they are deployed.\nActuators —what they can do = what are the actions they can perform (physical or software).\nSensors —how they can sense and gather information from the environment.\n\n\n\n\n\n\n\n\nAutomatic Display of Advertisement example:\n\nMeta’s system is designed to deliver the most relevant ads to users. It functions as an autonomous agent that decides which advertisements to display based on user interactions, such as time spent on videos, likes, and clicks on various posts. The agent is independent and continuously learns from user interactions to refine its ad recommendations. In particular:\n\nPerformance: The accuracy and effectiveness of ad targeting, measured by engagement rates, click-through rates (CTR), and conversion rates.\nEnvironment: The digital ecosystem, including Meta’s platforms (Facebook, Instagram, etc.), where user interactions take place.\nActuators (actions): Displays a specific ad from a certain relevant category.\nSensors: Tracks user behavior, including time spent on content, engagement metrics (likes, shares, comments), and click-through rates. Additionally, it explores user preferences by occasionally displaying random ads to gather new data.\n\n\nCharacteristics of the Environments\n\nWe have different dimensions:\n\nFully observable vs Partially observable:\n\nFully observable: The agent is able to know everything about the environment at any given time. Example: chess, where the entire board state is visible.\nPartially observable: The agent only has access to limited or incomplete information about the environment, requiring it to infer missing details. Example: poker, where opponents’ cards are hidden.\n\nDeterministic vs Stochastic:\n\nDeterministic: The next state of the environment is completely determined by the current state and the agent’s actions, so it is predictable what is going to happen in the future. Example: chess, where every move has a predictable outcome.\nStochastic: There is an element of randomness in the environment, meaning that the same action can lead to different outcomes, so it is unpredictable what’s going to happen because we don’t know how the world will evolve. Example: rolling a dice in a board game.\n\nEpisodic vs Sequential:\n\nEpisodic: The agent interacts only once with the environment, for an episode. Example: image classification, where each image is classified separately.\nSequential: The agent have multiple interactions with the environment, multiple episodes that are repeated. Example: playing a video game, where past actions influence future gameplay.\n\nStatic vs Dynamic:\n\nStatic: The environment does not change unless the agent interacts with it. Example: a turn-based board game.\nDynamic: The environment evolves over time, even if the agent does nothing. Example: a self-driving car system, where traffic and pedestrians move independently.\n\nDiscrete vs Continuous:\n\nDiscrete: The state space and actions are limited to a finite set of possibilities. Example: tic-tac-toe, where moves are predefined.\nContinuous: States and actions are infinite or highly granular, requiring complex decision-making. It is always possible to discretize a continuous environment. Example: controlling a robotic arm with infinitely variable movements.\n\nSingle agent vs Multi-agent:\n\nSingle agent: The environment contains only one agent, with no other autonomous entities. Example: a maze-solving robot.\nMulti-agent: Multiple agents interact, either cooperatively or competitively. Example: online multiplayer games or stock market trading algorithms.\n\n\n\nA Categorization of Intelligent Agents\n\nThere are essentially four basic kinds of agent programs:\n\nSimple reflex agents;\nModel-based agents;\nGoal-based agents;\nUtility-based agents.\n\nThe behaviour of these agents can be hard-wired or it can be acquired, improved and optimised through learning. See section Learning.\n\nSimple Reflex Agents:\n\n\nSimple reflex agents select actions on the basis of the current perception —like humans reflexes when they perceive pain— ignoring the rest of the perception history.\n\n\nThese are the most basic form of agents, they are based on conditon-action rules (also called simulation-action rules, productions or if-then rules).\nHumans also have a set of automatic (learned) responses in their biology.\nThey are suitable for situations where the decisions can be made on the current observation.\n\n\n\n\n\nModel-based Agents:\n\n\nA Model-based agent is an agent that keeps an internal state —to keep information of past acquired knowledge— and depends on two types of knowledge:\n\nhow the world evolves independently from the agent.\nhow the actions of the agent affects the world.\n\n\n\nAn internal state (kept inside the agent) is essentially used to keep track of what is not possible to see right now. It depends on the perception history and, for this reason, it reflects at least some of the unobserved aspects of the current state.\nExamples of internal states are:\n\nHuman’s brain has an internal state which is continuously updated: the structure of the synapses is continuously modelled in order to form new memories. This internal state is crucial to keep learning.\nA fine-tuned language model undergoes weight updates, altering its internal state. These weight adjustments shape the model’s learning and adaptation over time.\n\nThis internal state is different from the state of the environment, i.e. what we use in order to make a decision.\nUsually the model-based agent can also include condition-action rules.\n\n\n\n\n\nGoal-based Agents:\n\n\nGoal-based agents act to achieve their goals —the action is conditioned to the goal to be achieved.\n\n\nSometimes goal-based satisfaction is straightforward, when goal satisfaction results immediately from a single action.\nIn other cases, an agent has to consider a long sequence of actions to achieve their goal through search and planning. E.g. The A* algorithm finds the solution to some problems (it does not solve Go) through a set of steps, but it doesn’t scale a lot.\nHowever, some problem are not solvable with planning. Subgoals are set to decide what to do next in order to achieve the final goal (it is not planning).\n\n\n\n\n\nUtility-based Agents:\n\n\nUtility-based agents are agents whose goals are expressed through a utility function.\n\n\nGoals are not really sufficient to generate “high-quality behaviour” in most environments —the are solutions to reach the goal that are better than others.\nWe model states preferred to others using utilities (or payoffs or, for reinforcement learning engineers, rewards).\nThese agents aim to maximize their utility.\nUtility functions maps a state (or a sequence of states) onto a real number, which describes the preferences of an agent.\nExample: taxi routing to destination (quicker route, the shortest path is preferable).\nThere are situations in which the agents have competitive objectives. For example, a taxi driver, who is paid based on distance traveled, may have an incentive to take longer routes, while the client’s utility is to reach the destination as efficiently and affordably as possible.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#whats-next",
+    "href": "sec1.html#whats-next",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.7 What’s next",
+    "text": "1.7 What’s next\n\nLearning\nThe behaviour of the agents can be pre-programmed and fixed or it can be learned.\n\nIn order to allow for learning agents need a learning component (goal-based or utility-based through experience).\nThe learning component can be based on a model of the world and the gain towards a certain goal (possibly expressed in terms of change of the value of utility functions) can be expressed through rewards.\n\nIn this module we will explore in depth a type of learning called Reinforcement Learning based on rewards following a certain action.\n\nAutonomous and Adaptive Systems\n\nIn this module, we will adopt a very broad view of intelligent, adaptive and autonomous agents.\nFollowing Herbert Simon6 ’s famous definition, we will consider more broadly:\n\n“machines that think, that learn, and that create”.\n\nHerbert Simon, a two-time Nobel laureate, was an economist who made significant contributions to machine learning and decision theory in complex systems. He is considered a foundational figure in modern artificial intelligence and agent-based systems, as he pioneered the concept of simulating economic behavior —essentially modeling society through computational methods.\nOf course “thinking” is an ill-defined concept (“Do the LLMs reason?” ), which we will try to discuss during the module in detail.\nWe will take a system-view, i.e., we will consider the design of intelligent and autonomous agents considering the algorithmic and implementation issues and the interactions between the different entities at various levels of abstraction.\n\nBuilding Intelligent Machines\n\nAn underlying theme of the module will be the definition of intelligence.\nRecalling our definition of intelligent agents:\n\nAn intelligent agent is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.\n\nIndeed, since the world is complex, messy, and noisy, our understanding of it —built through incremental learning with such systems— is inherently probabilistic. As a result, we will focus extensively on probabilistic systems.\nOur goal at the end will be to build intelligent machines, but we will also compare machine intelligence with human and animal intelligence.\nThis is a fascinating aspect of the study of these systems: they help us in understanding what intelligence means in abstract and what makes us humans.\n\nArtificial General Intelligence\n\n\nIn the recent years we had several successes in building more and more sophisticated systems.\nHuman-level Artificial Intelligence or Artificial General Intelligence is the intelligence of an entity (agent, machine, etc.), which has the capacity of learning any task at or above human-level (at least as an human being).\n\nWe will discuss the current state-of-the-art in this area and we will also outline the challenges and opportunities ahead.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#references",
+    "href": "sec1.html#references",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.8 References",
+    "text": "1.8 References\n\nRussell and Norvig (2020)\n\nSome of the definitions and some of the figures of this section are from:\n\nChapter 2 of Sutton and Barto (2018)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#suggested-readings",
+    "href": "sec1.html#suggested-readings",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "1.9 Suggested Readings",
+    "text": "1.9 Suggested Readings\n\nSimon (1996)\n\n\n\n\n\nRussell, Stuart, and Peter Norvig. 2020. Artificial Intelligence. A Modern Approach. Fourth edition. Pearson. https://github.com/pemagrg1/AI_class2022/blob/main/book/Artificial-Intelligence-A-Modern-Approach-4th-Edition-1-compressed.pdf.\n\n\nSimon, Herbert A. 1996. The Sciences of the Artificial. Third edition. MIT Press. https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf.\n\n\nSutton, Richard S., and Andrew G. Barto. 2018. Reinforcement Learning. An Introduction. Second edition. MIT Press. https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
+    ]
+  },
+  {
+    "objectID": "sec1.html#footnotes",
+    "href": "sec1.html#footnotes",
+    "title": "1  Intelligent Agents and Machines",
+    "section": "",
+    "text": "Alan Turing (1912 – 1954): https://it.wikipedia.org/wiki/Alan_Turing↩︎\nSource: Shah, H., & Warwick, K. (2016). Imitating Gender as a Measure for Artificial Intelligence: - Is It Necessary?. In Proceedings of the 8th International Conference on Agents and Artificial Intelligence - Volume 1: ICAART (pp. 126-131). SCITEPRESS. https://www.scitepress.org/papers/2016/56739/56739.pdf↩︎\nCharles Babbage (1791 – 1871): https://en.wikipedia.org/wiki/Charles_Babbage↩︎\n“Brave New World”: term taken from Aldous Huxley’s novel to indicate something completely new.↩︎\n“Situation Room”: a secure space or command center where leaders and key officials convene to make urgent decisions, often related to national security, crises, or military operations. These decisions may include diplomatic, strategic, and security-related matters.↩︎\nHerbert Simon (1916 – 2001): https://it.wikipedia.org/wiki/Herbert_Simon↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intelligent Agents and Machines</span>"
     ]
   },
   {
@@ -764,7 +404,7 @@
     "href": "sec3.html#multi-armed-bandits-in-practice",
     "title": "3  Multi-armed Bandits",
     "section": "3.10 Multi-armed Bandits in practice",
-    "text": "3.10 Multi-armed Bandits in practice\n\nimport numpy as np\nimport random\n\nclass MultiArmedBandit:\n    '''Create a k-armed bandit.\n\n    Each bandit arm must have its reward distribution.\n\n    The bandit has to receive the action: to select one of the k bandits,\n    with possible value from 1 to 10.\n\n    The bandit must have k random generators of two values i,j (with i &lt; j):\n    the min and max of the reward distribution.\n    e.g.:\n        1 3 -&gt; 1.5, ...\n        2 6 -&gt; 2.1, 3.3, ...\n        4 8 -&gt; 4.2, 5.3, 7.8\n    '''\n    def __init__(self, k):\n        self.arms = [self._create_generator() for i in range(k)]\n        for i, arm in enumerate(self.arms):\n            print(f\"arm {i} range: {arm}\")\n\n    def _create_generator(self):\n        lbound, ubound = 1, 10\n\n        a = random.randint(lbound, ubound)\n        b = random.randint(a, ubound)\n\n        return a, b\n\n    def get_reward(self, a: int):\n        assert a &gt;= 0 and a &lt; len(self.arms)\n        return random.uniform(*self.arms[a])\n\n\nclass ArmChooser:\n    def __init__(self, k: int, eps: float, initial_value: float):\n        self.Q, self.N = [initial_value] * k, [0.] * k\n        self.eps = eps\n\n    def _epsilon_greedy(self):\n        if random.random() &lt; 1 - self.eps:\n            return np.argmax(self.Q)\n        else:\n            return random.randint(0, len(self.Q) - 1)\n    \n    def choose(self):\n        a = self._epsilon_greedy()\n        R = bandit.get_reward(a)\n        print(f\"R: {R}\")\n        self.N[a] += 1\n        self.Q[a] += 1/self.N[a] * (R - self.Q[a])\n        print(f\"Q: {self.Q}\")\n        print (f\"N: {self.N}\")\n\n\n# Example usage\nk, T, eps, initial_value = 4, 10, 0.1, 10.\nbandit = MultiArmedBandit(k)\nchooser = ArmChooser(k, eps, initial_value)\n\nfor t in range(T):\n    print(f\"step {t}\")\n    chooser.choose()\n\narm 0 range: (7, 9)\narm 1 range: (2, 9)\narm 2 range: (1, 3)\narm 3 range: (5, 10)\nstep 0\nR: 7.308997553132999\nQ: [7.308997553132999, 10.0, 10.0, 10.0]\nN: [1.0, 0.0, 0.0, 0.0]\nstep 1\nR: 4.2857159601085995\nQ: [7.308997553132999, 4.2857159601085995, 10.0, 10.0]\nN: [1.0, 1.0, 0.0, 0.0]\nstep 2\nR: 2.2670883269758795\nQ: [7.308997553132999, 4.2857159601085995, 2.2670883269758795, 10.0]\nN: [1.0, 1.0, 1.0, 0.0]\nstep 3\nR: 5.62263881037272\nQ: [7.308997553132999, 4.2857159601085995, 2.2670883269758795, 5.62263881037272]\nN: [1.0, 1.0, 1.0, 1.0]\nstep 4\nR: 5.575340127831782\nQ: [7.308997553132999, 4.2857159601085995, 2.2670883269758795, 5.598989469102252]\nN: [1.0, 1.0, 1.0, 2.0]\nstep 5\nR: 7.851457852592418\nQ: [7.580227702862708, 4.2857159601085995, 2.2670883269758795, 5.598989469102252]\nN: [2.0, 1.0, 1.0, 2.0]\nstep 6\nR: 1.1791818376172423\nQ: [7.580227702862708, 4.2857159601085995, 1.7231350822965608, 5.598989469102252]\nN: [2.0, 1.0, 2.0, 2.0]\nstep 7\nR: 8.344330195123183\nQ: [7.8349285336162, 4.2857159601085995, 1.7231350822965608, 5.598989469102252]\nN: [3.0, 1.0, 2.0, 2.0]\nstep 8\nR: 7.938536964316871\nQ: [7.8608306412913675, 4.2857159601085995, 1.7231350822965608, 5.598989469102252]\nN: [4.0, 1.0, 2.0, 2.0]\nstep 9\nR: 7.338125189036303\nQ: [7.756289550840354, 4.2857159601085995, 1.7231350822965608, 5.598989469102252]\nN: [5.0, 1.0, 2.0, 2.0]",
+    "text": "3.10 Multi-armed Bandits in practice\n\nimport numpy as np\nimport random\n\nclass MultiArmedBandit:\n    '''Create a k-armed bandit.\n\n    Each bandit arm must have its reward distribution.\n\n    The bandit has to receive the action: to select one of the k bandits,\n    with possible value from 1 to 10.\n\n    The bandit must have k random generators of two values i,j (with i &lt; j):\n    the min and max of the reward distribution.\n    e.g.:\n        1 3 -&gt; 1.5, ...\n        2 6 -&gt; 2.1, 3.3, ...\n        4 8 -&gt; 4.2, 5.3, 7.8\n    '''\n    def __init__(self, k):\n        self.arms = [self._create_generator() for i in range(k)]\n        for i, arm in enumerate(self.arms):\n            print(f\"arm {i} range: {arm}\")\n\n    def _create_generator(self):\n        lbound, ubound = 1, 10\n\n        a = random.randint(lbound, ubound)\n        b = random.randint(a, ubound)\n\n        return a, b\n\n    def get_reward(self, a: int):\n        assert a &gt;= 0 and a &lt; len(self.arms)\n        return random.uniform(*self.arms[a])\n\n\nclass ArmChooser:\n    def __init__(self, k: int, eps: float, initial_value: float):\n        self.Q, self.N = [initial_value] * k, [0.] * k\n        self.eps = eps\n\n    def _epsilon_greedy(self):\n        if random.random() &lt; 1 - self.eps:\n            return np.argmax(self.Q)\n        else:\n            return random.randint(0, len(self.Q) - 1)\n    \n    def choose(self):\n        a = self._epsilon_greedy()\n        R = bandit.get_reward(a)\n        print(f\"R: {R}\")\n        self.N[a] += 1\n        self.Q[a] += 1/self.N[a] * (R - self.Q[a])\n        print(f\"Q: {self.Q}\")\n        print (f\"N: {self.N}\")\n\n\n# Example usage\nk, T, eps, initial_value = 4, 10, 0.1, 10.\nbandit = MultiArmedBandit(k)\nchooser = ArmChooser(k, eps, initial_value)\n\nfor t in range(T):\n    print(f\"step {t}\")\n    chooser.choose()\n\narm 0 range: (3, 3)\narm 1 range: (8, 9)\narm 2 range: (10, 10)\narm 3 range: (5, 6)\nstep 0\nR: 3.0\nQ: [3.0, 10.0, 10.0, 10.0]\nN: [1.0, 0.0, 0.0, 0.0]\nstep 1\nR: 5.29962575653435\nQ: [3.0, 10.0, 10.0, 5.29962575653435]\nN: [1.0, 0.0, 0.0, 1.0]\nstep 2\nR: 8.69156338027132\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 0.0, 1.0]\nstep 3\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 1.0, 1.0]\nstep 4\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 2.0, 1.0]\nstep 5\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 3.0, 1.0]\nstep 6\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 4.0, 1.0]\nstep 7\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 5.0, 1.0]\nstep 8\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 6.0, 1.0]\nstep 9\nR: 10.0\nQ: [3.0, 8.69156338027132, 10.0, 5.29962575653435]\nN: [1.0, 1.0, 7.0, 1.0]",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Multi-armed Bandits</span>"
     ]
@@ -1277,6 +917,676 @@
     "text": "Warren McChulloch (1898 – 1969): https://it.wikipedia.org/wiki/Warren_McCulloch↩︎\nWalter Pitts (1923 – 1969): https://it.wikipedia.org/wiki/Walter_Pitts↩︎\nDonald Olding Hebb (1904 – 1985): https://it.wikipedia.org/wiki/Donald_Olding_Hebb↩︎\nFrank Rosenblatt (1928 – 1971): https://it.wikipedia.org/wiki/Frank_Rosenblatt↩︎\nMarvin Minsky (1927 – 2016): https://it.wikipedia.org/wiki/Marvin_Minsky↩︎\nSeymour Papert (1928 – 2016): https://it.wikipedia.org/wiki/Seymour_Papert↩︎\nGeoffrey Everest Hinton (1947): https://it.wikipedia.org/wiki/Geoffrey_Hinton↩︎",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Deep Learning and Neural Architectures</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html",
+    "href": "sec6.html",
+    "title": "6  Value Approximation Methods",
+    "section": "",
+    "text": "6.1 Recap: What’s Wrong with Tabular Methods\nTabular methods suffer form a series of drawbacks:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#recap-whats-wrong-with-tabular-methods",
+    "href": "sec6.html#recap-whats-wrong-with-tabular-methods",
+    "title": "6  Value Approximation Methods",
+    "section": "",
+    "text": "Table with 1 row per state-action entry.\nWhat happens if we can’t fit all the state-action entries in a table?\n\nWe need function approximation rather than tables.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#function-approximation-in-rl",
+    "href": "sec6.html#function-approximation-in-rl",
+    "title": "6  Value Approximation Methods",
+    "section": "6.2 Function Approximation in RL",
+    "text": "6.2 Function Approximation in RL\nAn alternative is function approximation.\nFunction approximation will provide a mapping between a state or state-action to a value function.\nMore precisely:\n\nA value-function approximation is a function that takes in input the state (or the state and action), and gives as output the value function for the state (or the state and action).\n\n\n   State = Pixels",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#approximation-methods",
+    "href": "sec6.html#approximation-methods",
+    "title": "6  Value Approximation Methods",
+    "section": "6.3 Approximation Methods",
+    "text": "6.3 Approximation Methods\nIn this chapter we will focus on the study of function approximation for estimating state-value functions.\nIn particular, we will consider an approach where the approximate value function is represented not as a table but as a parametrised functional form wit weight vector \\(w \\in \\mathbb{R}^d\\).\nWe will start by considering how to approximate \\(v_\\pi\\) from experience generatd using a policy \\(\\pi\\).\n\n\n\n\n Number of Moves in Go.\n\n\n\n\n The on-line encyclopedia of integer sequences: Number of legal positions in Go played on an n X n grid (each group must have at least one liberty).\n\n\nWe will write \\(\\hat{v}(s,\\mathrm{w}) \\approx v_\\pi(s)\\) for the approximate value of state \\(s\\) given weight vector \\(\\mathrm{w}\\).\n\\(\\hat{v}\\) in theory might be a linear function of the weights \\(\\mathrm{w}\\), but more generally it can be a non-linear function.\nA widely used technique is to use a multi-layer artificial neural network to compute \\(\\hat{v}\\), with \\(\\mathrm{w}\\) the vector of the connection weights in all the layers.\n\nBy adjusting the values of the weights \\(\\mathrm{w}\\), a different range of functions can be computed by the network.\n\nTypically, the number of weights \\(\\mathrm{w}\\) is much less than the number of states\n\n\\((d \\ll \\vert \\mathcal{S} \\vert)\\)\n\nwhere \\(\\vert \\mathcal{S} \\vert\\) is the cardinality of the states of the system under consideration.\n\n\nThere are various interesting aspects that need to be considered:\n\nFunction approximation can be used also for partially observable problems.\nWith an approximation, we might build a function that does not depend on certain aspects of the state and we can just build a fucnction assuming that they are not observable.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#value-function-approximation",
+    "href": "sec6.html#value-function-approximation",
+    "title": "6  Value Approximation Methods",
+    "section": "6.4 Value Function Approximation",
+    "text": "6.4 Value Function Approximation\nClassic methods are based on the idea of an update “towards” a target. For example:\n\nIn the Monte Carlo method the update target for the value prediction is\n\n\\(G_t\\).\n\nIn the TD(0) the update target is\n\n\\(R_{t+1} + \\gamma \\hat{v} (S_{t+1}, \\mathrm{w}_t)\\)\n\n\nIn classic methods, what we do is to change the current estimation value “towards” the update.\nThe estimation of value function approximation is different:\n\nVery complex methods are possible.\nWe will use supervised learning (i.e. we will learn through sets of inputs-outputs).\n\nSince we are trying to learn how to link the inputs to real values, we can consider this as a function approximation problem.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#nonlinear-function-approximation-artificial-neural-networks",
+    "href": "sec6.html#nonlinear-function-approximation-artificial-neural-networks",
+    "title": "6  Value Approximation Methods",
+    "section": "6.5 Nonlinear Function Approximation: Artificial Neural Networks",
+    "text": "6.5 Nonlinear Function Approximation: Artificial Neural Networks\nArtificial Neural Networks (ANN) are widely used for nonlinear function approximation.\nWe have results that guarantee that an ANN with a single hidden layer containing a large enough finite number of sigmoid units can approximate any continuous function on a compact region of the network’s input space to any degree of accuracy (see Cybenko 1989).\nNowadays, we tend to use networks with more than one hidden layer (we usually use the term deep learning for that reason).\nLearning is based on stochastic gradient descent.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#stochastic-gradient-descent",
+    "href": "sec6.html#stochastic-gradient-descent",
+    "title": "6  Value Approximation Methods",
+    "section": "6.6 Stochastic Gradient Descent",
+    "text": "6.6 Stochastic Gradient Descent\nStochastic gradient descent methods (SGD) adjust the weights after each example by small value in the direction that would most reduce the error on that example.\nWe will discuss here the case for one example, but this can be done for multiple examples at a time (remember mini-batch gradient descent methods).\n\nRemember the formula we used for the update of the weight for a deep learning network (valid for a “shallow” artificial neural network as well):\n\n\n\\(w_j \\leftarrow w_j + \\nabla w_j = w_j - \\eta \\frac{\\delta J}{\\delta w_j}\\)\n\nWe will indicate time here, since we are updating \\(w_j\\) at each of a series of discrete time steps \\(t=0,1,2,\\dots\\) as follows:\n\n\\(w_{j, t+1} \\leftarrow w_{j,t} + \\nabla w_{j,t} = w_{j,t} - \\eta \\frac{\\delta J}{\\delta w_{j,t}}\\)\n\n\nAssuming that we have a loss function that represents the mean squared error (which we call mean square error) as follows:\n\n\\(J(\\mathrm{w}) = \\sum_{s \\in \\mathcal{S}} (U_t - \\hat{v}(S_t, \\mathrm{w}_t))^2\\)\n\nWe will obtain the following\n\n\n\\(\\mathrm{w}_{t+1} \\doteq \\mathrm{w}_t - \\frac{1}{2} \\eta \\nabla [U_t - \\hat{v} (S_t, \\mathrm{w}_t)]^2\\) \\(\\qquad \\; = \\mathrm{w}_t + \\eta [U_t - \\hat{v} (S_t, \\mathrm{w}_t)] \\nabla \\hat{v}(S_t, \\mathrm{w}_t)\\)\n\nwhere \\(U_t\\) is the target and \\(\\eta\\) is the step-size parameter.\n\nRecall the definition of gradient:\n\n\\(\\nabla f(\\mathrm{w}) \\doteq (\\frac{\\delta f(\\mathrm{w})}{\\delta \\mathrm{w}_1}, \\frac{\\delta f(\\mathrm{w})}{\\delta \\mathrm{w}_2}, \\cdots, \\frac{\\delta f(\\mathrm{w})}{\\delta \\mathrm{w}_d})\\)\n\nStochastic gradient methods are “gradient descente” methods because the overall step in \\(\\mathrm{w}_t\\) is proportional to the negative gradient of the example’s squared error.\n\nIntuition: tha is the direction in which the error falls more rapidly.\nRecall: they are stochastic since they are besed on samples that are ranodmly chosen.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#semi-gradient-one-step-sarsa-prediction",
+    "href": "sec6.html#semi-gradient-one-step-sarsa-prediction",
+    "title": "6  Value Approximation Methods",
+    "section": "6.7 Semi-gradient One-step Sarsa Prediction",
+    "text": "6.7 Semi-gradient One-step Sarsa Prediction\nWe can extend the mathematical framework we discussed for state value functions to state-action value functions.\n\nIn this case the target \\(U_t\\) is an approximation of \\(q_\\pi(S_t, A_t)\\).\nThe general gradient-descent update for action-value prediction is:\n\n\\(\\mathrm{w}_{t+1} = \\mathrm{w}_t + \\eta [U_t - \\hat{q}(S_t, A_t, \\mathrm{w}_t)] \\nabla \\hat{q} (S_t, A_t, \\mathrm{w}_t)\\)\n\nFor example, the update for the (episodic) semi-gradient one-step Sarsa method is the following:\n\n\\(\\mathrm{w}_{t+1} \\doteq \\mathrm{w}_t + \\eta [R_{t+1} + \\gamma \\hat{q} (S_{t+1}, A_{t+1}, \\mathrm{w}_t) - \\hat{q}(S_t, A_t, \\mathrm{w}_t)] \\nabla \\hat{q}(S_t, A_t, \\mathrm{w}_t)\\)\n\nIt is called semi-gradient because we are not really taking the “real” gradient. The “real” gradient will require to calculate the gradient of \\(U_t\\).\nThe main reason why we are not calculating the gradient of \\(U_t\\) is complexity. Additionally, convergence is guaranteed also in this case: for a constant policy, this method converges in the same way that TD(0) does.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#semi-gradient-one-step-sarsa-control",
+    "href": "sec6.html#semi-gradient-one-step-sarsa-control",
+    "title": "6  Value Approximation Methods",
+    "section": "6.8 Semi-gradient One-step Sarsa Control",
+    "text": "6.8 Semi-gradient One-step Sarsa Control\nBut, as usual, we are interested in the problem of control, i.e. we are interested in finding the optimal policy.\n\nThe method is essentially the same as for tabular methods.\n\nFor each possible action \\(a\\) available in the current state \\(S_t\\), we can compute \\(\\hat{q}(S_t, a, \\mathrm{w}_t)\\) and then find the greedy action using:\n\n\\(A^*_t = \\arg \\max_a \\hat{q} (S_t, a, \\mathrm{w}_t)\\)\n\n\nPolicy tratment is then done by changing the estimation policy to a soft approximation of the greedy policy (e.g. \\(\\epsilon\\)-greedy policy).\nActions are selected according to this same policy (this is on-policy control).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#semi-gradient-q-learning",
+    "href": "sec6.html#semi-gradient-q-learning",
+    "title": "6  Value Approximation Methods",
+    "section": "6.9 Semi-gradient Q-Learning",
+    "text": "6.9 Semi-gradient Q-Learning\nThe basic procedure is similar for the “classic” Q-learning.\n\nThe update is as follows:\n\n\n\\(\\mathrm{w}_{t+1} = \\mathrm{w}_t + \\eta [R_{t+1} + \\gamma \\max_a \\hat{q} (S_{t+1},a,\\mathrm{w}_t) - \\hat{q} (S_t, A_t, \\mathrm{w}_t)] \\nabla \\hat{q} (S_t, A_t, \\mathrm{w}_t)\\)\n\nwhere \\(\\mathrm{w}_t\\) is the vector of the network’s weights, \\(A_t\\) is the action selected at time \\(t\\), and \\(S_t\\) and \\(S_{t+1}\\) are respectively the inputs to the network at time steps \\(t\\) and \\(t+1\\).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#deep-q-network-dqn",
+    "href": "sec6.html#deep-q-network-dqn",
+    "title": "6  Value Approximation Methods",
+    "section": "6.10 Deep Q-Network (DQN)",
+    "text": "6.10 Deep Q-Network (DQN)\nSemi-gradient Q-learning is at the basis of the Deep-Q-Network (DQN) used for implementing the agent. We can actually use the two terms interchangeably.\n\nIt combines Q-learning with a deep (convolutional) multi-layer network.\nThe gradient is based on backpropagation.\nDQN’s reward is calculated as follows:\n\n\\(+1\\) whenever the score of the game is increased;\n\\(-1\\) whenever the score of the game is decreased;\n\\(0\\) otherwise.\n\nIn other words, the positive (and negative) values were capped to \\(+1\\) (and \\(-1\\)).\n\n\nStates and Actions\n\n\n  210 \\(\\times\\) 160 pixel image frames with 128 colours at 60Hz.\n\nThe Atari games have a resolution of \\(210 \\times 160\\) pixel image frames with \\(128\\) colours at \\(60\\) Hz.\n\nData were pre-processed in order to obtain a \\(84 \\times 84\\) array of luminanc values.\nBecause the full states of many of the Atari games are not completely observable from the images frames and to provide more information to the agent for the decision, the authors “stacked” the four most recent frames so that the inputs of the network has dimension \\(84 \\times 84 \\times 4\\).\n\nOtherwise we would have ended up with a 1-order Markov system with the current image as state (no directionality for example, etc.).\n\n\n\n\n\n\n\n\nThe activation levels of DQN’s outputs are the estimated optimal values of the corresponding state-value pairs fiven the stack of images in input.\nThe assignment of output units to a game’s actions varied from game to game (from 4 to 18).\n\nNot in all the games the output values are actually considered (but they are still in the network).\n\n\n\n\n\n\nDeep Q-Network\n\nDQN uses an \\(\\epsilon-\\)greedy policy, with \\(\\epsilon\\) decreasing linearly over the first million frames and remaining at a low value for the rest of the learning session.\n\nThe network is trained using a mini-batch stochastic gradient descent after processing 32 images (and previous 3 for each image).\n\nChanges proportional to the running average to the magnitudes of recent gradients for that weight (RSMProp).\n\nA key modification to standard Q-learning is the use of experience replay.\n\n\n DQN Breakout.\n\n\nExperience Replay\n\nIn DQN the authors made a series of changes to the standard basic Q-learning. First, they used a method called experience replay in order to deal with the convergence problem of Q-learning.\n\nIn Q-learning, if the updates are highly correlated, the larning process converges very slowly.\nThe key idea of experience replay is to store agent’s experience in a replay memory (or replay buffer) that is accessed to perform the weight updates.\n\n\nThe training is done through an emulator.\nAfter the emulator executes action \\(A_t\\) in a state represented by image stack \\(S_t\\) and returned reward \\(R_{t+1}\\) and the folliwing image tack \\(S_{t+1}\\), it added the tuple \\((S_t, A_t, R_{t+1}, S_{t+1})\\) to the replay memory.\nThe experience replay memory accumulates experiences over many plays of the same game.\nEach Q-learning update is performed by randomly samling from the experience replay buffer.\n\n\n\n\nInstead of \\(S_{t+1}\\) becoming the new \\(S_t\\) for the next update, as it would be in the usual Q-learning, a new unconnected experience is drawn from the replay memory.\n\nImportant point: since Q-learning is an off-policy algorithm, id does not need to learn from “connected” trajectories.\n\nThe random selection of uncorrelated “experiences” reduce the variance of the update. This allows Q-learning to converge more quickly.\n\\(\\blacktriangleright\\) Dealing with the variance of the update is a key issue for RL and it is an active ara of research.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec6.html#references",
+    "href": "sec6.html#references",
+    "title": "6  Value Approximation Methods",
+    "section": "6.11 References",
+    "text": "6.11 References\n\nChapters 9 and 16 of Sutton and Barto (2018)\n\n\n\n\n\nSutton, Richard S., and Andrew G. Barto. 2018. Reinforcement Learning. An Introduction. Second edition. MIT Press. https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Value Approximation Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html",
+    "href": "sec7.html",
+    "title": "7  Monte Carlo Methods",
+    "section": "",
+    "text": "7.1 Monte Carlo Prediction\nBorh first-visit Monte Carlo and every-visit Monte Carlo converge to \\(v_\\pi(s)\\) as the number of visits (or first visits) to \\(s\\) goes to infinity.\nEvery-visit Monte Carlo would be the same except without the check for \\(S_t\\) having occurred earlier in the episode.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#monte-carlo-prediction",
+    "href": "sec7.html#monte-carlo-prediction",
+    "title": "7  Monte Carlo Methods",
+    "section": "",
+    "text": "Goal: learning the state-value function for a given policy.\nRecall:\n\nThe value of a state is the expected return (expected cumulative guture discounted reward) from that state.\n\nObvious/simple solution: average the returns observed after visiting that state. As more returns are observed, the average should converge to the expected value.\nMore formally:\n\nWe want to estimate \\(v_\\pi(s)\\), the value of a state \\(s\\) under policy \\(\\pi\\), given a set of episodes obtained by following \\(\\pi\\) and passing through \\(s\\).\n\nEach occurrence of a state \\(s\\) in an episode is called a visit to \\(s\\).\n\n\nA state \\(s\\) can be visited multiple times.\n\n\nThe first time a state \\(s\\) is visited in an episode is called the first visit to \\(s\\).\n\n\n\n\n\nThe first-visit Monte Carlo method estimates \\(v_\\pi(s)\\) as the average of the returns following first visits to \\(s\\).\nThe every-visit Monte Carlo method averages the returns following all the visits to \\(s\\).\n\n\n\n\nFirst-visit Monte Carlo Prediction\n\n\n\nMulti-visit Monte Carlo Prediction",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#monte-carlo-estimation-of-action-values",
+    "href": "sec7.html#monte-carlo-estimation-of-action-values",
+    "title": "7  Monte Carlo Methods",
+    "section": "7.2 Monte Carlo Estimation of Action Values",
+    "text": "7.2 Monte Carlo Estimation of Action Values\nThe estimation of a state value makes sense when we have a model of the system.\n\nWith a model, state values alone are sufficient to determine a policy.\nWithout a model, it is necessary to estimate the value of each action in order for the value to be useful in suggesting a policy.\n\n\n\nThe policy evaluation problem for action values is to estimate \\(q_\\pi(s,a)\\), the expected return when starting in state \\(s\\), taking action \\(a\\) and then following policy \\(\\pi\\).\n\nRemember: we assume that the policy \\(\\pi\\) is fixed.\n\nThe methods for the Monte Carlo estimation of action values are essentially the same as those presented for state value, but now we talk about visits to the state-action pair instead of to a state.\n\nA state-action pair \\(s,a\\) is said to be visited in an episode if the state \\(s\\) is visited and the action \\(a\\) is taken in it.\n\n\nThe first-visit Monte Carlo method averages the returns following the first time in each episode that the state was visited and the action was selected.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#maintaining-exploration",
+    "href": "sec7.html#maintaining-exploration",
+    "title": "7  Monte Carlo Methods",
+    "section": "7.3 Maintaining Exploration",
+    "text": "7.3 Maintaining Exploration\nHowever, there is a problem: many state-action pairs might never be visited.\n\nIf \\(\\pi\\) is a deterministic policy, then in following \\(\\pi\\), we will observe returns only for one of the actions of each state.\n\nNo return to average \\(\\rightarrow\\) no improvement with experience.\nWe cannot compare alternatives, because no alternatives are explored.\n\nTo compare alternatives, we need to estimate the value of all the actions from each state, not only the one we currently prefer (according to our policy).\n\nThis is the general problem of maintaining exploration.\nOne way to do this is to have the episodes starting in a state-action pair and that every pair has non-zero probability of being seelcted as start.\nThis ensures that asymptotically (infinite number of episodes), all the state-action pairs will be visited an infinite number of times.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#on-policy-and-off-policy-exploration",
+    "href": "sec7.html#on-policy-and-off-policy-exploration",
+    "title": "7  Monte Carlo Methods",
+    "section": "7.4 On-policy and Off-policy Exploration",
+    "text": "7.4 On-policy and Off-policy Exploration\nThe method described above is useful, but it cannot applied in general.\n\nThink about, for example, the case where we have exploration with the environment. We cannot start by “jumping” to a certain state-action pair at the beginning.\n\nThe most common alternative is to ensure that all the state-action pairs are explored anyway.\n\nWe need to explore these states, not following the current policy (for example with a stochastic policy). In other words, the exploration is not performed on-policy as done until now in this section, but off-policy.\nVarious methods are possible, such as off-policy prediction via Importance Sampling (not covered here - see Chapter 5.5 of Sutton and Barto (2018)).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#policy-improvement",
+    "href": "sec7.html#policy-improvement",
+    "title": "7  Monte Carlo Methods",
+    "section": "7.5 Policy Improvement",
+    "text": "7.5 Policy Improvement\nWe will focus now back on on-policy exploration, i.e. the policy is used to make decisions and to explore the vaious states.\nUntil now we assumed that the policy was fixed. However, the policy itself can be improved while learning the value functions and, potentially, we might have to aim at obtaining an optimal policy.\n\nMethods used for improving a policy in order to reach the optimal policy are ususally referred to as Monte Carlo control.\n\n\nRemember: until now we’ve assumed that the policy was fixed.\n\nGiven that policy, we estimate the value functions.\n\nNow we consider how to improve the policy starting from an on-policy method.\n\nThe policy that we use to make deicisions is that we are trying to improve.\n\nPolicy improvement is done by making the policy greedy with respect to the current value functions.\nIn this case we have an action-value function.\n\nNo model is needed to construct the greedy policy.\n\n\n\nFor any action-value function \\(q\\), the corresponding greedy policy is the one that, for each \\(s \\in \\mathcal{S}\\), deterministically chooses an action with maximal action-value:\n\n\\(\\pi(s) \\leftarrow \\arg \\max_a Q(s,a)\\)\n\n\nWe have formula results that ensure that this process of policy improvement lead to optimal policy (usually referred to Monte Carlo control).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#monte-carlo-control-with-and-without-exploring-starts",
+    "href": "sec7.html#monte-carlo-control-with-and-without-exploring-starts",
+    "title": "7  Monte Carlo Methods",
+    "section": "7.6 Monte Carlo Control with and without Exploring Starts",
+    "text": "7.6 Monte Carlo Control with and without Exploring Starts\n\nMonte Carlo Control without Exploring Starts\n\nAn alternative method for Monte Carlo control (i.e. to achieve the optimal policy) is to use an \\(\\epsilon-\\)greedy approach.\nMost of the time the action that has the maximal estimated action value is chosen, but with a probability \\(\\epsilon\\) an action is chosen at random. This means that:\n\nAll the non-greedy actions are given the minimal probability of selection \\[\\frac{\\epsilon}{\\mathcal{A}(s)}\\]\n\nFollowing this mechanism, it can be guaranteed that we will have an improvement of the policy (policy improvement theorem).\n\nMonte Caro Control with Exploring Starts",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec7.html#references",
+    "href": "sec7.html#references",
+    "title": "7  Monte Carlo Methods",
+    "section": "7.7 References",
+    "text": "7.7 References\n\nChapter 5 of Sutton and Barto (2018)\n\n\n\n\n\nSutton, Richard S., and Andrew G. Barto. 2018. Reinforcement Learning. An Introduction. Second edition. MIT Press. https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Monte Carlo Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec8.html",
+    "href": "sec8.html",
+    "title": "8  Policy Gradient Methods",
+    "section": "",
+    "text": "8.1 Policy Gradient Methods\nWe now consider a different type of methods from the previous ones that learn instead a parametrised policy that can select actions without consulting a value function.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec8.html#issues-with-reinforce",
+    "href": "sec8.html#issues-with-reinforce",
+    "title": "8  Policy Gradient Methods",
+    "section": "8.3 Issues with REINFORCE",
+    "text": "8.3 Issues with REINFORCE\nAs a stochastic gradient method, REINFORCE has good theoretical convergence properties.\nBy construction, the expected update over an episode is the same direction as the performance gradient.\n\nThis assumes an improvement in expected performance for sufficient small \\(\\alpha\\) and convergence to a local optimum under standard stochastic approximation conditions for decreasing \\(\\alpha\\).\nHowever, since it is a Monte Carlo method, REINFORCE suffers from high variance and this might lead to slow learning.\nOne way of dealing with this problem is to use baselines and actor-critic methods.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec8.html#reinforce-with-baseline",
+    "href": "sec8.html#reinforce-with-baseline",
+    "title": "8  Policy Gradient Methods",
+    "section": "8.4 REINFORCE with Baseline",
+    "text": "8.4 REINFORCE with Baseline\n\nThe policy gradient theorem can be generalised to include a comparison of the action value to an arbitrary baseline \\(b(s)\\):\n\n\\(\\nabla J(\\theta) \\propto \\sum_s \\mu(s) \\sum_a (q_\\pi(s,a) - b(s)) \\nabla \\pi (a \\vert s, \\theta)\\)\n\nThe baseline can be any function, even a random variable, as long as it does not vary with \\(\\alpha\\).\nThe equation remains valid because the subtracted quantity is zero:\n\n\\(\\sum_a b(s) \\nabla \\pi(a \\vert s, \\theta) = b(s) \\nabla \\sum_a \\pi(a \\vert s, \\theta) = b(s) \\nabla 1 = 0\\)\n\n\nThe policy gradient theorem with baseline can be used to derive an update rule using similar steps.\n\nThe update for REINFORCE with baseline is as follows:\n\n\\(\\theta{t+1} \\doteq \\theta_t + \\alpha(G_t-b(S_t)) \\frac{\\nabla \\pi(A_t\\vert S_t, \\theta_t)}{\\pi(A_t \\vert S_t,\\theta_t)}\\)\n\n\n\n\\(G_t =\\)\n\\(=\\) the cumulative reward that we get from \\(t\\).\n\\(=\\) the value of that state for that specific rollout onwards.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html",
+    "href": "sec9.html",
+    "title": "9  Multi-agent Systems",
+    "section": "",
+    "text": "9.1 Multiagent Learning\nWe will use the following definition of multiagent learning:",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#multiagent-learning",
+    "href": "sec9.html#multiagent-learning",
+    "title": "9  Multi-agent Systems",
+    "section": "",
+    "text": "Definition\n\n\n\n“The study of multiagent systems in which one or more of the autonomous entities improves automatically through experience”.\n\n\nCharacteristics of Multiagent Learning\n\n\nDifferent scale:\n\nA city or an ant colony or a football team.\n\nDifferent degree of complexity:\n\nA human, a machine, a mammal or an insect.\n\nDifferent types of interaction:\n\nFrequent interactions (or not), interactions with a limited number of individuals, etc.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#presence-of-regularity",
+    "href": "sec9.html#presence-of-regularity",
+    "title": "9  Multi-agent Systems",
+    "section": "9.2 Presence of Regularity",
+    "text": "9.2 Presence of Regularity\nIt is fundamental that there is a certian degree of regularity in the system otherwise prediction of behaviour is not possible.\n\nAssumption: past experience is somehow predictive of future expectations.\n\nDealing with non-stationarityy is a key problem: it is the usual problem of reinforcement learning at the end.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#paradigms",
+    "href": "sec9.html#paradigms",
+    "title": "9  Multi-agent Systems",
+    "section": "9.3 Paradigms",
+    "text": "9.3 Paradigms\nWe will study 5 paradigms:\n\nOnline Multi-agent Reinforcement Learning towards individual utility\nOnline Multi-agent Reinforcement Learning towards social welfare\nCo-evolutionary learning\nSwarm intelligence\nAdaptive mechanism design\n\nThere are novel emerging paradigms that will discuss during the coming lectures based on foundational models/LLMS, which are being developed right now:\n\nMulti-agent Learning based on foundational models towards individual utility\nMulti-agent Learning based on foundational models towards social welfare",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#online-reinforcement-learning-towards-individual-utilityreward",
+    "href": "sec9.html#online-reinforcement-learning-towards-individual-utilityreward",
+    "title": "9  Multi-agent Systems",
+    "section": "9.4 Online Reinforcement Learning towards Individual Utility/Reward",
+    "text": "9.4 Online Reinforcement Learning towards Individual Utility/Reward\nOne of the most-studied scenarios in multiagent learning is that in which multiple independent agents take actions in the same environment and learn online to maximise their own individual utility functions.\n\nGoal: to maximise the utility at the end of the game (i.e. expected reward).\n\n\n  Gridworld Example.\n\nFrom a formal point of view (game-theory point of view), this can be considered a repeated normal form game.\n\nA repeated game is a game that is based on a certain number of repetitions.\nNormal form games are games that are presented using a matrix.\n\nAs aside, an extensive form game is a game for which an explicit representation of the sequence of the players’ possible moves, their choices at every decision point and the information about other player’s move and relative payoffs.\n\n\n\nExample: Prisoner’s Dilemma\n\nThe Prisoner’s Dilemma is a classic 2-player game.\n\nDescription of the game:\n\nTwo prisoners committed a crime together and are being interrogated separately.\nIf neither of them confesses to the crime (they both “cooperate”), then they will both get a small punishment (corresponding to a payoff of 5).\nIf one of them confesses (or “defects”), but the other does not, then the one that confesses gets off for free (payoff of 10), but the other gets the worst punishment possible (payoff of 0).\nIf they both defect, they get a worst punishment (payoff of 1).\n\n\n\n\n\n\nNormal games were initially introduced as one-shot game.\nThe players know each other’s full utility (reward) functions and play the game only once.\nIn this setting, the concept of Nash equilibrium1 was introduced: a set of actions such that no player would be better off deviating given that the other player’s actions are fixed.\n\nGames can have one or multiple Nash equilibria.\nIn the Prisoner’s Dilemma, the only Nash Equilibrium is for both agents to defect.\n\n\n\n\n\nhttps://arxiv.org/abs/2410.01639",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#repeated-normal-form-games",
+    "href": "sec9.html#repeated-normal-form-games",
+    "title": "9  Multi-agent Systems",
+    "section": "9.5 Repeated Normal Form Games",
+    "text": "9.5 Repeated Normal Form Games\n2",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#online-reinforcement-learning-towards-social-welfare",
+    "href": "sec9.html#online-reinforcement-learning-towards-social-welfare",
+    "title": "9  Multi-agent Systems",
+    "section": "9.6 Online Reinforcement Learning towards Social Welfare",
+    "text": "9.6 Online Reinforcement Learning towards Social Welfare",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#co-evolutionary-approaches",
+    "href": "sec9.html#co-evolutionary-approaches",
+    "title": "9  Multi-agent Systems",
+    "section": "9.7 Co-evolutionary Approaches",
+    "text": "9.7 Co-evolutionary Approaches",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#evolutionary-algorithms",
+    "href": "sec9.html#evolutionary-algorithms",
+    "title": "9  Multi-agent Systems",
+    "section": "9.8 Evolutionary Algorithms",
+    "text": "9.8 Evolutionary Algorithms",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#problem-of-representation",
+    "href": "sec9.html#problem-of-representation",
+    "title": "9  Multi-agent Systems",
+    "section": "9.9 Problem of Representation",
+    "text": "9.9 Problem of Representation",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#fitness-function",
+    "href": "sec9.html#fitness-function",
+    "title": "9  Multi-agent Systems",
+    "section": "9.10 Fitness Function",
+    "text": "9.10 Fitness Function",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#selection",
+    "href": "sec9.html#selection",
+    "title": "9  Multi-agent Systems",
+    "section": "9.11 Selection",
+    "text": "9.11 Selection",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#cross-over",
+    "href": "sec9.html#cross-over",
+    "title": "9  Multi-agent Systems",
+    "section": "9.12 Cross-over",
+    "text": "9.12 Cross-over",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#mutation",
+    "href": "sec9.html#mutation",
+    "title": "9  Multi-agent Systems",
+    "section": "9.13 Mutation",
+    "text": "9.13 Mutation",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#evaluation-and-replacement",
+    "href": "sec9.html#evaluation-and-replacement",
+    "title": "9  Multi-agent Systems",
+    "section": "9.14 Evaluation and Replacement",
+    "text": "9.14 Evaluation and Replacement\nThe best individuals are kept in the next generation, by taking the copies.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#coevolution",
+    "href": "sec9.html#coevolution",
+    "title": "9  Multi-agent Systems",
+    "section": "9.15 Coevolution",
+    "text": "9.15 Coevolution\nWe can update the parameters of a policy \\(\\rightarrow\\) we mutate the parameters. The mapping can be a parametric mapping of what we can learn.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#aside-dna-computing",
+    "href": "sec9.html#aside-dna-computing",
+    "title": "9  Multi-agent Systems",
+    "section": "9.16 Aside: DNA Computing",
+    "text": "9.16 Aside: DNA Computing\n\n\n\n\nShoham, Yoav, and Kevin Leyton-Brown. 2009. Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations. Cambridge University Press.\n\n\nTuyls, Karl, and Peter Stone. 2018. “Multiagent Learning Paradigms.” Artificial Intelligence 265: Multiagent Systems Special Issue, 115–27.\n\n\nWooldridge, Michael. 2002. Introduction to Multiagent Systems. John Wiley & Sons.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec9.html#footnotes",
+    "href": "sec9.html#footnotes",
+    "title": "9  Multi-agent Systems",
+    "section": "",
+    "text": "“A Beautiful Mind”: movie about the life of Nash.↩︎\n“Mutual Assured Destruction”: .↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multi-agent Systems</span>"
+    ]
+  },
+  {
+    "objectID": "sec10.html",
+    "href": "sec10.html",
+    "title": "10  Introduction to Gym",
+    "section": "",
+    "text": "11 Gymnasium",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
+    ]
+  },
+  {
+    "objectID": "sec10.html#key-gymnasium-environments",
+    "href": "sec10.html#key-gymnasium-environments",
+    "title": "10  Introduction to Gym",
+    "section": "11.1 Key Gymnasium environments",
+    "text": "11.1 Key Gymnasium environments\nSome key environment examples are:\n\nCartPole\n\n\n\n\n\nAgent must balance a pole on a moving cart and prevent it from falling\nhttps://gymnasium.farama.org/environments/classic_control/cart_pole/\n\n\nMountainCar\n\n\n\n\n\nAgent must drive a car up a steep hill\nhttps://gymnasium.farama.org/environments/classic_control/mountain_car/\n\n\nFrozenLake\n\n\n\n\n\nAgent must navigate a frozen lake with holes, finding a safe path across it\nhttps://gymnasium.farama.org/environments/toy_text/frozen_lake/\n\n\nTaxi\n\n\n\n\n\nPicking up and dropping off passengers, focusing of efficient tour planning and task management\nhttps://gymnasium.farama.org/environments/toy_text/taxi/",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
+    ]
+  },
+  {
+    "objectID": "sec10.html#gymnasium-interface",
+    "href": "sec10.html#gymnasium-interface",
+    "title": "10  Introduction to Gym",
+    "section": "11.2 Gymnasium interface",
+    "text": "11.2 Gymnasium interface\nNo matter the environemnt, the Gymnasium library offers an unified interface for interaction. This interface includes functions and methods to:\n\nInitialize environment\nVisually represent environment\nExecute actions\nObserve outcomes\n\nLet’s explore them using the CartPole environment.\n\nInteracting with Gymnasium environments\n\nIn the following snippet we:\n\nCreate the environment, by calling the gym.make function and passing the id of the environment CartPole along with render_mode equals rgb_array allowing us to visualize the states using matplotlib. Other render modes exist.\nInitialize the environment and return the initial observation along with some auxiliary information, by calling the method env.reset. The seed argument can be used to ensure reproducibility.\nPrint the intial observation.\n\n\nimport gymnasium as gym\n\nenv = gym.make('CartPole', render_mode='rgb_array')\nstate, info = env.reset(seed=42)\nprint(state)\n\n[ 0.0273956  -0.00611216  0.03585979  0.0197368 ]\n\n\n/Users/alessiacrimaldi/miniconda3/envs/aas/lib/python3.11/site-packages/gymnasium/envs/registration.py:531: UserWarning: WARN: Using the latest versioned environment `CartPole-v1` instead of the unversioned environment `CartPole`.\n  logger.warn(\n\n\nThe observation as an array represents the environment state, including the position and velocity of both ther cart and the pole.\nFor other environments, we’ll need to consult the Gymnasium Documentation to understand the details of their states.\n\nVisualizing the state\n\nTo get a visual representation of the state, the env.render method returns the state image that we can visualize using the plt.imshow function. Then, by calling plt.show, a snapshot of the environment will be displayed.\n\nimport matplotlib.pyplot as plt\n\ndef render():\n    state_image = env.render()\n    plt.imshow(state_image)\n    plt.show\n\nrender()\n\n\n\n\n\n\n\n\n\nPerforming actions\n\nIn the CartPole environment there are two possible actions:\n\n\\(0:\\) moving the cart to the left\n\\(1:\\) moving the cart to the right\n\nTo execute an action we call env.step and pass the chosen action. This method return five values:\n\nThe next state\nThe reward received\nA terminated signal, indicating wether the agent has reached a terminal state such as achieving the goal or loosing\nA truncated signal, showing wether a condition like a time limit has been met\nInfo which provides auxiliary diagnostic information useful for debugging\n\nWe omit truncated and info in our script for simplicity and we print the first three return values after moving the cart to the right.\n\naction = 1\nstate, reward, terminated, truncated, info = env.step(action)\n\nprint(\"State: \", state)\nprint(\"Reward: \", reward)\nprint(\"Terminated: \", terminated)\n\nState:  [ 0.02727336  0.18847767  0.03625453 -0.26141977]\nReward:  1.0\nTerminated:  False\n\n\nWe see the state changed and the agent received a reward of \\(1\\), since it hasn’t reached a terminal state yet.\n\nInteraction loops\n\nSuppose we want to keep pushing the cart to the right until a termination condition is met and monitor the environment. We add the previous code in a while loop and render the environment at each iteration.\n\nwhile not terminated:\n    action = 1  # Move to the right\n    state, reward, terminated, _, _ = env.step(action)\n    render()\n\n\n\n\nHere are some chosen plots showing the cart movements to the right.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
+    ]
+  },
+  {
+    "objectID": "sec10.html#references",
+    "href": "sec10.html#references",
+    "title": "10  Introduction to Gym",
+    "section": "11.3 References",
+    "text": "11.3 References\n\nDataCamp, Reinforcement Learning with Gymnasium in Python",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Gym</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html",
+    "href": "sec12.html",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "",
+    "text": "12.1 Eager Execution in TensorFlow 2.x",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#computing-customised-gradients",
+    "href": "sec12.html#computing-customised-gradients",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.2 Computing (Customised) Gradients",
+    "text": "12.2 Computing (Customised) Gradients",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#gradient-tapes",
+    "href": "sec12.html#gradient-tapes",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.3 Gradient Tapes",
+    "text": "12.3 Gradient Tapes\n\nTensorFlow provides the tf.GradientTape API for automatic differentiation, i.e., computing the gradient of a computation with respect to its input variables.\nTensorFlow records all operations executed inside the context of a tf.GradientTape onto a tape.\nTensorFlow then uses that tape and the gradients of the outputs with respect to the intermediate values computed during a recorded tf.GradientTape context.\n\n\nx = tf.ones((2, 2))\n\nwith tf.GradientTape() as t:\n    t.watch(x)\n    y = tf.reduce_sum(x)\n    z = tf.multiply(y, y)\n\n# Derivative of z with respect to the original input tnesor x\ndz_dx = t.gradient(z, x)\ndz_dx_0_0 = dz_dx[0][0].numpy() # 2 (2*x_0_0 at x_0_0 = 1)\ndz_dx_0_1 = dz_dx[0][1].numpy() # 2 (2*x_0_1 at x_0_1 = 1)\ndz_dx_1_0 = dz_dx[1][0].numpy() # 2 (2*x_1_0 at x_1_0 = 1)\ndz_dx_1_1 = dz_dx[1][1].numpy() # 2 (2*x_1_1 at x_1_1 = 1)\n\n\nBy default, the resources held by a \\(\\texttt{GradientTape}\\) are released as soon as the GradientTape.gradient() method is called.\nTo compute multiple gradients over the same computation, it is necessary to create a persistent graient tape.\nThis allows multiple calls to the gradient() method.\nResources are released when the tape object is garbage collected.\n\n\nx = tf.constant(3.0)\n\nwith tf.GradientTape(peristent=True) as t:\n    t.watch(x)\n    y = x*x\n    z = y*y\n\ndz_dx = t.gradient(z, x) # 108.0 (4*x^3 at x = 3)\ndy_dx = t.gradient(y, x) # 6 (2*x at x = 3)\n\ndel t # remove the reference to the tape and invoke garbage collection",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#textttwith...-as-construct-in-python",
+    "href": "sec12.html#textttwith...-as-construct-in-python",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.4 \\(\\texttt{with... as}\\) construct in Python",
+    "text": "12.4 \\(\\texttt{with... as}\\) construct in Python\n\nWhen the \\(\\texttt{with}\\) statement is executed, Python evakuates the expression, called the __enter__ method on the resulting value, which is called a context guard and assign the object returned by __enter__ to the variable given by \\(\\texttt{as}\\).\nPython will then execute the body of the code.\nIn any case, also in case of an exception the __exit__ method of the guard object is executed.\n\n\nclass guarded_execution:\n    def __enter__(self):\n        &lt;initialisation&gt;\n        return p\n    def __exit__(self, type, value, traceback):\n        &lt;free resources and manage exceptions&gt;\n\n\nwith guarded_execution as p:\n    &lt;some instructions&gt;\n\n\nwith open(\"textfile.txt\") as f:\n    data = f.read()\n    &lt;work with data&gt;\n\n\\(\\blacktriangleright\\) See: https://effbot.org/zone/python-with-statement.html",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#texttttf.function",
+    "href": "sec12.html#texttttf.function",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.5 \\(\\texttt{tf.function}\\)",
+    "text": "12.5 \\(\\texttt{tf.function}\\)\n\ntf.function allows to transform a subset of Python syntax into portable and high-performance TensorFlow graphs, which are the component that are “under its hood”.\nIt is possible to write “graph code” using natural Python syntax.\n\nThis topic is outside the scope of this module. You can find the definition of the language and more details in the TensorFlow documentation.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#custom-training-loops-with-keras-models",
+    "href": "sec12.html#custom-training-loops-with-keras-models",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.6 Custom Training Loops with Keras Models",
+    "text": "12.6 Custom Training Loops with Keras Models",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#tensorflow-texttttf.data-api",
+    "href": "sec12.html#tensorflow-texttttf.data-api",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.7 TensorFlow \\(\\texttt{tf.data}\\) API",
+    "text": "12.7 TensorFlow \\(\\texttt{tf.data}\\) API",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#lambda-layers",
+    "href": "sec12.html#lambda-layers",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.8 Lambda Layers",
+    "text": "12.8 Lambda Layers",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#tf-agents-library",
+    "href": "sec12.html#tf-agents-library",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.9 TF-Agents Library",
+    "text": "12.9 TF-Agents Library",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#training-architecture",
+    "href": "sec12.html#training-architecture",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.10 Training Architecture",
+    "text": "12.10 Training Architecture\n\\(-\\)tf agents are not good\\(-\\)\nScaling up is important.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#openai-gym-environment",
+    "href": "sec12.html#openai-gym-environment",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.11 OpenAI Gym Environment",
+    "text": "12.11 OpenAI Gym Environment",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#reply-buffers",
+    "href": "sec12.html#reply-buffers",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.12 Reply Buffers",
+    "text": "12.12 Reply Buffers",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#implementing-atari-games",
+    "href": "sec12.html#implementing-atari-games",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.13 Implementing Atari Games",
+    "text": "12.13 Implementing Atari Games\n\nFrame skipping: the agent only sees one frame at a time.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#collect-driver",
+    "href": "sec12.html#collect-driver",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.14 Collect Driver",
+    "text": "12.14 Collect Driver",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#initialising-the-replay-buffer",
+    "href": "sec12.html#initialising-the-replay-buffer",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.15 Initialising the Replay Buffer",
+    "text": "12.15 Initialising the Replay Buffer",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#extensions",
+    "href": "sec12.html#extensions",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.16 Extensions",
+    "text": "12.16 Extensions\nInside these agents there are a lot of predefined things, like:\n\nImplementation with a Policy Networks (DQN) with Actor-Critic\nUse of Advantage Actor-Critic (A2C)\nUse of Asynchronous Advantage Actor-Critic (A3C)\nUse of Soft-Actor Critic\nUse of Trust-Region Optimization (available in TF-Agents)\nUse of Proximal Policy Optimization (available in TF-Agents)",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec12.html#references",
+    "href": "sec12.html#references",
+    "title": "12  Advanced Tensorflow for Reinforcement Learning",
+    "section": "12.17 References",
+    "text": "12.17 References\n\nGéron (2022)\nTensorFlow Documentation\n\n\n\n\n\nGéron, Aurélien. 2022. Hands-on Machine Learning with Scikit-Learn, Keras, and TensorFlow. Third Edition. O’Reilly.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Advanced Tensorflow for Reinforcement Learning</span>"
+    ]
+  },
+  {
+    "objectID": "sec13.html",
+    "href": "sec13.html",
+    "title": "Papers Discussions",
+    "section": "",
+    "text": "G. Tesauro. Temporal Difference Learning and TD-gammon.\nhttps://dl.acm.org/doi/10.1145/203330.203343 https://www.bkgm.com/articles/tesauro/tdl.html\n\nApril 11, 2025\n\n\n\nCuriosity dream mechanism\nImitation learning\n\n\n\n\nSilver et al. Reward is enough.\nhttps://www.sciencedirect.com/science/article/pii/S0004370221000862\n\nApril 11, 2025\n\n\n\nMulti objective reinforcement learning\n\n\n\n\nSilver et al. Mastering the game of Go with deep neural networks and tree search.\nhttps://www.nature.com/articles/nature16961\n\nMay 9, 2025\n\n\n\n\n\n\nSilver et al. Mastering the Game of Go without Human Knowledge.\nhttps://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ\n\nMay 9, 2025\n\n\n\n\n\n\nLeibo et al. Multi-agent Reinforcement Learning in Sequential Social Dilemma.\nhttps://arxiv.org/abs/1702.03037\n\nMay 9, 2025\n\n\n\n\n\nSung Park et al. Generative Agents: Interactive Simulacra of Human Behavior.\nhttps://arxiv.org/pdf/2304.03442.pdf\n\nMay 30, 2025\n\n\n\n\n\nDan Hendricks et al. Aligning AI Systems with Shared Human Values.\nhttps://arxiv.org/abs/2008.02275\n\nMay 30, 2025",
+    "crumbs": [
+      "Papers Discussions"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Chollet, François. 2018. Deep Learning with Python. Manning\nPublications. https://sourestdeeds.github.io/pdf/Deep\nLearning with Python.pdf.\n\n\nGéron, Aurélien. 2022. Hands-on Machine Learning with Scikit-Learn,\nKeras, and TensorFlow. Third Edition. O’Reilly.\n\n\nGoodfellow, Ian, Yoshua Bengio, and Aaron Courville. 2016. Deep\nLearning. MIT Press. http://alvarestech.com/temp/deep/Deep\nLearning by Ian Goodfellow, Yoshua Bengio, Aaron Courville\n(z-lib.org).pdf.\n\n\nLattimore, Tor, and Csaba Szepesvari. 2020. Bandit Algorithms.\nCambridge University Press. https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC.\n\n\nMitzenmacher, Michael. 2017. Probability and Computing. Second\nedition. Cambridge University Press. https://www.cambridge.org/jp/universitypress/subjects/computer-science/algorithmics-complexity-computer-algebra-and-computational-g/probability-and-computing-randomization-and-probabilistic-techniques-algorithms-and-data-analysis-2nd-edition.\n\n\nOrmond, Jim. 2024. “2024 Turing Award.” ACM. https://awards.acm.org/about/2024-turing.\n\n\nRussell, Stuart, and Peter Norvig. 2020. Artificial Intelligence. A\nModern Approach. Fourth edition. Pearson. https://github.com/pemagrg1/AI_class2022/blob/main/book/Artificial-Intelligence-A-Modern-Approach-4th-Edition-1-compressed.pdf.\n\n\nShoham, Yoav, and Kevin Leyton-Brown. 2009. Multiagent Systems:\nAlgorithmic, Game-Theoretic, and Logical Foundations. Cambridge\nUniversity Press.\n\n\nSimon, Herbert A. 1996. The Sciences of the Artificial. Third\nedition. MIT Press. https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf.\n\n\nSolomonoff, Grace. 06 May 2023. “The Meeting of the Minds That\nLaunched AI.” IEEE Spectrum. https://spectrum.ieee.org/dartmouth-ai-workshop.\n\n\nSutton, Richard S., and Andrew G. Barto. 2018. Reinforcement\nLearning. An Introduction. Second edition. MIT Press. https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf.\n\n\nTuyls, Karl, and Peter Stone. 2018. “Multiagent Learning\nParadigms.” Artificial Intelligence 265: Multiagent\nSystems Special Issue, 115–27.\n\n\nWooldridge, Michael. 2002. Introduction to Multiagent Systems.\nJohn Wiley & Sons.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "sec8.html#policy-gradient-methods",
+    "href": "sec8.html#policy-gradient-methods",
+    "title": "8  Policy Gradient Methods",
+    "section": "",
+    "text": "Policy = mapping between a state and a probability distribution.\n\n\n\n\n\n\n\n\nAction-value Methods\nPolicy-based Methods\n\n\n\n\nA value function is consultedMethods based on the calculation of action values (e.g. SARSA, Q-learning, DQN):the values of the actions are learned, and then the selected actions are based on the estimated action values.\nNo value function is consultedMethods based on direct policy learning (e.g. REINFORCE, PPO):the actions are selected without relying on action values.\n\n\nValue learning and indirect policy learningLearn \\(Q(s,a)\\), then derive the policy:the policy is derived from the estimated values (typically greedy or \\(\\varepsilon\\)-greedy wrt. estimated action values).\nDirect policy learningLearn the policy \\(\\pi(a\\vert s)\\) directly, without needing \\(Q\\):the policy is parametrized (usually with neural networks) and updated via gradient wrt. the expected return.\n\n\nAction selection requires action valuesPolicy optimization may occur alongside control, but action values are needed in the first place for action selection.\nAction selection does not require action valuesValues may be used as support for learning the policy parameter (e.g. variance reduction), but they are not required for action selection.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec8.html#advantages-of-using-policy-approximation-according-to-softmax-in-action-preferences",
+    "href": "sec8.html#advantages-of-using-policy-approximation-according-to-softmax-in-action-preferences",
+    "title": "8  Policy Gradient Methods",
+    "section": "8.2 Advantages of Using Policy Approximation according to Softmax in Action Preferences",
+    "text": "8.2 Advantages of Using Policy Approximation according to Softmax in Action Preferences\n‣ One advantage of parameterising policies according to the softmax in action preferences is that the approximate policy can approach a deterministic policy. ‣ In fact, with random action. ϵ ϵ -greedy selection over action values, there is always a probability of selecting a ‣ One possibility is to use softmax distribution on the action values, but this will not allow to reach a deterministic policy. ‣ Action values will always differ and, therefore, there will be always a non-null probability of selecting a different action. ‣ Action preferences are different since they do not approach specific values: instead they are driven to produce the optimal stochastic policy. ‣ If the optimal policy is deterministic, the preferences of the optimal actions will be driven infinitely higher than all suboptimal actions (the output of the softmax will be then very close to 1, i.e., close to determinism).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
+    ]
+  },
+  {
+    "objectID": "sec8.html#ppo-clip",
+    "href": "sec8.html#ppo-clip",
+    "title": "8  Policy Gradient Methods",
+    "section": "8.5 PPO-CLIP",
+    "text": "8.5 PPO-CLIP\n\nLet’s consider the case in which \\(\\delta_{ADV} \\geq 0\\): suppose the advantage for that state-action pair positive. In this case the contribution to the objective reduces to:\n\n\\(L(s,a,\\theta_t,\\theta) = min(\\frac{\\pi_\\theta(a \\vert s)}{\\pi_{\\theta_t}(a \\vert s)}, (1 + \\epsilon))\\)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Policy Gradient Methods</span>"
     ]
   }
 ]

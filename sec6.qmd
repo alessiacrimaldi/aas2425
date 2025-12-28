@@ -305,6 +305,21 @@ First, they used a method called ***experience replay*** in order to deal with t
 
 
 
+## Exercises
+
+<h4>Gridworld with DQN.</h4>
+
+> Solve the gridworld problem with Deep Q-Network.
+
+```{python}
+
+
+
+
+```
+
+
+
 ## References
 
 - **Chapters 9 and 16** of @sutton2018
