@@ -4,3 +4,11 @@ format: html
 appendix: true
 ---
 
+We need to design custom loss functions:
+
+- Pytorch: easy
+- Tensorflow: `tf.GradientTape()`
+- JAX[^1]:
+
+[^1]: JAX (framework designed for Deep Learning) is a library for automatic differentiation, which is used in order to calculate differential derivatives in an efficient way. It is used heavily in industry: it is very good because allows to deal with the problem of the Python lock, that limits the parallelism of the computation of Python (a problem for concurrency). And RL stuff needs to be highly parallel.
+

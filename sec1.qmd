@@ -290,18 +290,18 @@ The article "AI Has Entered the **Situation Room**[^5]" from Foreign Policy disc
 
 <h3>Definitions</h3>
 
-> An ***intelligent agent*** is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.
+> An ***INTELLIGENT AGENT*** is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.
 
 - Agents might be physically situated (we call them robots) or not (we refer to them as *software agents* -or just *agents*-, *softbots*, *bots*, etc.).
 An emerging terminology, such as *embodied AI* and *embodied AI agents* refers to agents that interact with and act within a specific environment. 
 
-> An ***adaptive agent*** is an entity that is capable of responding (by adapting) to its environment.
+> An ***ADAPTIVE AGENT*** is an entity that is capable of responding (by adapting) to its environment.
 
 - <u>The environment might also include other agents</u>, encompassing their locations, actions, interactions (e.g., how they respond to the agent), and all relevant information about them. 
 
 - The environment is everything else outside the agent.
 
-> An ***autonomous agent*** is an entity that relies only on its perception (what it can *sense* and get from the environment) and acts in the world independently from its designer.
+> An ***AUTONOMOUS AGENT*** is an entity that relies only on its perception (what it can *sense* and get from the environment) and acts in the world independently from its designer.
 
 - It takes decisions and acts independently from the way the agent itself is designed.
 
@@ -313,11 +313,11 @@ An emerging terminology, such as *embodied AI* and *embodied AI agents* refers t
 
 <h3>Learning and Autonomous Agents</h3>
 
-From a practical point of view, it makes sense to provide the agent with **some knowledge of the world** and the **ability to learn**:
+From a practical point of view, it makes sense to provide the agent with **some knowledge of the world** and the <u>**ability to learn**</u>:
 
 As in the case of evolution, in which animals/humans have a sufficient number of built-in reflexes in order to survive long enough to learn by themselves, it is reasonable to provide an artificial intelligent agent with some initial knowledge as well as an ability to learn and adapt.
 
-After gaining sufficient experience of its environment, an intelligent agent can become effectively **independent of its prior knowledge**. The idea is that, while the agent starts with some initial understanding of the world, it gradually adapts and learns to act beyond its original knowledge. However, it does not discard it prior knowledge —***forgetting***  is a big issue in Reinforcement Learning. Instead, the agent integrates new experiences while retaining and building upon its initial foundation.
+After gaining sufficient experience of its environment, an intelligent agent can become effectively **independent from its prior knowledge**. The idea is that, while the agent starts with some initial understanding of the world, it gradually adapts and learns to act beyond its original knowledge. However, it does not discard it prior knowledge: ***forgetting***  is a big issue in Reinforcement Learning. Instead, the agent integrates new experiences while retaining and building upon its initial foundation.
 
 For this reason, learning allows an intelligent agent to survive in a vast variety of environments: they're **adaptive**.
 
@@ -325,20 +325,20 @@ For this reason, learning allows an intelligent agent to survive in a vast varie
 
 Dimensions that should be taken into consideration in designing agents are the following:
 
-- Performance —*how accurate they are in completing a certain task*.
-- Environment —*where they are deployed*.
-- Actuators —*what they can do = what are the actions they can perform* (physical or software).
-- Sensors —*how they can sense and gather information from the environment*.
+- Performance — *how accurate they are in completing a certain task*.
+- Environment — *where they are going to be deployed*.
+- Actuators — *what they can do = what are the actions they can perform* (physical or software).
+- Sensors — *how they can sense and gather information from the environment*.
 
 <p align="center">
     <img src="images/agents_design.png" width="70%"/>
 </p>
 
 <p align="center">
-    <img src="images/performance_environment_actuators_sensors.png" width="85%"/>
+    <img src="images/performance_environment_actuators_sensors.png" width="90%"/>
 </p>
 
-<h4>Automatic Display of Advertisement example:</h4>
+<h4>Automatic display of advertisement example:</h4>
 
 Meta's system is designed to deliver the most relevant ads to users. It functions as an autonomous agent that decides which advertisements to display based on user interactions, such as time spent on videos, likes, and clicks on various posts. The agent is independent and continuously learns from user interactions to refine its ad recommendations. In particular:
 
@@ -399,13 +399,13 @@ There are essentially four basic kinds of agent programs:
 
 1. Utility-based agents.
 
-The behaviour of these agents can be ***hard-wired*** or it can be acquired, improved and optimised through ***learning***. See section [Learning](#learning).
+The behaviour of these agents can be ***hard-wired*** or it can be acquired, improved and optimised through ***learning*** (see section [Learning](#learning)).
 
 <h4>Simple Reflex Agents:</h4>
 
 > ***Simple reflex agents*** select actions on the basis of the current perception —like humans *reflexes* when they perceive pain— ignoring the rest of the perception history.
 
-- These are the most basic form of agents, they are based on ***conditon-action rules*** (also called simulation-action rules, productions or if-then rules).
+- These are the most basic form of agents, they are based on ***condition-action rules*** (also called simulation-action rules, productions or if-then rules).
 
 - Humans also have a set of automatic (learned) responses in their biology.
 
@@ -462,9 +462,12 @@ The behaviour of these agents can be ***hard-wired*** or it can be acquired, imp
 
 - Utility functions maps a state (or a sequence of states) onto a real number, which describes the preferences of an agent.
 
-- Example: taxi routing to destination (quicker route, the shortest path is preferable).
+- Examples:
+    - Taxi routing to destination (quicker route, the shortest path is preferable).
+    - Google ads displaying (click on the ad for which the payment for the ad fee is the highest).
 
-- There are situations in which the agents have competitive objectives. For example, a taxi driver, who is paid based on distance traveled, may have an incentive to take longer routes, while the client's utility is to reach the destination as efficiently and affordably as possible.
+- There are situations in which the agents have competitive objectives.
+    - For example, a taxi driver, who is paid based on distance traveled, may have an incentive to take longer routes, while the client's utility is to reach the destination as efficiently and affordably as possible.
 
 <p align="center">
     <img src="images/utility-based_agent.png" width="70%"/>
@@ -490,7 +493,7 @@ In this module, we will adopt a very broad view of intelligent, adaptive and aut
 
 Following **Herbert Simon**[^6] ’s famous definition, we will consider more broadly:
 
-> “machines that think, that learn, and that create”.
+> “machines that <u>think</u>, that <u>learn</u>, and that <u>create</u>”.
 
 Herbert Simon, a two-time Nobel laureate, was an economist who made significant contributions to machine learning and decision theory in complex systems. He is considered a foundational figure in modern artificial intelligence and agent-based systems, as he pioneered the concept of simulating economic behavior —essentially modeling society through computational methods.
 
@@ -517,9 +520,9 @@ us humans.</u>
 
 <h3>Artificial General Intelligence</h3>
 
-- In the recent years we had several successes in building more and more sophisticated systems.
+In the recent years we had several successes in building more and more sophisticated systems.
 
-- ***Human-level Artificial Intelligence*** or ***Artificial General Intelligence*** is the intelligence of an entity (agent, machine, etc.), which has the capacity of learning any task <u>at or above human-level</u> (at least as an human being).
+> ***Human-level Artificial Intelligence*** or ***Artificial General Intelligence*** is the intelligence of an entity (agent, machine, etc.), which has the capacity of learning any task <u>at or above human-level</u> (at least as an human being).
 
 We will discuss the current state-of-the-art in this area and we will also outline the challenges and opportunities ahead.
 
@@ -527,11 +530,9 @@ We will discuss the current state-of-the-art in this area and we will also outli
 
 ## References
 
-- @russell2020
-
 Some of the definitions and some of the figures of this section are from:
 
-- **Chapter 2** of @sutton2018
+- **Chapter 2** of @russell2020
 
 
 

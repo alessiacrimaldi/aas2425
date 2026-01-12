@@ -4,7 +4,7 @@ format: html
 appendix: true
 ---
 
-# Gymnasium
+<h1>Gymnasium</h1>
 
 - Standard library for RL tasks
 

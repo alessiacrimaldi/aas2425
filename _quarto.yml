@@ -20,6 +20,7 @@ book:
     - sec11.qmd
     - sec12.qmd
     - sec13.qmd
+    - sec14.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -31,3 +32,5 @@ format:
   html:
     theme: cosmo
     number-sections: true
+    toc-expand: true
+    toc-depth: 2

@@ -24,7 +24,7 @@ Strong focus on the state-of-the-art (and what’s next): read papers from leadi
 
 ## Interesting News and Readings
 
-- The Dartmouth Summer Research Project on Artificial Intelligence: @dartmouth1956.
+- The Dartmouth Summer Research Project on Artificial Intelligence in 1956: @dartmouth1956.
 
     <iframe src="papers/2__2__Proposal_for_the_Dartmouth_Summer_Research_Project_on_Artificial_Intelligence.pdf" width="100%" height="400px"></iframe>
 
