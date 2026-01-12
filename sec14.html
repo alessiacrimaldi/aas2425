@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Multi-agent Systems – Autonomous and Adaptive Systems</title>
+<title>Papers Discussions – Autonomous and Adaptive Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sec10.html" rel="next">
-<link href="./sec8.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./sec13.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,35 +71,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -132,7 +83,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec9.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec14.html">Papers Discussions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -213,7 +164,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sec9.html" class="sidebar-item-text sidebar-link active">
+  <a href="./sec9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></span></a>
   </div>
 </li>
@@ -243,7 +194,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -258,36 +209,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#multiagent-learning" id="toc-multiagent-learning" class="nav-link active" data-scroll-target="#multiagent-learning"><span class="header-section-number">9.1</span> Multiagent Learning</a></li>
-  <li><a href="#presence-of-regularity" id="toc-presence-of-regularity" class="nav-link" data-scroll-target="#presence-of-regularity"><span class="header-section-number">9.2</span> Presence of Regularity</a></li>
-  <li><a href="#paradigms" id="toc-paradigms" class="nav-link" data-scroll-target="#paradigms"><span class="header-section-number">9.3</span> Paradigms</a></li>
-  <li><a href="#online-reinforcement-learning-towards-individual-utilityreward" id="toc-online-reinforcement-learning-towards-individual-utilityreward" class="nav-link" data-scroll-target="#online-reinforcement-learning-towards-individual-utilityreward"><span class="header-section-number">9.4</span> Online Reinforcement Learning towards Individual Utility/Reward</a></li>
-  <li><a href="#repeated-normal-form-games" id="toc-repeated-normal-form-games" class="nav-link" data-scroll-target="#repeated-normal-form-games"><span class="header-section-number">9.5</span> Repeated Normal Form Games</a></li>
-  <li><a href="#online-reinforcement-learning-towards-social-welfare" id="toc-online-reinforcement-learning-towards-social-welfare" class="nav-link" data-scroll-target="#online-reinforcement-learning-towards-social-welfare"><span class="header-section-number">9.6</span> Online Reinforcement Learning towards Social Welfare</a></li>
-  <li><a href="#co-evolutionary-approaches" id="toc-co-evolutionary-approaches" class="nav-link" data-scroll-target="#co-evolutionary-approaches"><span class="header-section-number">9.7</span> Co-evolutionary Approaches</a></li>
-  <li><a href="#evolutionary-algorithms" id="toc-evolutionary-algorithms" class="nav-link" data-scroll-target="#evolutionary-algorithms"><span class="header-section-number">9.8</span> Evolutionary Algorithms</a></li>
-  <li><a href="#problem-of-representation" id="toc-problem-of-representation" class="nav-link" data-scroll-target="#problem-of-representation"><span class="header-section-number">9.9</span> Problem of Representation</a></li>
-  <li><a href="#fitness-function" id="toc-fitness-function" class="nav-link" data-scroll-target="#fitness-function"><span class="header-section-number">9.10</span> Fitness Function</a></li>
-  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection"><span class="header-section-number">9.11</span> Selection</a></li>
-  <li><a href="#cross-over" id="toc-cross-over" class="nav-link" data-scroll-target="#cross-over"><span class="header-section-number">9.12</span> Cross-over</a></li>
-  <li><a href="#mutation" id="toc-mutation" class="nav-link" data-scroll-target="#mutation"><span class="header-section-number">9.13</span> Mutation</a></li>
-  <li><a href="#evaluation-and-replacement" id="toc-evaluation-and-replacement" class="nav-link" data-scroll-target="#evaluation-and-replacement"><span class="header-section-number">9.14</span> Evaluation and Replacement</a></li>
-  <li><a href="#coevolution" id="toc-coevolution" class="nav-link" data-scroll-target="#coevolution"><span class="header-section-number">9.15</span> Coevolution</a></li>
-  <li><a href="#aside-dna-computing" id="toc-aside-dna-computing" class="nav-link" data-scroll-target="#aside-dna-computing"><span class="header-section-number">9.16</span> Aside: DNA Computing</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multi-agent Systems</span></h1>
+<h1 class="title">Papers Discussions</h1>
 </div>
 
 
@@ -304,172 +234,79 @@ window.Quarto = {
 </header>
 
 
-<p>There are several possible definitions of <em><strong>multiagent systems</strong>:</em></p>
-<blockquote class="blockquote">
-<p><em>Multiagent systems</em> are distributed systems of independent actors called agents that are each independently controlled but that interact with one another in the same environment.</p>
-<p><span class="math inline">\(-\)</span> <em>See <span class="citation" data-cites="wooldridge2002">Wooldridge (<a href="references.html#ref-wooldridge2002" role="doc-biblioref">2002</a>)</span> and <span class="citation" data-cites="tuyls2018">Tuyls and Stone (<a href="references.html#ref-tuyls2018" role="doc-biblioref">2018</a>)</span>.</em></p>
-</blockquote>
-<blockquote class="blockquote">
-<p><em>Multiagent systems</em> are systems that include multiple autonomous entiites with (possibly) diverging information.</p>
-<p><span class="math inline">\(-\)</span> <em>See <span class="citation" data-cites="shoham2009">Shoham and Leyton-Brown (<a href="references.html#ref-shoham2009" role="doc-biblioref">2009</a>)</span>.</em></p>
-</blockquote>
-<section id="multiagent-learning" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="multiagent-learning"><span class="header-section-number">9.1</span> Multiagent Learning</h2>
-<h3 class="anchored">
-Definition
-</h3>
-<p>We will use the following definition of <strong><em>multiagent learning</em></strong>:</p>
-<blockquote class="blockquote">
-<p><em>“The study of multiagent systems in which one or more of the autonomous entities improves automatically through experience”.</em></p>
-</blockquote>
-<h3 class="anchored">
-Characteristics of Multiagent Learning
-</h3>
-<ol type="1">
-<li><p>Different <strong>scale</strong>:</p>
-<ul>
-<li>A city or an ant colony or a football team.</li>
-</ul></li>
-<li><p>Different <strong>degree of complexity</strong>:</p>
-<ul>
-<li>A human, a machine, a mammal or an insect.</li>
-</ul></li>
-<li><p>Different <strong>types of interaction</strong>:</p>
-<ul>
-<li>Frequent interactions (or not), interactions with a limited number of individuals, etc.</li>
-</ul></li>
-</ol>
-</section>
-<section id="presence-of-regularity" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="presence-of-regularity"><span class="header-section-number">9.2</span> Presence of Regularity</h2>
-<p>It is fundamental that there is a certian <strong><em>degree of regularity</em></strong> in the system otherwise prediction of behaviour is not possible.</p>
-<blockquote class="blockquote">
-<p><strong>Assumption:</strong> past experience is somehow predictive of future expectations.</p>
-</blockquote>
-<p>Dealing with <strong>non-stationarityy</strong> is a key problem: it is the usual problem of reinforcement learning at the end.</p>
-</section>
-<section id="paradigms" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="paradigms"><span class="header-section-number">9.3</span> Paradigms</h2>
-<p>We will study 5 paradigms:</p>
-<ol type="1">
-<li>Online Multi-agent Reinforcement Learning towards individual utility</li>
-<li>Online Multi-agent Reinforcement Learning towards social welfare</li>
-<li>Co-evolutionary learning</li>
-<li>Swarm intelligence</li>
-<li>Adaptive mechanism design</li>
-</ol>
-<p>There are novel emerging paradigms that will discuss during the coming lectures based on foundational models/LLMS, which are being developed right now:</p>
-<ol type="1">
-<li>Multi-agent Learning based on foundational models towards individual utility</li>
-<li>Multi-agent Learning based on foundational models towards social welfare</li>
-</ol>
-</section>
-<section id="online-reinforcement-learning-towards-individual-utilityreward" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="online-reinforcement-learning-towards-individual-utilityreward"><span class="header-section-number">9.4</span> Online Reinforcement Learning towards Individual Utility/Reward</h2>
-<p>One of the most-studied scenarios in multiagent learning is that in which multiple independent agents take actions in the same environment and learn online to maximise their own individual utility functions.</p>
-<blockquote class="blockquote">
-<p><strong>Goal:</strong> to maximise the utility at the end of the game (i.e.&nbsp;expected reward).</p>
-</blockquote>
-<p align="center">
-<img src="images/6_by_6_gridworld.jpeg" width="43%"> <br> <em>Gridworld Example.</em>
-</p>
-<p>From a formal point of view (game-theory point of view), this can be considered a <strong><em>repeated normal form game</em></strong>.</p>
-<ul>
-<li><p>A <strong>repeated game</strong> is a game that is based on a certain number of repetitions.</p></li>
-<li><p><strong>Normal form games</strong> are games that are presented using a matrix.</p>
-<ul>
-<li>As aside, an <em>extensive form game</em> is a game for which an explicit representation of the sequence of the players’ possible moves, their choices at every decision point and the information about other player’s move and relative payoffs.</li>
-</ul></li>
-</ul>
-<h3 class="anchored">
-Example: Prisoner’s Dilemma
-</h3>
-<p>The Prisoner’s Dilemma is a classic 2-player game.</p>
-<blockquote class="blockquote">
-<p><strong>Description of the game:</strong></p>
-<ul>
-<li><p>Two prisoners committed a crime together and are being interrogated separately.</p></li>
-<li><p>If neither of them confesses to the crime (they both “cooperate”), then they will both get a small punishment (corresponding to a payoff of 5).</p></li>
-<li><p>If one of them confesses (or “defects”), but the other does not, then the one that confesses gets off for free (payoff of 10), but the other gets the worst punishment possible (payoff of 0).</p></li>
-<li><p>If they both defect, they get a worst punishment (payoff of 1).</p></li>
-</ul>
-</blockquote>
-<p align="center">
-<img src="images/prisoner_dilemma.png" width="40%">
-</p>
-<ul>
-<li><p>Normal games were initially introduced as one-shot game.</p></li>
-<li><p>The players know each other’s full utility (reward) functions and play the game only once.</p></li>
-<li><p>In this setting, the concept of <strong><em>Nash equilibrium</em></strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> was introduced: a set of actions such that no player would be better off deviating given that the other player’s actions are fixed.</p>
-<ul>
-<li>Games can have one or multiple Nash equilibria.</li>
-<li>In the Prisoner’s Dilemma, the only Nash Equilibrium is for both agents to defect.</li>
-</ul></li>
-</ul>
-<iframe src="papers/11__1__Moral_Alignment_for_LLM_Agents.pdf" width="100%" height="400px">
+<section id="g.-tesauro.-temporal-difference-learning-and-td-gammon." class="level3">
+<h3 class="anchored" data-anchor-id="g.-tesauro.-temporal-difference-learning-and-td-gammon.">G. Tesauro. Temporal Difference Learning and TD-gammon.</h3>
+<p><a href="https://dl.acm.org/doi/10.1145/203330.203343">https://dl.acm.org/doi/10.1145/203330.203343</a><br> <a href="https://www.bkgm.com/articles/tesauro/tdl.html">https://www.bkgm.com/articles/tesauro/tdl.html</a></p>
+<section id="april-11-2025" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="april-11-2025">April 11, 2025</h6>
+<iframe src="papers/Temporal_Difference_Learning_and_TD-Gammon.pdf" width="100%" height="685px">
 </iframe>
-<p align="center">
-<em><a href="https://arxiv.org/abs/2410.01639">https://arxiv.org/abs/2410.01639</a></em>
+<ul>
+<li><strong><em>Curiosity dream mechanism</em></strong></li>
+<li><strong><em>Imitation learning</em></strong></li>
+</ul>
+</section>
+</section>
+<section id="silver-et-al.-reward-is-enough." class="level3">
+<h3 class="anchored" data-anchor-id="silver-et-al.-reward-is-enough.">Silver et al.&nbsp;Reward is enough.</h3>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0004370221000862">https://www.sciencedirect.com/science/article/pii/S0004370221000862</a></p>
+<section id="april-11-2025-1" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="april-11-2025-1">April 11, 2025</h6>
+<iframe src="papers/Reward_is_enough.pdf" width="100%" height="1021px">
+</iframe>
+<ul>
+<li><strong><em>Multi objective reinforcement learning</em></strong></li>
+</ul>
+</section>
+</section>
+<section id="silver-et-al.-mastering-the-game-of-go-with-deep-neural-networks-and-tree-search." class="level3">
+<h3 class="anchored" data-anchor-id="silver-et-al.-mastering-the-game-of-go-with-deep-neural-networks-and-tree-search.">Silver et al.&nbsp;Mastering the game of Go with deep neural networks and tree search.</h3>
+<p><a href="https://www.nature.com/articles/nature16961">https://www.nature.com/articles/nature16961</a></p>
+<section id="may-9-2025" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="may-9-2025">May 9, 2025</h6>
+<p style="align: center; border: 4px solid gray">
+<img src="images/article_mastering_go_1.png" width="100%">
 </p>
 </section>
-<section id="repeated-normal-form-games" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="repeated-normal-form-games"><span class="header-section-number">9.5</span> Repeated Normal Form Games</h2>
-<p><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
-<section id="online-reinforcement-learning-towards-social-welfare" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="online-reinforcement-learning-towards-social-welfare"><span class="header-section-number">9.6</span> Online Reinforcement Learning towards Social Welfare</h2>
+<section id="silver-et-al.-mastering-the-game-of-go-without-human-knowledge." class="level3">
+<h3 class="anchored" data-anchor-id="silver-et-al.-mastering-the-game-of-go-without-human-knowledge.">Silver et al.&nbsp;Mastering the Game of Go without Human Knowledge.</h3>
+<p><a href="https://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ">https://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ</a></p>
+<section id="may-9-2025-1" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="may-9-2025-1">May 9, 2025</h6>
+<p style="align: center; border: 4px solid gray">
+<img src="images/article_mastering_go_2.png" width="100%">
+</p>
 </section>
-<section id="co-evolutionary-approaches" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="co-evolutionary-approaches"><span class="header-section-number">9.7</span> Co-evolutionary Approaches</h2>
 </section>
-<section id="evolutionary-algorithms" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="evolutionary-algorithms"><span class="header-section-number">9.8</span> Evolutionary Algorithms</h2>
+<section id="leibo-et-al.-multi-agent-reinforcement-learning-in-sequential-social-dilemma." class="level3">
+<h3 class="anchored" data-anchor-id="leibo-et-al.-multi-agent-reinforcement-learning-in-sequential-social-dilemma.">Leibo et al.&nbsp;Multi-agent Reinforcement Learning in Sequential Social Dilemma.</h3>
+<p><a href="https://arxiv.org/abs/1702.03037">https://arxiv.org/abs/1702.03037</a></p>
+<section id="may-9-2025-2" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="may-9-2025-2">May 9, 2025</h6>
+<iframe src="papers/Multi-agent_Reinforcement_Learning_in_Sequential_Social_Dilemmas.pdf" width="100%" height="970px">
+</iframe>
 </section>
-<section id="problem-of-representation" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="problem-of-representation"><span class="header-section-number">9.9</span> Problem of Representation</h2>
 </section>
-<section id="fitness-function" class="level2" data-number="9.10">
-<h2 data-number="9.10" class="anchored" data-anchor-id="fitness-function"><span class="header-section-number">9.10</span> Fitness Function</h2>
+<section id="sung-park-et-al.-generative-agents-interactive-simulacra-of-human-behavior." class="level3">
+<h3 class="anchored" data-anchor-id="sung-park-et-al.-generative-agents-interactive-simulacra-of-human-behavior.">Sung Park et al.&nbsp;Generative Agents: Interactive Simulacra of Human Behavior.</h3>
+<p><a href="https://arxiv.org/pdf/2304.03442.pdf">https://arxiv.org/pdf/2304.03442.pdf</a></p>
+<section id="may-30-2025" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="may-30-2025">May 30, 2025</h6>
+<iframe src="papers/1__7__Generative_Agents_Interactive_Simulacra_of_Human_Behavior.pdf" width="100%" height="970px">
+</iframe>
 </section>
-<section id="selection" class="level2" data-number="9.11">
-<h2 data-number="9.11" class="anchored" data-anchor-id="selection"><span class="header-section-number">9.11</span> Selection</h2>
 </section>
-<section id="cross-over" class="level2" data-number="9.12">
-<h2 data-number="9.12" class="anchored" data-anchor-id="cross-over"><span class="header-section-number">9.12</span> Cross-over</h2>
-</section>
-<section id="mutation" class="level2" data-number="9.13">
-<h2 data-number="9.13" class="anchored" data-anchor-id="mutation"><span class="header-section-number">9.13</span> Mutation</h2>
-</section>
-<section id="evaluation-and-replacement" class="level2" data-number="9.14">
-<h2 data-number="9.14" class="anchored" data-anchor-id="evaluation-and-replacement"><span class="header-section-number">9.14</span> Evaluation and Replacement</h2>
-<p>The best individuals are kept in the next generation, by taking the copies.</p>
-</section>
-<section id="coevolution" class="level2" data-number="9.15">
-<h2 data-number="9.15" class="anchored" data-anchor-id="coevolution"><span class="header-section-number">9.15</span> Coevolution</h2>
-<p>We can update the parameters of a policy <span class="math inline">\(\rightarrow\)</span> we mutate the parameters. The mapping can be a parametric mapping of what we can learn.</p>
-</section>
-<section id="aside-dna-computing" class="level2" data-number="9.16">
-<h2 data-number="9.16" class="anchored" data-anchor-id="aside-dna-computing"><span class="header-section-number">9.16</span> Aside: DNA Computing</h2>
+<section id="dan-hendricks-et-al.-aligning-ai-systems-with-shared-human-values." class="level3">
+<h3 class="anchored" data-anchor-id="dan-hendricks-et-al.-aligning-ai-systems-with-shared-human-values.">Dan Hendricks et al.&nbsp;Aligning AI Systems with Shared Human Values.</h3>
+<p><a href="https://arxiv.org/abs/2008.02275">https://arxiv.org/abs/2008.02275</a></p>
+<section id="may-30-2025-1" class="level6 unnumbered">
+<h6 class="unnumbered anchored" data-anchor-id="may-30-2025-1">May 30, 2025</h6>
+<iframe src="papers/Aligning_AI_Systems_with_Shared_Human_Values.pdf" width="100%" height="970px">
+</iframe>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-shoham2009" class="csl-entry" role="listitem">
-Shoham, Yoav, and Kevin Leyton-Brown. 2009. <em>Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations</em>. Cambridge University Press.
-</div>
-<div id="ref-tuyls2018" class="csl-entry" role="listitem">
-Tuyls, Karl, and Peter Stone. 2018. <span>“Multiagent Learning Paradigms.”</span> <em>Artificial Intelligence</em> 265: Multiagent Systems Special Issue, 115–27.
-</div>
-<div id="ref-wooldridge2002" class="csl-entry" role="listitem">
-Wooldridge, Michael. 2002. <em>Introduction to Multiagent Systems</em>. John Wiley &amp; Sons.
-</div>
-</div>
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p><em>“A Beautiful Mind”:</em> movie about the life of Nash.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p><em>“<strong>M</strong>utual <strong>A</strong>ssured <strong>D</strong>estruction”:</em> .<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -875,13 +712,13 @@ Wooldridge, Michael. 2002. <em>Introduction to Multiagent Systems</em>. John Wil
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./sec8.html" class="pagination-link" aria-label="Policy Gradient Methods">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Policy Gradient Methods</span></span>
+      <a href="./sec13.html" class="pagination-link" aria-label="Generative Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sec10.html" class="pagination-link" aria-label="Introduction to Gym">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Gym</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

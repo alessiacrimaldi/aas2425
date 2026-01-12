@@ -273,6 +273,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -288,10 +294,10 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#eager-execution-in-tensorflow-2.x" id="toc-eager-execution-in-tensorflow-2.x" class="nav-link active" data-scroll-target="#eager-execution-in-tensorflow-2.x"><span class="header-section-number">12.1</span> Eager Execution in TensorFlow 2.x</a></li>
   <li><a href="#computing-customised-gradients" id="toc-computing-customised-gradients" class="nav-link" data-scroll-target="#computing-customised-gradients"><span class="header-section-number">12.2</span> Computing (Customised) Gradients</a></li>
   <li><a href="#gradient-tapes" id="toc-gradient-tapes" class="nav-link" data-scroll-target="#gradient-tapes"><span class="header-section-number">12.3</span> Gradient Tapes</a></li>
@@ -347,7 +353,7 @@ window.Quarto = {
 <li><p>TensorFlow records all operations executed inside the context of a <code>tf.GradientTape</code> onto a tape.</p></li>
 <li><p>TensorFlow then uses that tape and the gradients of the outputs with respect to the intermediate values computed during a recorded <code>tf.GradientTape</code> context.</p></li>
 </ul>
-<div id="ca564f71" class="cell" data-execution_count="1">
+<div id="b65faece" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> tf.ones((<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tf.GradientTape() <span class="im">as</span> t:</span>
@@ -368,7 +374,7 @@ window.Quarto = {
 <li><p>This allows multiple calls to the <code>gradient()</code> method.</p></li>
 <li><p>Resources are released when the tape object is garbage collected.</p></li>
 </ul>
-<div id="6839e89c" class="cell" data-execution_count="2">
+<div id="e32384a0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> tf.constant(<span class="fl">3.0</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tf.GradientTape(peristent<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> t:</span>
@@ -389,7 +395,7 @@ window.Quarto = {
 <li><p>Python will then execute the body of the code.</p></li>
 <li><p>In any case, also in case of an exception the <code>__exit__</code> method of the guard object is executed.</p></li>
 </ul>
-<div id="d83c9ff1" class="cell" data-execution_count="3">
+<div id="e8faf57d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> guarded_execution:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__enter__</span>(<span class="va">self</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>initialisation<span class="op">&gt;</span></span>
@@ -397,11 +403,11 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__exit__</span>(<span class="va">self</span>, <span class="bu">type</span>, value, traceback):</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>free resources <span class="kw">and</span> manage exceptions<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="357ed17e" class="cell" data-execution_count="4">
+<div id="8ddef76d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> guarded_execution <span class="im">as</span> p:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>some instructions<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="a194479d" class="cell" data-execution_count="5">
+<div id="4730bcbe" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"textfile.txt"</span>) <span class="im">as</span> f:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> f.read()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>work <span class="cf">with</span> data<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -888,8 +894,8 @@ Géron, Aurélien. 2022. <em>Hands-on Machine Learning with Scikit-Learn, Keras,
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sec13.html" class="pagination-link" aria-label="Papers Discussions">
-        <span class="nav-page-text">Papers Discussions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sec13.html" class="pagination-link" aria-label="Generative Learning">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

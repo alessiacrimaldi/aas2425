@@ -273,6 +273,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -288,25 +294,21 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
-  <li><a href="#rl-problem-formulation" id="toc-rl-problem-formulation" class="nav-link active" data-scroll-target="#rl-problem-formulation"><span class="header-section-number">2.1</span> RL Problem Formulation</a></li>
-  <li><a href="#examples-of-problems" id="toc-examples-of-problems" class="nav-link" data-scroll-target="#examples-of-problems"><span class="header-section-number">2.2</span> Examples of Problems</a></li>
-  <li><a href="#finite-markov-decision-processes" id="toc-finite-markov-decision-processes" class="nav-link" data-scroll-target="#finite-markov-decision-processes"><span class="header-section-number">2.3</span> Finite Markov Decision Processes</a></li>
-  <li><a href="#goals-and-rewards" id="toc-goals-and-rewards" class="nav-link" data-scroll-target="#goals-and-rewards"><span class="header-section-number">2.4</span> Goals and Rewards</a></li>
-  <li><a href="#policies-and-value-functions" id="toc-policies-and-value-functions" class="nav-link" data-scroll-target="#policies-and-value-functions"><span class="header-section-number">2.5</span> Policies and Value Functions</a>
   <ul class="collapse">
-  <li><a href="#policy" id="toc-policy" class="nav-link" data-scroll-target="#policy">Policy</a></li>
-  </ul></li>
-  <li><a href="#choosing-the-rewards" id="toc-choosing-the-rewards" class="nav-link" data-scroll-target="#choosing-the-rewards"><span class="header-section-number">2.6</span> Choosing the Rewards</a></li>
-  <li><a href="#estimating-value-state-value-and-action-value-functions" id="toc-estimating-value-state-value-and-action-value-functions" class="nav-link" data-scroll-target="#estimating-value-state-value-and-action-value-functions"><span class="header-section-number">2.7</span> Estimating Value (State-Value and Action-Value) Functions</a></li>
-  <li><a href="#optimal-policies-and-optimal-value-functions" id="toc-optimal-policies-and-optimal-value-functions" class="nav-link" data-scroll-target="#optimal-policies-and-optimal-value-functions"><span class="header-section-number">2.8</span> Optimal Policies and Optimal Value Functions</a></li>
-  <li><a href="#difference" id="toc-difference" class="nav-link" data-scroll-target="#difference"><span class="header-section-number">2.9</span> Difference between RL and other ML sub-domains</a></li>
-  <li><a href="#when-to-use-rl" id="toc-when-to-use-rl" class="nav-link" data-scroll-target="#when-to-use-rl"><span class="header-section-number">2.10</span> When to use RL</a></li>
-  <li><a href="#rl-applications" id="toc-rl-applications" class="nav-link" data-scroll-target="#rl-applications"><span class="header-section-number">2.11</span> RL Applications</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">2.12</span> References</a></li>
+  <li><a href="#rl-problem-formulation" id="toc-rl-problem-formulation" class="nav-link active" data-scroll-target="#rl-problem-formulation"><span class="header-section-number">2.1</span> RL Problem Formulation</a></li>
+  <li><a href="#finite-markov-decision-processes" id="toc-finite-markov-decision-processes" class="nav-link" data-scroll-target="#finite-markov-decision-processes"><span class="header-section-number">2.2</span> Finite Markov Decision Processes</a></li>
+  <li><a href="#goals-rewards-and-returns" id="toc-goals-rewards-and-returns" class="nav-link" data-scroll-target="#goals-rewards-and-returns"><span class="header-section-number">2.3</span> Goals, Rewards and Returns</a></li>
+  <li><a href="#policies-and-value-functions" id="toc-policies-and-value-functions" class="nav-link" data-scroll-target="#policies-and-value-functions"><span class="header-section-number">2.4</span> Policies and Value Functions</a></li>
+  <li><a href="#choosing-the-rewards" id="toc-choosing-the-rewards" class="nav-link" data-scroll-target="#choosing-the-rewards"><span class="header-section-number">2.5</span> Choosing the Rewards</a></li>
+  <li><a href="#estimating-value-state-value-and-action-value-functions" id="toc-estimating-value-state-value-and-action-value-functions" class="nav-link" data-scroll-target="#estimating-value-state-value-and-action-value-functions"><span class="header-section-number">2.6</span> Estimating Value (State-Value and Action-Value) Functions</a></li>
+  <li><a href="#optimal-policies-and-optimal-value-functions" id="toc-optimal-policies-and-optimal-value-functions" class="nav-link" data-scroll-target="#optimal-policies-and-optimal-value-functions"><span class="header-section-number">2.7</span> Optimal Policies and Optimal Value Functions</a></li>
+  <li><a href="#difference" id="toc-difference" class="nav-link" data-scroll-target="#difference"><span class="header-section-number">2.8</span> Difference between RL and other ML sub-domains</a></li>
+  <li><a href="#when-to-use-rl" id="toc-when-to-use-rl" class="nav-link" data-scroll-target="#when-to-use-rl"><span class="header-section-number">2.9</span> When to use RL</a></li>
+  <li><a href="#rl-applications" id="toc-rl-applications" class="nav-link" data-scroll-target="#rl-applications"><span class="header-section-number">2.10</span> RL Applications</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">2.11</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -337,7 +339,7 @@ window.Quarto = {
 <ul>
 <li><u>Learning from interation</u> is a foundational idea underlying nearly all theories of learning and intelligence.</li>
 </ul></li>
-<li><p>Reinforcement learning is <u>learning while acting</u> what to do —how to map situations to <strong><em>actions</em></strong>— so as to maximise a <strong><em>numerical reward</em></strong>.</p></li>
+<li><p>Reinforcement learning is <u>learning while acting</u> what to do —how to map situations to <strong><em>actions</em></strong>— so as to maximise a numerical <strong><em>reward</em></strong>.</p></li>
 <li><p>Differently from supervised learning (see section <a href="#difference">Difference between RL and other ML sub-domains</a>), reinforcement learning is about <u>how to act and how to explore</u> in order to achieve the <strong>goal</strong>:</p>
 <ul>
 <li><p><strong>Goal-directed</strong> learning from interaction.</p></li>
@@ -358,16 +360,16 @@ window.Quarto = {
 <li><p><em>Actions</em></p></li>
 <li><p><em>Rewards</em></p></li>
 </ol>
-</section>
-<section id="examples-of-problems" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="examples-of-problems"><span class="header-section-number">2.2</span> Examples of Problems</h2>
+<h3 class="anchored">
+Examples of Problems
+</h3>
 <p align="center">
 <img src="images/go.png" width="40%"> <img src="images/robot.png" width="52%">
 </p>
 <ol type="1">
 <li><p><strong>Go:</strong></p>
 <ul>
-<li><em>State:</em> configuration of the board, represented as a finite matrix of 3 possible values (black, white, empty).</li>
+<li><em>State:</em> configuration of the board, represented as a finite matrix of 3 possible values (black, white, empty), which can be flattened into a fixed-length vector and used as input to a neural network.</li>
 <li><em>Actions:</em> where to place the pieces.</li>
 </ul></li>
 <li><p><strong>Roomba:</strong></p>
@@ -377,8 +379,8 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section id="finite-markov-decision-processes" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="finite-markov-decision-processes"><span class="header-section-number">2.3</span> Finite Markov Decision Processes</h2>
+<section id="finite-markov-decision-processes" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="finite-markov-decision-processes"><span class="header-section-number">2.2</span> Finite Markov Decision Processes</h2>
 <p><strong>Markov Decision Processes</strong> (<strong>MDPs</strong>) are a mathematically idealised formulation of Reinforcement Learning for which precise theoretical statements can be made.</p>
 <ul>
 <li><p>Tension between breadth of applicability and mathematical tractability.</p></li>
@@ -437,7 +439,7 @@ RL interaction loop
 <img src="images/agent_environment_2.png" width="55%">
 </p>
 <p>Let’s demonstrate the agent-environment interaction using a generic code example. The process starts by creating an environment and retrieving the initial state. The agent then enters a loop where it selects an action based on the current state in each iteration. After executing the action, the environment provides feedback in the form of a new state and a reward. Finally, the agent updates its knowledge based on the state, action, and reward it received.</p>
-<div id="16975a4a" class="cell" data-execution_count="1">
+<div id="656245f5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> create_environment()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> env_get_initial_state()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -447,13 +449,16 @@ RL interaction loop
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    update_knowledge(state, action, reward)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="goals-and-rewards" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="goals-and-rewards"><span class="header-section-number">2.4</span> Goals and Rewards</h2>
+<section id="goals-rewards-and-returns" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="goals-rewards-and-returns"><span class="header-section-number">2.3</span> Goals, Rewards and Returns</h2>
+<h3 class="anchored">
+Goals and Rewards
+</h3>
 <ul>
 <li><p>The <strong>goal</strong> of the agent is formalised in terms of the reward it receives.</p></li>
 <li><p>At each time step, the reward is a simple number <span class="math inline">\(R_t \in \mathbb{R}\)</span> (scalar, real number).</p></li>
 <li><p>Informally, the agent’s goal is to maximise the <strong>total amount</strong> it receives. The goal is mapped into the <strong><em>maximisation of the reward</em></strong>.</p></li>
-<li><p>The agent should not maximise the immediate reward, but the <strong>cumulative reward</strong>.</p></li>
+<li><p><u>The agent should not maximise the immediate reward, but the <strong>cumulative reward</strong>.</u></p></li>
 </ul>
 <h3 class="anchored">
 The Reward Hypothesis
@@ -465,7 +470,7 @@ The Reward Hypothesis
 <h3 class="anchored">
 Expected Returns
 </h3>
-<p>We will now try to conceptualize the idea of <strong>cumulative rewards</strong> more formally.</p>
+<p>We will now try to conceptualize the idea of <strong>cumulative reward</strong> more formally.</p>
 <p>In RL, actions carry long-term consequences, impacting both immediate and future rewards. The agent’s goal goes beyond maximizing immediate gains; it receives a sequence of rewards and it strives to accumulate the highest <em>total reward over time</em>. This leads us to a key concept in RL: the <strong>expected return</strong>.</p>
 <blockquote class="blockquote">
 <p>The <strong><em>expected return</em></strong> <span class="math inline">\(G_t\)</span> is a function of the reward sequence <span class="math inline">\(R_{t+1}, R_{t+2}, R_{t+3}, \dots\)</span></p>
@@ -481,7 +486,7 @@ Expected Returns
 Episodic Tasks and Continuing Tasks
 </h3>
 <p>In RL, we encounter two types of tasks: <em>episodic</em> and <em>continuous</em>.</p>
-<p>Episodic tasks are those in which we can identify a final step of the sequence of rewards, i.e.&nbsp;in which the interaction between the agent and the environment can be broken into sub-sequences that we call <strong><em>episodes</em></strong> (such as play of a game, rpeeated tasks, etc.). For example, in a chess game played by an agent, each game constitutes an episode; once a game concludes, the environment resets for the next one.</p>
+<p>Episodic tasks are those in which we can identify a final step of the sequence of rewards, i.e.&nbsp;in which the interaction between the agent and the environment can be broken into sub-sequences that we call <strong><em>episodes</em></strong> (such as play of a game, repeated tasks, etc.). For example, in a chess game played by an agent, each game constitutes an episode; once a game concludes, the environment resets for the next one.</p>
 <blockquote class="blockquote">
 <p>An <strong><em>episodic task</em></strong> is divided into distinct episodes, each with a defined beginning and end.</p>
 <blockquote class="blockquote">
@@ -525,7 +530,7 @@ Discounting Rewards
 </p>
 <p>The discount factor <span class="math inline">\(\gamma\)</span>, ranging between 0 and 1, is crucial for balancing immediate and long-term rewards.</p>
 <ul>
-<li><p>It is an <strong>hyperparameter</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> we need to study. In practice, it is an intrinsic parameter of the mathematical model itself that needs to be set beforehand to ensure optimal learning performance or faster convergence during training. When training a neural network, we perform a <strong><em>hyperparameter search</em></strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, exploring the space of possible values—often by evaluating different combinations of hyperparameters. This search process is typically very computationally expensive, so it’s important to carry it out as efficiently as possible.</p></li>
+<li><p>It is an <strong>hyperparameter</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> we need to study. In practice, it is an intrinsic parameter of the mathematical model itself that needs to be set beforehand to ensure optimal learning performance or faster convergence during training. When training a neural network, we perform a <strong><em>parameter search</em></strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, exploring the space of possible values—often by evaluating different combinations of hyperparameters. This search process is typically very computationally expensive, so it’s important to carry it out as efficiently as possible.</p></li>
 <li><p>A lower <span class="math inline">\(\gamma\)</span> value leads the agent to prioritize immediate gains, while a higher value emphasizes long-term benefits.</p></li>
 <li><p>At the extremes, a <span class="math inline">\(\gamma\)</span> of <span class="math inline">\(0\)</span> means the agent focuses solely on immediate rewards, while a <span class="math inline">\(\gamma\)</span> of <span class="math inline">\(1\)</span>$ considers future rewards as equally important, applying no discount.</p></li>
 </ul>
@@ -536,7 +541,7 @@ Discounting Rewards
 Numerical example:
 </h4>
 <p>In this example, we’ll demonstrate how to calculate the discounted return from an array of <code>expected_rewards</code>. We define a <code>discount_factor</code> of 0.9, then create an array of discounts, where each element corresponds to the discount factor raised to the power of the reward’s position in the sequence.</p>
-<div id="7aee5837" class="cell" data-execution_count="2">
+<div id="1989e537" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>expected_rewards <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">3</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>discount_factor <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -547,7 +552,7 @@ Numerical example:
 </div>
 </div>
 <p>As we can see, discounts decrease over time, giving less importance to future rewards. Next, we multiply each reward by its corresponding discount and sum the results to compute the <code>discounted_return</code>, which is 8.83 in this example.</p>
-<div id="11efef5a" class="cell" data-execution_count="3">
+<div id="3f6d4394" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>discounted_return <span class="op">=</span> np.<span class="bu">sum</span>(expected_rewards <span class="op">*</span> discounts)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The discounted return is </span><span class="sc">{</span>discounted_return<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -560,17 +565,20 @@ Relation between Returns at Successive Time Steps
 <blockquote class="blockquote">
 <p>Returns at successive time steps are related to each others as follows:</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(G_t \doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \gamma^3 R_{t+4} + \dots\)</span><br> <span class="math inline">\(\quad\;\; = R_{t+1} + \gamma (R_{t+1} + \gamma R_{t+3} + \gamma^2 R_{t+4} + \dots )\)</span><br> <span class="math inline">\(\quad\;\; = R_{t+1} + \gamma G_{t+1}\)</span></p>
+<p><span class="math inline">\(G_t \doteq R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \gamma^3 R_{t+4} + \dots\)</span><br> <span class="math inline">\(\quad\;\; = R_{t+1} + \gamma (R_{t+2} + \gamma R_{t+3} + \gamma^2 R_{t+4} + \dots )\)</span><br> <span class="math inline">\(\quad\;\; = R_{t+1} + \gamma G_{t+1}\)</span></p>
 </blockquote>
 </blockquote>
 </section>
-<section id="policies-and-value-functions" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="policies-and-value-functions"><span class="header-section-number">2.5</span> Policies and Value Functions</h2>
-<p>Almost all reinforcement learning algorithms involve estimating value functions, i.e., functions of states (or of state-action pairs) that estimate how good it is for the agent to be in a given state (or how good it is to perform a given action in a given state).</p>
-<p>A policy is used to model the behaviour of the agent based on the previous experience and the rewards (and consequently the expected returns) an agent received in the past.</p>
+<section id="policies-and-value-functions" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="policies-and-value-functions"><span class="header-section-number">2.4</span> Policies and Value Functions</h2>
+<p>Reinforcement learning is about actions and experience: learning how to act from experience.</p>
+<p>For learning that, almost all reinforcement learning algorithms involve estimating <strong><em>value functions</em></strong>, i.e., functions of states (or of state-action pairs) that estimate how good it is for the agent to be in a given state (or how good it is to perform a given action in a given state).</p>
+<p>Evaluating the <em>value of a state</em> (i.e.&nbsp;the expected return from that state onwards) is fundamental because, since the goal is to maximise the total reward, we want to enter states giving us the highest cumulative reward.</p>
+<p>A <strong><em>policy</em></strong> is used to model the behaviour of the agent based on the previous experience and the rewards (and consequently the expected returns) an agent received in the past.</p>
+<p>We are learning <u>how to choose the states</u> (<em>state-value functions</em>) and <u>how to act</u>, i.e., with which probability we take a specific action (<em>policy</em>).</p>
 <section id="policy" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="policy">Policy</h3>
-<p>In Reinforcement Leraning, we have to learn the probability of taking a certain action, <em><strong>we have to learn the policy</strong>:</em> given the state, which action should we take.</p>
+<p>In Reinforcement Leraning, we have to learn the probability of taking a certain action, <em><strong>we have to learn the policy</strong>:</em> given a state, which is the best action we can take<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>Formally, a <em>policy</em> is a mapping from states to probabilities of each possible action, i.e.&nbsp;policy <span class="math inline">\(\pi\)</span> is a <em>probability distribution</em>.</p>
 <blockquote class="blockquote">
 <p>If the agent is following <strong><em>policy</em></strong> <span class="math inline">\(\mathbf\pi\)</span> at time <span class="math inline">\(t\)</span>, then</p>
@@ -578,69 +586,110 @@ Relation between Returns at Successive Time Steps
 <p><span class="math inline">\(\pi(a \vert s)\)</span> is the probability that <span class="math inline">\(A_t = a\)</span> if <span class="math inline">\(S_t = s\)</span></p>
 </blockquote>
 </blockquote>
+<p>Following the policy <span class="math inline">\(\pi\)</span> means taking the decision from that state onwards following that probability distribution: we’re not acting deterministically in the same way all the time, but we’re acting probabilistically.</p>
+<h4 class="anchored">
+Example:
+</h4>
+<ul>
+<li><strong>Reward structure:</strong> the reward at each step is −1, so the agent is incentivized to reach the goal in as few steps as possible.</li>
+<li><strong>Expected return:</strong> if, from a given state, the agent moves in one direction with probability 20% and in the other direction with probability 80%, then the expected return from that state is the probability-weighted average of the returns obtained by taking each direction. That is, it equals <strong>0.2</strong> times the return from the first direction plus <strong>0.8</strong> times the return from the second direction. <span class="math display">\[\pi(A\vert s) = \begin{pmatrix}0.2 \\ 0.8\end{pmatrix} \in \mathbb{R}^{1 \times 2}\]</span> <span class="math display">\[\pi({\color{red}a}\vert s) = 0.2\]</span> <span class="math display">\[\pi({\color{blue}a}\vert s) = 0.8\]</span></li>
+</ul>
+<p align="center">
+<img src="images/value_function_example.jpeg" width="50%">
+</p>
+<p><span class="math display">\[G_{t} = 0.2 \cdot (-12) + 0.8 \cdot (-5)\]</span></p>
+<p><u>N.B:</u> This is an over semplification because we’re assuming the following:</p>
+<ul>
+<li>all the other decisions, at each step of each path, have a probability 1, but in reality there are a lot of expected possibilities of behaviour. Thus, we’re assuming that <span class="math inline">\(\pi\)</span> here is constant, but, since we’re continuously learning after getting each reward, it is not!</li>
+<li>the layout is always the same. If it changes, we need to adapt and know what is the <em>current</em> layout.</li>
+</ul>
+<h4 class="anchored">
+Policy initialization:
+</h4>
+<p>Knowing anything about the problem, a good initialization for the policy <span class="math inline">\(\pi\)</span> is <em>random</em>: at the beginning, we explore in a random way.<br> Usually we do not know anything because, being <span class="math inline">\(\pi\)</span> the probability of taking an action in a certain state, in Go, for instance, that function could possibly have <span class="math inline">\(10^{170}\)</span> states to be initialized, which is impractical. <br> In rare cases, we could know that some actions are prohibited in a certain state, so we can put probability 0 to those actions.</p>
+<h4 class="anchored">
+Policy update (improvement):
+</h4>
+<p>An ideal scenario is to update the policy at every timestep (using the reward received). However, this is not possible in every situation: in chess, for instance, we only get the reward at the end of the game (end of the episode). In these cases we will update the policy at the end of the episode: if it is not at the end of it, we need to update every step or frequently, because we cannot wait infinite time.</p>
 <h3 class="anchored">
 State-Value Function
 </h3>
-<p>The value function of a state <span class="math inline">\(s\)</span> under a policy <span class="math inline">\(\pi\)</span>, denoted <span class="math inline">\(v_\pi(s)\)</span>, is the expected return when starting in <span class="math inline">\(s\)</span> and following <span class="math inline">\(\pi\)</span> thereafter.</p>
+<p>The value function of a state <span class="math inline">\(s\)</span> under a policy <span class="math inline">\(\pi\)</span>, denoted <span class="math inline">\(v_\pi(s)\)</span>, <strong><em>is the expected return</em></strong> when starting in <span class="math inline">\(s\)</span> and following <span class="math inline">\(\pi\)</span> thereafter. Thus, we get that return on average, if we act according to the policy <span class="math inline">\(\pi\)</span>.</p>
 <blockquote class="blockquote">
 <p>For MDPs, we can define the <strong><em>state-value function</em></strong> <span class="math inline">\(v_\pi\)</span> for policy <span class="math inline">\(\pi\)</span> formally as:</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(v_s \doteq E_\pi[G_t \vert S_t = s] = E_\pi [\sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \vert S_t = s]\)</span></p>
+<p><span class="math inline">\(v_s \doteq E_\pi[G_t \vert S_t = s] = E_\pi [\underbrace{\sum_{k=0}^{\infty} \gamma^k R_{t+k+1}}_{G_{t}} \vert S_t = s]\)</span></p>
 </blockquote>
 <p>for all <span class="math inline">\(s \in \mathcal{S}\)</span>.</p>
-<p>where <span class="math inline">\(E_\pi[.]\)</span> denotes the expected value of a random variable, given that the agent follows <span class="math inline">\(\pi\)</span> and <span class="math inline">\(t\)</span> is any time step. The value of the terminal state is 0.</p>
+<p>where <span class="math inline">\(E_\pi[.]\)</span> denotes the expected value of a random variable (<span class="math inline">\(G_t\)</span> int his case), given that the agent follows <span class="math inline">\(\pi\)</span>, and <span class="math inline">\(t\)</span> is any time step. The value of the terminal state is 0 by definition.</p>
+<p>The policy <span class="math inline">\(\pi\)</span> can change (and so the value<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>) if we learn a better policy. The objective is to learn an optimal policy, giving the maximum expected <span class="math inline">\(G_t\)</span>.</p>
 </blockquote>
-<div id="aceea01f" class="cell" data-execution_count="4">
+<h4 class="anchored">
+Montecarlo Rollout:
+</h4>
+<p><em><u>What is the expected value from that state?</u></em><br> One way for doing this is <em>Montecarlo<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> simulation (rollout)</em>: simulate <em>n</em> times the episode probabilistically, and calculate what is the average expected reward. This can be seen as exploring a gigantic tree.</p>
+<p>This way, we are not learning how to improve the policy, but we learn what is the average value of that state given a policy, and use it as an estimation.</p>
+<p align="center">
+<img src="images/monte_carlo_rollout.png" width="50%">
+</p>
+<p><em><u>How to implement this in practice, using probabilistic programming?</u></em><br> Let’s suppose we have two actions: left and right. We want to implement the choice right with 30% probability and the choice left with 70% probability.</p>
+<p>Pseudocode:</p>
+<div id="47c2baf6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>choose <span class="op">=</span> rand(<span class="fl">0.1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> choose <span class="op">&gt;=</span> <span class="fl">0.7</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    move left</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    move right</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<h4 class="anchored">
+Scalability problem:
+</h4>
+<p>It is impossible to calculate the value of every state in Go (<span class="math inline">\(10^{170}\)</span>)! It is not computable.</p>
 <h3 class="anchored">
 Action-Value Function
 </h3>
-<p>Similarly to the state-value function, we define the action-value function.</p>
+<p>Equivalent to the state-value function is the action-value function.</p>
 <blockquote class="blockquote">
-<p>The <strong><em>action-value function</em></strong>, i.e.&nbsp;the value of taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span> under a policy <span class="math inline">\(\pi\)</span>, denoted <span class="math inline">\(q_\pi (s,a)\)</span>, as the expected return starting from <span class="math inline">\(s\)</span>, taking the action <span class="math inline">\(a\)</span>, and thereafter following policy <span class="math inline">\(\pi\)</span>:</p>
+<p>The <strong><em>action-value function</em></strong>, i.e.&nbsp;the value of taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span> under a policy <span class="math inline">\(\pi\)</span>, denoted <span class="math inline">\(q_\pi (s,a)\)</span>, is the expected return starting from <span class="math inline">\(s\)</span>, taking the action <span class="math inline">\(a\)</span>, and thereafter following policy <span class="math inline">\(\pi\)</span>:</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(q_\pi(s,a) \doteq E_\pi[G_t \vert S_t = s, A_t = a] = E_\pi[\sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \vert S_t = s, A_t = a]\)</span></p>
+<p><span class="math inline">\(\begin{align}q_\pi(s,a) &amp;\doteq E_\pi[G_t \vert S_t = s, A_t = a] \\ &amp;= E_\pi[\sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \vert S_t = s, A_t = a]\end{align}\)</span></p>
 </blockquote>
 </blockquote>
+<p>In other words, we fix the first action to take<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> from state <span class="math inline">\(S_t\)</span>, and we enter state <span class="math inline">\(S_{t+1}\)</span>; then, following the policy <span class="math inline">\(\pi\)</span> from that state onwards means that the <em>action-value function</em> is nothing but the sum of the reward obtained (<span class="math inline">\(R_{t+1}\)</span>) and the value of the entered state <span class="math inline">\(S_{t+1}\)</span> (the <em>state-value function</em> <span class="math inline">\(v_{S_{t+1}}\)</span>), i.e.&nbsp;the cumulative reward from that state onwards:</p>
+<p><span class="math display">\[q_\pi(S_t, a_t) = R_{t+1} + v_{S_{t+1}}\]</span></p>
+<p align="center">
+<img src="images/action-value_function.jpeg" width="50%">
+</p>
+<p align="center">
+<strong><span class="math inline">\(c_t\)</span></strong>: set of coordinates of state <span class="math inline">\(S_t\)</span><br> <span class="math inline">\(c'_{t+1}\)</span>: set of coordinates of state <span class="math inline">\(S_{t+1}\)</span> (<span class="math inline">\(\neq c_t\)</span>)<br> <span class="math inline">\(R_{t+1}\)</span>: reward that we get after moving with action <span class="math inline">\(a_t\)</span>
+</p>
+<h4 class="anchored">
+Straightforward action selection:
+</h4>
+<p>We previously stated that our goal is to learn the value of states, i.e., the <em>state-value function</em>. <u><em>Why, then, do we introduce the action-value function?</em></u><br> In theory, this is an equivalent formulation of the same problem, since the state-value function can be expressed as a sum (or expectation) over action-values. In practice, however, for certain algorithms it is more convenient to work directly with <span class="math inline">\(q\)</span>-values:<br> given the <span class="math inline">\(q\)</span>-values of the possible actions, selecting the best action (i.e., the one that yields the highest expected reward) is simply a matter of choosing the one with the highest <span class="math inline">\(q\)</span>-value, as it directly represents the expected return of taking a specific action under the current policy <span class="math inline">\(\rightarrow\)</span> makes action selection straightforward.<br> In contrast, if we only had <span class="math inline">\(v_s\)</span>, we would need knowledge of the environment’s layout to determine which ation leads to the highest reward.</p>
+<h4 class="anchored">
+Improving the policy through better <span class="math inline">\(q\)</span>-values:
+</h4>
+<p>If the policy selects actions by choosing those with the highest <span class="math inline">\(q\)</span>-values, improving the policy means learning more accurate <span class="math inline">\(q\)</span>-values, i.e., state-action pairs values. <strong>Better estimates</strong> lead to <strong>better action selection</strong> and, consequently, a <strong>better policy</strong> (probability distribution over the possible actions).<br> The goal, therefore, is to learn reliable estimates of the expected return associated with taking a given action, namely accurate <span class="math inline">\(q\)</span>-values, and to use them to inform the actual definition of the policy <span class="math inline">\(\pi\)</span> we are learning.</p>
+<p>Since the agent initially has no knowledge of the environment, it must explore by trying different actions, entering states, and learning from the observed rewards and subsequent states. Through this interaction, the <span class="math inline">\(q\)</span>-values are iteratively updated and refined, enabling progressively better decisions: this is <em>learning through experience</em> (like kids do).</p>
 </section>
 </section>
-<section id="choosing-the-rewards" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="choosing-the-rewards"><span class="header-section-number">2.6</span> Choosing the Rewards</h2>
-<p>When we model a real system as a Reinforcement Learning problem, the hardest problem is to select the right rewards.</p>
+<section id="choosing-the-rewards" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="choosing-the-rewards"><span class="header-section-number">2.5</span> Choosing the Rewards</h2>
+<p>When we model a real system as a Reinforcement Learning problem, the hardest challenge is selecting the right rewards.</p>
+<p>Our objective is to define these problems in terms of the cumulative reward (<span class="math inline">\(G_t\)</span>), i.e., the total reward.</p>
 <blockquote class="blockquote">
-<p>The <strong>reward</strong> should tell the agent if the current step is a <em>step forward towards the final goal</em> or not.</p>
+<p>The <strong>reward</strong> should tell the agent if the current step is <em>a step forward towards the final goal</em> or not.</p>
 </blockquote>
+<p>It is very important to keep in mind that we should not “reward” the intermediate steps or the single actions. We are not “teaching” the agent how to execute an intermediate step, but how to reach the final goal. If we do so, the agent will learn how to reach the intermediate step, not the final goal, (e.g., how to execute a sub-task).</p>
+<h4 class="anchored">
+Rewarding at each timestep:
+</h4>
 <ol type="1">
 <li><p>Typically, we use negative values for actions that do not help us in reaching our goal and positive if they do (and sometimes we set the values to 0 if they do not help us in reaching the goal).</p></li>
 <li><p>An alternative is to set the values of rewards to a negative number until we reach our goal (and we set the value to 0 when we reach our goal).</p></li>
 </ol>
-<p>It is very important to keep in mind that <u>we should not “reward” the intermediate steps</u> or the single actions. We are not “teaching” the agent how to execute an intermediate step, but how to reach the final goal. If we do so, the agent will learn how to reach the intermediate step, not the final goal, (e.g., how to execute a sub-task).</p>
-<p>Sometimes it’s not possible to know the reward until the end of an episode. The typical example is a board game (Chess, Go, etc.). In games like Chess or Go, the reward in the <strong>terminal state</strong> (i.e.&nbsp;the state at time <span class="math inline">\(T\)</span>, the end of the game) is typically <span class="math inline">\(1\)</span> for a winning and <span class="math inline">\(-1\)</span> for a losing. However, the outcome is only revealed at the end of the game.</p>
-<ul>
-<li><p>Therefore, the reward can be assigned only at the end of an episode.</p></li>
-<li><p>This is usually called <strong><em>credit assignment problem</em></strong>, i.e.&nbsp;the problem of assigning a reward to each step.</p></li>
-<li><p>In that case the reward might be assigned, for instance, at the end of a <strong>Montecarlo rollout</strong> (stochastic estimate of the reward).</p></li>
-<li><p>In Go or Chess, we can for example assign <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span> to <strong>each step</strong> in case of victory or loss at the end of the episode after a Montecarlo playout/rollout.</p></li>
-</ul>
-<h3 class="anchored">
-Examples of Rewards
-</h3>
-<p>Our objective is to define these games in terms of the cumulative reward, the total reward.</p>
-<p>The reward is given to each action at the end of the episode. In other words, we can distribute the reward a posteriori, based on the game outcome:</p>
-<ol type="1">
-<li><p>The agent plays the game (episode);</p></li>
-<li><p>If the game is successful, we can use <span class="math inline">\(+1\)</span> as reward for all the steps that leads to the victory (<span class="math inline">\(-1\)</span> otherwise).</p></li>
-</ol>
-<p>By doing this, since the goal is the cumulative reward, we teach the agent to reiforce the sequence of actions that lead to victory, without requiring any prior knowledge of the game’s rules.</p>
-<p>Essentially, starting by playing randomly, the agent can begin to learn how to improve its policy, i.e.&nbsp;its way of making decisions —the probability distribution of how to take an action over time— by observing the reward it receives at the end of each episode.</p>
-<h4 class="anchored">
-Gridworld example:
-</h4>
+<p><strong>Gridworld example:</strong><br></p>
 <p align="center">
 <img src="images/4_by_4_gridworld.jpeg" width="23%"> <span class="math inline">\(\Rightarrow
     \begin{bmatrix}
@@ -657,11 +706,9 @@ Gridworld example:
 <em><strong>Goal</strong>: reach the flag as quick as possible</em>
 </p>
 <p align="center">
-<span class="math inline">\(-1\)</span> to penalize a long path <br> <span class="math inline">\(0\)</span> when reaching the flag <br> <em><strong>Rewards</strong></em>
+<span class="math inline">\(-1\)</span> to each action (in order to penalize a long path) <br> <span class="math inline">\(0\)</span> when reaching the flag <br> <em><strong>Rewards</strong></em>
 </p>
-<h4 class="anchored">
-Maze example:
-</h4>
+<p><strong>Maze example:</strong><br></p>
 <p align="center">
 <img src="images/maze.png" width="45%">
 </p>
@@ -675,11 +722,27 @@ Maze example:
 <em><strong>Goal</strong>: get out the maze as soon as possible</em>
 </p>
 <p align="center">
-<span class="math inline">\(-1\)</span> for no exit, to penalize a long path <br> <span class="math inline">\(0\)</span> for exit <br> <em><strong>Rewards</strong></em>
+<span class="math inline">\(-1\)</span> to each move (in order to penalize a long path) <br> <span class="math inline">\(0\)</span> when reaching the exit <br> <em><strong>Rewards</strong></em>
 </p>
+<p><strong>Atari example:</strong><br></p>
+<p align="center">
+<img src="images/atari.png" width="45%">
+</p>
+<p>In videogames like Atari, where the agent gets some points for every positive action, and the <strong><em>goal</em></strong> is to maximise the points, we can use the points as <strong><em>rewards</em></strong>.</p>
 <h4 class="anchored">
-Chess example:
+Rewarding at the end of episode:
 </h4>
+<p>Sometimes it is not possible to know the reward until the end of an episode, because the outcome is only revealed at the end of the game. The typical example is a board game (Chess, Go, etc.).</p>
+<blockquote class="blockquote">
+<p>The <strong>credit assignment problem</strong><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> is the problem of assigning a reward to each step (at the end of episode).</p>
+</blockquote>
+<ul>
+<li><p>In that case, the reward might be assigned at the end of a <strong>Montecarlo playout/rollout</strong> (stochastic estimate of the reward).</p></li>
+<li><p>The reward is given to each action at the end of the episode. In other words, we can distribute the reward a posteriori, based on the game outcome.</p></li>
+<li><p>For example, if the game is successfull we can use +1 as reward for all the steps that leads to the victory (or -1 otherwise).</p></li>
+<li><p>By doing this, since the goal is the cumulative reward, we teach the agent to reinforce the sequence of actions that lead to victory, <u>without requiring any prior knowledge of the game’s rules</u>. Essentially, starting by random play, the agent can begin to learn how to improve its policy, i.e., its way of making decisions —the probability distribution of how to take an action over time— by observing the reward it receives at the end of each episode.</p></li>
+</ul>
+<p><strong>Chess example:</strong><br></p>
 <p align="center">
 <img src="images/chess.png" width="45%">
 </p>
@@ -693,41 +756,39 @@ Chess example:
 <em><strong>Goal</strong>: win the game</em>
 </p>
 <p align="center">
-<span class="math inline">\(+1\)</span> for victory <br> <span class="math inline">\(-1\)</span> for defeat <br> <em><strong>Rewards</strong></em>
+<span class="math inline">\(+1\)</span> to all the actions that contribute to victory <br> <span class="math inline">\(-1\)</span> to all the actions that contribute to defeat <br> <em><strong>Rewards</strong></em>
 </p>
 <h4 class="anchored">
-Atari example:
+The Credit Assignment Problem formalization:
 </h4>
-<p align="center">
-<img src="images/atari.png" width="45%">
-</p>
-<p>In videogames like Atari, where the agent gets some points for every positive action, and the <strong><em>goal</em></strong> is to maximise the points, we can use the points as <strong><em>rewards</em></strong>.</p>
+<blockquote class="blockquote">
+<p>Given a sequence of states, actions, and rewards, determine which actions (or states) were responsible for which parts of the reward.</p>
+</blockquote>
+<p>This was first formalized in 1961 by Minsky<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>, professor at MIT. It is expecially tricky for delayed rewards, as we might get a reward many steps after the action that caused it.</p>
+<p><em>Steps Toward Artificial Intelligence</em> is a very interesting paper by him, addressing key problems in AI.</p>
 <iframe src="papers/2__1__Steps_Toward_Artificial_Intelligence.pdf" width="100%" height="400px">
 </iframe>
-<p>Playing against another learning agent creates a highly dynamic environment. How do we learn in an agent population where all agents are simultaneosuly learning?</p>
-<p><span class="math inline">\(\blacktriangleright\)</span> This is a research topic!</p>
+<p>He also took part to the <em>Dartmouth Summer Research Project</em><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> on Artificial Intelligence, often described as the foundational event in the history of AI.</p>
 </section>
-<section id="estimating-value-state-value-and-action-value-functions" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="estimating-value-state-value-and-action-value-functions"><span class="header-section-number">2.7</span> Estimating Value (State-Value and Action-Value) Functions</h2>
-<p>If the behaviour of the MDP is known (i.e.&nbsp;the transitions probabilities between all the states are known), the state function or the action-state function can be estimated by considering all the possible moves.</p>
+<section id="estimating-value-state-value-and-action-value-functions" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="estimating-value-state-value-and-action-value-functions"><span class="header-section-number">2.6</span> Estimating Value (State-Value and Action-Value) Functions</h2>
+<p>If we know the physics of the system, so the behaviour of the MDP is known (i.e.&nbsp;the <strong>transitions probabilities</strong><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> between all the states are known), the state function or the action-state function can be estimated by considering all the possible moves.</p>
 <p>This is not possible when:</p>
 <ul>
-<li>The transitions probabilities are not know.</li>
-<li>The system is very complex (for example a board game has a very large number of potential game configurations).</li>
+<li><u>The transitions probabilities are not known</u>: if we take an action, we do not know how it influences the future.</li>
+<li><u>The system is very complex</u>: it takes too much time to do the computation for all the states (e.g., a board game has a very large number of potential game configurations).</li>
 </ul>
-<h3 class="anchored">
-Monte-Carlo Methods
-</h3>
+<h4 class="anchored">
+Monte-Carlo Methods:
+</h4>
 <p>Alternatively, the state-value function <span class="math inline">\(v_\pi\)</span> and the action-value function <span class="math inline">\(q_\pi\)</span> can be estimated through experience.</p>
-<ul>
-<li>One possibility is to keep average values of the actual returns that have followed a certain state (or a certaina action) while following a policy <span class="math inline">\(\pi\)</span>. These values will converge to the actual state-value function <span class="math inline">\(v_\pi\)</span> and the action-value function <span class="math inline">\(\_\pi\)</span> asymptotically.</li>
-</ul>
+<p>One possibility is to keep average values of the actual returns that have followed a certain state (or a certain action) while following a policy <span class="math inline">\(\pi\)</span>. These values will converge to the actual state-value function <span class="math inline">\(v_\pi\)</span> and the action-value function <span class="math inline">\(q_\pi\)</span> asymptotically.</p>
 <blockquote class="blockquote">
-<p>These methods based on averaging sample returns are referred to as <strong><em>Monte Carlo methods</em></strong>.</p>
+<p>The <strong><em>Monte Carlo methods</em></strong> are methods based on averaging sample returns.</p>
 </blockquote>
-<h3 class="anchored">
-Using function approximators (Neural Networks and Deep RL)
-</h3>
+<h4 class="anchored">
+Using function approximators (Neural Networks and Deep RL):
+</h4>
 <p>Monte Carlo methods are not appropriate in case the number of states is very large.</p>
 <ul>
 <li><p>In this case, it is not practical to keep separate averages for each state individually.</p></li>
@@ -738,8 +799,8 @@ Using function approximators (Neural Networks and Deep RL)
 <li>Artificial neural networks are a possible option as function approximators <span class="math inline">\(\rightarrow\)</span> Deep Reinforcement Learning.</li>
 </ul>
 </section>
-<section id="optimal-policies-and-optimal-value-functions" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="optimal-policies-and-optimal-value-functions"><span class="header-section-number">2.8</span> Optimal Policies and Optimal Value Functions</h2>
+<section id="optimal-policies-and-optimal-value-functions" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="optimal-policies-and-optimal-value-functions"><span class="header-section-number">2.7</span> Optimal Policies and Optimal Value Functions</h2>
 <h3 class="anchored">
 Optimal Policies
 </h3>
@@ -769,8 +830,8 @@ Optimal Value Functions
 </blockquote>
 </blockquote>
 </section>
-<section id="difference" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="difference"><span class="header-section-number">2.9</span> Difference between RL and other ML sub-domains</h2>
+<section id="difference" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="difference"><span class="header-section-number">2.8</span> Difference between RL and other ML sub-domains</h2>
 <p>RL differs significantly from other types of machine learning, such as supervised and unsupervised learning.</p>
 <p>In <strong><em>supervised learning</em></strong>, models are trained using labeled data, learning to predict outcomes based on examples. It is suitable for solving problems like classification and regression.</p>
 <p><strong><em>Unsupervised learning</em></strong>, on the other hand, involves learning to identify patterns or structures from unlabeled data. It is suitable for solving problems like clustering or association analysis.</p>
@@ -791,8 +852,8 @@ RL vs.&nbsp;Unsupervised Learning
 <img src="images/supervised_unsupervised_reinforcement_learning.png" width="100%">
 </p>
 </section>
-<section id="when-to-use-rl" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="when-to-use-rl"><span class="header-section-number">2.10</span> When to use RL</h2>
+<section id="when-to-use-rl" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="when-to-use-rl"><span class="header-section-number">2.9</span> When to use RL</h2>
 <p>In particular, RL is well-suited for scenarios that require training a model to make sequential decisions where each decision influences future observations. In this setting, the agent learns through rewards and penalties. These guide it towards developing more effective strategies without any kind of direct supervision.</p>
 <ul>
 <li><p>Sequential decision-making</p>
@@ -823,8 +884,8 @@ Appropriate vs.&nbsp;Inappropriate for RL
 <img src="images/appropriate_vs_inappropriate_for_rl.png" width="100%">
 </p>
 </section>
-<section id="rl-applications" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="rl-applications"><span class="header-section-number">2.11</span> RL Applications</h2>
+<section id="rl-applications" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="rl-applications"><span class="header-section-number">2.10</span> RL Applications</h2>
 <p>Beyond its well-known use in gaming, RL has a myriad of applications across various sectors.</p>
 <p style="display: flex; justify-content: space-around; align-items: center;">
 <img src="images/robotics.png" width="20%"> <img src="images/finance.png" width="20%"> <img src="images/autonomous_vehicles.png" width="20%"> <img src="images/chatbot_development.png" width="20%">
@@ -852,8 +913,8 @@ Appropriate vs.&nbsp;Inappropriate for RL
 </ul></li>
 </ol>
 </section>
-<section id="references" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="references"><span class="header-section-number">2.12</span> References</h2>
+<section id="references" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="references"><span class="header-section-number">2.11</span> References</h2>
 <ul>
 <li>DataCamp, <a href="https://app.datacamp.com/learn/courses/reinforcement-learning-with-gymnasium-in-python">Reinforcement Learning with Gymnasium in Python</a></li>
 </ul>
@@ -875,6 +936,14 @@ Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An In
 <li id="fn1"><p>The <em>expected value</em> (also called the <em>mean</em> or <em>mathematical expectation</em>) of a random variable is a measure of the center of its probability distribution —essentially, it’s the average outcome we’d expect if we repeated an experiment many times.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>A <em>hyperparameter</em> is a parameter not learned by the model, but that guides the learning process (e.g.&nbsp;the number of layers, the number of nodes, the activation function of the network, etc.).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p><em>Scikit-learn</em> has a <a href="https://scikit-learn.org/stable/modules/grid_search.html">tool for doing parameter search</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><em>Policy</em> = the probability of taking a certain action in a certain state.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>If we’re exploring with a certain policy <span class="math inline">\(\pi\)</span>, and we behave differently (the policy changes), then the expected cumulative reward <span class="math inline">\(E_{\pi}(G_t)\)</span> will be different because we’re going to move in a different way.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><em>Montecarlo</em>: the program pick a certain action with a certain probability.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Otherwise, if we only have <span class="math inline">\(v_{S_t}\)</span>, any action could be chosen. In that case we would need to compute the expected reward for all possible actions available from state <span class="math inline">\(S_t\)</span> in order to decide which one to take.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>This problem is unsolved since 1961.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><em>Marvin Minsky (1912 – 1954):</em> <a href="https://it.wikipedia.org/wiki/Alan_Turing">https://it.wikipedia.org/wiki/Alan_Turing</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><em>Dartmouth workshop:</em> <a href="https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com">https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Here we refer to the <em>transition probabilities</em> of the environment (so which states we’re going to enter next), not of the policy.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

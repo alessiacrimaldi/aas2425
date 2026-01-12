@@ -238,6 +238,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -253,20 +259,17 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#computing-machinery-and-intelligence" id="toc-computing-machinery-and-intelligence" class="nav-link active" data-scroll-target="#computing-machinery-and-intelligence"><span class="header-section-number">1.1</span> Computing Machinery and Intelligence</a></li>
   <li><a href="#intelligent-machines-evolution" id="toc-intelligent-machines-evolution" class="nav-link" data-scroll-target="#intelligent-machines-evolution"><span class="header-section-number">1.2</span> Intelligent Machines Evolution</a></li>
   <li><a href="#ai-systems-mastering-games-with-reinforcement-learning" id="toc-ai-systems-mastering-games-with-reinforcement-learning" class="nav-link" data-scroll-target="#ai-systems-mastering-games-with-reinforcement-learning"><span class="header-section-number">1.3</span> AI Systems Mastering Games with Reinforcement Learning</a></li>
   <li><a href="#real-world-applications-of-agentic-systems" id="toc-real-world-applications-of-agentic-systems" class="nav-link" data-scroll-target="#real-world-applications-of-agentic-systems"><span class="header-section-number">1.4</span> Real-World Applications of Agentic Systems</a></li>
   <li><a href="#reinforcement-learning-for-generative-ai" id="toc-reinforcement-learning-for-generative-ai" class="nav-link" data-scroll-target="#reinforcement-learning-for-generative-ai"><span class="header-section-number">1.5</span> Reinforcement Learning for Generative AI</a></li>
   <li><a href="#intelligent-adaptive-and-autonomous-agents" id="toc-intelligent-adaptive-and-autonomous-agents" class="nav-link" data-scroll-target="#intelligent-adaptive-and-autonomous-agents"><span class="header-section-number">1.6</span> Intelligent, Adaptive and Autonomous Agents</a></li>
-  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">1.7</span> What’s next</a>
-  <ul class="collapse">
-  <li><a href="#learning" id="toc-learning" class="nav-link" data-scroll-target="#learning">Learning</a></li>
-  </ul></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">1.7</span> What’s next</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.8</span> References</a></li>
   <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings"><span class="header-section-number">1.9</span> Suggested Readings</a></li>
   </ul>
@@ -497,20 +500,20 @@ State of the Art
 Definitions
 </h3>
 <blockquote class="blockquote">
-<p>An <strong><em>intelligent agent</em></strong> is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.</p>
+<p>An <strong><em>INTELLIGENT AGENT</em></strong> is an entity that perceives its environment and takes actions that maximise the probability of achieving its goals.</p>
 </blockquote>
 <ul>
 <li>Agents might be physically situated (we call them robots) or not (we refer to them as <em>software agents</em> -or just <em>agents</em>-, <em>softbots</em>, <em>bots</em>, etc.). An emerging terminology, such as <em>embodied AI</em> and <em>embodied AI agents</em> refers to agents that interact with and act within a specific environment.</li>
 </ul>
 <blockquote class="blockquote">
-<p>An <strong><em>adaptive agent</em></strong> is an entity that is capable of responding (by adapting) to its environment.</p>
+<p>An <strong><em>ADAPTIVE AGENT</em></strong> is an entity that is capable of responding (by adapting) to its environment.</p>
 </blockquote>
 <ul>
 <li><p><u>The environment might also include other agents</u>, encompassing their locations, actions, interactions (e.g., how they respond to the agent), and all relevant information about them.</p></li>
 <li><p>The environment is everything else outside the agent.</p></li>
 </ul>
 <blockquote class="blockquote">
-<p>An <strong><em>autonomous agent</em></strong> is an entity that relies only on its perception (what it can <em>sense</em> and get from the environment) and acts in the world independently from its designer.</p>
+<p>An <strong><em>AUTONOMOUS AGENT</em></strong> is an entity that relies only on its perception (what it can <em>sense</em> and get from the environment) and acts in the world independently from its designer.</p>
 </blockquote>
 <ul>
 <li><p>It takes decisions and acts independently from the way the agent itself is designed.</p></li>
@@ -521,28 +524,28 @@ Definitions
 <h3 class="anchored">
 Learning and Autonomous Agents
 </h3>
-<p>From a practical point of view, it makes sense to provide the agent with <strong>some knowledge of the world</strong> and the <strong>ability to learn</strong>:</p>
+<p>From a practical point of view, it makes sense to provide the agent with <strong>some knowledge of the world</strong> and the <u><strong>ability to learn</strong></u>:</p>
 <p>As in the case of evolution, in which animals/humans have a sufficient number of built-in reflexes in order to survive long enough to learn by themselves, it is reasonable to provide an artificial intelligent agent with some initial knowledge as well as an ability to learn and adapt.</p>
-<p>After gaining sufficient experience of its environment, an intelligent agent can become effectively <strong>independent of its prior knowledge</strong>. The idea is that, while the agent starts with some initial understanding of the world, it gradually adapts and learns to act beyond its original knowledge. However, it does not discard it prior knowledge —<strong><em>forgetting</em></strong> is a big issue in Reinforcement Learning. Instead, the agent integrates new experiences while retaining and building upon its initial foundation.</p>
+<p>After gaining sufficient experience of its environment, an intelligent agent can become effectively <strong>independent from its prior knowledge</strong>. The idea is that, while the agent starts with some initial understanding of the world, it gradually adapts and learns to act beyond its original knowledge. However, it does not discard it prior knowledge: <strong><em>forgetting</em></strong> is a big issue in Reinforcement Learning. Instead, the agent integrates new experiences while retaining and building upon its initial foundation.</p>
 <p>For this reason, learning allows an intelligent agent to survive in a vast variety of environments: they’re <strong>adaptive</strong>.</p>
 <h3 class="anchored">
 Designing Agents
 </h3>
 <p>Dimensions that should be taken into consideration in designing agents are the following:</p>
 <ul>
-<li>Performance —<em>how accurate they are in completing a certain task</em>.</li>
-<li>Environment —<em>where they are deployed</em>.</li>
-<li>Actuators —<em>what they can do = what are the actions they can perform</em> (physical or software).</li>
-<li>Sensors —<em>how they can sense and gather information from the environment</em>.</li>
+<li>Performance — <em>how accurate they are in completing a certain task</em>.</li>
+<li>Environment — <em>where they are going to be deployed</em>.</li>
+<li>Actuators — <em>what they can do = what are the actions they can perform</em> (physical or software).</li>
+<li>Sensors — <em>how they can sense and gather information from the environment</em>.</li>
 </ul>
 <p align="center">
 <img src="images/agents_design.png" width="70%">
 </p>
 <p align="center">
-<img src="images/performance_environment_actuators_sensors.png" width="85%">
+<img src="images/performance_environment_actuators_sensors.png" width="90%">
 </p>
 <h4 class="anchored">
-Automatic Display of Advertisement example:
+Automatic display of advertisement example:
 </h4>
 <p>Meta’s system is designed to deliver the most relevant ads to users. It functions as an autonomous agent that decides which advertisements to display based on user interactions, such as time spent on videos, likes, and clicks on various posts. The agent is independent and continuously learns from user interactions to refine its ad recommendations. In particular:</p>
 <ul>
@@ -597,7 +600,7 @@ A Categorization of Intelligent Agents
 <li><p>Goal-based agents;</p></li>
 <li><p>Utility-based agents.</p></li>
 </ol>
-<p>The behaviour of these agents can be <strong><em>hard-wired</em></strong> or it can be acquired, improved and optimised through <strong><em>learning</em></strong>. See section <a href="#learning">Learning</a>.</p>
+<p>The behaviour of these agents can be <strong><em>hard-wired</em></strong> or it can be acquired, improved and optimised through <strong><em>learning</em></strong> (see section <a href="#learning">Learning</a>).</p>
 <h4 class="anchored">
 Simple Reflex Agents:
 </h4>
@@ -605,7 +608,7 @@ Simple Reflex Agents:
 <p><strong><em>Simple reflex agents</em></strong> select actions on the basis of the current perception —like humans <em>reflexes</em> when they perceive pain— ignoring the rest of the perception history.</p>
 </blockquote>
 <ul>
-<li><p>These are the most basic form of agents, they are based on <strong><em>conditon-action rules</em></strong> (also called simulation-action rules, productions or if-then rules).</p></li>
+<li><p>These are the most basic form of agents, they are based on <strong><em>condition-action rules</em></strong> (also called simulation-action rules, productions or if-then rules).</p></li>
 <li><p>Humans also have a set of automatic (learned) responses in their biology.</p></li>
 <li><p>They are suitable for situations where the decisions can be made on the <strong><em>current observation</em></strong>.</p></li>
 </ul>
@@ -660,8 +663,15 @@ Utility-based Agents:
 <li><p>We model states preferred to others using <strong><em>utilities</em></strong> (or <strong>payoffs</strong> or, for reinforcement learning engineers, <strong>rewards</strong>).</p></li>
 <li><p>These agents aim to maximize their utility.</p></li>
 <li><p>Utility functions maps a state (or a sequence of states) onto a real number, which describes the preferences of an agent.</p></li>
-<li><p>Example: taxi routing to destination (quicker route, the shortest path is preferable).</p></li>
-<li><p>There are situations in which the agents have competitive objectives. For example, a taxi driver, who is paid based on distance traveled, may have an incentive to take longer routes, while the client’s utility is to reach the destination as efficiently and affordably as possible.</p></li>
+<li><p>Examples:</p>
+<ul>
+<li>Taxi routing to destination (quicker route, the shortest path is preferable).</li>
+<li>Google ads displaying (click on the ad for which the payment for the ad fee is the highest).</li>
+</ul></li>
+<li><p>There are situations in which the agents have competitive objectives.</p>
+<ul>
+<li>For example, a taxi driver, who is paid based on distance traveled, may have an incentive to take longer routes, while the client’s utility is to reach the destination as efficiently and affordably as possible.</li>
+</ul></li>
 </ul>
 <p align="center">
 <img src="images/utility-based_agent.png" width="70%">
@@ -683,7 +693,7 @@ Autonomous and Adaptive Systems
 <p>In this module, we will adopt a very broad view of intelligent, adaptive and autonomous agents.</p>
 <p>Following <strong>Herbert Simon</strong><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> ’s famous definition, we will consider more broadly:</p>
 <blockquote class="blockquote">
-<p>“machines that think, that learn, and that create”.</p>
+<p>“machines that <u>think</u>, that <u>learn</u>, and that <u>create</u>”.</p>
 </blockquote>
 <p>Herbert Simon, a two-time Nobel laureate, was an economist who made significant contributions to machine learning and decision theory in complex systems. He is considered a foundational figure in modern artificial intelligence and agent-based systems, as he pioneered the concept of simulating economic behavior —essentially modeling society through computational methods.</p>
 <p>Of course <strong><em>“thinking”</em></strong> is an ill-defined concept (<em>“Do the LLMs reason?”</em> ), which we will try to discuss during the module in detail.</p>
@@ -702,21 +712,18 @@ Building Intelligent Machines
 <h3 class="anchored">
 Artificial General Intelligence
 </h3>
-<ul>
-<li><p>In the recent years we had several successes in building more and more sophisticated systems.</p></li>
-<li><p><strong><em>Human-level Artificial Intelligence</em></strong> or <strong><em>Artificial General Intelligence</em></strong> is the intelligence of an entity (agent, machine, etc.), which has the capacity of learning any task <u>at or above human-level</u> (at least as an human being).</p></li>
-</ul>
+<p>In the recent years we had several successes in building more and more sophisticated systems.</p>
+<blockquote class="blockquote">
+<p><strong><em>Human-level Artificial Intelligence</em></strong> or <strong><em>Artificial General Intelligence</em></strong> is the intelligence of an entity (agent, machine, etc.), which has the capacity of learning any task <u>at or above human-level</u> (at least as an human being).</p>
+</blockquote>
 <p>We will discuss the current state-of-the-art in this area and we will also outline the challenges and opportunities ahead.</p>
 </section>
 </section>
 <section id="references" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="references"><span class="header-section-number">1.8</span> References</h2>
-<ul>
-<li><span class="citation" data-cites="russell2020">Russell and Norvig (<a href="references.html#ref-russell2020" role="doc-biblioref">2020</a>)</span></li>
-</ul>
 <p>Some of the definitions and some of the figures of this section are from:</p>
 <ul>
-<li><strong>Chapter 2</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
+<li><strong>Chapter 2</strong> of <span class="citation" data-cites="russell2020">Russell and Norvig (<a href="references.html#ref-russell2020" role="doc-biblioref">2020</a>)</span></li>
 </ul>
 </section>
 <section id="suggested-readings" class="level2" data-number="1.9">
@@ -732,9 +739,6 @@ Russell, Stuart, and Peter Norvig. 2020. <em>Artificial Intelligence. A Modern A
 </div>
 <div id="ref-simon1996" class="csl-entry" role="listitem">
 Simon, Herbert A. 1996. <em>The Sciences of the Artificial</em>. Third edition. MIT Press. <a href="https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf">https://monoskop.org/images/9/9c/Simon_Herbert_A_The_Sciences_of_the_Artificial_3rd_ed.pdf</a>.
-</div>
-<div id="ref-sutton2018" class="csl-entry" role="listitem">
-Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An Introduction.</em> Second edition. MIT Press. <a href="https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf">https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf</a>.
 </div>
 </div>
 </section>

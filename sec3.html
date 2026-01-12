@@ -273,6 +273,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -288,10 +294,10 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#k-armed-bandit-problem" id="toc-k-armed-bandit-problem" class="nav-link active" data-scroll-target="#k-armed-bandit-problem"><span class="header-section-number">3.1</span> K-armed Bandit Problem</a></li>
   <li><a href="#exploration-vs.-exploitation" id="toc-exploration-vs.-exploitation" class="nav-link" data-scroll-target="#exploration-vs.-exploitation"><span class="header-section-number">3.2</span> Exploration vs.&nbsp;Exploitation</a></li>
   <li><a href="#evaluating-action-value-methods" id="toc-evaluating-action-value-methods" class="nav-link" data-scroll-target="#evaluating-action-value-methods"><span class="header-section-number">3.3</span> Evaluating Action-Value Methods</a></li>
@@ -482,7 +488,7 @@ Action Selection and Estimated Value
 <blockquote class="blockquote">
 
 </blockquote>
-<div id="2f293c3b" class="cell" data-execution_count="1">
+<div id="c28b7f70" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> epsilon_greedy:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> eps:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.argmax(Q)</span>
@@ -600,7 +606,7 @@ Example
 </section>
 <section id="multi-armed-bandits-in-practice" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.10</span> Multi-armed Bandits in practice</h2>
-<div id="5be7bf0e" class="cell" data-execution_count="2">
+<div id="762a9d6e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -667,50 +673,50 @@ Example
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>arm 0 range: (8, 9)
-arm 1 range: (5, 5)
-arm 2 range: (5, 10)
-arm 3 range: (2, 2)
+<pre><code>arm 0 range: (6, 7)
+arm 1 range: (10, 10)
+arm 2 range: (8, 9)
+arm 3 range: (3, 10)
 step 0
-R: 8.600324048701854
-Q: [8.600324048701854, 10.0, 10.0, 10.0]
+R: 6.1028642628395735
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
 N: [1.0, 0.0, 0.0, 0.0]
 step 1
-R: 5.0
-Q: [8.600324048701854, 5.0, 10.0, 10.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
 N: [1.0, 1.0, 0.0, 0.0]
 step 2
-R: 5.2936024351583635
-Q: [8.600324048701854, 5.0, 5.2936024351583635, 10.0]
-N: [1.0, 1.0, 1.0, 0.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 2.0, 0.0, 0.0]
 step 3
-R: 2.0
-Q: [8.600324048701854, 5.0, 5.2936024351583635, 2.0]
-N: [1.0, 1.0, 1.0, 1.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 3.0, 0.0, 0.0]
 step 4
-R: 8.838253689100503
-Q: [8.719288868901177, 5.0, 5.2936024351583635, 2.0]
-N: [2.0, 1.0, 1.0, 1.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 4.0, 0.0, 0.0]
 step 5
-R: 8.26671531691048
-Q: [8.56843101823761, 5.0, 5.2936024351583635, 2.0]
-N: [3.0, 1.0, 1.0, 1.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 5.0, 0.0, 0.0]
 step 6
-R: 8.598412648898593
-Q: [8.575926425902857, 5.0, 5.2936024351583635, 2.0]
-N: [4.0, 1.0, 1.0, 1.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 6.0, 0.0, 0.0]
 step 7
-R: 8.680177445450305
-Q: [8.596776629812346, 5.0, 5.2936024351583635, 2.0]
-N: [5.0, 1.0, 1.0, 1.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 7.0, 0.0, 0.0]
 step 8
-R: 8.064098290958528
-Q: [8.507996906670044, 5.0, 5.2936024351583635, 2.0]
-N: [6.0, 1.0, 1.0, 1.0]
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 8.0, 0.0, 0.0]
 step 9
-R: 8.196741233275164
-Q: [8.463531810470776, 5.0, 5.2936024351583635, 2.0]
-N: [7.0, 1.0, 1.0, 1.0]</code></pre>
+R: 10.0
+Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+N: [1.0, 9.0, 0.0, 0.0]</code></pre>
 </div>
 </div>
 </section>
@@ -744,7 +750,7 @@ Website serving ads with bandits.
 <p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
 <p><a href="https://research.facebook.com/blog/2021/4/auto-placement-of-ad-campaigns-using-multi-armed-bandits/">Auto-placement of ad campaigns using multi-armed bandits</a></p>
 </blockquote>
-<div id="a9caf436" class="cell" data-execution_count="3">
+<div id="c1d143e0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
@@ -769,7 +775,7 @@ Website serving ads with bandits.
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="22b71ec5" class="cell" data-execution_count="4">
+<div id="ab6fbac4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>

@@ -253,6 +253,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -268,16 +274,13 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
-  <li><a href="#gymnasium" id="toc-gymnasium" class="nav-link active" data-scroll-target="#gymnasium"><span class="header-section-number">11</span> Gymnasium</a>
   <ul class="collapse">
-  <li><a href="#key-gymnasium-environments" id="toc-key-gymnasium-environments" class="nav-link" data-scroll-target="#key-gymnasium-environments"><span class="header-section-number">11.1</span> Key Gymnasium environments</a></li>
-  <li><a href="#gymnasium-interface" id="toc-gymnasium-interface" class="nav-link" data-scroll-target="#gymnasium-interface"><span class="header-section-number">11.2</span> Gymnasium interface</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11.3</span> References</a></li>
-  </ul></li>
+  <li><a href="#key-gymnasium-environments" id="toc-key-gymnasium-environments" class="nav-link active" data-scroll-target="#key-gymnasium-environments"><span class="header-section-number">10.1</span> Key Gymnasium environments</a></li>
+  <li><a href="#gymnasium-interface" id="toc-gymnasium-interface" class="nav-link" data-scroll-target="#gymnasium-interface"><span class="header-section-number">10.2</span> Gymnasium interface</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10.3</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -303,8 +306,9 @@ window.Quarto = {
 </header>
 
 
-<section id="gymnasium" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Gymnasium</h1>
+<h1>
+Gymnasium
+</h1>
 <ul>
 <li><p>Standard library for RL tasks</p></li>
 <li><p>Abstracts complexity of RL problems</p></li>
@@ -313,8 +317,8 @@ window.Quarto = {
 <p align="center">
 <img src="images/gymnasium.png" width="95%">
 </p>
-<section id="key-gymnasium-environments" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="key-gymnasium-environments"><span class="header-section-number">11.1</span> Key Gymnasium environments</h2>
+<section id="key-gymnasium-environments" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="key-gymnasium-environments"><span class="header-section-number">10.1</span> Key Gymnasium environments</h2>
 <p>Some key environment examples are:</p>
 <h3 class="anchored">
 CartPole
@@ -357,8 +361,8 @@ Taxi
 <li><p><a href="https://gymnasium.farama.org/environments/toy_text/taxi/">https://gymnasium.farama.org/environments/toy_text/taxi/</a></p></li>
 </ul>
 </section>
-<section id="gymnasium-interface" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="gymnasium-interface"><span class="header-section-number">11.2</span> Gymnasium interface</h2>
+<section id="gymnasium-interface" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="gymnasium-interface"><span class="header-section-number">10.2</span> Gymnasium interface</h2>
 <p>No matter the environemnt, the Gymnasium library offers an unified interface for interaction. This interface includes functions and methods to:</p>
 <ul>
 <li>Initialize environment</li>
@@ -376,7 +380,7 @@ Interacting with Gymnasium environments
 <li>Initialize the environment and return the initial observation along with some auxiliary information, by calling the method <code>env.reset</code>. The <code>seed</code> argument can be used to ensure reproducibility.</li>
 <li>Print the intial observation.</li>
 </ol>
-<div id="de57394f" class="cell" data-execution_count="1">
+<div id="00344e68" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gymnasium <span class="im">as</span> gym</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> gym.make(<span class="st">'CartPole'</span>, render_mode<span class="op">=</span><span class="st">'rgb_array'</span>)</span>
@@ -400,7 +404,7 @@ Interacting with Gymnasium environments
 Visualizing the state
 </h3>
 <p>To get a visual representation of the state, the <code>env.render</code> method returns the state image that we can visualize using the <code>plt.imshow</code> function. Then, by calling <code>plt.show</code>, a snapshot of the environment will be displayed.</p>
-<div id="b118cc1c" class="cell" data-execution_count="2">
+<div id="ed084e37" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> render():</span>
@@ -434,7 +438,7 @@ Performing actions
 <li><strong>Info</strong> which provides auxiliary diagnostic information useful for debugging</li>
 </ol>
 <p>We omit <em>truncated</em> and <em>info</em> in our script for simplicity and we print the first three return values after moving the cart to the right.</p>
-<div id="4c2418e3" class="cell" data-execution_count="3">
+<div id="3c6ed2b0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>action <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>state, reward, terminated, truncated, info <span class="op">=</span> env.step(action)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -452,7 +456,7 @@ Terminated:  False</code></pre>
 Interaction loops
 </h3>
 <p>Suppose we want to keep pushing the cart to the right until a termination condition is met and monitor the environment. We add the previous code in a while loop and render the environment at each iteration.</p>
-<div id="99f3a691" class="cell" data-execution_count="4">
+<div id="e4543b1f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="kw">not</span> terminated:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    action <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Move to the right</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    state, reward, terminated, _, _ <span class="op">=</span> env.step(action)</span>
@@ -463,14 +467,13 @@ Interaction loops
 </p>
 <p>Here are some chosen plots showing the cart movements to the right.</p>
 </section>
-<section id="references" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="references"><span class="header-section-number">11.3</span> References</h2>
+<section id="references" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="references"><span class="header-section-number">10.3</span> References</h2>
 <ul>
 <li>DataCamp, <a href="https://app.datacamp.com/learn/courses/reinforcement-learning-with-gymnasium-in-python">Reinforcement Learning with Gymnasium in Python</a></li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -273,6 +273,12 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Generative Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Papers Discussions</span></a>
   </div>
 </li>
@@ -288,10 +294,10 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#td-prediction" id="toc-td-prediction" class="nav-link active" data-scroll-target="#td-prediction"><span class="header-section-number">4.1</span> TD Prediction</a></li>
   <li><a href="#on-policy-and-off-policy-control" id="toc-on-policy-and-off-policy-control" class="nav-link" data-scroll-target="#on-policy-and-off-policy-control"><span class="header-section-number">4.2</span> On-Policy and Off-Policy Control</a></li>
   <li><a href="#sarsa-on-policy-td-control" id="toc-sarsa-on-policy-td-control" class="nav-link" data-scroll-target="#sarsa-on-policy-td-control"><span class="header-section-number">4.3</span> Sarsa: On-Policy TD Control</a></li>
@@ -521,7 +527,7 @@ Gridworld with Sarsa.
 <p>Solve the gridworld problem with Sarsa.</p>
 <p><a href="https://cs.stanford.edu/people/karpathy/reinforcejs/gridworld_td.html">REINFROCEjs - GridWorld: TD</a></p>
 </blockquote>
-<div id="77287dc7" class="cell" data-execution_count="1">
+<div id="0e997b49" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
