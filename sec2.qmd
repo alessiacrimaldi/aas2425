@@ -392,6 +392,12 @@ The goal, therefore, is to learn reliable estimates of the expected return assoc
 
 Since the agent initially has no knowledge of the environment, it must explore by trying different actions, entering states, and learning from the observed rewards and subsequent states. Through this interaction, the $q$-values are iteratively updated and refined, enabling progressively better decisions: this is *learning through experience* (like kids do).
 
+<h3>Policy condition</h3>
+
+To know the value of a certain state, it is necessary to visit that state and, by completing the episode *n* times, the corresponding value can be obtained. Therefore, <u>an ***essential characteristic*** of a policy for learning the value function is its ability to visit all the states</u>[^8].
+
+[^8]: This is a condition coming from the *Bellman equation*, which is fundamnetal to optimal control systems (very close to reinforcement learning).
+
 
 
 ## Choosing the Rewards
@@ -480,9 +486,9 @@ In videogames like Atari, where the agent gets some points for every positive ac
 
 Sometimes it is not possible to know the reward until the end of an episode, because the outcome is only revealed at the end of the game. The typical example is a board game (Chess, Go, etc.).
 
-> The **credit assignment problem**[^8] is the problem of assigning a reward to each step (at the end of episode).
+> The **credit assignment problem**[^9] is the problem of assigning a reward to each step (at the end of episode).
 
-[^8]: This problem is unsolved since 1961.
+[^9]: This problem is unsolved since 1961.
 
 - In that case, the reward might be assigned at the end of a **Montecarlo playout/rollout** (stochastic estimate of the reward).
 
@@ -520,25 +526,25 @@ Essentially, starting by random play, the agent can begin to learn how to improv
 
 > Given a sequence of states, actions, and rewards, determine which actions (or states) were responsible for which parts of the reward.
 
-This was first formalized in 1961 by Minsky[^9], professor at MIT. It is expecially tricky for delayed rewards, as we might get a reward many steps after the action that caused it.
+This was first formalized in 1961 by Minsky[^10], professor at MIT. It is expecially tricky for delayed rewards, as we might get a reward many steps after the action that caused it.
+
+[^10]: *Marvin Minsky (1912 – 1954):* [https://it.wikipedia.org/wiki/Alan_Turing](https://it.wikipedia.org/wiki/Alan_Turing)
 
 *Steps Toward Artificial Intelligence* is a very interesting paper by him, addressing key problems in AI.
 
 <iframe src="papers/2__1__Steps_Toward_Artificial_Intelligence.pdf" width="100%" height="400px"></iframe>
 
-[^9]: *Marvin Minsky (1912 – 1954):* [https://it.wikipedia.org/wiki/Alan_Turing](https://it.wikipedia.org/wiki/Alan_Turing)
+He also took part to the *Dartmouth Summer Research Project*[^11] on Artificial Intelligence, often described as the foundational event in the history of AI.
 
-He also took part to the *Dartmouth Summer Research Project*[^10] on Artificial Intelligence, often described as the foundational event in the history of AI.
-
-[^10]: *Dartmouth workshop:* [https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com](https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com)
+[^11]: *Dartmouth workshop:* [https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com](https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com)
 
 
 
 ## Estimating Value (State-Value and Action-Value) Functions
 
-If we know the physics of the system, so the behaviour of the MDP is known (i.e. the **transitions probabilities**[^11] between all the states are known), the state function or the action-state function can be estimated by considering all the possible moves.
+If we know the physics of the system, so the behaviour of the MDP is known (i.e. the **transitions probabilities**[^12] between all the states are known), the state function or the action-state function can be estimated by considering all the possible moves.
 
-[^11]: Here we refer to the *transition probabilities* of the environment (so which states we're going to enter next), not of the policy.
+[^12]: Here we refer to the *transition probabilities* of the environment (so which states we're going to enter next), not of the policy.
 
 This is not possible when:
 
@@ -553,7 +559,7 @@ One possibility is to keep average values of the actual returns that have follow
 
 > The ***Monte Carlo methods*** are methods based on averaging sample returns.
 
-<h4>Using function approximators (Neural Networks and Deep RL):</h4>
+<h4>Using function approximators (Neural Networks):</h4>
 
 Monte Carlo methods are not appropriate in case the number of states is very large.
 
@@ -571,19 +577,21 @@ Various function approximators of different complexity are possible.
 
 <h3>Optimal Policies</h3>
 
-Solving a reinforcemente learning is roughly equivalent to finding a policy that maximises the amount of reward over the long run.
+Solving a reinforcement learning problem is roughly equivalent to finding a policy that maximises the amount of reward over the long run.
 
 In finite MDPs there is always at least one policy that is better or equal to all the other policies: this is called ***optimal policy***.
 
-> Although there may be more than one, we denote all the **optimal policies** with $\mathbf{\pi_*}$. They are characterised by the <u>same value function</u> $v_*$ defined as
+Although there may be more than one (giving the same maximum cumulative reward), we denote all the *optimal policies* with $\mathbf{\pi_*}$.
+
+<h3>Optimal Value Functions</h3>
+
+> *Optimal policies* are characterised by the <u>same</u> ***value function*** $v_*$ defined as:
 >
 >> $v_*(s) \doteq max_\pi v_\pi(s)$
 >
 > for all $s \in \mathcal{S}$.
 
-<h3>Optimal Value Functions</h3>
-
-> Optimal policies also share the same ***optimal action-value function*** $q_*$, which is defined as
+> *Optimal policies* also share the <u>same</u> optimal ***action-value function*** $q_*$, which is defined as:
 >
 >> $q_* \doteq max_\pi q_\pi(s,a)$
 >
@@ -591,7 +599,7 @@ In finite MDPs there is always at least one policy that is better or equal to al
 
 > We can write $q_*$ in terms of $v_*$ as follows:
 >
->> q_*(s,a) = E[R_{t+1} + \gamma v_*(S_{t+1}) \vert S_t = s, A_t = a]
+>> $q_*(s,a) = E[R_{t+1} + \gamma v_*(S_{t+1}) \vert S_t = s, A_t = a]$
 
 
 
@@ -619,7 +627,7 @@ Therefore, in "unknown" situations, agents have to learn from their experience. 
 *Unsupervised learning* is learning from datasets containing unlabelled data. Since RL does not rely on examples (labels) of correct behaviour and instead explored and learns it, we may think that RL is a type of unsupervised learning.
 However, this is not the case because in *Reinforcement Learning* the goal is to maximise a reward signal instead of trying to find a hidden structure.
 
-For this reason, *Reinforcement Learning* is usually considred a third paradigm in addition to supervised and unsupervised learning.
+For this reason, *Reinforcement Learning* is usually considered a third paradigm in addition to supervised and unsupervised learning.
 
 <p align="center">
     <img src="images/supervised_unsupervised_reinforcement_learning.png" width="100%"/>
@@ -700,4 +708,4 @@ Beyond its well-known use in gaming, RL has a myriad of applications across vari
 
 The notation and definitions are taken (with small variations) from:
 
-- @sutton2018
+- **Chapter 1** and **Chapter 2** of @sutton2018

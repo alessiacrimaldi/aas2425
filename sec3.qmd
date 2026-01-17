@@ -366,8 +366,6 @@ They require to learn a policy, i.e. a mapping from the current state to the pro
 As we said, contextual bandits differ from the "full" reinforcement learning problem in that the action does not affect the future state.
 In case the action affects the future state, we have the "full" reinforcement learning problem.
 
-<h3>Additional Readings</h3>
-
 <iframe src="papers/3__1__A_Contextual-Bandit_Approach_to_Personalized_News_Article_Recommendation.pdf" width="100%" height="400px"></iframe>
 <p align="center"><em>Lihong Li, Wei Chu, John Langford, Robert E. Schapire. A contextual-bandit approach to personalized news article recommendation. Proceedings of the 19th International Conference on World Wide Web (WWW 2010): 661–670.</em></p>
 
@@ -455,3 +453,9 @@ Books for the bandit:
 - **Chapter 2** of @sutton2018
 
 - @lattimore2020
+
+
+
+## Suggested Readings
+
+- Book on how to apply computer algorithms to real life, to optimize everyday human decision-making: @christian2017

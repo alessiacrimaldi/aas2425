@@ -432,7 +432,7 @@ One of the biggest achievement is the extension of the domain of reinforcement l
 
 <h3>LSTMs</h3>
 
->> The ***LSTM*** is a kind of RNN that down not suffer from the problem  of vanishing gradients.
+>> The ***LSTM*** is a kind of RNN that does not suffer from the problem of vanishing gradients.
 >
 > It stands for **long short-term memory**: it is a kind of RNN with gating units.
 
