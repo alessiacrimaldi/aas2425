@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,7 +94,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -311,6 +311,7 @@ window.Quarto = {
   <li><a href="#contextual-bandits" id="toc-contextual-bandits" class="nav-link" data-scroll-target="#contextual-bandits"><span class="header-section-number">3.11</span> Contextual bandits</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.12</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3.13</span> References</a></li>
+  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings"><span class="header-section-number">3.14</span> Suggested Readings</a></li>
   </ul>
 </nav>
     </div>
@@ -488,7 +489,7 @@ Action Selection and Estimated Value
 <blockquote class="blockquote">
 
 </blockquote>
-<div id="c28b7f70" class="cell" data-execution_count="1">
+<div id="84880b44" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> epsilon_greedy:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> random.random() <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">-</span> eps:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.argmax(Q)</span>
@@ -606,7 +607,7 @@ Example
 </section>
 <section id="multi-armed-bandits-in-practice" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="multi-armed-bandits-in-practice"><span class="header-section-number">3.10</span> Multi-armed Bandits in practice</h2>
-<div id="762a9d6e" class="cell" data-execution_count="2">
+<div id="58ba88c3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -673,50 +674,50 @@ Example
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"step </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    chooser.choose()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>arm 0 range: (6, 7)
-arm 1 range: (10, 10)
-arm 2 range: (8, 9)
-arm 3 range: (3, 10)
+<pre><code>arm 0 range: (7, 7)
+arm 1 range: (8, 9)
+arm 2 range: (9, 10)
+arm 3 range: (1, 3)
 step 0
-R: 6.1028642628395735
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+R: 7.0
+Q: [7.0, 10.0, 10.0, 10.0]
 N: [1.0, 0.0, 0.0, 0.0]
 step 1
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
+R: 8.870078839795827
+Q: [7.0, 8.870078839795827, 10.0, 10.0]
 N: [1.0, 1.0, 0.0, 0.0]
 step 2
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 2.0, 0.0, 0.0]
+R: 9.757499105607087
+Q: [7.0, 8.870078839795827, 9.757499105607087, 10.0]
+N: [1.0, 1.0, 1.0, 0.0]
 step 3
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 3.0, 0.0, 0.0]
+R: 1.8715746135033242
+Q: [7.0, 8.870078839795827, 9.757499105607087, 1.8715746135033235]
+N: [1.0, 1.0, 1.0, 1.0]
 step 4
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 4.0, 0.0, 0.0]
+R: 9.908696597766292
+Q: [7.0, 8.870078839795827, 9.83309785168669, 1.8715746135033235]
+N: [1.0, 1.0, 2.0, 1.0]
 step 5
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 5.0, 0.0, 0.0]
+R: 9.133071509980875
+Q: [7.0, 8.870078839795827, 9.59975573778475, 1.8715746135033235]
+N: [1.0, 1.0, 3.0, 1.0]
 step 6
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 6.0, 0.0, 0.0]
+R: 9.787888938966384
+Q: [7.0, 8.870078839795827, 9.64678903808016, 1.8715746135033235]
+N: [1.0, 1.0, 4.0, 1.0]
 step 7
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 7.0, 0.0, 0.0]
+R: 9.78601683899229
+Q: [7.0, 8.870078839795827, 9.674634598262585, 1.8715746135033235]
+N: [1.0, 1.0, 5.0, 1.0]
 step 8
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 8.0, 0.0, 0.0]
+R: 1.6650922339733214
+Q: [7.0, 8.870078839795827, 9.674634598262585, 1.7683334237383224]
+N: [1.0, 1.0, 5.0, 2.0]
 step 9
-R: 10.0
-Q: [6.1028642628395735, 10.0, 10.0, 10.0]
-N: [1.0, 9.0, 0.0, 0.0]</code></pre>
+R: 9.786283596219835
+Q: [7.0, 8.870078839795827, 9.693242764588794, 1.7683334237383224]
+N: [1.0, 1.0, 6.0, 2.0]</code></pre>
 </div>
 </div>
 </section>
@@ -732,9 +733,6 @@ N: [1.0, 9.0, 0.0, 0.0]</code></pre>
 </blockquote>
 <p>They require to learn a policy, i.e.&nbsp;a mapping from the current state to the probabilities of each action.</p>
 <p>As we said, contextual bandits differ from the “full” reinforcement learning problem in that the action does not affect the future state. In case the action affects the future state, we have the “full” reinforcement learning problem.</p>
-<h3 class="anchored">
-Additional Readings
-</h3>
 <iframe src="papers/3__1__A_Contextual-Bandit_Approach_to_Personalized_News_Article_Recommendation.pdf" width="100%" height="400px">
 </iframe>
 <p align="center">
@@ -750,7 +748,7 @@ Website serving ads with bandits.
 <p>Design a system serving ads on a website (e.g.&nbsp;Google Ads) only using bandits.</p>
 <p><a href="https://research.facebook.com/blog/2021/4/auto-placement-of-ad-campaigns-using-multi-armed-bandits/">Auto-placement of ad campaigns using multi-armed bandits</a></p>
 </blockquote>
-<div id="c1d143e0" class="cell" data-execution_count="3">
+<div id="7bee793b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shuffle_array(arr):</span>
@@ -775,7 +773,7 @@ Website serving ads with bandits.
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_ads(ad):</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Showing Ad: </span><span class="sc">{</span>ad[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (Category: </span><span class="sc">{</span>ad[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="ab6fbac4" class="cell" data-execution_count="4">
+<div id="3e527199" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ads <span class="op">=</span> [</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Soccer ⚽️"</span>, <span class="st">"Sport"</span>), (<span class="st">"Basket 🏀"</span>, <span class="st">"Sport"</span>), (<span class="st">"Volleyball 🏐"</span>, <span class="st">"Sport"</span>),</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Banana 🍌"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Apple 🍏"</span>, <span class="st">"Fruit"</span>), (<span class="st">"Orange 🍊"</span>, <span class="st">"Fruit"</span>),</span>
@@ -822,9 +820,18 @@ Website serving ads with contextual bandits.
 <li><p><strong>Chapter 2</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></p></li>
 <li><p><span class="citation" data-cites="lattimore2020">Lattimore and Szepesvari (<a href="references.html#ref-lattimore2020" role="doc-biblioref">2020</a>)</span></p></li>
 </ul>
+</section>
+<section id="suggested-readings" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="suggested-readings"><span class="header-section-number">3.14</span> Suggested Readings</h2>
+<ul>
+<li>Book on how to apply computer algorithms to real life, to optimize everyday human decision-making: <span class="citation" data-cites="christian2017">Christian and Griffiths (<a href="references.html#ref-christian2017" role="doc-biblioref">2017</a>)</span></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-christian2017" class="csl-entry" role="listitem">
+Christian, Brian, and Tom Griffiths. 2017. <em>Algorithms to Live by</em>. Stated First Picador Edition. Picador, New York.
+</div>
 <div id="ref-lattimore2020" class="csl-entry" role="listitem">
 Lattimore, Tor, and Csaba Szepesvari. 2020. <em>Bandit Algorithms</em>. Cambridge University Press. <a href="https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC">https://www.cambridge.org/core/books/bandit-algorithms/8E39FD004E6CE036680F90DD0C6F09FC</a>.
 </div>

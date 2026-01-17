@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,7 +94,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -439,7 +439,7 @@ RL interaction loop
 <img src="images/agent_environment_2.png" width="55%">
 </p>
 <p>Let’s demonstrate the agent-environment interaction using a generic code example. The process starts by creating an environment and retrieving the initial state. The agent then enters a loop where it selects an action based on the current state in each iteration. After executing the action, the environment provides feedback in the form of a new state and a reward. Finally, the agent updates its knowledge based on the state, action, and reward it received.</p>
-<div id="656245f5" class="cell" data-execution_count="1">
+<div id="67899355" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> create_environment()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> env_get_initial_state()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -541,7 +541,7 @@ Discounting Rewards
 Numerical example:
 </h4>
 <p>In this example, we’ll demonstrate how to calculate the discounted return from an array of <code>expected_rewards</code>. We define a <code>discount_factor</code> of 0.9, then create an array of discounts, where each element corresponds to the discount factor raised to the power of the reward’s position in the sequence.</p>
-<div id="1989e537" class="cell" data-execution_count="2">
+<div id="1e001cb3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>expected_rewards <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">3</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>discount_factor <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -552,7 +552,7 @@ Numerical example:
 </div>
 </div>
 <p>As we can see, discounts decrease over time, giving less importance to future rewards. Next, we multiply each reward by its corresponding discount and sum the results to compute the <code>discounted_return</code>, which is 8.83 in this example.</p>
-<div id="3f6d4394" class="cell" data-execution_count="3">
+<div id="46da4641" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>discounted_return <span class="op">=</span> np.<span class="bu">sum</span>(expected_rewards <span class="op">*</span> discounts)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The discounted return is </span><span class="sc">{</span>discounted_return<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -634,7 +634,7 @@ Montecarlo Rollout:
 </p>
 <p><em><u>How to implement this in practice, using probabilistic programming?</u></em><br> Let’s suppose we have two actions: left and right. We want to implement the choice right with 30% probability and the choice left with 70% probability.</p>
 <p>Pseudocode:</p>
-<div id="47c2baf6" class="cell" data-execution_count="4">
+<div id="c3687077" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>choose <span class="op">=</span> rand(<span class="fl">0.1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> choose <span class="op">&gt;=</span> <span class="fl">0.7</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    move left</span>
@@ -672,6 +672,10 @@ Improving the policy through better <span class="math inline">\(q\)</span>-value
 </h4>
 <p>If the policy selects actions by choosing those with the highest <span class="math inline">\(q\)</span>-values, improving the policy means learning more accurate <span class="math inline">\(q\)</span>-values, i.e., state-action pairs values. <strong>Better estimates</strong> lead to <strong>better action selection</strong> and, consequently, a <strong>better policy</strong> (probability distribution over the possible actions).<br> The goal, therefore, is to learn reliable estimates of the expected return associated with taking a given action, namely accurate <span class="math inline">\(q\)</span>-values, and to use them to inform the actual definition of the policy <span class="math inline">\(\pi\)</span> we are learning.</p>
 <p>Since the agent initially has no knowledge of the environment, it must explore by trying different actions, entering states, and learning from the observed rewards and subsequent states. Through this interaction, the <span class="math inline">\(q\)</span>-values are iteratively updated and refined, enabling progressively better decisions: this is <em>learning through experience</em> (like kids do).</p>
+<h3 class="anchored">
+Policy condition
+</h3>
+<p>To know the value of a certain state, it is necessary to visit that state and, by completing the episode <em>n</em> times, the corresponding value can be obtained. Therefore, <u>an <strong><em>essential characteristic</em></strong> of a policy for learning the value function is its ability to visit all the states</u><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 </section>
 </section>
 <section id="choosing-the-rewards" class="level2" data-number="2.5">
@@ -734,7 +738,7 @@ Rewarding at the end of episode:
 </h4>
 <p>Sometimes it is not possible to know the reward until the end of an episode, because the outcome is only revealed at the end of the game. The typical example is a board game (Chess, Go, etc.).</p>
 <blockquote class="blockquote">
-<p>The <strong>credit assignment problem</strong><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> is the problem of assigning a reward to each step (at the end of episode).</p>
+<p>The <strong>credit assignment problem</strong><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is the problem of assigning a reward to each step (at the end of episode).</p>
 </blockquote>
 <ul>
 <li><p>In that case, the reward might be assigned at the end of a <strong>Montecarlo playout/rollout</strong> (stochastic estimate of the reward).</p></li>
@@ -764,15 +768,15 @@ The Credit Assignment Problem formalization:
 <blockquote class="blockquote">
 <p>Given a sequence of states, actions, and rewards, determine which actions (or states) were responsible for which parts of the reward.</p>
 </blockquote>
-<p>This was first formalized in 1961 by Minsky<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>, professor at MIT. It is expecially tricky for delayed rewards, as we might get a reward many steps after the action that caused it.</p>
+<p>This was first formalized in 1961 by Minsky<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, professor at MIT. It is expecially tricky for delayed rewards, as we might get a reward many steps after the action that caused it.</p>
 <p><em>Steps Toward Artificial Intelligence</em> is a very interesting paper by him, addressing key problems in AI.</p>
 <iframe src="papers/2__1__Steps_Toward_Artificial_Intelligence.pdf" width="100%" height="400px">
 </iframe>
-<p>He also took part to the <em>Dartmouth Summer Research Project</em><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> on Artificial Intelligence, often described as the foundational event in the history of AI.</p>
+<p>He also took part to the <em>Dartmouth Summer Research Project</em><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> on Artificial Intelligence, often described as the foundational event in the history of AI.</p>
 </section>
 <section id="estimating-value-state-value-and-action-value-functions" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="estimating-value-state-value-and-action-value-functions"><span class="header-section-number">2.6</span> Estimating Value (State-Value and Action-Value) Functions</h2>
-<p>If we know the physics of the system, so the behaviour of the MDP is known (i.e.&nbsp;the <strong>transitions probabilities</strong><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> between all the states are known), the state function or the action-state function can be estimated by considering all the possible moves.</p>
+<p>If we know the physics of the system, so the behaviour of the MDP is known (i.e.&nbsp;the <strong>transitions probabilities</strong><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> between all the states are known), the state function or the action-state function can be estimated by considering all the possible moves.</p>
 <p>This is not possible when:</p>
 <ul>
 <li><u>The transitions probabilities are not known</u>: if we take an action, we do not know how it influences the future.</li>
@@ -787,7 +791,7 @@ Monte-Carlo Methods:
 <p>The <strong><em>Monte Carlo methods</em></strong> are methods based on averaging sample returns.</p>
 </blockquote>
 <h4 class="anchored">
-Using function approximators (Neural Networks and Deep RL):
+Using function approximators (Neural Networks):
 </h4>
 <p>Monte Carlo methods are not appropriate in case the number of states is very large.</p>
 <ul>
@@ -804,20 +808,21 @@ Using function approximators (Neural Networks and Deep RL):
 <h3 class="anchored">
 Optimal Policies
 </h3>
-<p>Solving a reinforcemente learning is roughly equivalent to finding a policy that maximises the amount of reward over the long run.</p>
+<p>Solving a reinforcement learning problem is roughly equivalent to finding a policy that maximises the amount of reward over the long run.</p>
 <p>In finite MDPs there is always at least one policy that is better or equal to all the other policies: this is called <strong><em>optimal policy</em></strong>.</p>
+<p>Although there may be more than one (giving the same maximum cumulative reward), we denote all the <em>optimal policies</em> with <span class="math inline">\(\mathbf{\pi_*}\)</span>.</p>
+<h3 class="anchored">
+Optimal Value Functions
+</h3>
 <blockquote class="blockquote">
-<p>Although there may be more than one, we denote all the <strong>optimal policies</strong> with <span class="math inline">\(\mathbf{\pi_*}\)</span>. They are characterised by the <u>same value function</u> <span class="math inline">\(v_*\)</span> defined as</p>
+<p><em>Optimal policies</em> are characterised by the <u>same</u> <strong><em>value function</em></strong> <span class="math inline">\(v_*\)</span> defined as:</p>
 <blockquote class="blockquote">
 <p><span class="math inline">\(v_*(s) \doteq max_\pi v_\pi(s)\)</span></p>
 </blockquote>
 <p>for all <span class="math inline">\(s \in \mathcal{S}\)</span>.</p>
 </blockquote>
-<h3 class="anchored">
-Optimal Value Functions
-</h3>
 <blockquote class="blockquote">
-<p>Optimal policies also share the same <strong><em>optimal action-value function</em></strong> <span class="math inline">\(q_*\)</span>, which is defined as</p>
+<p><em>Optimal policies</em> also share the <u>same</u> optimal <strong><em>action-value function</em></strong> <span class="math inline">\(q_*\)</span>, which is defined as:</p>
 <blockquote class="blockquote">
 <p><span class="math inline">\(q_* \doteq max_\pi q_\pi(s,a)\)</span></p>
 </blockquote>
@@ -826,7 +831,7 @@ Optimal Value Functions
 <blockquote class="blockquote">
 <p>We can write <span class="math inline">\(q_*\)</span> in terms of <span class="math inline">\(v_*\)</span> as follows:</p>
 <blockquote class="blockquote">
-<p>q_*(s,a) = E[R_{t+1} + v_*(S_{t+1}) S_t = s, A_t = a]</p>
+<p><span class="math inline">\(q_*(s,a) = E[R_{t+1} + \gamma v_*(S_{t+1}) \vert S_t = s, A_t = a]\)</span></p>
 </blockquote>
 </blockquote>
 </section>
@@ -847,7 +852,7 @@ RL vs.&nbsp;Supervised Learning
 RL vs.&nbsp;Unsupervised Learning
 </h3>
 <p><em>Unsupervised learning</em> is learning from datasets containing unlabelled data. Since RL does not rely on examples (labels) of correct behaviour and instead explored and learns it, we may think that RL is a type of unsupervised learning. However, this is not the case because in <em>Reinforcement Learning</em> the goal is to maximise a reward signal instead of trying to find a hidden structure.</p>
-<p>For this reason, <em>Reinforcement Learning</em> is usually considred a third paradigm in addition to supervised and unsupervised learning.</p>
+<p>For this reason, <em>Reinforcement Learning</em> is usually considered a third paradigm in addition to supervised and unsupervised learning.</p>
 <p align="center">
 <img src="images/supervised_unsupervised_reinforcement_learning.png" width="100%">
 </p>
@@ -920,7 +925,7 @@ Appropriate vs.&nbsp;Inappropriate for RL
 </ul>
 <p>The notation and definitions are taken (with small variations) from:</p>
 <ul>
-<li><span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
+<li><strong>Chapter 1</strong> and <strong>Chapter 2</strong> of <span class="citation" data-cites="sutton2018">Sutton and Barto (<a href="references.html#ref-sutton2018" role="doc-biblioref">2018</a>)</span></li>
 </ul>
 
 
@@ -940,10 +945,11 @@ Sutton, Richard S., and Andrew G. Barto. 2018. <em>Reinforcement Learning. An In
 <li id="fn5"><p>If we’re exploring with a certain policy <span class="math inline">\(\pi\)</span>, and we behave differently (the policy changes), then the expected cumulative reward <span class="math inline">\(E_{\pi}(G_t)\)</span> will be different because we’re going to move in a different way.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p><em>Montecarlo</em>: the program pick a certain action with a certain probability.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Otherwise, if we only have <span class="math inline">\(v_{S_t}\)</span>, any action could be chosen. In that case we would need to compute the expected reward for all possible actions available from state <span class="math inline">\(S_t\)</span> in order to decide which one to take.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>This problem is unsolved since 1961.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p><em>Marvin Minsky (1912 – 1954):</em> <a href="https://it.wikipedia.org/wiki/Alan_Turing">https://it.wikipedia.org/wiki/Alan_Turing</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p><em>Dartmouth workshop:</em> <a href="https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com">https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>Here we refer to the <em>transition probabilities</em> of the environment (so which states we’re going to enter next), not of the policy.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>This is a condition coming from the <em>Bellman equation</em>, which is fundamnetal to optimal control systems (very close to reinforcement learning).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>This problem is unsolved since 1961.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><em>Marvin Minsky (1912 – 1954):</em> <a href="https://it.wikipedia.org/wiki/Alan_Turing">https://it.wikipedia.org/wiki/Alan_Turing</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><em>Dartmouth workshop:</em> <a href="https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com">https://en.wikipedia.org/wiki/Dartmouth_workshop?utm_source=chatgpt.com</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Here we refer to the <em>transition probabilities</em> of the environment (so which states we’re going to enter next), not of the policy.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
